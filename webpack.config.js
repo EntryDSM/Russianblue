@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -52,6 +53,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new Dotenv({
+      path: path.join(__dirname, 'src/.env'),
+    }),
+    new webpack.EnvironmentPlugin(['BASE_URL']),
   ],
   devServer: {
     inline: true,
