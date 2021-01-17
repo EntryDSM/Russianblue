@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2225.99" height="1348.322" viewBox="0 0 2225.99 1348.322">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f88"/>
+      <stop offset="1" stop-color="#ef6268"/>
+    </linearGradient>
+  </defs>
+  <g id="배경" transform="translate(3869.716 1804.217)">
+    <rect id="사각형_233" data-name="사각형 233" width="148" height="368" rx="74" transform="translate(-3583.726 -1804.217) rotate(51)" opacity="0.4" fill="url(#linear-gradient)"/>
+    <rect id="사각형_235" data-name="사각형 235" width="166" height="962" rx="83" transform="translate(-1748.193 -1190.307) rotate(51)" opacity="0.4" fill="url(#linear-gradient)"/>
+    <rect id="사각형_236" data-name="사각형 236" width="60" height="376" rx="30" transform="translate(-1729.793 -950.631) rotate(51)" opacity="0.4" fill="url(#linear-gradient)"/>
+    <rect id="사각형_239" data-name="사각형 239" width="86" height="420" rx="43" transform="translate(-3465.199 -867) rotate(51)" opacity="0.4" fill="url(#linear-gradient)"/>
+    <rect id="사각형_234" data-name="사각형 234" width="71" height="186" rx="35.5" transform="translate(-3654.682 -1536.376) rotate(51)" fill="#f57278" opacity="0.4"/>
+    <rect id="사각형_241" data-name="사각형 241" width="38" height="144" rx="19" transform="translate(-3658.199 -788) rotate(51)" opacity="0.4" fill="url(#linear-gradient)"/>
+    <rect id="사각형_240" data-name="사각형 240" width="38" height="66" rx="19" transform="translate(-3582.555 -847) rotate(51)" opacity="0.4" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
