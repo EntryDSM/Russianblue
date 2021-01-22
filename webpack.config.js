@@ -54,9 +54,8 @@ module.exports = {
       template: './public/index.html',
     }),
     new Dotenv({
-      path: path.join(__dirname, 'src/.env'),
+      path: path.join('./src/.env'),
     }),
-    new webpack.EnvironmentPlugin(['BASE_URL']),
   ],
   devServer: {
     inline: true,

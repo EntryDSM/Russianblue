@@ -1,15 +1,13 @@
 import React from 'react';
 import GlobalStyle from './style/globalStyle';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import RootRouter from './route';
+
 const App = () => {
   return (
-    <GlobalStyle>
-      <BrowserRouter>
-        <Switch>
-          <Route />
-        </Switch>
-      </BrowserRouter>
-    </GlobalStyle>
+    <>
+      <GlobalStyle />
+      <RootRouter />
+    </>
   );
 };
 
