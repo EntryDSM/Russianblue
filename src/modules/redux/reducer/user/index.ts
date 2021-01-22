@@ -6,7 +6,7 @@ const InitState: IUserState = {
   name: '',
 };
 
-const userReducer = (action: userActionType, state: IUserState = InitState): IUserState => {
+const userReducer = (state: IUserState = InitState, action: userActionType): IUserState => {
   switch (action.type) {
     case PHONE_NUMBER: {
       return { ...state, phoneNumber: action.payload };
