@@ -4,6 +4,8 @@ export const color = {
   backgorund: 'white',
   fail: '#707070',
   middleBar: '#cbcbcb',
+  light: '#ffebec',
+  disable: '#afafaf',
 };
 
 const HTML_FONT_SIZE = 16;
