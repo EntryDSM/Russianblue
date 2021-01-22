@@ -2,7 +2,12 @@ import React, { FC } from 'react';
 import * as S from '../style';
 import SignUpRuleCheckbox from './SignUpRuleCheckbox';
 
-const SignUpRule: FC = () => {
+interface Props {
+  setRuleCheck: (payload: boolean) => void;
+  ruleCheck: boolean;
+}
+
+const SignUpRule: FC<Props> = props => {
   return (
     <>
       <S.SignUpRuleWrapper>
@@ -29,7 +34,7 @@ const SignUpRule: FC = () => {
           </pre>
         </S.SignUpRule>
       </S.SignUpRuleWrapper>
-      <SignUpRuleCheckbox />
+      <SignUpRuleCheckbox {...props} />
     </>
   );
 };
