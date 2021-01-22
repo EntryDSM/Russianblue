@@ -7,13 +7,16 @@ const InitState: IModalState = {
   loginModal: false,
 };
 
-const ModalReducer = (action: modalActionType, state: IModalState = InitState) => {
+const ModalReducer = (state: IModalState = InitState, action: modalActionType) => {
   switch (action.type) {
     case MODAL_ON: {
       return { ...state, [action.payload]: true };
     }
     case MODAL_OFF: {
       return { ...state, [action.payload]: false };
+    }
+    default: {
+      return state;
     }
   }
 };

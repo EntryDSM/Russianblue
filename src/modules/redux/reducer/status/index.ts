@@ -8,7 +8,7 @@ const InitState: IStatusState = {
   isStart: true,
 };
 
-const statusReducer = (action: statusActionType, state: IStatusState = InitState): IStatusState => {
+const statusReducer = (state: IStatusState = InitState, action: statusActionType): IStatusState => {
   switch (action.type) {
     case STATUS: {
       return { ...state, status: action.payload };
@@ -21,6 +21,9 @@ const statusReducer = (action: statusActionType, state: IStatusState = InitState
     }
     case IS_END: {
       return { ...state, isEnd: action.payload };
+    }
+    default: {
+      return state;
     }
   }
 };
