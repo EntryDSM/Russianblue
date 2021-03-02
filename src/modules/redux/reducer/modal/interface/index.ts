@@ -1,7 +1,5 @@
 interface IModalState {
-  firstNotifyModal: boolean;
-  secondNotifyModal: boolean;
-  loginModal: boolean;
+  type: string;
 }
 
 export default IModalState;

@@ -15,7 +15,7 @@ const ProgressContent: FC<Props> = ({ isNow, progressName, isPassed }) => {
         <S.ProgressText isNow={isNow} isPassed={isPassed}>
           {progressName}
         </S.ProgressText>
-        <S.ProgressSubText>ㅁㄴㅇㄹㅁㄴㅇㄹ</S.ProgressSubText>
+        {isNow ? <S.ProgressSubText>ㅁㄴㅇㄹㅁㄴㅇㄹ</S.ProgressSubText> : ''}
       </S.ProgressTextWrapper>
       <ProgressIcon isPassed={isPassed} />
     </S.ProgressContent>

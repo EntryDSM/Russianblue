@@ -7,9 +7,19 @@ interface Props {
   disable?: boolean;
   placeholder?: string;
   margin?: string;
+  inputChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
 }
 
-const Input: FC<Props> = ({ width, height, disable, placeholder, margin }) => {
+const Input: FC<Props> = ({
+  width,
+  height,
+  disable,
+  placeholder,
+  margin,
+  inputChangeHandler,
+  type,
+}) => {
   return (
     <S.Input
       width={width}
@@ -17,6 +27,9 @@ const Input: FC<Props> = ({ width, height, disable, placeholder, margin }) => {
       disable={disable}
       placeholder={placeholder}
       margin={margin}
+      onChange={inputChangeHandler}
+      disabled={disable}
+      type={type}
     />
   );
 };

@@ -11,6 +11,7 @@ export const Main = styled.div`
 
 export const MainBackground = styled.div`
   width: 100%;
+  height: 100%;
   position: absolute;
   min-height: ${pxToRem(900)}rem;
   overflow: hidden;

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
+import useSignup from '../../util/hooks/signup/useSignUp';
 import SignUp from '../../components/signup';
 
-const SignUpContainer = () => {
-  return <SignUp />;
+const SignUpContainer: FC = () => {
+  const { state, setState } = useSignup();
+  return <SignUp {...state} {...setState} />;
 };
 
 export default SignUpContainer;
