@@ -2,7 +2,7 @@ import IStatusState from './interface';
 import { IS_END, IS_START, PROCESS, STATUS, statusActionType } from '../../action/status';
 import mainConstance from './mainConstance';
 const InitState: IStatusState = {
-  status: 'finalAnnouncement',
+  status: 'NOT_START',
   isEnd: false,
   isStart: true,
   processes: mainConstance,
