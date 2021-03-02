@@ -7,7 +7,6 @@ export const Header = styled.div`
   height: ${pxToRem(60)}rem;
   box-shadow: 0 ${pxToRem(3)}rem ${pxToRem(6)}rem 0 rgba(0, 0, 0, 0.16);
   padding: 0px 15%;
-  min-width: ${pxToRem(1320)}rem;
   box-sizing: border-box;
   display: flex;
   position: fixed;
@@ -37,8 +36,12 @@ export const HeaderDropDown = styled.label`
   > input[type='checkbox'] {
     display: none;
   }
+  > div {
+    width: ${pxToRem(337)}rem;
+    transform: translate(-230px, 0px);
+  }
   > input:checked ~ div {
-    height: ${pxToRem(200)}rem;
+    height: ${pxToRem(403)}rem;
   }
   > input:checked ~ i {
     transform: rotate(180deg);
@@ -81,7 +84,7 @@ export const HeaderDropdownContent = styled.div`
   width: 100%;
   z-index: 10;
   height: 0;
-  transition: all 0.3s;
+  transition: height 0.3s;
   background-color: ${color.backgorund};
   box-shadow: 0 ${pxToRem(2)}rem ${pxToRem(3)}rem 0 rgba(0, 0, 0, 0.16);
   top: ${pxToRem(30)}rem;
