@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import MainContent from './content';
 import Progress from './progress';
+import { processType } from 'src/modules/redux/action/status/interface';
 
-const Main = () => {
+interface Props {
+  status: string;
+  process: processType;
+}
+
+const Main: FC<Props> = ({ status, process }) => {
   return (
     <S.Main>
       <S.MainBackground />
       <S.MainWrapper>
-        <MainContent nowProcess='test' date='2020년 00월 00일' />
-        <Progress />
+        <MainContent {...process} />
+        <Progress status={status} />
       </S.MainWrapper>
     </S.Main>
   );
