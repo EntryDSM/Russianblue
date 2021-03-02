@@ -6,12 +6,13 @@ import HeaderDropDown from './HeaderDropdown';
 interface Props {
   isLogin: boolean;
   name: string;
+  logout: () => void;
 }
 
-const HeaderMenu: FC<Props> = ({ isLogin, name }) => {
+const HeaderMenu: FC<Props> = ({ isLogin, name, logout }) => {
   const userMenu = (
     <S.HeaderMenu>
-      <HeaderButton buttonClickHandler={() => {}}>로그아웃</HeaderButton>
+      <HeaderButton buttonClickHandler={logout}>로그아웃</HeaderButton>
       <S.HeaderPartition>|</S.HeaderPartition>
       <HeaderDropDown name={name} />
     </S.HeaderMenu>
