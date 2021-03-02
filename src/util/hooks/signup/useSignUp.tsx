@@ -6,11 +6,11 @@ import {
   setPhoneNumber,
   setRuleCheck,
 } from '../../../modules/redux/action/signup';
-import { ReducerType } from 'src/modules/redux/store';
+import { useSelectState } from '../default';
 
 const useSignup = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state: ReducerType) => state.signup);
+  const state = useSelectState().signup;
   const setState = {
     setName: (payload: string) => {
       dispatch(setName(payload));
