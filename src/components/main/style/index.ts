@@ -21,7 +21,7 @@ export const MainBackground = styled.div`
   background-size: 110%;
   z-index: -100;
   @media (max-width: 1320px) {
-    width: ${pxToRem(1600)}rem;
+    width: ${pxToRem(1320)}rem;
   }
 `;
 
