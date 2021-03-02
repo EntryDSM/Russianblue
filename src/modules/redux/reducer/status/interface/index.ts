@@ -1,8 +1,8 @@
 interface IStatusState {
   status: string;
-  description: string;
   isEnd: boolean;
   isStart: boolean;
+  processes: Object;
 }
 
 export default IStatusState;
