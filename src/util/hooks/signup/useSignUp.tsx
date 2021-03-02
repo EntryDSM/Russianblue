@@ -5,7 +5,7 @@ import {
   setPhoneCode,
   setPhoneNumber,
   setRuleCheck,
-} from '../../modules/redux/action/signup';
+} from '../../../modules/redux/action/signup';
 import { ReducerType } from 'src/modules/redux/store';
 
 const useSignup = () => {
