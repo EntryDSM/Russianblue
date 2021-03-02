@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="104.422" height="105.848" viewBox="0 0 104.422 105.848">
+  <g id="접근_오류_아이콘" data-name="접근 오류 아이콘" transform="translate(-156.472 -225.152)">
+    <path id="Icon_awesome-long-arrow-alt-right" data-name="Icon awesome-long-arrow-alt-right" d="M110.183,20.393H91.935A1.843,1.843,0,0,0,90,22.128v8.1a1.843,1.843,0,0,0,1.935,1.735h18.248v6.659a3.208,3.208,0,0,0,5.56,2.453L129.622,28.63a3.221,3.221,0,0,0,0-4.907L115.743,11.281a3.208,3.208,0,0,0-5.56,2.453Z" transform="translate(66.472 245.59)" fill="#f57278"/>
+    <path id="패스_133" data-name="패스 133" d="M10.057,0H34.98A9.927,9.927,0,0,1,45.037,9.793V80.9c0,5.408-4.007,7.452-10.057,9.793l-24.923,8.09A9.927,9.927,0,0,1,0,88.985V9.793A9.927,9.927,0,0,1,10.057,0Z" transform="translate(215.857 232.223)" fill="#f57278"/>
+    <path id="패스_134" data-name="패스 134" d="M-8072.112,16751.914V16760a7.918,7.918,0,0,0,2.488,5.176c2.319,1.918,6.791,2.5,6.791,2.5h17.633" transform="translate(8260.969 -16454.412)" fill="none" stroke="#f57278" stroke-linecap="round" stroke-width="10"/>
+    <path id="패스_135" data-name="패스 135" d="M12.208.217S5.85-.884,2.8,1.874.005,11.252.005,11.252V57.386A10.629,10.629,0,0,0,2.8,64.225,8.154,8.154,0,0,0,9.21,66.68h4.441" transform="translate(255.493 230.166) rotate(90)" fill="none" stroke="#f57278" stroke-linecap="round" stroke-width="10"/>
+  </g>
+</svg>
