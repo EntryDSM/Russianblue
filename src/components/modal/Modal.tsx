@@ -77,7 +77,6 @@ const Modal: FC<Props> = ({ type, setType }) => {
           {type === MODAL_TYPE.accessErrorModal ? <AccessErrorModal goNext={deleteModal} /> : ''}
         </S.Modal>
       </S.ModalWrapper>
-      )
     </>
   );
 };
