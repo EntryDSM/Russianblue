@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useSignup from '../../util/hooks/useSignUp';
+import useSignup from '../../util/hooks/signup/useSignUp';
 import SignUp from '../../components/signup';
 
 const SignUpContainer: FC = () => {
