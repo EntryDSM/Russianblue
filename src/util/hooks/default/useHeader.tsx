@@ -1,8 +1,8 @@
+import HeaderContainer from '../../../containers/header';
 import React, { ReactNode } from 'react';
-import Header from '../../../components/header';
 
 const useHeader = (): ReactNode => {
-  return <Header />;
+  return <HeaderContainer />;
 };
 
 export default useHeader;

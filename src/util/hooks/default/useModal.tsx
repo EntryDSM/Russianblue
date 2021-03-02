@@ -1,8 +1,8 @@
 import React from 'react';
-import Modal from '../../../containers/modal';
+import ModalContainer from '../../../containers/modal';
 
 const useModal = () => {
-  return <Modal />;
+  return <ModalContainer />;
 };
 
 export default useModal;
