@@ -15,7 +15,7 @@ export const Header = styled.div`
   justify-content: space-between;
   top: 0;
   background-color: white;
-  z-index: 100;
+  z-index: 10;
 `;
 
 export const HeaderIcon = styled.div`
