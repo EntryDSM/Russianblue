@@ -1,15 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { MainContainer, SignUpContainer } from '../containers';
-import { useHeader, useFooter, useModal } from '../util/hooks/default';
+import { useFooter, useModal } from '../util/hooks/default';
+import HeaderContainer from '../containers/header';
+import * as S from '../style/globalStyle';
 
 const MainRouter = () => {
-  const Header = useHeader();
   const Footer = useFooter();
   const Modal = useModal();
   return (
     <>
-      {Header}
+      <HeaderContainer />
       {Modal}
       <Switch>
         <Route path='/signup' component={SignUpContainer} />
