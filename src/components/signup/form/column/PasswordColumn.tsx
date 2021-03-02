@@ -8,9 +8,12 @@ interface Props {
 }
 
 const PasswordColumn: FC<Props> = ({ disable, setPassword }) => {
+  const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
   return (
     <SignUpColumn text='이름'>
-      <Input width={400} disable={disable} setValue={setPassword} />
+      <Input width={400} disable={disable} inputChangeHandler={passwordChangeHandler} />
     </SignUpColumn>
   );
 };

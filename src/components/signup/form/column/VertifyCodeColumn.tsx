@@ -9,9 +9,17 @@ interface Props {
 }
 
 const VertifyCodeColumn: FC<Props> = ({ disable, setPhoneCode }) => {
+  const phoneCodeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneCode(e.target.value);
+  };
   return (
     <SignUpColumn text='전화번호'>
-      <Input width={216} disable={disable} margin='0px 7px 0px 0px' setValue={setPhoneCode} />
+      <Input
+        width={216}
+        disable={disable}
+        margin='0px 7px 0px 0px'
+        inputChangeHandler={phoneCodeChangeHandler}
+      />
       <Button width={78} disable={disable} margin='7px'>
         인증
       </Button>
