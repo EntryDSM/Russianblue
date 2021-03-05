@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import SignUpColumn from './SignUpColumn';
-import Input from '../../../default/input';
+import Input, { PasswordInput } from '../../../default/input';
 
 interface Props {
   disable: boolean;
@@ -12,8 +12,8 @@ const PasswordColumn: FC<Props> = ({ disable, setPassword }) => {
     setPassword(e.target.value);
   };
   return (
-    <SignUpColumn text='이름'>
-      <Input width={400} disable={disable} inputChangeHandler={passwordChangeHandler} />
+    <SignUpColumn text='비밀번호'>
+      <PasswordInput width={400} disable={disable} inputChangeHandler={passwordChangeHandler} />
     </SignUpColumn>
   );
 };

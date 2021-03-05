@@ -8,8 +8,10 @@ interface Props {
 const SignUpColumn: FC<Props> = ({ children, text }) => {
   return (
     <S.SignUpItem>
-      <S.SignUpItemText>{text}</S.SignUpItemText>
-      {children}
+      <div>
+        <S.SignUpItemText>{text}</S.SignUpItemText>
+        {children}
+      </div>
     </S.SignUpItem>
   );
 };

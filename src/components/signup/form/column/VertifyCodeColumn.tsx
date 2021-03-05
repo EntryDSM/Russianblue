@@ -13,19 +13,21 @@ const VertifyCodeColumn: FC<Props> = ({ disable, setPhoneCode }) => {
     setPhoneCode(e.target.value);
   };
   return (
-    <SignUpColumn text='전화번호'>
-      <Input
-        width={216}
-        disable={disable}
-        margin='0px 7px 0px 0px'
-        inputChangeHandler={phoneCodeChangeHandler}
-      />
-      <Button width={78} disable={disable} margin='7px'>
-        인증
-      </Button>
-      <Button width={78} disable={disable} margin='7px'>
-        재전송
-      </Button>
+    <SignUpColumn text='인증번호'>
+      <div>
+        <Input
+          width={216}
+          disable={disable}
+          margin='0px 7px 0px 0px'
+          inputChangeHandler={phoneCodeChangeHandler}
+        />
+        <Button width={78} disable={disable} margin='7px'>
+          인증
+        </Button>
+        <Button width={78} disable={disable} margin='7px'>
+          재전송
+        </Button>
+      </div>
     </SignUpColumn>
   );
 };
