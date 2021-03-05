@@ -8,6 +8,15 @@ export const INTERVIEW = 'INTERVIEW' as const;
 export const NOT_START = 'NOT_START' as const;
 export const MIDDLE = 'MIDDLE' as const;
 
+export type statusType =
+  | typeof START_DATE
+  | typeof END_DATE
+  | typeof FIRST_ANNOUNCEMENT
+  | typeof SECOND_ANNOUNCEMENT
+  | typeof INTERVIEW
+  | typeof NOT_START
+  | typeof MIDDLE;
+
 const mainConstance = {
   [NOT_START]: {
     title: <p>지금은 원서접수기간이 아닙니다.</p>,
@@ -52,7 +61,7 @@ const mainConstance = {
     isButtonAble: true,
   },
   [END_DATE]: {
-    getgetTitle: '원서 접수가 끝났습니다.',
+    title: '원서 접수가 끝났습니다.',
     getDescription: () => <p>내년을 기약해 주세요.</p>,
     isHaveTerm: true,
     buttonText: '결과 보기',
@@ -60,14 +69,14 @@ const mainConstance = {
   },
 };
 
-export enum mainProcessNumber {
-  NOT_START = 1,
-  START_DATE = 2,
-  MIDDLE = 3,
-  FIRST_ANNOUNCEMENT = 4,
-  INTERVIEW = 5,
-  SECOND_ANNOUNCEMENT = 6,
-  END_DATE = 7,
-}
+export const mainProcessNumber = {
+  [NOT_START]: 1,
+  [START_DATE]: 2,
+  [MIDDLE]: 3,
+  [FIRST_ANNOUNCEMENT]: 4,
+  [INTERVIEW]: 5,
+  [SECOND_ANNOUNCEMENT]: 6,
+  [END_DATE]: 7,
+};
 
 export default mainConstance;
