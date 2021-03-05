@@ -191,13 +191,13 @@ export const ProgressBlankBar = styled.div`
   height: ${pxToRem(59)}rem;
   border-radius: 1000px;
   background-color: ${color.middleBar};
-  margin-left: ${pxToRem(270)}rem;
+  margin-left: ${pxToRem(290)}rem;
 `;
 
 export const ProgressTextWrapper = styled.div`
-  width: ${pxToRem(160)}rem;
+  width: ${pxToRem(180)}rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   flex-shrink: 0;
