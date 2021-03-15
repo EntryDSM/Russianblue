@@ -4,6 +4,8 @@ import {
   IS_ADMISSION_FEE_PAYED,
   IS_FINAL_SUBMIT_DONE,
   IS_RECEIVE_MAIL,
+  SELF_INTRODUCE_LENGTH,
+  STUDY_PLAN_LENGTH,
 } from '../../action/user/interface';
 
 const InitState: IUserState = {
@@ -12,6 +14,8 @@ const InitState: IUserState = {
   isfinalSubmitDone: false,
   isAdmissionFeePayed: false,
   isReceiveMail: false,
+  studyPlanLength: 0,
+  selfIntroduceLength: 0,
 };
 
 const userReducer = (state: IUserState = InitState, action: userActionType): IUserState => {
@@ -32,6 +36,18 @@ const userReducer = (state: IUserState = InitState, action: userActionType): IUs
       return {
         ...state,
         isReceiveMail: action.payload,
+      };
+    }
+    case SELF_INTRODUCE_LENGTH: {
+      return {
+        ...state,
+        selfIntroduceLength: action.payload,
+      };
+    }
+    case STUDY_PLAN_LENGTH: {
+      return {
+        ...state,
+        studyPlanLength: action.payload,
       };
     }
     default: {
