@@ -5,6 +5,10 @@ import {
   IS_ADMISSION_FEE_PAYED,
   IS_FINAL_SUBMIT_DONE,
   IS_RECEIVE_MAIL,
+  STUDY_PLAN_LENGTH,
+  SELF_INTRODUCE_LENGTH,
+  SUBMIT_TIME,
+  APPLICATION_TYPE,
 } from './interface';
 
 export const setPhoneNumber = (payload: string) => ({
@@ -32,10 +36,33 @@ export const setIsReceivMain = (payload: boolean) => ({
   payload,
 });
 
+export const setStudyPlanLength = (payload: number) => ({
+  type: STUDY_PLAN_LENGTH,
+  payload,
+});
+
+export const setSelfIntroduceLength = (payload: number) => ({
+  type: SELF_INTRODUCE_LENGTH,
+  payload,
+});
+
+export const setSubmitTime = (payload: string) => ({
+  type: SUBMIT_TIME,
+  payload,
+});
+
+export const setApplicationType = (payload: string) => ({
+  type: APPLICATION_TYPE,
+  payload,
+});
+
 export type userActionType =
   | ReturnType<typeof setPhoneNumber>
   | ReturnType<typeof setName>
   | ReturnType<typeof setIsAdmissionFeePayed>
   | ReturnType<typeof setIsFinalSubmitDone>
-  | ReturnType<typeof setIsReceivMain>;
-export { PHONE_NUMBER, NAME, GET_USER };
+  | ReturnType<typeof setIsReceivMain>
+  | ReturnType<typeof setStudyPlanLength>
+  | ReturnType<typeof setSelfIntroduceLength>;
+
+export { PHONE_NUMBER, NAME, GET_USER, STUDY_PLAN_LENGTH, SELF_INTRODUCE_LENGTH };

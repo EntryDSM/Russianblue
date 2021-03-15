@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -10,9 +10,10 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle_[hash].min.js',
+    filename: 'app.min.js',
     publicPath: '/',
   },
+  mode: 'production',
   module: {
     rules: [
       {
@@ -53,9 +54,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new Dotenv({
-      path: path.join('./src/.env'),
-    }),
+    new UglifyJSPlugin(),
   ],
   devServer: {
     inline: true,
@@ -64,4 +63,5 @@ module.exports = {
     disableHostCheck: true,
     host: '0.0.0.0',
   },
+  mode: 'production',
 };

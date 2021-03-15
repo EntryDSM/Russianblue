@@ -2,20 +2,29 @@ import React, { FC } from 'react';
 import * as S from './style';
 import MainContent from './content';
 import Progress from './progress';
-import { processType } from 'src/modules/redux/action/status/interface';
+import { processType } from 'src/modules/redux/reducer/status/interface';
+import { statusType } from 'src/modules/redux/reducer/status/mainConstance';
 
 interface Props {
-  status: string;
+  status: statusType;
   process: processType;
+  isLogin: boolean;
+  date: string;
 }
 
-const Main: FC<Props> = ({ status, process }) => {
+const Main: FC<Props> = ({ status, process, isLogin, date }) => {
+  const mainButtonClickHandler = () => {};
   return (
     <S.Main>
       <S.MainBackground />
       <S.MainWrapper>
-        <MainContent {...process} />
-        <Progress status={status} />
+        <MainContent
+          {...process}
+          isLogin={isLogin}
+          buttonClickHandler={mainButtonClickHandler}
+          date={date}
+        />
+        <Progress status={status} date={date} />
       </S.MainWrapper>
     </S.Main>
   );

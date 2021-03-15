@@ -124,10 +124,12 @@ export const SignUpContent = styled.div`
 
 export const SignUpItem = styled.div`
   width: 100%;
-  height: ${pxToRem(75)}rem;
-  border-bottom: 1px solid ${color.disable};
-  display: flex;
-  align-items: center;
+  > div {
+    height: ${pxToRem(75)}rem;
+    border-bottom: 1px solid ${color.disable};
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const SignUpItemText = styled.div`
@@ -183,5 +185,13 @@ export const SignUpSubmitButton = styled.div<{ disable: boolean }>`
       content: '';
       transform: rotate(90deg) translate(5px, -5px);
     }
+  }
+`;
+
+export const SignUpFormDescription = styled.div`
+  font-size: ${pxToRem(12)}rem;
+  color: #606060;
+  > span {
+    color: #f57278;
   }
 `;

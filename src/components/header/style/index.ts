@@ -33,18 +33,20 @@ export const HeaderDropDown = styled.label`
   display: flex;
   align-items: center;
   position: relative;
+  background-color: white;
   > input[type='checkbox'] {
     display: none;
   }
   > div {
     width: ${pxToRem(337)}rem;
     transform: translate(-230px, 0px);
+    cursor: default;
   }
   > input:checked ~ div {
     height: ${pxToRem(403)}rem;
   }
   > input:checked ~ i {
-    transform: rotate(180deg);
+    transform: rotate(0deg);
   }
 `;
 
@@ -75,8 +77,9 @@ export const HeaderDropdownArrowButton = styled.i`
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 12px solid black;
+  border-top: 12px solid ${color.main};
   transition: all 0.3s;
+  transform: rotate(180deg);
 `;
 
 export const HeaderDropdownContent = styled.div`
@@ -88,4 +91,62 @@ export const HeaderDropdownContent = styled.div`
   background-color: ${color.backgorund};
   box-shadow: 0 ${pxToRem(2)}rem ${pxToRem(3)}rem 0 rgba(0, 0, 0, 0.16);
   top: ${pxToRem(30)}rem;
+  border-radius: 6px;
+  padding: 0px 35px;
+  box-sizing: border-box;
+  overflow: hidden;
+`;
+
+export const HeaderDropdownColumn = styled.div`
+  height: ${pxToRem(54)}rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #cbcbcb;
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const HeaderDropdownContentTitle = styled.p`
+  width: 80px;
+  margin: 0 22px 0px 0px;
+  font-size: 16px;
+  color: #000000;
+`;
+
+export const HeaderDropdownContentText = styled.p`
+  margin: 18px 3px 18px 0;
+  font-size: 13px;
+  font-weight: 300;
+`;
+
+export const HeaderDropdownContentProcessText = styled.div<{ isComplete: boolean }>`
+  font-size: 13px;
+  font-weight: 500;
+  color: ${({ isComplete }) => (isComplete ? 'black' : color.main)};
+  display: flex;
+  align-items: center;
+`;
+
+export const HeaderDropdownContentProcessSubText = styled.p`
+  font-size: 10px;
+  color: #606060;
+  margin-top: 3px;
+`;
+
+export const HeaderDropdownContentProcessButton = styled.button`
+  width: ${pxToRem(53)}rem;
+  height: ${pxToRem(19)}rem;
+  border-radius: 2px;
+  background-color: ${color.main};
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  margin-left: ${pxToRem(72)}rem;
+  cursor: pointer;
+`;
+
+export const HeaderDropdownContentIntroduceText = styled.div`
+  font-size: 13px;
 `;

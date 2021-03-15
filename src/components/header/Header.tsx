@@ -5,19 +5,25 @@ import HeaderMenu from './menu';
 interface Props {
   isLogin: boolean;
   name: string;
+  phoneNumber: string;
+  isfinalSubmitDone: boolean;
+  isAdmissionFeePayed: boolean;
+  isReceiveMail: boolean;
+  studyPlanLength: number;
+  selfIntroduceLength: number;
   setIsLogin: (value: boolean) => void;
   setAccessToken: (value: string) => void;
 }
 
-const Header: FC<Props> = ({ isLogin, name, setIsLogin, setAccessToken }) => {
+const Header: FC<Props> = state => {
   const logout = () => {
-    setIsLogin(false);
-    setAccessToken('');
+    state.setIsLogin(false);
+    state.setAccessToken('');
   };
   return (
     <S.Header>
       <S.HeaderIcon />
-      <HeaderMenu name={name} isLogin={isLogin} logout={logout} />
+      <HeaderMenu {...state} logout={logout} />
     </S.Header>
   );
 };
