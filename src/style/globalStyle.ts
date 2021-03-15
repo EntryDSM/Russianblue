@@ -95,7 +95,7 @@ input[type=number] {
     }
     ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #505BFF;
+    background-color: #ff8888;
 }
 `;
 
