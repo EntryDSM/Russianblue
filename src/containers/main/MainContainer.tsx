@@ -1,9 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, Suspense, useEffect } from 'react';
 import MainDummyData from '../../util/util/loadingDummyData/MainDummyData';
-import Main from '../../components/main';
 import { useProcess } from '../../util/hooks/main';
 import { useAuth } from '../../util/hooks/auth';
-import { processTimeType } from 'src/modules/redux/reducer/status/interface';
+
+const Main = React.lazy(() => import('../../components/main'));
 
 const MainContainer: FC = () => {
   const processState = useProcess();
@@ -49,12 +49,14 @@ const MainContainer: FC = () => {
     return result ? result.date : '';
   };
   return (
-    <Main
-      status={status}
-      date={getNowProcessDate(status)}
-      process={getNowProcess(processState.state.status)}
-      {...authState.state}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Main
+        status={status}
+        date={getNowProcessDate(status)}
+        process={getNowProcess(processState.state.status)}
+        {...authState.state}
+      />
+    </Suspense>
   );
 };
 
