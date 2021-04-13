@@ -17,10 +17,11 @@ export interface processTimeType {
 
 export interface processType {
   title: React.ReactNode;
-  getDescription: () => React.ReactNode;
+  getDescription: (value?: string) => React.ReactNode;
   isHaveTerm: boolean;
   buttonText: string;
   isButtonAble: boolean;
+  uri: string;
 }
 
 export default IStatusState;
