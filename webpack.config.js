@@ -1,16 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: { app: './src/index.tsx', serviceWorker: './service-worker.ts' },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'app.min.js',
+    filename: '[name].min.js',
     publicPath: '/',
   },
   mode: 'production',
@@ -54,7 +53,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new UglifyJSPlugin(),
   ],
   devServer: {
     inline: true,
@@ -63,5 +61,4 @@ module.exports = {
     disableHostCheck: true,
     host: '0.0.0.0',
   },
-  mode: 'production',
 };

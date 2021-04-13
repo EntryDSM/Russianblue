@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode production --open --hot --port 3001  --optimize-minimize",
-    "build": "webpack --mode production --optimize-minimize"
+    "start": "webpack-dev-server --open --hot --port 3001 -p",
+    "build": "webpack -p"
   },
   "author": "",
   "license": "ISC",
