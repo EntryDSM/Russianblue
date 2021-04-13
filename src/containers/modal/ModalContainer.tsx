@@ -1,6 +1,6 @@
 import React, { FC, Suspense } from 'react';
 import { useModal } from '../../util/hooks/modal';
-
+// import Modal from '../../components/modal';
 const Modal = React.lazy(() => import('../../components/modal'));
 
 const ModalContainer: FC = () => {
