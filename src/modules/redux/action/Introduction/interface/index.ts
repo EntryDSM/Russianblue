@@ -1,0 +1,3 @@
+export const SELF_INTRODUCTION = 'INTRODUCTION/SELF_INTORDUCTION' as const;
+export const STUDY_PLAN = 'INTRODUCTION/STUDY_PLAN' as const;
+
