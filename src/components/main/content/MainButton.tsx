@@ -1,9 +1,13 @@
 import React, { FC } from 'react';
 import * as S from '../style';
 
-const MainButton: FC = ({ children }) => {
+interface Props {
+  onClick: () => void;
+}
+
+const MainButton: FC<Props> = ({ children, onClick }) => {
   return (
-    <S.MainButton>
+    <S.MainButton onClick={onClick}>
       <p>{children}</p>
       <div />
     </S.MainButton>

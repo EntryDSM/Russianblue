@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useSelectState } from '../default';
-import { setId, setPassword } from '../../../modules/redux/action/signin';
+import { setId, setPassword, signin } from '../../../modules/redux/action/signin';
+import {} from '../../../modules/redux/action/auth';
+import { signinRequest } from 'src/models/dto/request/signinRequest';
 
 const useProcess = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,9 @@ const useProcess = () => {
     },
     setPassword: (payload: string) => {
       dispatch(setPassword(payload));
+    },
+    signin: (payload: signinRequest) => {
+      dispatch(signin(payload));
     },
   };
   return {

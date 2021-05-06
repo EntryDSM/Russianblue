@@ -20,16 +20,16 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
     if (isPhoneNumber(vertifyPhoneNumber)) {
       setIsNextAble(true);
     } else {
-      setState.setResetPasswordError('잘못된 형식의 전화번호 입니다');
+      setState.setResetPasswordError({ status: 400, message: '잘못된 형식의 전화번호 입니다' });
     }
   };
   useEffect(() => {
-    setState.setResetPasswordError('');
+    setState.setResetPasswordError({ status: 0, message: '' });
   }, []);
   return (
     <S.ModalMain>
       <S.ModalTitle>비밀번호 재설정</S.ModalTitle>
-      {isHaveError(state.error) ? (
+      {isHaveError(state.error.message) ? (
         <S.ModalErrorText>{state.error}</S.ModalErrorText>
       ) : (
         <S.ModalSubTitle>본인인증시 사용했던 전화번호를 입력해주세요</S.ModalSubTitle>

@@ -5,12 +5,21 @@ import {
   VERTIFY_CODE,
   VERTIFY_PHONE_NUMBER,
 } from '../../action/resetPassword';
-import { RESET_PASSWORD_ERROR } from '../../action/resetPassword/interface';
+import {
+  CHECK_VERTIFY_CODE_FAILURE,
+  CHECK_VERTIFY_CODE_SUCCESS,
+  RESET_PASSWORD_ERROR,
+  SEND_RESET_PASSWORD_VERTIFY_CODE_FAILURE,
+  SEND_RESET_PASSWORD_VERTIFY_CODE_SUCCESS,
+} from '../../action/resetPassword/interface';
+
 const initState: IResetPasswordState = {
   vertifyCode: '',
   vertifyPhoneNumber: '',
   newPassword: '',
-  error: '',
+  error: null,
+  vertifyCodeChecked: false,
+  vertifyCodeSend: false,
 };
 
 const resetPasswordReducer = (
@@ -38,6 +47,30 @@ const resetPasswordReducer = (
     }
     case RESET_PASSWORD_ERROR: {
       return { ...state, error: action.payload };
+    }
+    case SEND_RESET_PASSWORD_VERTIFY_CODE_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case SEND_RESET_PASSWORD_VERTIFY_CODE_SUCCESS: {
+      return {
+        ...state,
+        vertifyCodeSend: true,
+      };
+    }
+    case CHECK_VERTIFY_CODE_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case CHECK_VERTIFY_CODE_SUCCESS: {
+      return {
+        ...state,
+        vertifyCodeChecked: action.payload,
+      };
     }
     default: {
       return state;

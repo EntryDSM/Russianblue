@@ -28,7 +28,11 @@ const MainContent: FC<Props> = ({
       <S.MainTitle>2022년 신입생 모집</S.MainTitle>
       <S.MainDescription className='mainDescription'>{title}</S.MainDescription>
       <S.MainDescription className='subDescription'>{getDescription(date)}</S.MainDescription>
-      {isLogin ? <MainButton>{buttonText}</MainButton> : <MainButton>로그인</MainButton>}
+      {isLogin ? (
+        <MainButton onClick={buttonClickHandler}>{buttonText}</MainButton>
+      ) : (
+        <MainButton onClick={buttonClickHandler}>로그인</MainButton>
+      )}
     </S.MainContentWrapper>
   );
 };

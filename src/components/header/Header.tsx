@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import * as S from './style';
 import HeaderMenu from './menu';
+import { error } from 'src/models/error';
 
 interface Props {
   isLogin: boolean;
@@ -13,17 +14,18 @@ interface Props {
   selfIntroduceLength: number;
   setIsLogin: (value: boolean) => void;
   setAccessToken: (value: string) => void;
+  error: error;
 }
 
-const Header: FC<Props> = state => {
+const Header: FC<Props> = props => {
   const logout = () => {
-    state.setIsLogin(false);
-    state.setAccessToken('');
+    props.setIsLogin(false);
+    props.setAccessToken('');
   };
   return (
     <S.Header>
       <S.HeaderIcon />
-      <HeaderMenu {...state} logout={logout} />
+      <HeaderMenu {...props} logout={logout} />
     </S.Header>
   );
 };

@@ -2,15 +2,20 @@ import React, { FC, Suspense, useEffect } from 'react';
 import MainDummyData from '../../util/util/loadingDummyData/MainDummyData';
 import { useProcess } from '../../util/hooks/main';
 import { useAuth } from '../../util/hooks/auth';
-
+import { useModal } from './../../util/hooks/modal';
+// import Main from '../../components/main';
 const Main = React.lazy(() => import('../../components/main'));
 
 const MainContainer: FC = () => {
   const processState = useProcess();
   const authState = useAuth();
-  const getNowProcess = status => {
+  const modalState = useModal();
+  const getNowProcess = (status: string) => {
     if (!processState.state.processes[status]) return MainDummyData;
     return processState.state.processes[status];
+  };
+  const defaultMainButtonClickHandler = () => {
+    modalState.setState.setModalOn('signin');
   };
   useEffect(() => {
     // server request로 대체 예정
@@ -54,6 +59,7 @@ const MainContainer: FC = () => {
         status={status}
         date={getNowProcessDate(status)}
         process={getNowProcess(processState.state.status)}
+        defaultMainButtonClickHandler={defaultMainButtonClickHandler}
         {...authState.state}
       />
     </Suspense>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { processType } from './interface';
 
 export const START_DATE = 'START_DATE' as const;
 export const END_DATE = 'END_DATE' as const;
@@ -17,13 +18,14 @@ export type statusType =
   | typeof NOT_START
   | typeof MIDDLE;
 
-const mainConstance = {
+const mainConstance: Record<statusType, processType> = {
   [NOT_START]: {
     title: <p>지금은 원서접수기간이 아닙니다.</p>,
     getDescription: (date: string) => <p>원서접수 기간은 {<span>{date}</span>}에 시작됩니다.</p>,
     isHaveTerm: true,
     buttonText: '원서 작성',
     isButtonAble: false,
+    uri: '',
   },
   [START_DATE]: {
     title: <p>지금은 {<span>원서 작성</span>} 기간입니다.</p>,
@@ -31,6 +33,7 @@ const mainConstance = {
     isHaveTerm: true,
     buttonText: '원서 작성',
     isButtonAble: true,
+    uri: '/',
   },
   [MIDDLE]: {
     title: <p>원서 접수가 끝났습니다.</p>,
@@ -38,27 +41,31 @@ const mainConstance = {
     isHaveTerm: true,
     buttonText: '원서 작성',
     isButtonAble: false,
+    uri: '',
   },
   [FIRST_ANNOUNCEMENT]: {
     title: <p>지금은 {<span>1차 발표</span>} 기간입니다.</p>,
     getDescription: () => '',
     isHaveTerm: true,
     buttonText: '1차 발표 결과',
-    isButtonAble: true,
+    isButtonAble: false,
+    uri: '',
   },
   [INTERVIEW]: {
     title: <p>지금은 {<span>면접</span>} 기간입니다.</p>,
     getDescription: (date: string) => <p>면접 기간은 {<span>{date}</span>}입니다. </p>,
     isHaveTerm: true,
     buttonText: '면접 일정 확인',
-    isButtonAble: true,
+    isButtonAble: false,
+    uri: '',
   },
   [SECOND_ANNOUNCEMENT]: {
     title: <p>지금은 {<span>발표 및 등록</span>} 기간입니다.</p>,
     getDescription: (date: string) => <p>등록 기간은 {<span>{date}</span>}입니다.</p>,
     isHaveTerm: true,
     buttonText: '결과 보기',
-    isButtonAble: true,
+    isButtonAble: false,
+    uri: '',
   },
   [END_DATE]: {
     title: '원서 접수가 끝났습니다.',
@@ -66,6 +73,7 @@ const mainConstance = {
     isHaveTerm: true,
     buttonText: '결과 보기',
     isButtonAble: false,
+    uri: '',
   },
 };
 

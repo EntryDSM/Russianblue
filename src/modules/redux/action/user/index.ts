@@ -1,3 +1,5 @@
+import { userResponse } from 'src/models/dto/response/userResponse';
+import { error } from 'src/models/error';
 import {
   NAME,
   PHONE_NUMBER,
@@ -9,6 +11,8 @@ import {
   SELF_INTRODUCE_LENGTH,
   SUBMIT_TIME,
   APPLICATION_TYPE,
+  GET_USER_FAILURE,
+  GET_USER_SUCCESS,
 } from './interface';
 
 export const setPhoneNumber = (payload: string) => ({
@@ -56,6 +60,16 @@ export const setApplicationType = (payload: string) => ({
   payload,
 });
 
+export const getUserFailure = (payload: error) => ({
+  type: GET_USER_FAILURE,
+  payload,
+});
+
+export const getUserSuccess = (payload: userResponse) => ({
+  type: GET_USER_SUCCESS,
+  payload,
+});
+
 export type userActionType =
   | ReturnType<typeof setPhoneNumber>
   | ReturnType<typeof setName>
@@ -63,6 +77,21 @@ export type userActionType =
   | ReturnType<typeof setIsFinalSubmitDone>
   | ReturnType<typeof setIsReceivMain>
   | ReturnType<typeof setStudyPlanLength>
-  | ReturnType<typeof setSelfIntroduceLength>;
+  | ReturnType<typeof setSelfIntroduceLength>
+  | ReturnType<typeof getUserFailure>
+  | ReturnType<typeof getUserSuccess>;
 
-export { PHONE_NUMBER, NAME, GET_USER, STUDY_PLAN_LENGTH, SELF_INTRODUCE_LENGTH };
+export {
+  NAME,
+  PHONE_NUMBER,
+  GET_USER,
+  IS_ADMISSION_FEE_PAYED,
+  IS_FINAL_SUBMIT_DONE,
+  IS_RECEIVE_MAIL,
+  STUDY_PLAN_LENGTH,
+  SELF_INTRODUCE_LENGTH,
+  SUBMIT_TIME,
+  APPLICATION_TYPE,
+  GET_USER_FAILURE,
+  GET_USER_SUCCESS,
+};

@@ -35,7 +35,7 @@ const VertifyCodeModal: FC<Props> = ({ goNext, goPrev }) => {
       setTime(time => time - 1);
     }, 1000);
     setTimer(timer);
-    setState.setResetPasswordError('');
+    setState.setResetPasswordError({ status: 0, message: '' });
     return () => {
       stopTimer(timer);
       setTime(MAX_TIME);

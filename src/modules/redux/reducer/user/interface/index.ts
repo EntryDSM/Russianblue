@@ -1,3 +1,5 @@
+import { error } from 'src/models/error';
+
 interface IUserState {
   phoneNumber: string;
   name: string;
@@ -6,6 +8,7 @@ interface IUserState {
   isAdmissionFeePayed: boolean;
   selfIntroduceLength: number;
   studyPlanLength: number;
+  error: error;
 }
 
 export default IUserState;

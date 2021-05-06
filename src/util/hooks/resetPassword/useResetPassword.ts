@@ -6,6 +6,7 @@ import {
   setVertifyCode,
   setVertifyPhoneNumber,
 } from '../../../modules/redux/action/resetPassword';
+import { error } from 'src/models/error';
 
 const useResetPassword = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const useResetPassword = () => {
     setNewPassword: (payload: string) => {
       dispatch(setNewPassword(payload));
     },
-    setResetPasswordError: (payload: string) => {
+    setResetPasswordError: (payload: error) => {
       dispatch(setResetPasswordError(payload));
     },
   };

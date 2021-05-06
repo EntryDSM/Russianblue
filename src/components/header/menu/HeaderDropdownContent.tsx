@@ -22,8 +22,12 @@ const HeaderDropdownContent: FC<Props> = ({
   studyPlanLength,
   selfIntroduceLength,
 }) => {
+  const contentClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
   return (
-    <S.HeaderDropdownContent>
+    <S.HeaderDropdownContent onClick={contentClickHandler}>
       <S.HeaderDropdownColumn>
         <S.HeaderDropdownContentTitle>이름</S.HeaderDropdownContentTitle>
         <S.HeaderDropdownContentText>{name}</S.HeaderDropdownContentText>

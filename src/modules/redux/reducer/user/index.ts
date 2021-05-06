@@ -1,6 +1,8 @@
 import IUserState from './interface';
 import { NAME, PHONE_NUMBER, userActionType } from '../../action/user';
 import {
+  GET_USER_FAILURE,
+  GET_USER_SUCCESS,
   IS_ADMISSION_FEE_PAYED,
   IS_FINAL_SUBMIT_DONE,
   IS_RECEIVE_MAIL,
@@ -16,6 +18,7 @@ const InitState: IUserState = {
   isReceiveMail: false,
   studyPlanLength: 0,
   selfIntroduceLength: 0,
+  error: null,
 };
 
 const userReducer = (state: IUserState = InitState, action: userActionType): IUserState => {
@@ -48,6 +51,24 @@ const userReducer = (state: IUserState = InitState, action: userActionType): IUs
       return {
         ...state,
         studyPlanLength: action.payload,
+      };
+    }
+    case GET_USER_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case GET_USER_SUCCESS: {
+      return {
+        ...state,
+        phoneNumber: action.payload.phone_number,
+        name: action.payload.name,
+        isfinalSubmitDone: action.payload.is_submit,
+        isAdmissionFeePayed: action.payload.is_paid,
+        isReceiveMail: action.payload.is_printed_arrived,
+        studyPlanLength: parseInt(action.payload.study_plan),
+        selfIntroduceLength: parseInt(action.payload.self_introduce),
       };
     }
     default: {

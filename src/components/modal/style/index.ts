@@ -91,6 +91,7 @@ export const ModalSubButton = styled.div`
   color: #5a5a5a;
   text-align: center;
   margin: 3px;
+  cursor: pointer;
 `;
 
 export const ModalErrorText = styled.div`
