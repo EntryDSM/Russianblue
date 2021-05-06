@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: { app: './src/index.tsx' },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
