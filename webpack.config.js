@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: { app: './src/index.tsx', serviceWorker: './service-worker.ts' },
+  entry: { app: './src/index.tsx' },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
