@@ -6,7 +6,7 @@ interface Props {
   nowPage: Array<boolean>;
 }
 
-const Page: FC<Props> = ({ nowPage }) => {
+const Pagination: FC<Props> = ({ nowPage }) => {
   return (
     <S.Page>
       <PageBtn content='이전' />
@@ -20,4 +20,4 @@ const Page: FC<Props> = ({ nowPage }) => {
   );
 };
 
-export default Page;
+export default Pagination;
