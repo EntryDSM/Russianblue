@@ -4,7 +4,7 @@ import { useSelectState } from '../default';
 
 const useIntroduction = () => {
   const dispatch = useDispatch();
-  const state = useSelectState().introduction;
+  const state = useSelectState().introduce;
   const setState = {
     setIntroduction: (payload: string) => {
       dispatch(setSelfIntroduction(payload));
