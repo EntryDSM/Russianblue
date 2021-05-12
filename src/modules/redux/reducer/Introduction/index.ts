@@ -1,12 +1,12 @@
-import IIntroduction from './interface';
+import Introduction from './interface';
 import { SELF_INTRODUCTION, STUDY_PLAN, introductionActionType } from '../../action/Introduction';
 
-export const initState: IIntroduction = {
-    selfIntroduction: '',
-    studyPlan: '',
-}
+export const initState: Introduction = {
+  selfIntroduction: '',
+  studyPlan: '',
+};
 
-const IntroductionReducer = (state: IIntroduction = initState, action: introductionActionType) => {
+const IntroductionReducer = (state: Introduction = initState, action: introductionActionType) => {
   switch (action.type) {
     case SELF_INTRODUCTION: {
       return {
