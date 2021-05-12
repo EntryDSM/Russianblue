@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from '../style';
-import { YearSelect, DateSelect } from '../Select';
+import { YearSelect, MonthSelect } from '../Select';
 import { GRADUATION_DATE_EXPLAIN } from '../../../constance/SelectType';
 
 const ChooseGraduationDate = () => {
@@ -11,7 +11,7 @@ const ChooseGraduationDate = () => {
       </S.LineTitle>
       <YearSelect active={1} />
       <S.Date>년</S.Date>
-      <DateSelect active={1} />
+      <MonthSelect active={1} />
       <S.Date>월</S.Date>
       <S.Explain>
         <span>*</span>
