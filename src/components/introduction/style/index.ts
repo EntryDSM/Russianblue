@@ -49,6 +49,10 @@ export const Textarea = styled.textarea`
   height: 336px;
   resize: none;
   box-sizing: border-box;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
   margin: 18px 0px 6px 20px;
   overflow-y: auto;
   border: none;
