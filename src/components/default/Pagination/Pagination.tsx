@@ -4,9 +4,10 @@ import PageBtn from './PageBtn';
 
 interface Props {
   nowPage: Array<boolean>;
+  isNextPage?: boolean;
 }
 
-const Pagination: FC<Props> = ({ nowPage }) => {
+const Pagination: FC<Props> = ({ nowPage, isNextPage }) => {
   return (
     <S.Page>
       <PageBtn content='이전' />
@@ -15,7 +16,8 @@ const Pagination: FC<Props> = ({ nowPage }) => {
           return <S.Circle nowPage={boolean} />;
         })}
       </S.PageMoving>
-      <PageBtn content='다음' disabled />
+      {isNextPage && <PageBtn content='다음' />}
+      {!isNextPage && <PageBtn content='다음' disabled />}
     </S.Page>
   );
 };
