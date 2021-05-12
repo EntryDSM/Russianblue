@@ -6,6 +6,7 @@ import signupReducer from './signup';
 import signinReducer from './signin';
 import resetPasswordReducer from './resetPassword';
 import authReducer from './auth';
+import introductionReducer from './Introduction';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   signin: signinReducer,
   resetPassword: resetPasswordReducer,
   auth: authReducer,
+  introduce: introductionReducer,
 });
 
 export type reducerType = ReturnType<typeof rootReducer>;
