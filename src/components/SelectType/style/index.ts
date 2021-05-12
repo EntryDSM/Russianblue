@@ -114,6 +114,7 @@ export const Select = styled.div<{
   box-sizing: border-box;
   padding: 10px 16px;
   position: relative;
+  cursor: pointer;
 `;
 
 export const SelectContent = styled.div<{
