@@ -8,7 +8,7 @@ import {
   STUDYPLANEXPLAIN,
   SCHOOL,
 } from '../../constance/introduction';
-import Page from '../default/Page';
+import Pagination from '../default/Pagination';
 
 interface Props {
   setIntroduction: (payload: string) => void;
@@ -24,7 +24,7 @@ const Introduction: FC<Props> = () => {
       </div>
       <SubContents subTitle={SELFINTRODUCTION} explain={INTRODUCTIONEXPLAIN} />
       <SubContents subTitle={STUDYPLAN} explain={STUDYPLANEXPLAIN} />
-      <Page />
+      <Pagination nowPage={[false, false, false, true, false]} />
     </S.AllContents>
   );
 };
