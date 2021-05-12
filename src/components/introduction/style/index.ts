@@ -5,7 +5,7 @@ export const AllContents = styled.div`
   width: 1220px;
   min-height: 100vh;
   box-sizing: border-box;
-  padding-top: 150px;
+  padding-top: 125px;
   margin: 0 auto;
   > div:first-child {
     margin-bottom: 10px;
@@ -32,17 +32,26 @@ export const Explain = styled.p`
   width: 1068px;
   margin-bottom: 20px;
   line-height: 1.33;
-  > span {
-    padding-right: 10px;
-  }
 `;
-export const TextBox = styled.textarea`
-  width: 100%;
+
+export const SubContent = styled.div`
+  width: 1220px;
+  height: 518px;
+`;
+export const TextBox = styled.div`
+  width: 1220px;
   height: 410px;
+  border: 2px solid #606060;
+  border-radius: 4px;
+`;
+export const Textarea = styled.textarea`
+  width: 1200px;
+  height: 336px;
   resize: none;
   box-sizing: border-box;
-  padding: 18px 0px 56px 18px;
+  margin: 18px 0px 6px 20px;
   overflow-y: auto;
+  border: none;
   ::-webkit-scrollbar {
     width: 19px;
   }
@@ -56,7 +65,23 @@ export const TextBox = styled.textarea`
     border-radius: 4px;
   }
 `;
-export const SubContent = styled.div`
-  width: 1220px;
-  height: 518px;
+export const CountText = styled.div`
+  width: 100%;
+  height: 45px;
+  background-color: rgba(255, 155, 159, 0.7);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  > span {
+    font-size: 17px;
+    color: #606060;
+    float: right;
+    margin-top: 14px;
+  }
+  > span:first-child {
+    margin-right: 18px;
+  }
+  > span:nth-child(2) {
+    margin-left: 7px;
+    margin-right: 7px;
+  }
 `;
