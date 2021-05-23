@@ -8,7 +8,8 @@ import {
   STUDYPLANEXPLAIN,
   SCHOOL,
 } from '../../constance/introduction';
-import Page from '../default/Page';
+import Pagination from '../default/Pagination';
+import useIntroduction from '../../util/hooks/Introduction';
 
 interface Props {
   setIntroduction: (payload: string) => void;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const Introduction: FC<Props> = () => {
+  const { state, setState } = useIntroduction();
   return (
     <S.AllContents>
       <div>
@@ -24,7 +26,12 @@ const Introduction: FC<Props> = () => {
       </div>
       <SubContents subTitle={SELFINTRODUCTION} explain={INTRODUCTIONEXPLAIN} />
       <SubContents subTitle={STUDYPLAN} explain={STUDYPLANEXPLAIN} />
-      <Page />
+      {state.selfIntroduction && state.studyPlan && (
+        <Pagination nowPage={[false, false, false, true, false]} isNextPage />
+      )}
+      {!(state.selfIntroduction && state.studyPlan) && (
+        <Pagination nowPage={[false, false, false, true, false]} />
+      )}
     </S.AllContents>
   );
 };
