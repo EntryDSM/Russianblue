@@ -1,13 +1,37 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from '../style';
 import { TypeSelect } from '../Select';
 import { CHOOSETYPEINFO } from '../../../constance/SelectType';
 
 interface Props {
-  isChecked?: boolean;
+  socialType: string;
+  setType: (payload: string) => void;
+  setSocialType: (payload: string) => void;
 }
 
-const ChooseType: FC<Props> = () => {
+const ChooseType: FC<Props> = ({ socialType, setType, setSocialType }) => {
+  const [isCheck, setIsCheck] = useState({ 1: false, 2: false, 3: false });
+  const [disabled, setDisabled] = useState(0);
+  const onCheckBtnClick = e => {
+    let dataId = Number(e.target.dataset.id);
+    switch (dataId) {
+      case 1:
+        setIsCheck({ 1: true, 2: false, 3: false });
+        setDisabled(0);
+        setType('일반전형');
+        break;
+      case 2:
+        setIsCheck({ 1: false, 2: true, 3: false });
+        setDisabled(0);
+        setType('마이스터 인재전형');
+        break;
+      case 3:
+        setIsCheck({ 1: false, 2: false, 3: true });
+        setDisabled(1);
+        setType('사회통합전형');
+        break;
+    }
+  };
   return (
     <S.Line>
       <S.LineTitle>
@@ -16,18 +40,23 @@ const ChooseType: FC<Props> = () => {
       {CHOOSETYPEINFO.map(data => {
         return (
           <S.SelectBox margin={86} key={data.id}>
-            <S.CheckCircle>
-              <S.CheckedCircle />
+            <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
+              {isCheck[data.id] && <S.CheckedCircle />}
             </S.CheckCircle>
             <p>{data.content}</p>
           </S.SelectBox>
         );
       })}
       <S.SelectBox margin={86}>
-        <S.CheckCircle>
-          <S.CheckedCircle />
+        <S.CheckCircle onClick={onCheckBtnClick} data-id={3}>
+          {isCheck[3] && <S.CheckedCircle />}
         </S.CheckCircle>
-        <TypeSelect disabled={1} />
+        <TypeSelect
+          socialType={socialType}
+          setSocialType={setSocialType}
+          disabled={disabled}
+          setDisabled={setDisabled}
+        />
       </S.SelectBox>
     </S.Line>
   );
