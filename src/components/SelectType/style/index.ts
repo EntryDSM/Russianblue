@@ -60,15 +60,12 @@ export const CheckCircle = styled.div`
   margin-right: 10px;
 `;
 
-export const CheckedCircle = styled.div<{ isChecked?: boolean }>`
+export const CheckedCircle = styled.div`
   width: 13px;
   height: 13px;
   border-radius: 7px;
   background-color: ${color.main};
   margin: 4px;
-  ${({ isChecked }) => css`
-    display: ${isChecked ? 'block' : 'none'};
-  `}
 `;
 
 export const SelectBox = styled.div<{ margin?: number }>`
@@ -108,6 +105,7 @@ export const Select = styled.div<{
     width: ${width}px;
     border: 1px solid ${disabled === 0 ? color.disable : 'black'};
     color: ${disabled === 0 ? color.disable : 'black'};
+    background-color: ${disabled === 3 ? '#f1f1f1' : '#ffffff'};
   `}
   height: 42px;
   border-radius: 5px;
@@ -136,6 +134,8 @@ export const SelectContent = styled.div<{
 
 export const SubSelect = styled.div`
   width: 100%;
+  height: 200px;
+  overflow-y: auto;
   border: 1px solid black;
   border-top: none;
   border-bottom-right-radius: 5px;
