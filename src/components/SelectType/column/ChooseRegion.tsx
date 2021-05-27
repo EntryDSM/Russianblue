@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import * as S from '../style';
 import { AREA } from '../../../constance/SelectType';
 
-const ChooseRegion = () => {
+interface Props {
+  area: string;
+  setArea: (payload: string) => void;
+}
+
+const ChooseRegion: FC<Props> = () => {
+  const [isCheck, setIsCheck] = useState({ 1: false, 2: false });
+  const onCheckBtnClick = e => {
+    let dataId = Number(e.target.dataset.id);
+    switch (dataId) {
+      case 1:
+        setIsCheck({ 1: true, 2: false });
+        break;
+      case 2:
+        setIsCheck({ 1: false, 2: true });
+        break;
+    }
+  };
   return (
     <S.Line>
       <S.LineTitle>
@@ -11,8 +28,8 @@ const ChooseRegion = () => {
       {AREA.map(data => {
         return (
           <S.SelectBox margin={117} key={data.id}>
-            <S.CheckCircle>
-              <S.CheckedCircle />
+            <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
+              {isCheck[data.id] && <S.CheckedCircle />}
             </S.CheckCircle>
             <p>{data.content}</p>
           </S.SelectBox>
