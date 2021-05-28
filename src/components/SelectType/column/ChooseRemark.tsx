@@ -3,20 +3,21 @@ import * as S from '../style';
 import { REMARKS, REMARK_EXPLAIN } from '../../../constance/SelectType';
 
 interface Props {
-  remark: string;
   setRemark: (payload: string) => void;
 }
 
-const ChooseRemark: FC<Props> = () => {
+const ChooseRemark: FC<Props> = ({ setRemark }) => {
   const [isCheck, setIsCheck] = useState({ 1: false, 2: false });
   const onCheckBtnClick = e => {
     let dataId = Number(e.target.dataset.id);
     switch (dataId) {
       case 1:
         setIsCheck({ 1: true, 2: false });
+        setRemark('국가 유공자');
         break;
       case 2:
         setIsCheck({ 1: false, 2: true });
+        setRemark('특례 입학 대상자');
         break;
     }
   };
