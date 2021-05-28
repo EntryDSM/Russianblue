@@ -3,20 +3,21 @@ import * as S from '../style';
 import { AREA } from '../../../constance/SelectType';
 
 interface Props {
-  area: string;
   setArea: (payload: string) => void;
 }
 
-const ChooseRegion: FC<Props> = () => {
+const ChooseRegion: FC<Props> = ({ setArea }) => {
   const [isCheck, setIsCheck] = useState({ 1: false, 2: false });
   const onCheckBtnClick = e => {
     let dataId = Number(e.target.dataset.id);
     switch (dataId) {
       case 1:
         setIsCheck({ 1: true, 2: false });
+        setArea('대전');
         break;
       case 2:
         setIsCheck({ 1: false, 2: true });
+        setArea('전국');
         break;
     }
   };
