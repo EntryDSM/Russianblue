@@ -3,28 +3,28 @@ import * as S from '../style';
 import { GRADUATION } from '../../../constance/SelectType';
 
 interface Props {
-  setIsToBe: Dispatch<React.SetStateAction<boolean>>;
+  setIsProspective: Dispatch<React.SetStateAction<boolean>>;
   setGraduation: (payload: string) => void;
 }
 
-const ChooseGraduation: FC<Props> = ({ setIsToBe, setGraduation }) => {
+const ChooseGraduation: FC<Props> = ({ setIsProspective, setGraduation }) => {
   const [isCheck, setIsCheck] = useState({ 1: false, 2: false, 3: false });
   const onCheckBtnClick = e => {
     let dataId = Number(e.target.dataset.id);
     switch (dataId) {
       case 1:
         setIsCheck({ 1: true, 2: false, 3: false });
-        setIsToBe(true);
+        setIsProspective(true);
         setGraduation('졸업예정자');
         break;
       case 2:
         setIsCheck({ 1: false, 2: true, 3: false });
-        setIsToBe(false);
+        setIsProspective(false);
         setGraduation('졸업자');
         break;
       case 3:
         setIsCheck({ 1: false, 2: false, 3: true });
-        setIsToBe(false);
+        setIsProspective(false);
         setGraduation('검정고시');
         break;
     }
