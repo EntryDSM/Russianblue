@@ -10,8 +10,8 @@ import {
 
 interface Props {
   socialType: string;
-  graduation_month: number;
-  graduation_year: number;
+  graduationMonth: number;
+  graduationYear: number;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: string) => void;
@@ -23,8 +23,8 @@ interface Props {
 
 const SelectLine: FC<Props> = ({
   socialType,
-  graduation_month,
-  graduation_year,
+  graduationMonth,
+  graduationYear,
   setType,
   setSocialType,
   setArea,
@@ -33,18 +33,18 @@ const SelectLine: FC<Props> = ({
   setGraduationYear,
   setRemark,
 }) => {
-  const [isToBe, setIsToBe] = useState(false);
+  const [isProspective, setIsProspective] = useState(false);
   return (
     <S.SelectLine>
       <ChooseType socialType={socialType} setType={setType} setSocialType={setSocialType} />
       <ChooseRegion setArea={setArea} />
-      <ChooseGraduation setGraduation={setGraduation} setIsToBe={setIsToBe} />
+      <ChooseGraduation setGraduation={setGraduation} setIsProspective={setIsProspective} />
       <ChooseGraduationDate
-        graduation_month={graduation_month}
-        graduation_year={graduation_year}
+        graduationMonth={graduationMonth}
+        graduationYear={graduationYear}
         setGraduationMonth={setGraduationMonth}
         setGraduationYear={setGraduationYear}
-        isToBe={isToBe}
+        isProspective={isProspective}
       />
       <ChooseRemark setRemark={setRemark} />
     </S.SelectLine>
