@@ -13,19 +13,19 @@ const ChooseType: FC<Props> = ({ socialType, setType, setSocialType }) => {
   const [isCheck, setIsCheck] = useState({ 1: false, 2: false, 3: false });
   const [disabled, setDisabled] = useState('disabled');
   const onCheckBtnClick = e => {
-    let dataId = Number(e.target.dataset.id);
+    let dataId = e.target.dataset.id;
     switch (dataId) {
-      case 1:
+      case 'regular':
         setIsCheck({ 1: true, 2: false, 3: false });
         setDisabled('disabled');
         setType('일반전형');
         break;
-      case 2:
+      case 'meister':
         setIsCheck({ 1: false, 2: true, 3: false });
         setDisabled('disabled');
         setType('마이스터 인재전형');
         break;
-      case 3:
+      case 'social':
         setIsCheck({ 1: false, 2: false, 3: true });
         setDisabled('normal');
         setType('사회통합전형');
@@ -48,8 +48,8 @@ const ChooseType: FC<Props> = ({ socialType, setType, setSocialType }) => {
         );
       })}
       <S.SelectBox margin={86}>
-        <S.CheckCircle onClick={onCheckBtnClick} data-id={3}>
-          {isCheck[3] && <S.CheckedCircle />}
+        <S.CheckCircle onClick={onCheckBtnClick} data-id={'social'}>
+          {isCheck['social'] && <S.CheckedCircle />}
         </S.CheckCircle>
         <TypeSelect
           socialType={socialType}

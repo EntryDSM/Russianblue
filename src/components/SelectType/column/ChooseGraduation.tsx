@@ -7,23 +7,29 @@ interface Props {
   setGraduation: (payload: string) => void;
 }
 
+const isCheckInit = {
+  prospective: false,
+  graduate: false,
+  qualification: false,
+};
+
 const ChooseGraduation: FC<Props> = ({ setIsProspective, setGraduation }) => {
-  const [isCheck, setIsCheck] = useState({ 1: false, 2: false, 3: false });
+  const [isCheck, setIsCheck] = useState(isCheckInit);
   const onCheckBtnClick = e => {
-    let dataId = Number(e.target.dataset.id);
+    let dataId = e.target.dataset.id;
     switch (dataId) {
-      case 1:
-        setIsCheck({ 1: true, 2: false, 3: false });
+      case 'prospective':
+        setIsCheck({ ...isCheckInit, prospective: true });
         setIsProspective(true);
         setGraduation('졸업예정자');
         break;
-      case 2:
-        setIsCheck({ 1: false, 2: true, 3: false });
+      case 'graduate':
+        setIsCheck({ ...isCheckInit, graduate: true });
         setIsProspective(false);
         setGraduation('졸업자');
         break;
-      case 3:
-        setIsCheck({ 1: false, 2: false, 3: true });
+      case 'qualification':
+        setIsCheck({ ...isCheckInit, qualification: true });
         setIsProspective(false);
         setGraduation('검정고시');
         break;

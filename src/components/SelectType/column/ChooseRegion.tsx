@@ -7,16 +7,16 @@ interface Props {
 }
 
 const ChooseRegion: FC<Props> = ({ setArea }) => {
-  const [isCheck, setIsCheck] = useState({ 1: false, 2: false });
+  const [isCheck, setIsCheck] = useState({ daejeon: false, country: false });
   const onCheckBtnClick = e => {
-    let dataId = Number(e.target.dataset.id);
+    let dataId = e.target.dataset.id;
     switch (dataId) {
-      case 1:
-        setIsCheck({ 1: true, 2: false });
+      case 'daejeon':
+        setIsCheck({ daejeon: true, country: false });
         setArea('대전');
         break;
-      case 2:
-        setIsCheck({ 1: false, 2: true });
+      case 'country':
+        setIsCheck({ daejeon: false, country: true });
         setArea('전국');
         break;
     }

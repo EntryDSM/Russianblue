@@ -7,16 +7,16 @@ interface Props {
 }
 
 const ChooseRemark: FC<Props> = ({ setRemark }) => {
-  const [isCheck, setIsCheck] = useState({ 1: false, 2: false });
+  const [isCheck, setIsCheck] = useState({ nationalMerit: false, specialAdmission: false });
   const onCheckBtnClick = e => {
-    let dataId = Number(e.target.dataset.id);
+    let dataId = e.target.dataset.id;
     switch (dataId) {
-      case 1:
-        setIsCheck({ 1: true, 2: false });
+      case 'nationalMerit':
+        setIsCheck({ nationalMerit: true, specialAdmission: false });
         setRemark('국가 유공자');
         break;
-      case 2:
-        setIsCheck({ 1: false, 2: true });
+      case 'specialAdmission':
+        setIsCheck({ nationalMerit: false, specialAdmission: true });
         setRemark('특례 입학 대상자');
         break;
     }
