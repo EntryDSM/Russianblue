@@ -6,8 +6,8 @@ import SelectLine from './SelectLine';
 
 interface Props {
   socialType: string;
-  graduation_month: number;
-  graduation_year: number;
+  graduationMonth: number;
+  graduationYear: number;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: string) => void;
@@ -19,8 +19,8 @@ interface Props {
 
 const SelectType: FC<Props> = ({
   socialType,
-  graduation_month,
-  graduation_year,
+  graduationMonth,
+  graduationYear,
   setType,
   setSocialType,
   setArea,
@@ -37,8 +37,8 @@ const SelectType: FC<Props> = ({
       </div>
       <SelectLine
         socialType={socialType}
-        graduation_month={graduation_month}
-        graduation_year={graduation_year}
+        graduationMonth={graduationMonth}
+        graduationYear={graduationYear}
         setType={setType}
         setSocialType={setSocialType}
         setArea={setArea}

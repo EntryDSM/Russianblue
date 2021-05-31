@@ -16,8 +16,8 @@ const initState: SelectTypeState = {
   socialType: '사회통합전형',
   area: '',
   graduation: '',
-  graduation_month: 1,
-  graduation_year: 2022,
+  graduationMonth: 1,
+  graduationYear: 2022,
   remark: '',
 };
 
@@ -26,57 +26,48 @@ const SelectTypeReducer = (
   action: selectTypeActionType,
 ): SelectTypeState => {
   switch (action.type) {
-    case TYPE: {
+    case TYPE:
       return {
         ...state,
         type: action.payload,
       };
-    }
-    case SOCIALTYPE: {
+    case SOCIALTYPE:
       return {
         ...state,
         socialType: action.payload,
       };
-    }
-    case AREA: {
+    case AREA:
       return {
         ...state,
         area: action.payload,
       };
-    }
-    case GRADUATION: {
+    case GRADUATION:
       return {
         ...state,
         graduation: action.payload,
       };
-    }
-    case GRADUATION_MONTH: {
+    case GRADUATION_MONTH:
       return {
         ...state,
-        graduation_month: action.payload,
+        graduationMonth: action.payload,
       };
-    }
-    case GRADUATION_YEAR: {
+    case GRADUATION_YEAR:
       return {
         ...state,
-        graduation_year: action.payload,
+        graduationYear: action.payload,
       };
-    }
-    case REMARK: {
+    case REMARK:
       return {
         ...state,
         remark: action.payload,
       };
-    }
-    case INPUT: {
+    case INPUT:
       return {
         ...state,
         [action.payload.name]: action.payload.value,
       };
-    }
-    default: {
+    default:
       return state;
-    }
   }
 };
 

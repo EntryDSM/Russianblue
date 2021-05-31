@@ -3,8 +3,8 @@ interface SelectTypeState {
   socialType: string;
   area: string;
   graduation: string;
-  graduation_year: number;
-  graduation_month: number;
+  graduationYear: number;
+  graduationMonth: number;
   remark: string;
 }
 
