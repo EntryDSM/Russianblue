@@ -11,23 +11,23 @@ interface Props {
 
 const ChooseType: FC<Props> = ({ socialType, setType, setSocialType }) => {
   const [isCheck, setIsCheck] = useState({ 1: false, 2: false, 3: false });
-  const [disabled, setDisabled] = useState(0);
+  const [disabled, setDisabled] = useState('disabled');
   const onCheckBtnClick = e => {
     let dataId = Number(e.target.dataset.id);
     switch (dataId) {
       case 1:
         setIsCheck({ 1: true, 2: false, 3: false });
-        setDisabled(0);
+        setDisabled('disabled');
         setType('일반전형');
         break;
       case 2:
         setIsCheck({ 1: false, 2: true, 3: false });
-        setDisabled(0);
+        setDisabled('disabled');
         setType('마이스터 인재전형');
         break;
       case 3:
         setIsCheck({ 1: false, 2: false, 3: true });
-        setDisabled(1);
+        setDisabled('normal');
         setType('사회통합전형');
         break;
     }
