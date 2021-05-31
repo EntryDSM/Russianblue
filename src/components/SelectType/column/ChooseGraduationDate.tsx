@@ -4,17 +4,17 @@ import { YearSelect, MonthSelect } from '../Select';
 import { GRADUATION_DATE_EXPLAIN } from '../../../constance/SelectType';
 
 interface Props {
-  isToBe: boolean;
-  graduation_month: number;
-  graduation_year: number;
+  isProspective: boolean;
+  graduationMonth: number;
+  graduationYear: number;
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
 }
 
 const ChooseGraduationDate: FC<Props> = ({
-  isToBe,
-  graduation_month,
-  graduation_year,
+  isProspective,
+  graduationMonth,
+  graduationYear,
   setGraduationMonth,
   setGraduationYear,
 }) => {
@@ -24,12 +24,12 @@ const ChooseGraduationDate: FC<Props> = ({
         <span>*</span>졸업 연월
       </S.LineTitle>
       <YearSelect
-        graduation_year={graduation_year}
+        graduationYear={graduationYear}
         setGraduationYear={setGraduationYear}
-        disabled={isToBe ? 3 : 1}
+        disabled={isProspective ? 'block' : 'normal'}
       />
       <S.Date>년</S.Date>
-      <MonthSelect graduation_month={graduation_month} setGraduationMonth={setGraduationMonth} />
+      <MonthSelect graduationMonth={graduationMonth} setGraduationMonth={setGraduationMonth} />
       <S.Date>월</S.Date>
       <S.Explain>
         <span>*</span>
