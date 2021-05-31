@@ -7,7 +7,6 @@ import {
   GRADUATION_MONTH,
   GRADUATION_YEAR,
   REMARK,
-  INPUT,
 } from '../../action/selectType/interface';
 import SelectTypeState from './interface';
 
@@ -60,11 +59,6 @@ const SelectTypeReducer = (
       return {
         ...state,
         remark: action.payload,
-      };
-    case INPUT:
-      return {
-        ...state,
-        [action.payload.name]: action.payload.value,
       };
     default:
       return state;

@@ -6,7 +6,6 @@ import {
   GRADUATION_MONTH,
   GRADUATION_YEAR,
   REMARK,
-  INPUT,
 } from './interface';
 
 export const setType = (payload: string) => ({
@@ -44,11 +43,6 @@ export const setRemark = (payload: string) => ({
   payload,
 });
 
-export const setInput = (payload: { name: string; value: string }) => ({
-  type: INPUT,
-  payload,
-});
-
 export type selectTypeActionType =
   | ReturnType<typeof setType>
   | ReturnType<typeof setSocialType>
@@ -56,5 +50,4 @@ export type selectTypeActionType =
   | ReturnType<typeof setGraduation>
   | ReturnType<typeof setGraduationYear>
   | ReturnType<typeof setGraduationMonth>
-  | ReturnType<typeof setRemark>
-  | ReturnType<typeof setInput>;
+  | ReturnType<typeof setRemark>;
