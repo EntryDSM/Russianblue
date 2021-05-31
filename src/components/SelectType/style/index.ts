@@ -99,13 +99,13 @@ export const Explain = styled.p`
 
 export const Select = styled.div<{
   width: number;
-  disabled: number;
+  disabled: string;
 }>`
   ${({ width, disabled }) => css`
     width: ${width}px;
-    border: 1px solid ${disabled === 0 ? color.disable : 'black'};
-    color: ${disabled === 0 ? color.disable : 'black'};
-    background-color: ${disabled === 3 ? '#f1f1f1' : '#ffffff'};
+    border: 1px solid ${disabled === 'disabled' ? color.disable : 'black'};
+    color: ${disabled === 'disabled' ? color.disable : 'black'};
+    background-color: ${disabled === 'block' ? '#f1f1f1' : '#ffffff'};
   `}
   height: 42px;
   border-radius: 5px;
