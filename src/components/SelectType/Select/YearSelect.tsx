@@ -1,22 +1,23 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import * as S from '../style';
 import { dropdown, dropdown_active } from '../../../assets/selectType';
 
 interface Props {
-  disabled: number;
-  graduation_year: number;
+  disabled: string;
+  graduationYear: number;
   setGraduationYear: (payload: number) => void;
 }
 
-const YearSelect: FC<Props> = ({ disabled, graduation_year, setGraduationYear }) => {
-  const [active, setActive] = useState(1);
+const YearSelect: FC<Props> = ({ disabled, graduationYear, setGraduationYear }) => {
+  const [active, setActive] = useState(false);
+  const YearArray = [...Array(10)].map((_, i) => i + 2016);
 
   const onSelectClick = () => {
-    if (disabled === 1) {
-      if (active === 1) {
-        setActive(2);
+    if (disabled === 'normal') {
+      if (active === true) {
+        setActive(false);
       } else {
-        setActive(1);
+        setActive(true);
       }
     }
   };
@@ -25,21 +26,23 @@ const YearSelect: FC<Props> = ({ disabled, graduation_year, setGraduationYear })
     setGraduationYear(e.target.innerText);
   };
 
+  const activeImg = useMemo(() => {
+    if (active) return <img src={dropdown_active} />;
+    else return <img src={dropdown} />;
+  }, [active]);
+
   return (
     <S.Select width={112} disabled={disabled} onClick={onSelectClick}>
       <S.SelectContent width={80}>
-        <p>{graduation_year}</p>
-        {active === 1 && <img src={dropdown} />}
-        {active === 2 && <img src={dropdown_active} />}
+        <p>{graduationYear}</p>
+        {activeImg}
       </S.SelectContent>
-      {disabled === 1 && active === 2 && (
+      {disabled === 'normal' && active && (
         <S.SubSelect>
           <S.GrayLine width={80} />
-          {Array(10)
-            .fill(1)
-            .map((e, i) => {
-              return <p onClick={onGraduationYearClick}>{i + 2016}</p>;
-            })}
+          {YearArray.map((_, i) => {
+            return <p onClick={onGraduationYearClick}>{i + 2016}</p>;
+          })}
         </S.SubSelect>
       )}
     </S.Select>
