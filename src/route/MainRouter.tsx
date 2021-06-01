@@ -1,6 +1,11 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { MainContainer, SignUpContainer, IntroductionContainer } from '../containers';
+import {
+  MainContainer,
+  SignUpContainer,
+  IntroductionContainer,
+  SelectTypeContainer,
+} from '../containers';
 import { useFooter, useModal } from '../util/hooks/default';
 import HeaderContainer from '../containers/header';
 
@@ -15,6 +20,7 @@ const MainRouter = () => {
         <Route path='/signup' component={SignUpContainer} />
         <Route exact path='/' component={MainContainer} />
         <Route path='/introduction' component={IntroductionContainer} />
+        <Route path='/select-type' component={SelectTypeContainer} />
       </Switch>
       {Footer}
     </>
