@@ -5,6 +5,7 @@ import {
   SignUpContainer,
   IntroductionContainer,
   SelectTypeContainer,
+  InformationContainer,
 } from '../containers';
 import { useFooter, useModal } from '../util/hooks/default';
 import HeaderContainer from '../containers/header';
@@ -21,6 +22,7 @@ const MainRouter = () => {
         <Route exact path='/' component={MainContainer} />
         <Route path='/introduction' component={IntroductionContainer} />
         <Route path='/select-type' component={SelectTypeContainer} />
+        <Route path='/information' component={InformationContainer} />
       </Switch>
       {Footer}
     </>
