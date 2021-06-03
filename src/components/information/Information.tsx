@@ -5,7 +5,6 @@ import InformationForm from './InformationForm';
 import { SCHOOL, INFORMATIONTITLE } from '../../constance/information';
 
 interface Props {
-  gender: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
@@ -16,14 +15,32 @@ interface Props {
   setBirthDate: (payload: number) => void;
 }
 
-const Information: FC<Props> = () => {
+const Information: FC<Props> = ({
+  birthYear,
+  birthMonth,
+  birthDate,
+  setInput,
+  setGender,
+  setBirthYear,
+  setBirthMonth,
+  setBirthDate,
+}) => {
   return (
     <S.Information>
       <div>
         <S.School>{SCHOOL}</S.School>
         <S.Title>{INFORMATIONTITLE}</S.Title>
       </div>
-      <InformationForm />
+      <InformationForm
+        birthYear={birthYear}
+        birthMonth={birthMonth}
+        birthDate={birthDate}
+        setInput={setInput}
+        setGender={setGender}
+        setBirthYear={setBirthYear}
+        setBirthMonth={setBirthMonth}
+        setBirthDate={setBirthDate}
+      />
       <Pagination nowPage={[false, true, false, false, false]} />
     </S.Information>
   );

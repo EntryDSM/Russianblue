@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from '../style';
 import { GENDER } from '../../../constance/information';
 
-const GenderColumn = () => {
+interface Props {
+  setGender: (payload: string) => void;
+}
+
+const GenderColumn: FC<Props> = ({ setGender }) => {
   const [isCheck, setIsCheck] = useState({ male: false, female: false });
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     if (dataId === 'male') {
       setIsCheck({ male: true, female: false });
+      setGender('남자');
     } else {
       setIsCheck({ male: false, female: true });
+      setGender('여자');
     }
   };
   return (

@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
 import { GRADE } from '../../../constance/information';
 
-const GradeColumn = () => {
-  const gradeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
-  const classChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
-  const numberChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
+interface Props {
+  setInput: (payload: { name: string; value: string }) => void;
+}
+
+const GradeColumn: FC<Props> = ({ setInput }) => {
+  const gradeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ name: e.target.name, value: e.target.value });
+  };
 
   return (
     <S.InformationLine width={860}>
@@ -19,13 +23,7 @@ const GradeColumn = () => {
             <Input
               width={63}
               height={42}
-              inputChangeHandler={
-                grade.name === 'grade'
-                  ? gradeChangeHandler
-                  : grade.name === 'class'
-                  ? classChangeHandler
-                  : numberChangeHandler
-              }
+              inputChangeHandler={gradeChangeHandler}
               name={grade.name}
             />
             <S.Unit>{grade.content}</S.Unit>

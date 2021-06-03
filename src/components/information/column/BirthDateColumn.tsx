@@ -1,18 +1,39 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as S from '../style';
 import { YearSelect, MonthSelect, DateSelect } from '../select';
 
-const BirthDateColumn = () => {
+interface Props {
+  birthYear: number;
+  birthMonth: number;
+  birthDate: number;
+  setBirthYear: (payload: number) => void;
+  setBirthMonth: (payload: number) => void;
+  setBirthDate: (payload: number) => void;
+}
+
+const BirthDateColumn: FC<Props> = ({
+  birthYear,
+  birthMonth,
+  birthDate,
+  setBirthYear,
+  setBirthMonth,
+  setBirthDate,
+}) => {
   return (
     <S.InformationLine width={860}>
       <S.InformationLineTitle>
         <span>*</span>생년월일
       </S.InformationLineTitle>
-      <YearSelect />
+      <YearSelect birthYear={birthYear} setBirthYear={setBirthYear} />
       <S.Unit>년</S.Unit>
-      <MonthSelect />
+      <MonthSelect birthMonth={birthMonth} setBirthMonth={setBirthMonth} />
       <S.Unit>월</S.Unit>
-      <DateSelect />
+      <DateSelect
+        birthDate={birthDate}
+        birthYear={birthYear}
+        birthMonth={birthMonth}
+        setBirthDate={setBirthDate}
+      />
       <S.Unit>일</S.Unit>
     </S.InformationLine>
   );

@@ -1,9 +1,15 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
 
-const SchoolNameColumn = () => {
-  const schoolNameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {};
+interface Props {
+  setInput: (payload: { name: string; value: string }) => void;
+}
+
+const SchoolNameColumn: FC<Props> = ({ setInput }) => {
+  const schoolNameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput({ name: e.target.name, value: e.target.value });
+  };
 
   return (
     <S.InformationLine width={860}>

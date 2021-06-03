@@ -6,10 +6,13 @@ import { EXPLAIN } from '../../../constance/information';
 interface Props {
   title: string;
   name: string;
+  setInput: (payload: { name: string; value: string }) => void;
 }
 
-const PhoneNumberColumn: FC<Props> = ({ title, name }) => {
-  const phoneNumberChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
+const PhoneNumberColumn: FC<Props> = ({ title, name, setInput }) => {
+  const phoneNumberChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ name: e.target.name, value: e.target.value });
+  };
   return (
     <S.InformationLine width={1220}>
       <S.InformationLineTitle>

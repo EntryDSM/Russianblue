@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import {
   GenderColumn,
@@ -11,21 +11,48 @@ import {
   PictureBtn,
 } from './column';
 
-const InformationForm = () => {
+interface Props {
+  birthYear: number;
+  birthMonth: number;
+  birthDate: number;
+  setInput: (payload: { name: string; value: string }) => void;
+  setGender: (payload: string) => void;
+  setBirthYear: (payload: number) => void;
+  setBirthMonth: (payload: number) => void;
+  setBirthDate: (payload: number) => void;
+}
+
+const InformationForm: FC<Props> = ({
+  birthYear,
+  birthMonth,
+  birthDate,
+  setInput,
+  setGender,
+  setBirthYear,
+  setBirthMonth,
+  setBirthDate,
+}) => {
   return (
     <S.InformationForm>
-      <NameColumn title={'이름'} width={860} name={'name'} />
-      <PictureBtn />
-      <GenderColumn />
-      <BirthDateColumn />
-      <GradeColumn />
-      <SchoolNameColumn />
-      <NameColumn title={'보호자명'} width={1220} name={'parentName'} />
-      <PhoneNumberColumn title={'학교 연락처'} name={'schoolPhoneNumber'} />
-      <PhoneNumberColumn title={'보호자 연락처'} name={'parentPhoneNumber'} />
-      <PhoneNumberColumn title={'본인 연락처'} name={'phoneNumber'} />
-      <PhoneNumberColumn title={'자택 연락처'} name={'homePhoneNumber'} />
-      <AddressColumn />
+      <NameColumn title={'이름'} width={860} name={'name'} setInput={setInput} />
+      <PictureBtn setInput={setInput} />
+      <GenderColumn setGender={setGender} />
+      <BirthDateColumn
+        birthYear={birthYear}
+        birthMonth={birthMonth}
+        birthDate={birthDate}
+        setBirthYear={setBirthYear}
+        setBirthMonth={setBirthMonth}
+        setBirthDate={setBirthDate}
+      />
+      <GradeColumn setInput={setInput} />
+      <SchoolNameColumn setInput={setInput} />
+      <NameColumn title={'보호자명'} width={1220} name={'parentName'} setInput={setInput} />
+      <PhoneNumberColumn title={'학교 연락처'} name={'schoolPhoneNumber'} setInput={setInput} />
+      <PhoneNumberColumn title={'보호자 연락처'} name={'parentPhoneNumber'} setInput={setInput} />
+      <PhoneNumberColumn title={'본인 연락처'} name={'phoneNumber'} setInput={setInput} />
+      <PhoneNumberColumn title={'자택 연락처'} name={'homePhoneNumber'} setInput={setInput} />
+      <AddressColumn setInput={setInput} />
     </S.InformationForm>
   );
 };

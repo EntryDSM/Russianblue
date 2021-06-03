@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
 
-const AddressColumn = () => {
-  const zipCodeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
-  const basicAddressChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
-  const detailAddressChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
+interface Props {
+  setInput: (payload: { name: string; value: string }) => void;
+}
+
+const AddressColumn: FC<Props> = ({ setInput }) => {
+  const addressChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ name: e.target.name, value: e.target.value });
+  };
 
   return (
     <S.AddressLine width={1220}>
@@ -17,7 +21,7 @@ const AddressColumn = () => {
           <Input
             width={166}
             height={42}
-            inputChangeHandler={zipCodeChangeHandler}
+            inputChangeHandler={addressChangeHandler}
             name={'zipCode'}
             placeholder={'우편번호'}
             disable
@@ -25,7 +29,7 @@ const AddressColumn = () => {
           <Input
             width={312}
             height={42}
-            inputChangeHandler={basicAddressChangeHandler}
+            inputChangeHandler={addressChangeHandler}
             name={'basicAddress'}
             placeholder={'기본주소'}
             disable
@@ -36,7 +40,7 @@ const AddressColumn = () => {
           <Input
             width={593}
             height={42}
-            inputChangeHandler={detailAddressChangeHandler}
+            inputChangeHandler={addressChangeHandler}
             placeholder={'상세주소'}
             name={'datailAddress'}
           />
