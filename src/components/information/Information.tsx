@@ -5,6 +5,7 @@ import InformationForm from './InformationForm';
 import { SCHOOL, INFORMATIONTITLE } from '../../constance/information';
 
 interface Props {
+  imageUrl: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
@@ -13,9 +14,12 @@ interface Props {
   setBirthYear: (payload: number) => void;
   setBirthMonth: (payload: number) => void;
   setBirthDate: (payload: number) => void;
+  setImageUrl: (payload: string) => void;
+  setImageFile: (payload: File) => void;
 }
 
 const Information: FC<Props> = ({
+  imageUrl,
   birthYear,
   birthMonth,
   birthDate,
@@ -24,6 +28,8 @@ const Information: FC<Props> = ({
   setBirthYear,
   setBirthMonth,
   setBirthDate,
+  setImageFile,
+  setImageUrl,
 }) => {
   return (
     <S.Information>
@@ -32,6 +38,7 @@ const Information: FC<Props> = ({
         <S.Title>{INFORMATIONTITLE}</S.Title>
       </div>
       <InformationForm
+        imageUrl={imageUrl}
         birthYear={birthYear}
         birthMonth={birthMonth}
         birthDate={birthDate}
@@ -40,6 +47,8 @@ const Information: FC<Props> = ({
         setBirthYear={setBirthYear}
         setBirthMonth={setBirthMonth}
         setBirthDate={setBirthDate}
+        setImageUrl={setImageUrl}
+        setImageFile={setImageFile}
       />
       <Pagination nowPage={[false, true, false, false, false]} />
     </S.Information>

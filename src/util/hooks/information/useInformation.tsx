@@ -5,6 +5,8 @@ import {
   setBirthDate,
   setBirthMonth,
   setBirthYear,
+  setImageUrl,
+  setImageFile,
 } from '../../../modules/redux/action/information';
 import { useSelectState } from '../default';
 
@@ -26,6 +28,12 @@ const useInformation = () => {
     },
     setBirthDate: (payload: number) => {
       dispatch(setBirthDate(payload));
+    },
+    setImageUrl: (payload: string) => {
+      dispatch(setImageUrl(payload));
+    },
+    setImageFile: (payload: File) => {
+      dispatch(setImageFile(payload));
     },
   };
   return { state, setState };

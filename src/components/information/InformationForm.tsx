@@ -12,6 +12,7 @@ import {
 } from './column';
 
 interface Props {
+  imageUrl: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
@@ -20,9 +21,12 @@ interface Props {
   setBirthYear: (payload: number) => void;
   setBirthMonth: (payload: number) => void;
   setBirthDate: (payload: number) => void;
+  setImageUrl: (payload: string) => void;
+  setImageFile: (payload: File) => void;
 }
 
 const InformationForm: FC<Props> = ({
+  imageUrl,
   birthYear,
   birthMonth,
   birthDate,
@@ -31,11 +35,13 @@ const InformationForm: FC<Props> = ({
   setBirthYear,
   setBirthMonth,
   setBirthDate,
+  setImageFile,
+  setImageUrl,
 }) => {
   return (
     <S.InformationForm>
       <NameColumn title={'이름'} width={860} name={'name'} setInput={setInput} />
-      <PictureBtn setInput={setInput} />
+      <PictureBtn imageUrl={imageUrl} setImageUrl={setImageUrl} setImageFile={setImageFile}/>
       <GenderColumn setGender={setGender} />
       <BirthDateColumn
         birthYear={birthYear}

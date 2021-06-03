@@ -5,6 +5,8 @@ interface InformationState {
   birthYear: number;
   birthMonth: number;
   birthDate: number;
+  imageUrl: string;
+  imageFile: File;
 }
 
 export default InformationState;

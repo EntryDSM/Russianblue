@@ -5,6 +5,8 @@ import {
   BIRTHDATE,
   BIRTHMONTH,
   BIRTHYEAR,
+  IMAGEURL,
+  IMAGEFILE,
 } from '../../action/information/interface';
 import InformationState from './interface';
 
@@ -15,6 +17,8 @@ const initState: InformationState = {
   birthYear: 2006,
   birthMonth: 1,
   birthDate: 1,
+  imageUrl: '',
+  imageFile: null,
 };
 
 const informationReducer = (
@@ -46,6 +50,16 @@ const informationReducer = (
       return {
         ...state,
         birthDate: action.payload,
+      };
+    case IMAGEURL:
+      return {
+        ...state,
+        imageUrl: action.payload,
+      };
+    case IMAGEFILE:
+      return {
+        ...state,
+        imageFile: action.payload,
       };
     default:
       return state;
