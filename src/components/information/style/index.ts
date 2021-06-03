@@ -229,3 +229,11 @@ export const PictureBtn = styled.label<{
     font-weight: 300;
   }
 `;
+
+export const Picture = styled.img`
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
