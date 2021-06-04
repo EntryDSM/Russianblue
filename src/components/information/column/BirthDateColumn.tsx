@@ -3,6 +3,7 @@ import * as S from '../style';
 import { YearSelect, MonthSelect, DateSelect } from '../select';
 
 interface Props {
+  width: number;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const BirthDateColumn: FC<Props> = ({
+  width,
   birthYear,
   birthMonth,
   birthDate,
@@ -20,7 +22,7 @@ const BirthDateColumn: FC<Props> = ({
   setBirthDate,
 }) => {
   return (
-    <S.InformationLine width={860}>
+    <S.InformationLine width={width}>
       <S.InformationLineTitle>
         <span>*</span>생년월일
       </S.InformationLineTitle>

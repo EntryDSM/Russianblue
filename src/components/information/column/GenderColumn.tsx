@@ -3,10 +3,11 @@ import * as S from '../style';
 import { GENDER } from '../../../constance/information';
 
 interface Props {
+  width: number;
   setGender: (payload: string) => void;
 }
 
-const GenderColumn: FC<Props> = ({ setGender }) => {
+const GenderColumn: FC<Props> = ({ setGender, width }) => {
   const [isCheck, setIsCheck] = useState({ male: false, female: false });
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
@@ -19,7 +20,7 @@ const GenderColumn: FC<Props> = ({ setGender }) => {
     }
   };
   return (
-    <S.InformationLine width={860}>
+    <S.InformationLine width={width}>
       <S.InformationLineTitle>
         <span>*</span>성별
       </S.InformationLineTitle>
