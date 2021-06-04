@@ -32,6 +32,10 @@ export const InformationForm = styled.div`
   }
 `;
 
+export const QualificationForm = styled(InformationForm)`
+  height: 774px;
+`;
+
 export const InformationLine = styled.div<{
   width: number;
 }>`
@@ -201,19 +205,22 @@ export const Explain = styled.p`
 export const PictureBtn = styled.label<{
   width: number;
   height: number;
+  top: number;
+  paddingTop: number;
+  paddingSide: number;
 }>`
   position: absolute;
-  top: 18px;
   right: 20px;
   box-sizing: border-box;
   border: 2px solid ${color.middleBar};
   border-radius: 4px;
   background-color: #f5f5f5;
-  padding: 119px 91px;
   cursor: pointer;
-  ${({ width, height }) => css`
+  ${({ width, height, paddingTop, paddingSide, top }) => css`
     width: ${width}px;
     height: ${height}px;
+    padding: ${paddingTop}px ${paddingSide}px;
+    top: ${top}px;
   `}
   > img {
     width: 74.2px;
