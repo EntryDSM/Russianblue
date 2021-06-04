@@ -41,9 +41,19 @@ const InformationForm: FC<Props> = ({
   return (
     <S.InformationForm>
       <NameColumn title={'이름'} width={860} name={'name'} setInput={setInput} />
-      <PictureBtn imageUrl={imageUrl} setImageUrl={setImageUrl} setImageFile={setImageFile}/>
-      <GenderColumn setGender={setGender} />
+      <PictureBtn
+        width={317}
+        height={363}
+        imageUrl={imageUrl}
+        setImageUrl={setImageUrl}
+        setImageFile={setImageFile}
+        paddingSide={91}
+        paddingTop={119}
+        top={18}
+      />
+      <GenderColumn width={860} setGender={setGender} />
       <BirthDateColumn
+        width={860}
         birthYear={birthYear}
         birthMonth={birthMonth}
         birthDate={birthDate}
