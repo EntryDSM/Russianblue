@@ -6,3 +6,4 @@ export { default as GradeColumn } from './GradeColumn';
 export { default as SchoolNameColumn } from './SchoolNameColumn';
 export { default as AddressColumn } from './AddressColumn';
 export { default as PictureBtn } from './PictureBtn';
+export { default as TotalScoreColumn } from './TotalScoreColumn';
