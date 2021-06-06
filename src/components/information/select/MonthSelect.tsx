@@ -19,6 +19,19 @@ const MonthSelect: FC<Props> = ({ birthMonth, setBirthMonth }) => {
     setBirthMonth(e.target.innerText);
   };
 
+  const month = useMemo(() => {
+    if (active) {
+      return (
+        <S.SubSelect>
+          <S.GrayLine width={52} />
+          {monthArray.map(month => {
+            return <p onClick={birthMonthClickHandler}>{month}</p>;
+          })}
+        </S.SubSelect>
+      );
+    }
+  }, [active]);
+
   const activeImg = useMemo(() => {
     if (active) return <img src={dropdown_active} />;
     else return <img src={dropdown} />;
@@ -30,14 +43,7 @@ const MonthSelect: FC<Props> = ({ birthMonth, setBirthMonth }) => {
         <p>{birthMonth}</p>
         {activeImg}
       </S.SelectContent>
-      {active && (
-        <S.SubSelect>
-          <S.GrayLine width={52} />
-          {monthArray.map(month => {
-            return <p onClick={birthMonthClickHandler}>{month}</p>;
-          })}
-        </S.SubSelect>
-      )}
+      {month}
     </S.Select>
   );
 };
