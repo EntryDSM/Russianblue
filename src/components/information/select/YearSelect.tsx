@@ -1,7 +1,6 @@
 import React, { FC, useMemo, useState } from 'react';
 import * as S from '../style';
 import { dropdown, dropdown_active } from '../../../assets/selectType';
-import { setBirthYear } from 'src/modules/redux/action/information';
 
 interface Props {
   birthYear: number;
