@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
 import { GRADE } from '../../../constance/information';
@@ -12,24 +12,23 @@ const GradeColumn: FC<Props> = ({ setInput }) => {
     setInput({ name: e.target.name, value: e.target.value });
   };
 
+  const grade = useMemo(() => {
+    return GRADE.map(grade => {
+      return (
+        <>
+          <Input width={63} height={42} inputChangeHandler={gradeChangeHandler} name={grade.name} />
+          <S.Unit>{grade.content}</S.Unit>
+        </>
+      );
+    });
+  }, []);
+
   return (
     <S.InformationLine width={860}>
       <S.InformationLineTitle>
         <span>*</span>학번
       </S.InformationLineTitle>
-      {GRADE.map(grade => {
-        return (
-          <>
-            <Input
-              width={63}
-              height={42}
-              inputChangeHandler={gradeChangeHandler}
-              name={grade.name}
-            />
-            <S.Unit>{grade.content}</S.Unit>
-          </>
-        );
-      })}
+      {grade}
     </S.InformationLine>
   );
 };

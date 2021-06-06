@@ -20,18 +20,18 @@ const DateSelect: FC<Props> = ({ birthDate, birthMonth, birthYear, setBirthDate 
       case 8:
       case 10:
       case 12:
-        return 31;
+        return [...Array(31)].map((_, i) => <p onClick={birthDateClickHandler}>{i + 1}</p>);
       case 4:
       case 6:
       case 9:
       case 11:
-        return 30;
+        return [...Array(30)].map((_, i) => <p onClick={birthDateClickHandler}>{i + 1}</p>);
       case 2:
-        if (birthYear % 4 === 0) return 29;
-        return 28;
+        if (birthYear % 4 === 0)
+          return [...Array(29)].map((_, i) => <p onClick={birthDateClickHandler}>{i + 1}</p>);
+        return [...Array(28)].map((_, i) => <p onClick={birthDateClickHandler}>{i + 1}</p>);
     }
   }, [Number(birthMonth), Number(birthYear)]);
-  let dateArray = [...Array(getDate)].map((_, i) => i + 1);
 
   const selectClickHandler = () => {
     setActive(!active);
@@ -55,9 +55,7 @@ const DateSelect: FC<Props> = ({ birthDate, birthMonth, birthYear, setBirthDate 
       {active && (
         <S.SubSelect>
           <S.GrayLine width={52} />
-          {dateArray.map(date => {
-            return <p onClick={birthDateClickHandler}>{date}</p>;
-          })}
+          {getDate}
         </S.SubSelect>
       )}
     </S.Select>
