@@ -21,19 +21,19 @@ export const Title = styled.p`
   letter-spacing: 1.05px;
 `;
 
-export const InformationForm = styled.div`
+export const InformationForm = styled.div<{
+  height: number;
+}>`
   width: 1220px;
-  height: 935px;
   border-top: 3px solid ${color.main};
   border-bottom: 3px solid ${color.main};
   position: relative;
   > div:first-child {
     border: none;
   }
-`;
-
-export const QualificationForm = styled(InformationForm)`
-  height: 774px;
+  ${({ height }) => css`
+    height: ${height}px;
+  `}
 `;
 
 export const InformationLine = styled.div<{
