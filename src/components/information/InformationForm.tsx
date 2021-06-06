@@ -45,10 +45,10 @@ const InformationForm: FC<Props> = ({
   const widthHeight = useMemo(() => {
     if (graduation === '검정고시')
       return {
-        width: 860,
+        width: 904,
         height: 774,
       };
-    else return { width: 904, height: 935 };
+    else return { width: 860, height: 935 };
   }, [graduation]);
 
   const picture = useMemo(() => {
