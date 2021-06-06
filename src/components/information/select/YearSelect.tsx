@@ -24,20 +24,26 @@ const YearSelect: FC<Props> = ({ birthYear, setBirthYear }) => {
     else return <img src={dropdown} />;
   }, [active]);
 
-  return (
-    <S.Select width={114} onClick={selectClickHandler}>
-      <S.SelectContent width={82}>
-        <p>{birthYear}</p>
-        {activeImg}
-      </S.SelectContent>
-      {active && (
+  const year = useMemo(() => {
+    if (active) {
+      return (
         <S.SubSelect>
           <S.GrayLine width={82} />
           {yearArray.map(year => {
             return <p onClick={birthYearClickHandler}>{year}</p>;
           })}
         </S.SubSelect>
-      )}
+      );
+    }
+  }, [active]);
+
+  return (
+    <S.Select width={114} onClick={selectClickHandler}>
+      <S.SelectContent width={82}>
+        <p>{birthYear}</p>
+        {activeImg}
+      </S.SelectContent>
+      {year}
     </S.Select>
   );
 };
