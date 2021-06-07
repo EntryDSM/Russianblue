@@ -92,6 +92,7 @@ input[type=number] {
     }
     ::-webkit-scrollbar-track-piece {
     background-color: white;
+    border-radius: 6px;
     }
     ::-webkit-scrollbar-thumb {
     border-radius: 8px;
