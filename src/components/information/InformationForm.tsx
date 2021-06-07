@@ -42,31 +42,34 @@ const InformationForm: FC<Props> = ({
 }) => {
   const graduation = useSelectType().state.graduation;
 
-  const widthHeight = useMemo(() => {
+  const styleInfo = useMemo(() => {
     if (graduation === '검정고시')
       return {
-        width: 904,
-        height: 774,
-      };
-    else return { width: 860, height: 935 };
-  }, [graduation]);
-
-  const picture = useMemo(() => {
-    if (graduation === '검정고시')
-      return {
-        width: 270,
-        height: 295,
-        paddingTop: 85,
-        paddingSide: 68,
-        top: 10,
+        widthHeight: {
+          width: 904,
+          height: 774,
+        },
+        picture: {
+          width: 270,
+          height: 295,
+          paddingTop: 85,
+          paddingSide: 68,
+          top: 10,
+        },
       };
     else
       return {
-        width: 317,
-        height: 363,
-        paddingTop: 119,
-        paddingSide: 91,
-        top: 18,
+        widthHeight: {
+          width: 860,
+          height: 935,
+        },
+        picture: {
+          width: 317,
+          height: 363,
+          paddingTop: 119,
+          paddingSide: 91,
+          top: 18,
+        },
       };
   }, [graduation]);
 
@@ -89,21 +92,22 @@ const InformationForm: FC<Props> = ({
   }, [graduation]);
 
   return (
-    <S.InformationForm height={widthHeight.height}>
-      <NameColumn title={'이름'} width={widthHeight.width} name={'name'} setInput={setInput} />
+    <S.InformationForm height={styleInfo.widthHeight.height}>
+      <NameColumn
+        title={'이름'}
+        width={styleInfo.widthHeight.width}
+        name={'name'}
+        setInput={setInput}
+      />
       <PictureBtn
-        width={picture.width}
-        height={picture.height}
-        paddingTop={picture.paddingTop}
-        paddingSide={picture.paddingSide}
-        top={picture.top}
+        {...styleInfo.picture}
         imageUrl={imageUrl}
         setImageUrl={setImageUrl}
         setImageFile={setImageFile}
       />
-      <GenderColumn width={widthHeight.width} setGender={setGender} />
+      <GenderColumn width={styleInfo.widthHeight.width} setGender={setGender} />
       <BirthDateColumn
-        width={widthHeight.width}
+        width={styleInfo.widthHeight.width}
         birthYear={birthYear}
         birthMonth={birthMonth}
         birthDate={birthDate}
