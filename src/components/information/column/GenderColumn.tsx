@@ -8,15 +8,15 @@ interface Props {
 }
 
 const GenderColumn: FC<Props> = ({ setGender, width }) => {
-  const [isCheck, setIsCheck] = useState({ male: false, female: false });
+  const [genderBtnCheck, setGenderBtnCheck] = useState({ male: false, female: false });
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     if (dataId === 'male') {
       setGender('남자');
-      setIsCheck({ male: true, female: false });
+      setGenderBtnCheck({ male: true, female: false });
     } else {
       setGender('여자');
-      setIsCheck({ male: false, female: true });
+      setGenderBtnCheck({ male: false, female: true });
     }
   };
   return (
@@ -28,7 +28,7 @@ const GenderColumn: FC<Props> = ({ setGender, width }) => {
         return (
           <S.SelectBox key={data.id}>
             <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
-              {isCheck[data.id] && <S.CheckedCircle />}
+              {genderBtnCheck[data.id] && <S.CheckedCircle />}
             </S.CheckCircle>
             <p>{data.content}</p>
           </S.SelectBox>
