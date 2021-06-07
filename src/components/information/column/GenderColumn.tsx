@@ -12,11 +12,11 @@ const GenderColumn: FC<Props> = ({ setGender, width }) => {
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     if (dataId === 'male') {
-      setIsCheck({ male: true, female: false });
       setGender('남자');
+      setIsCheck({ male: true, female: false });
     } else {
-      setIsCheck({ male: false, female: true });
       setGender('여자');
+      setIsCheck({ male: false, female: true });
     }
   };
   return (
