@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import React, { Dispatch, FC, useState } from 'react';
 import * as S from '../style';
 import { GRADUATION } from '../../../constance/SelectType';
 
