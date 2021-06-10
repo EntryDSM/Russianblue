@@ -9,13 +9,20 @@ const initState: GradeState = {
   lateness: 0,
   truancy: 0,
   grade: {
-    korean: { 11: '0', 12: '0', 21: '0', 22: '0', 31: '0' },
-    social: { 11: '0', 12: '0', 21: '0', 22: '0', 31: '0' },
-    history: { 11: '0', 12: '0', 21: '0', 22: '0', 31: '0' },
-    math: { 11: '0', 12: '0', 21: '0', 22: '0', 31: '0' },
-    science: { 11: '0', 12: '0', 21: '0', 22: '0', 31: '0' },
-    technical: { 11: '0', 12: '0', 21: '0', 22: '0', 31: '0' },
-    english: { 11: '0', 12: '0', 21: '0', 22: '0', 31: '0' },
+    korean: '00000',
+    social: '00000',
+    history: '00000',
+    math: '00000',
+    science: '00000',
+    technical: '00000',
+    english: '00000',
+    isCheck: {
+      freshmanFirst: false,
+      freshmanSecond: false,
+      sophomoreFirst: false,
+      sophomoreSecond: false,
+      seniorFirst: false,
+    },
   },
 };
 
