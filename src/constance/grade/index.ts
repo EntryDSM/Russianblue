@@ -9,9 +9,10 @@ export const GRADE = [
   { grade: '0', id: '0' },
 ];
 export const GRADEANDSEMESTER = [
-  { id: 11, grade: 1, semester: 1 },
-  { id: 12, grade: 1, semester: 2 },
-  { id: 21, grade: 2, semester: 1 },
-  { id: 22, grade: 2, semester: 2 },
-  { id: 31, grade: 3, semester: 1 },
+  { id: 'freshmanFirst', grade: 1, semester: 1 },
+  { id: 'freshmanSecond', grade: 1, semester: 2 },
+  { id: 'sophomoreFirst', grade: 2, semester: 1 },
+  { id: 'sophomoreSecond', grade: 2, semester: 2 },
+  { id: 'seniorFirst', grade: 3, semester: 1 },
 ];
+export const SUBJECT = ['korean', 'social', 'history', 'math', 'science', 'technical', 'english'];
