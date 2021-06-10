@@ -2,6 +2,7 @@ import React, { FC, useMemo, useState } from 'react';
 import * as S from '../style';
 import { GRADEANDSEMESTER, GRADE } from '../../../constance/grade';
 import { GradeType } from '../../../modules/redux/action/grade/interface';
+import { Grade } from '../../../modules/redux/reducer/grade/interface';
 
 interface Props {
   grade: GradeType;
@@ -12,29 +13,38 @@ interface Props {
 
 const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject }) => {
   const [isClick, setIsClick] = useState({
-    11: false,
-    12: false,
-    21: false,
-    22: false,
-    23: false,
+    freshmanFirst: false,
+    freshmanSecond: false,
+    sophomoreFirst: false,
+    sophomoreSecond: false,
+    seniorFirst: false,
   });
+
+  const gradeChange = (subject: string, dataId: string, dataGrade: string) => {
+    let temp = [];
+    for (let i = 0; i < grade[subject].length; i++) {
+      temp.push(grade[subject][i]);
+    }
+    temp.splice(Grade[dataId], 1, dataGrade);
+    return temp.join('');
+  };
+
   const gradeClickHandler = e => {
     const dataId = e.target.dataset.id;
     const dataGrade = e.target.innerText;
-    setGrade({
-      grade: {
-        ...grade,
-        [subject]: {
-          ...grade[subject],
-          [dataId]: dataGrade,
+    if (grade.isCheck[dataId] === false) {
+      setGrade({
+        grade: {
+          ...grade,
+          [subject]: gradeChange(subject, dataId, dataGrade),
         },
-      },
-    });
-    console.log(grade);
+      });
+    }
     setIsClick({ ...isClick, [dataId]: !isClick[dataId] });
   };
+
   const btnClickHandler = e => {
-    const dataId = Number(e.target.dataset.id);
+    const dataId = e.target.dataset.id;
     setIsClick({ ...isClick, [dataId]: !isClick[dataId] });
   };
 
@@ -52,13 +62,13 @@ const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject }) => {
             })
           ) : (
             <S.ScoreBtn data-id={data.id} onClick={btnClickHandler}>
-              {grade[subject][Number(data.id)]}
+              {grade[subject][Grade[data.id]]}
             </S.ScoreBtn>
           )}
         </S.GradeTableTd>
       );
     });
-  }, [isClick]);
+  }, [isClick, grade]);
 
   return (
     <S.GradeColumn>
