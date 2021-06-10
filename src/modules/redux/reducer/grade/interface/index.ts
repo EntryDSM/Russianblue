@@ -5,14 +5,29 @@ interface GradeState {
   lateness: number;
   truancy: number;
   grade: {
-    korean: { 11: string; 12: string; 21: string; 22: string; 31: string };
-    social: { 11: string; 12: string; 21: string; 22: string; 31: string };
-    history: { 11: string; 12: string; 21: string; 22: string; 31: string };
-    math: { 11: string; 12: string; 21: string; 22: string; 31: string };
-    science: { 11: string; 12: string; 21: string; 22: string; 31: string };
-    technical: { 11: string; 12: string; 21: string; 22: string; 31: string };
-    english: { 11: string; 12: string; 21: string; 22: string; 31: string };
+    korean: string;
+    social: string;
+    history: string;
+    math: string;
+    science: string;
+    technical: string;
+    english: string;
+    isCheck: {
+      freshmanFirst: boolean;
+      freshmanSecond: boolean;
+      sophomoreFirst: boolean;
+      sophomoreSecond: boolean;
+      seniorFirst: boolean;
+    };
   };
+}
+
+export enum Grade {
+  freshmanFirst = 0,
+  freshmanSecond = 1,
+  sophomoreFirst = 2,
+  sophomoreSecond = 3,
+  seniorFirst = 4,
 }
 
 export default GradeState;
