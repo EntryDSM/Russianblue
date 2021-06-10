@@ -6,6 +6,7 @@ import {
   IntroductionContainer,
   SelectTypeContainer,
   InformationContainer,
+  GradeContainer,
 } from '../containers';
 import { useFooter, useModal } from '../util/hooks/default';
 import HeaderContainer from '../containers/header';
@@ -23,6 +24,7 @@ const MainRouter = () => {
         <Route path='/introduction' component={IntroductionContainer} />
         <Route path='/select-type' component={SelectTypeContainer} />
         <Route path='/information' component={InformationContainer} />
+        <Route path='/grade' component={GradeContainer} />
       </Switch>
       {Footer}
     </>
