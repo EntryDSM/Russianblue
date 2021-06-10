@@ -9,6 +9,7 @@ import authReducer from './auth';
 import selectTypeReducer from './selectType';
 import introductionReducer from './Introduction';
 import informationReducer from './information';
+import gradeReducer from './grade';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   selectType: selectTypeReducer,
   introduce: introductionReducer,
   information: informationReducer,
+  grade: gradeReducer,
 });
 
 export type reducerType = ReturnType<typeof rootReducer>;
