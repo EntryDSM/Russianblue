@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from './style';
 import { SCHOOL, ENTERGRADE } from '../../constance/grade';
 import Pagination from '../default/Pagination';
 import { ResetGrade } from './column';
 import { VolunteerTable, GradeTable } from './table';
-import { GradeType } from 'src/modules/redux/action/grade/interface';
+import { GradeType } from '../../modules/redux/action/grade/interface';
 
 interface Props {
   grade: GradeType;
@@ -13,6 +13,13 @@ interface Props {
 }
 
 const Grade: FC<Props> = ({ setInput, setGrade, grade }) => {
+  const [isResetZeroClick, setIsResetZeroClick] = useState({
+    freshmanFirst: false,
+    freshmanSecond: false,
+    sophomoreFirst: false,
+    sophomoreSecond: false,
+    seniorFirst: false,
+  });
   return (
     <S.Grade>
       <div>
@@ -21,8 +28,18 @@ const Grade: FC<Props> = ({ setInput, setGrade, grade }) => {
       </div>
       <S.TableName>봉사 {'&'} 출석</S.TableName>
       <VolunteerTable setInput={setInput} />
-      <ResetGrade />
-      <GradeTable setGrade={setGrade} grade={grade} />
+      <ResetGrade
+        isResetZeroClick={isResetZeroClick}
+        setIsResetZeroClick={setIsResetZeroClick}
+        grade={grade}
+        setGrade={setGrade}
+      />
+      <GradeTable
+        isResetZeroClick={isResetZeroClick}
+        setIsResetZeroClick={setIsResetZeroClick}
+        setGrade={setGrade}
+        grade={grade}
+      />
       <Pagination nowPage={[false, false, false, true, false]} />
     </S.Grade>
   );
