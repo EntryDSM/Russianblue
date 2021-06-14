@@ -1,3 +1,2 @@
 import IntroductionContainer from './IntroductionContainer';
-
-export default IntroductionContainer
+export default IntroductionContainer;

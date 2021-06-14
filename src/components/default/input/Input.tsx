@@ -9,6 +9,7 @@ interface Props {
   margin?: string;
   inputChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
+  name?: string;
 }
 
 const Input: FC<Props> = ({
@@ -19,6 +20,7 @@ const Input: FC<Props> = ({
   margin,
   inputChangeHandler,
   type,
+  name,
 }) => {
   return (
     <S.Input
@@ -30,6 +32,7 @@ const Input: FC<Props> = ({
       onChange={inputChangeHandler}
       disabled={disable}
       type={type}
+      name={name}
     />
   );
 };
