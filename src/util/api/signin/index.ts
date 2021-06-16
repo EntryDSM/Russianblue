@@ -4,7 +4,11 @@ import { signinResponse } from '../../../models/dto/response/signinResponse';
 import { getRequest } from '../default';
 
 export const signin = async (body: signinRequest) => {
-  const request = getRequest();
-  const { data } = await request.post<signinResponse>(uri.signin, body);
-  return data;
+  try {
+    const request = getRequest();
+    const { data } = await request.post<signinResponse>(uri.signin, body);
+    return data;
+  } catch (error) {
+    throw error;
+  }
 };

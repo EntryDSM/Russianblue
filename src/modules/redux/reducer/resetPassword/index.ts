@@ -17,7 +17,10 @@ const initState: IResetPasswordState = {
   vertifyCode: '',
   vertifyPhoneNumber: '',
   newPassword: '',
-  error: null,
+  error: {
+    message: '',
+    status: 0,
+  },
   vertifyCodeChecked: false,
   vertifyCodeSend: false,
 };

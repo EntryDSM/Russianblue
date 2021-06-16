@@ -21,3 +21,8 @@ export interface resetPassword {
   phone_number: string;
   password: string;
 }
+
+export interface checkVertifyCodeRequest {
+  phone_number: string;
+  code: string;
+}

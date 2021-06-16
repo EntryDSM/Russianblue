@@ -1,7 +1,7 @@
 import IAuthState from './interface';
 import { ACCESS_TOKEN, authActionType, IS_LOGIN } from '../../action/auth';
 const initState: IAuthState = {
-  isLogin: true,
+  isLogin: false,
   accessToken: '',
   error: {
     status: 0,
