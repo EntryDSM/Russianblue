@@ -5,6 +5,7 @@ export default function createRequestSaga(type: any, request: any) {
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`;
   return function* (action: any) {
+    console.log(type);
     const accessToken = yield select((rootReducer: reducerType) => rootReducer.auth.accessToken);
     try {
       const response = yield call(request, accessToken, action.payload);

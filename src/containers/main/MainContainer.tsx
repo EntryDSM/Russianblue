@@ -19,38 +19,13 @@ const MainContainer: FC = () => {
   };
   useEffect(() => {
     // server request로 대체 예정
-    processState.setState.setStatusSuccess([
-      {
-        year: '2022',
-        type: 'START_DATE',
-        date: '2022-10-31',
-      },
-      {
-        year: '2022',
-        type: 'END_DATE',
-        date: '2022-10-31',
-      },
-      {
-        year: '2022',
-        type: 'FIRST_ANNOUNCEMENT',
-        date: '2022-10-31',
-      },
-      {
-        year: '2022',
-        type: 'SECOND_ANNOUNCEMENT',
-        date: '2022-10-31',
-      },
-      {
-        year: '2022',
-        type: 'INTERVIEW',
-        date: '2022-10-31',
-      },
-    ]);
   }, []);
   const status = processState.state.status;
   const date = processState.state.date;
-  const getNowProcessDate = (status): string => {
+  const getNowProcessDate = (status: string): string => {
+    console.log(status, date);
     const result = date.filter(date => status === date.type)[0];
+    console.log(result);
     return result ? result.date : '';
   };
   return (

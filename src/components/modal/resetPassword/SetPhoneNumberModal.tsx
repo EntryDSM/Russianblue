@@ -4,6 +4,7 @@ import * as S from '../style';
 import MoveButton from './moveButton';
 import useResetPassword from '../../../util/hooks/resetPassword/useResetPassword';
 import { isHaveError, isPhoneNumber } from '../../../util/util/format';
+import { isOneOfTextEmpty } from '../../../util/util';
 
 interface Props {
   goNext: () => void;
@@ -17,20 +18,22 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
   };
   const sendVertifyCodeButtonClickHandler = () => {
     const { vertifyPhoneNumber } = state;
-    if (isPhoneNumber(vertifyPhoneNumber)) {
-      setIsNextAble(true);
-    } else {
+    if (!isPhoneNumber(vertifyPhoneNumber)) {
       setState.setResetPasswordError({ status: 400, message: '잘못된 형식의 전화번호 입니다' });
+      return;
     }
+    setIsNextAble(true);
   };
+
   useEffect(() => {
     setState.setResetPasswordError({ status: 0, message: '' });
   }, []);
+
   return (
     <S.ModalMain>
       <S.ModalTitle>비밀번호 재설정</S.ModalTitle>
       {isHaveError(state.error.message) ? (
-        <S.ModalErrorText>{state.error}</S.ModalErrorText>
+        <S.ModalErrorText>{state.error.message}</S.ModalErrorText>
       ) : (
         <S.ModalSubTitle>본인인증시 사용했던 전화번호를 입력해주세요</S.ModalSubTitle>
       )}

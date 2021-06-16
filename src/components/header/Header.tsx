@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import * as S from './style';
 import HeaderMenu from './menu';
 import { error } from 'src/models/error';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   isLogin: boolean;
@@ -18,13 +19,17 @@ interface Props {
 }
 
 const Header: FC<Props> = props => {
+  const history = useHistory();
   const logout = () => {
     props.setIsLogin(false);
     props.setAccessToken('');
   };
+  const logoClickHandler = () => {
+    history.push('/');
+  };
   return (
     <S.Header>
-      <S.HeaderIcon />
+      <S.HeaderIcon onClick={logoClickHandler} />
       <HeaderMenu {...props} logout={logout} />
     </S.Header>
   );

@@ -28,6 +28,8 @@ const VertifyCodeModal: FC<Props> = ({ goNext, goPrev }) => {
     setIsNextAble(true);
   };
   const reSendVertifyCodeButtonClickHandler = () => {
+    setIsNextAble(false);
+
     setTime(180);
   };
   useEffect(() => {
