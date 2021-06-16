@@ -18,8 +18,8 @@ const initState: ISignUpState = {
   phoneCode: '',
   phoneNumber: '',
   ruleCheck: false,
-  checkVertifyCode: false,
-  sendvertifyCode: false,
+  isCheckVertifyCode: false,
+  isSendVertifyCode: false,
   error: null,
 };
 
@@ -58,7 +58,7 @@ const SignUpReducer = (state: ISignUpState = initState, action: signupActionType
     case CHECK_VERTIFY_CODE_SUCCESS: {
       return {
         ...state,
-        checkVertifyCode: true,
+        isCheckVertifyCode: true,
       };
     }
     case CHECK_VERTIFY_CODE_FAILURE: {
@@ -70,7 +70,7 @@ const SignUpReducer = (state: ISignUpState = initState, action: signupActionType
     case SEND_VERTIFY_CODE_SUCCESS: {
       return {
         ...state,
-        sendvertifyCode: true,
+        isSendVertifyCode: true,
       };
     }
     case SEND_VERTIFY_CODE_FAILURE: {
