@@ -1,22 +1,22 @@
 import React, { FC, useState } from 'react';
-import useIntroduction from '../../util/hooks/Introduction';
 import * as S from './style';
 import { SELFINTRODUCTION, STUDYPLAN } from '../../constance/introduction';
 
 interface Props {
   subTitle: string;
   explain: string;
+  setIntroduction?: (payload: string) => void;
+  setStudyPlan?: (payload: string) => void;
 }
 
-const SubContent: FC<Props> = ({ subTitle, explain }) => {
-  const { state, setState } = useIntroduction();
+const SubContent: FC<Props> = ({ subTitle, explain, setIntroduction, setStudyPlan }) => {
   const [countText, SetCountText] = useState({ introductionText: 0, studyPlanText: 0 });
   const onIntroductionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setState.setIntroduction(e.target.value);
+    setIntroduction(e.target.value);
     SetCountText({ ...countText, introductionText: e.target.value.length });
   };
   const onStudyPlanChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setState.setStudyPlan(e.target.value);
+    setStudyPlan(e.target.value);
     SetCountText({ ...countText, studyPlanText: e.target.value.length });
   };
 
