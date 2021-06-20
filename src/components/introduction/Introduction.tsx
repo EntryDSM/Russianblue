@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import * as S from './style';
 import SubContents from './SubContents';
 import {
@@ -8,12 +8,7 @@ import {
   STUDYPLANEXPLAIN,
   SCHOOL,
 } from '../../constance/introduction';
-import {
-  GET_SELF_INTRODUCTION,
-  GET_STUDY_PLAN,
-} from '../../modules/redux/action/Introduction/interface';
 import Pagination from '../default/Pagination';
-import { useDispatch } from 'react-redux';
 
 interface Props {
   selfIntroduction: string;
@@ -28,12 +23,6 @@ const Introduction: FC<Props> = ({
   setIntroduction,
   setStudyPlan,
 }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch({ type: GET_SELF_INTRODUCTION });
-    dispatch({ type: GET_STUDY_PLAN });
-  }, []);
-
   return (
     <S.AllContents>
       <div>
