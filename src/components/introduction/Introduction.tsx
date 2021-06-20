@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import SubContents from './SubContents';
 import {
@@ -23,6 +23,18 @@ const Introduction: FC<Props> = ({
   setIntroduction,
   setStudyPlan,
 }) => {
+  const pagination = useMemo(() => {
+    if (selfIntroduction !== '') {
+      if (studyPlan !== '') {
+        return <Pagination prevPagePath={'/grade'} nextPagePath={'/preview'} isNextPage />;
+        // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification isNextPage />
+      }
+    } else {
+      return <Pagination prevPagePath={'/grade'} />;
+      // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification />
+    }
+  }, [selfIntroduction, studyPlan]);
+
   return (
     <S.AllContents>
       <div>
@@ -35,12 +47,7 @@ const Introduction: FC<Props> = ({
         setIntroduction={setIntroduction}
       />
       <SubContents subTitle={STUDYPLAN} explain={STUDYPLANEXPLAIN} setStudyPlan={setStudyPlan} />
-      {selfIntroduction && studyPlan && (
-        <Pagination nowPage={[false, false, false, true, false]} isNextPage />
-      )}
-      {!(selfIntroduction && studyPlan) && (
-        <Pagination nowPage={[false, false, false, true, false]} />
-      )}
+      {pagination}
     </S.AllContents>
   );
 };
