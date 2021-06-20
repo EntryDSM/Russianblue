@@ -1,8 +1,10 @@
 import Introduction from './interface';
 import { introductionActionType } from '../../action/Introduction';
 import {
-  SET_SELF_INTRODUCTION,
-  SET_STUDY_PLAN,
+  SELF_INTRODUCTION,
+  STUDY_PLAN,
+  SAVE_BOTH_SUCCESS,
+  SAVE_BOTH_FAILURE,
   SELF_INTRODUCTION_FAILURE,
   SELF_INTRODUCTION_SUCCESS,
   GET_SELF_INTRODUCTION_FAILURE,
@@ -20,6 +22,8 @@ export const initState: Introduction = {
   isSuccessSaveStudyPlan: undefined,
   isSuccessGetSelfIntroduction: undefined,
   isSuccessGetStudyPlan: undefined,
+  isSuccessSaveBoth: undefined,
+  error: null,
 };
 
 const IntroductionReducer = (
@@ -27,15 +31,26 @@ const IntroductionReducer = (
   action: introductionActionType,
 ): Introduction => {
   switch (action.type) {
-    case SET_SELF_INTRODUCTION:
+    case SELF_INTRODUCTION:
       return {
         ...state,
         selfIntroduction: action.payload,
       };
-    case SET_STUDY_PLAN:
+    case STUDY_PLAN:
       return {
         ...state,
         studyPlan: action.payload,
+      };
+    case SAVE_BOTH_SUCCESS:
+      return {
+        ...state,
+        isSuccessSaveBoth: true,
+      };
+    case SAVE_BOTH_FAILURE:
+      return {
+        ...state,
+        isSuccessSaveBoth: false,
+        error: action.payload,
       };
     case SELF_INTRODUCTION_SUCCESS:
       return {
@@ -46,6 +61,7 @@ const IntroductionReducer = (
       return {
         ...state,
         isSuccessSaveSelfIntroduction: false,
+        error: action.payload,
       };
     case GET_SELF_INTRODUCTION_SUCCESS:
       return {
@@ -57,6 +73,7 @@ const IntroductionReducer = (
       return {
         ...state,
         isSuccessGetSelfIntroduction: false,
+        error: action.payload,
       };
     case STUDY_PLAN_SUCCESS:
       return {
@@ -67,6 +84,7 @@ const IntroductionReducer = (
       return {
         ...state,
         isSuccessSaveStudyPlan: false,
+        error: action.payload,
       };
     case GET_STUDY_PLAN_SUCCESS:
       return {
@@ -78,6 +96,7 @@ const IntroductionReducer = (
       return {
         ...state,
         isSuccessGetStudyPlan: false,
+        error: action.payload,
       };
     default: {
       return state;
