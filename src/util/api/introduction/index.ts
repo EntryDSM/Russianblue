@@ -2,7 +2,6 @@ import uri from '../../../constance/uri';
 import { getRequestWithAccessToken } from '../default';
 
 export const introduction = async (access_token: string, introductionRequest: string) => {
-  console.log(1);
   try {
     const request = getRequestWithAccessToken(access_token);
     await request.patch(uri.introduction, introductionRequest);
@@ -15,6 +14,16 @@ export const studyPlan = async (access_token: string, studyPlanRequest: string) 
   try {
     const request = getRequestWithAccessToken(access_token);
     await request.patch(uri.studyPlan, studyPlanRequest);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const saveBoth = async (access_token: string, introduction: string, studyPlan: string) => {
+  try {
+    const request = getRequestWithAccessToken(access_token);
+    await request.patch(uri.introduction, introduction);
+    await request.patch(uri.studyPlan, studyPlan);
   } catch (error) {
     throw error;
   }
