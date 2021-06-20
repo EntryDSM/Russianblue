@@ -52,7 +52,7 @@ const Information: FC<Props> = ({
         setImageUrl={setImageUrl}
         setImageFile={setImageFile}
       />
-      <Pagination nowPage={[false, true, false, false, false]} />
+      <Pagination />
     </S.Information>
   );
 };

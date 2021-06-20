@@ -16,7 +16,7 @@ const Preview: FC<Props> = ({ preview, setPreview }) => {
         <S.Title>{SELFINTRODUCTION}</S.Title>
       </div>
       <S.PreviewIframe src={preview} />
-      <Pagination nowPage={[false, false, false, false, true]} />
+      <Pagination />
     </S.Preview>
   );
 };
