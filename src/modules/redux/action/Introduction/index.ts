@@ -1,36 +1,43 @@
 import {
   SELF_INTRODUCTION,
   STUDY_PLAN,
+  SAVE_BOTH,
   SELF_INTRODUCTION_SUCCESS,
   SELF_INTRODUCTION_FAILURE,
   GET_SELF_INTRODUCTION_SUCCESS,
   GET_SELF_INTRODUCTION_FAILURE,
   STUDY_PLAN_SUCCESS,
   STUDY_PLAN_FAILURE,
-  SET_SELF_INTRODUCTION,
-  SET_STUDY_PLAN,
   GET_STUDY_PLAN_SUCCESS,
   GET_STUDY_PLAN_FAILURE,
   GET_STUDY_PLAN,
   GET_SELF_INTRODUCTION,
+  SAVE_BOTH_SUCCESS,
+  SAVE_BOTH_FAILURE,
 } from './interface';
 import { error } from '../../../../models/error';
 
-export const introduction = () => ({
-  type: SELF_INTRODUCTION,
-});
-
-export const studyPlan = () => ({
-  type: STUDY_PLAN,
-});
-
 export const setSelfIntroduction = (payload: string) => ({
-  type: SET_SELF_INTRODUCTION,
+  type: SELF_INTRODUCTION,
   payload,
 });
 
 export const setStudyPlan = (payload: string) => ({
-  type: SET_STUDY_PLAN,
+  type: STUDY_PLAN,
+  payload,
+});
+
+export const saveBoth = (payload: { introduction: string; studyPlan: string }) => ({
+  type: SAVE_BOTH,
+  payload,
+});
+
+export const saveBothSuccess = () => ({
+  type: SAVE_BOTH_SUCCESS,
+});
+
+export const saveBothFailure = (payload: error) => ({
+  type: SAVE_BOTH_FAILURE,
   payload,
 });
 
@@ -92,4 +99,6 @@ export type introductionActionType =
   | ReturnType<typeof getStudyPlanSuccess>
   | ReturnType<typeof getStudyPlanFailure>
   | ReturnType<typeof getSelfIntroduction>
-  | ReturnType<typeof getStudyPlan>;
+  | ReturnType<typeof getStudyPlan>
+  | ReturnType<typeof saveBothSuccess>
+  | ReturnType<typeof saveBothFailure>;
