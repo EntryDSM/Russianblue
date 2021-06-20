@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import SubContents from './SubContents';
 import {
@@ -9,15 +9,27 @@ import {
   SCHOOL,
 } from '../../constance/introduction';
 import Pagination from '../default/Pagination';
-import useIntroduction from '../../util/hooks/Introduction';
 
 interface Props {
+  selfIntroduction: string;
+  studyPlan: string;
   setIntroduction: (payload: string) => void;
   setStudyPlan: (payload: string) => void;
 }
 
-const Introduction: FC<Props> = () => {
-  const { state, setState } = useIntroduction();
+const Introduction: FC<Props> = ({ selfIntroduction, studyPlan }) => {
+  const pagination = useMemo(() => {
+    if (selfIntroduction !== '') {
+      if (studyPlan !== '') {
+        return <Pagination prevPagePath={'/grade'} nextPagePath={'/preview'} isNextPage />;
+        // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification isNextPage />
+      }
+    } else {
+      return <Pagination prevPagePath={'/grade'} />;
+      // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification />
+    }
+  }, [selfIntroduction, studyPlan]);
+
   return (
     <S.AllContents>
       <div>
@@ -26,12 +38,7 @@ const Introduction: FC<Props> = () => {
       </div>
       <SubContents subTitle={SELFINTRODUCTION} explain={INTRODUCTIONEXPLAIN} />
       <SubContents subTitle={STUDYPLAN} explain={STUDYPLANEXPLAIN} />
-      {state.selfIntroduction && state.studyPlan && (
-        <Pagination nowPage={[false, false, false, true, false]} isNextPage />
-      )}
-      {!(state.selfIntroduction && state.studyPlan) && (
-        <Pagination nowPage={[false, false, false, true, false]} />
-      )}
+      {pagination}
     </S.AllContents>
   );
 };

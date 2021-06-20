@@ -47,7 +47,7 @@ const SelectType: FC<Props> = ({
         setGraduationYear={setGraduationYear}
         setRemark={setRemark}
       />
-      <Pagination nowPage={[true, false, false, false, false]} />
+      <Pagination />
     </S.SelectType>
   );
 };
