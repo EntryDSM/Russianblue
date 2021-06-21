@@ -45,6 +45,7 @@ const IntroductionReducer = (
     case SAVE_BOTH:
       return {
         ...state,
+        isSuccessSaveBoth: undefined,
         selfIntroduction: action.payload.selfIntroduction,
         studyPlan: action.payload.studyPlan,
       };
