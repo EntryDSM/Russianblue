@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import * as S from './style';
 import HeaderMenu from './menu';
-import { error } from 'src/models/error';
+import { error } from '../../models/error';
 import { useHistory } from 'react-router-dom';
 
 interface Props {
@@ -9,7 +9,6 @@ interface Props {
   name: string;
   phoneNumber: string;
   isfinalSubmitDone: boolean;
-  isAdmissionFeePayed: boolean;
   isReceiveMail: boolean;
   studyPlanLength: number;
   selfIntroduceLength: number;
