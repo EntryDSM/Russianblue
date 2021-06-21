@@ -3,6 +3,7 @@ import { introductionActionType } from '../../action/Introduction';
 import {
   SELF_INTRODUCTION,
   STUDY_PLAN,
+  SAVE_BOTH,
   SAVE_BOTH_SUCCESS,
   SAVE_BOTH_FAILURE,
   SELF_INTRODUCTION_FAILURE,
@@ -40,6 +41,12 @@ const IntroductionReducer = (
       return {
         ...state,
         studyPlan: action.payload,
+      };
+    case SAVE_BOTH:
+      return {
+        ...state,
+        selfIntroduction: action.payload.selfIntroduction,
+        studyPlan: action.payload.studyPlan,
       };
     case SAVE_BOTH_SUCCESS:
       return {
