@@ -5,7 +5,6 @@ interface IUserState {
   name: string;
   isfinalSubmitDone: boolean;
   isReceiveMail: boolean;
-  isAdmissionFeePayed: boolean;
   selfIntroduceLength: number;
   studyPlanLength: number;
   error: error;
