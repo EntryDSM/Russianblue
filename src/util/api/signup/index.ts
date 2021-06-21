@@ -7,7 +7,7 @@ import {
 } from '../../../models/dto/request/signupRequest';
 import { getRequest } from '../default';
 
-export const signup = async (signupRequest: signupRequest) => {
+export const signup = async (_, signupRequest: signupRequest) => {
   try {
     const request = getRequest();
     await request.post(uri.signup, signupRequest);
@@ -16,7 +16,10 @@ export const signup = async (signupRequest: signupRequest) => {
   }
 };
 
-export const sendSignUpVertifyCode = async (signupVertifyCodeRequest: signupVertifyCodeRequest) => {
+export const sendSignUpVertifyCode = async (
+  accessToken: string,
+  signupVertifyCodeRequest: signupVertifyCodeRequest,
+) => {
   try {
     const request = getRequest();
     await request.post(uri.sendVertify, signupVertifyCodeRequest);
@@ -36,7 +39,7 @@ export const sendResetPasswordVertifyCode = async (
   }
 };
 
-export const chekckVertifyCode = async (checkVertifyRequest: checkVertifyCodeRequest) => {
+export const chekckVertifyCode = async (_, checkVertifyRequest: checkVertifyCodeRequest) => {
   try {
     const request = getRequest();
     await request.put(uri.sendVertify, checkVertifyRequest);
