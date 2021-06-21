@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import * as S from './style';
 import SubContents from './SubContents';
 import {
@@ -16,7 +16,6 @@ interface Props {
   setIntroduction: (payload: string) => void;
   setStudyPlan: (payload: string) => void;
 }
-
 const Introduction: FC<Props> = ({
   selfIntroduction,
   studyPlan,
@@ -28,7 +27,7 @@ const Introduction: FC<Props> = ({
       if (studyPlan !== '') {
         return <Pagination prevPagePath={'/grade'} nextPagePath={'/preview'} isNextPage />;
         // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification isNextPage />
-      }
+      } else return <Pagination prevPagePath={'/grade'} />;
     } else {
       return <Pagination prevPagePath={'/grade'} />;
       // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification />
@@ -42,11 +41,17 @@ const Introduction: FC<Props> = ({
         <S.Title>자기소개서 {'&'} 학업계획서</S.Title>
       </div>
       <SubContents
+        selfIntroduction={selfIntroduction}
         subTitle={SELFINTRODUCTION}
         explain={INTRODUCTIONEXPLAIN}
         setIntroduction={setIntroduction}
       />
-      <SubContents subTitle={STUDYPLAN} explain={STUDYPLANEXPLAIN} setStudyPlan={setStudyPlan} />
+      <SubContents
+        studyPlan={studyPlan}
+        subTitle={STUDYPLAN}
+        explain={STUDYPLANEXPLAIN}
+        setStudyPlan={setStudyPlan}
+      />
       {pagination}
     </S.AllContents>
   );
