@@ -4,7 +4,7 @@ import { getRequestWithAccessToken } from '../default';
 export const introduction = async (access_token: string, introductionRequest: string) => {
   try {
     const request = getRequestWithAccessToken(access_token);
-    await request.patch(uri.introduction, introductionRequest);
+    await request.patch(uri.introduction, { content: introductionRequest });
   } catch (error) {
     throw error;
   }
@@ -13,17 +13,23 @@ export const introduction = async (access_token: string, introductionRequest: st
 export const studyPlan = async (access_token: string, studyPlanRequest: string) => {
   try {
     const request = getRequestWithAccessToken(access_token);
-    await request.patch(uri.studyPlan, studyPlanRequest);
+    await request.patch(uri.studyPlan, { content: studyPlanRequest });
   } catch (error) {
     throw error;
   }
 };
 
-export const saveBoth = async (access_token: string, introduction: string, studyPlan: string) => {
+export const saveBoth = async (
+  access_token: string,
+  saveBothRequest: {
+    selfIntroduction: string;
+    studyPlan: string;
+  },
+) => {
   try {
     const request = getRequestWithAccessToken(access_token);
-    await request.patch(uri.introduction, introduction);
-    await request.patch(uri.studyPlan, studyPlan);
+    await request.patch(uri.introduction, { content: saveBothRequest.selfIntroduction });
+    await request.patch(uri.studyPlan, { content: saveBothRequest.studyPlan });
   } catch (error) {
     throw error;
   }
@@ -34,6 +40,7 @@ export const getIntroduction = async (access_token: string) => {
     const request = getRequestWithAccessToken(access_token);
     return await request.get(uri.introduction);
   } catch (error) {
+    console.log(10, error);
     throw error;
   }
 };
