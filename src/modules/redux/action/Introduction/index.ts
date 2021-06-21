@@ -27,13 +27,14 @@ export const setStudyPlan = (payload: string) => ({
   payload,
 });
 
-export const saveBoth = (payload: { introduction: string; studyPlan: string }) => ({
+export const saveBoth = (payload: { selfIntroduction: string; studyPlan: string }) => ({
   type: SAVE_BOTH,
   payload,
 });
 
-export const saveBothSuccess = () => ({
+export const saveBothSuccess = (payload: boolean) => ({
   type: SAVE_BOTH_SUCCESS,
+  payload,
 });
 
 export const saveBothFailure = (payload: error) => ({
@@ -90,6 +91,7 @@ export const getStudyPlan = () => ({
 export type introductionActionType =
   | ReturnType<typeof setSelfIntroduction>
   | ReturnType<typeof setStudyPlan>
+  | ReturnType<typeof saveBoth>
   | ReturnType<typeof selfIntroductionSuccess>
   | ReturnType<typeof selfIntroductionFailure>
   | ReturnType<typeof getSelfIntroductionSuccess>
