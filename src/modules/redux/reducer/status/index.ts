@@ -1,10 +1,10 @@
 import IStatusState from './interface';
 import { IS_END, IS_START, PROCESS, STATUS, statusActionType } from '../../action/status';
-import mainConstance, { NOT_START, START_DATE } from './mainConstance';
+import mainConstance, { NOT_APPLICATION_PERIOD, statusType } from './mainConstance';
 import { STATUS_FAILURE, STATUS_SUCCESS } from '../../action/status/interface';
 
 const InitState: IStatusState = {
-  status: NOT_START,
+  status: NOT_APPLICATION_PERIOD,
   isEnd: false,
   isStart: true,
   processes: mainConstance,
@@ -36,8 +36,8 @@ const InitState: IStatusState = {
     },
     {
       year: '2022',
-      type: 'NOT_START',
-      date: '2022-10-31',
+      type: 'NOT_APPLICATION_PERIOD',
+      date: '2021-10-20',
     },
   ],
   error: 0,
@@ -60,7 +60,8 @@ const statusReducer = (state: IStatusState = InitState, action: statusActionType
     case STATUS_SUCCESS: {
       return {
         ...state,
-        date: action.payload,
+        date: action.payload.schedules,
+        status: action.payload.current_status as statusType,
       };
     }
     case STATUS_FAILURE: {

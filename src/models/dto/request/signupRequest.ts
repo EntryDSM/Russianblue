@@ -1,28 +1,28 @@
 export interface signupRequest {
-  phone_number: string;
+  email: string;
   password: string;
   name: string;
 }
 
 export interface checkVertifyRequest {
-  phone_number: string;
+  email: string;
   code: string;
 }
 
 export interface signupVertifyCodeRequest {
-  phone_number: string;
+  email: string;
 }
 
 export interface resetPasswordVertifyCodeRequest {
-  phone_number: string;
+  email: string;
 }
 
 export interface resetPassword {
-  phone_number: string;
+  email: string;
   password: string;
 }
 
 export interface checkVertifyCodeRequest {
-  phone_number: string;
+  email: string;
   code: string;
 }

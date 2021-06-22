@@ -1,5 +1,4 @@
 export interface statusResponse {
-  type: string;
-  date: string;
-  process: string;
+  schedules: { type: string; date: string; process: string }[];
+  current_status: string;
 }

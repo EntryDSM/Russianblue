@@ -1,4 +1,4 @@
-import { error } from 'src/models/error';
+import { error } from '../../../../models/error';
 import {
   NEW_PASSWORD,
   RESET_PASSWORD_ERROR,

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "webpack-dev-server --open --hot --port 3001 -p",
+    "start": "webpack-dev-server --open --hot --port 3002",
     "build": "webpack -p"
   },
   "author": "",

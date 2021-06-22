@@ -4,7 +4,7 @@ import { setId, setPassword, signin } from '../../../modules/redux/action/signin
 import {} from '../../../modules/redux/action/auth';
 import { signinRequest } from 'src/models/dto/request/signinRequest';
 
-const useProcess = () => {
+const useSignin = () => {
   const dispatch = useDispatch();
   const state = useSelectState().signin;
   const setState = {
@@ -24,4 +24,4 @@ const useProcess = () => {
   };
 };
 
-export default useProcess;
+export default useSignin;

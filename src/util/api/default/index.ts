@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getRequest = () => {
   const request = axios.create({
     timeout: 10000,
-    baseURL: process.env.BASE_URL,
+    baseURL: 'https://munchkin.entrydsm.hs.kr',
   });
   return request;
 };
@@ -11,7 +11,7 @@ export const getRequest = () => {
 export const getRequestWithAccessToken = (token: string) => {
   const request = axios.create({
     timeout: 10000,
-    baseURL: process.env.BASE_URL,
+    baseURL: 'https://munchkin.entrydsm.hs.kr',
     headers: {
       Authorization: `Bearer ${token}`,
     },

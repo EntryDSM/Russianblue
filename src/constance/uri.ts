@@ -1,9 +1,9 @@
 enum uri {
-  signin = '/auth',
+  signin = '/user/auth',
   signup = '/user',
-  status = '/status',
-  sendVertify = '/phone/vertify',
-  sendPasswordVertify = '/password/phone/vertify',
+  status = '/user/status',
+  sendVertify = '/user/email/verify',
+  sendPasswordVertify = '/password/email/verify',
   resetPassword = '/password',
   schedule = '/schedules',
   introduction = '/application/intro',
