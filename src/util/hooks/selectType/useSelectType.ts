@@ -20,7 +20,7 @@ const useSelectType = () => {
     setSocialType: (payloade: string) => {
       dispatch(setSocialType(payloade));
     },
-    setArea: (payload: string) => {
+    setArea: (payload: boolean) => {
       dispatch(setArea(payload));
     },
     setGraduation: (payload: string) => {

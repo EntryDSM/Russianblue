@@ -1,7 +1,7 @@
 interface SelectTypeState {
   type: string;
   socialType: string;
-  area: string;
+  area: boolean | undefined;
   graduation: string;
   graduationYear: number;
   graduationMonth: number;

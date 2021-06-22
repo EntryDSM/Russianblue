@@ -13,7 +13,7 @@ import SelectTypeState from './interface';
 const initState: SelectTypeState = {
   type: '',
   socialType: '사회통합전형',
-  area: '',
+  area: undefined,
   graduation: '',
   graduationMonth: 1,
   graduationYear: 2022,
