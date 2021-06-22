@@ -1,23 +1,34 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from '../style';
 import { AREA } from '../../../constance/SelectType';
 
 interface Props {
-  setArea: (payload: string) => void;
+  setArea: (payload: boolean) => void;
+  is_daejeon: boolean;
 }
 
-const ChooseRegion: FC<Props> = ({ setArea }) => {
+const ChooseRegion: FC<Props> = ({ setArea, is_daejeon }) => {
   const [isCheck, setIsCheck] = useState({ daejeon: false, country: false });
+  useEffect(() => {
+    if (is_daejeon) {
+      setIsCheck({ daejeon: true, country: false });
+    } else if (is_daejeon === undefined) {
+      setIsCheck({ daejeon: false, country: false });
+    } else {
+      setIsCheck({ daejeon: false, country: true });
+    }
+  }, [is_daejeon]);
+
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     switch (dataId) {
       case 'daejeon':
         setIsCheck({ daejeon: true, country: false });
-        setArea('대전');
+        setArea(true);
         break;
       case 'country':
         setIsCheck({ daejeon: false, country: true });
-        setArea('전국');
+        setArea(false);
         break;
     }
   };
