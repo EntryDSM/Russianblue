@@ -20,7 +20,25 @@ const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisable
   };
 
   const onSocialTypeClick = e => {
-    setSocialType(e.target.innerText);
+    switch (e.target.innerText) {
+      case '기초생활수급자':
+        setSocialType('BASIC_LIVING');
+        break;
+      case '한부모가족':
+        setSocialType('ONE_PARENT');
+        break;
+      case '차상위계층':
+        setSocialType('LOWEST_INCOME');
+        break;
+      case '소년소녀가장':
+        setSocialType('TEEN_HOUSEHOLDER');
+        break;
+      case '북한이탈주민':
+        setSocialType('FROM_NORTH');
+        break;
+      case '다문화가정':
+        setSocialType('MULTICULTURA');
+    }
   };
 
   const dropDown = useMemo(() => {
