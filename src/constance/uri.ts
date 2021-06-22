@@ -5,9 +5,9 @@ enum uri {
   sendVertify = '/user/email/verify',
   sendPasswordVertify = '/password/email/verify',
   resetPassword = '/password',
-  schedule = '/schedules',
   introduction = '/application/intro',
   studyPlan = '/application/study-plan',
+  schedule = '/admin/schedules',
 }
 
 export default uri;
