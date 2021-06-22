@@ -1,7 +1,15 @@
-export const TYPE = 'selectType/TYPE' as const;
-export const SOCIALTYPE = 'selectType/SOCIALTYPE' as const;
-export const AREA = 'selectType/AREA' as const;
-export const GRADUATION = 'selectType/GRADUATION' as const;
-export const GRADUATION_YEAR = 'selectType/GRADUATION_YEAR' as const;
-export const GRADUATION_MONTH = 'selectType/GRADUATION_MONTH' as const;
-export const REMARK = 'selectType/REMARK' as const;
+export const TYPE = 'SELECTTYPE/TYPE' as const;
+export const SOCIALTYPE = 'SELECTTYPE/SOCIALTYPE' as const;
+export const AREA = 'SELECTTYPE/AREA' as const;
+export const GRADUATION = 'SELECTTYPE/GRADUATION' as const;
+export const GRADUATION_YEAR = 'SELECTTYPE/GRADUATION_YEAR' as const;
+export const GRADUATION_MONTH = 'SELECTTYPE/GRADUATION_MONTH' as const;
+export const REMARK = 'SELECTTYPE/REMARK' as const;
+
+export const SELECTTYPE = 'SELECTTYPE/SELECTTYPE' as const;
+export const SELECTTYPE_SUCCESS = 'SELECTTYPE_SUCCESS' as const;
+export const SELECTTYPE_FAILURE = 'SELECTTYPE_FAILURE' as const;
+
+export const GET_SELECTTYPE = 'SELECTTYPE/GET_SELECTTYPE' as const;
+export const GET_SELECTTYPE_SUCCESS = 'SELECTTYPE/GET_SELECTTYPE_SUCCESS' as const;
+export const GET_SELECTTYPE_FAILURE = 'SELECTTYPE/GET_SELECTTYPE_FAILURE' as const;
