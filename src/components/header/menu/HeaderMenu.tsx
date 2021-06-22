@@ -8,7 +8,6 @@ interface Props {
   name: string;
   phoneNumber: string;
   isfinalSubmitDone: boolean;
-  isAdmissionFeePayed: boolean;
   isReceiveMail: boolean;
   studyPlanLength: number;
   selfIntroduceLength: number;

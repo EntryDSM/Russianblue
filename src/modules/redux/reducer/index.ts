@@ -8,6 +8,9 @@ import resetPasswordReducer from './resetPassword';
 import authReducer from './auth';
 import selectTypeReducer from './selectType';
 import introductionReducer from './Introduction';
+import informationReducer from './information';
+import gradeReducer from './grade';
+import previewReducer from './preview';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -19,6 +22,9 @@ const rootReducer = combineReducers({
   auth: authReducer,
   selectType: selectTypeReducer,
   introduce: introductionReducer,
+  information: informationReducer,
+  grade: gradeReducer,
+  preview: previewReducer,
 });
 
 export type reducerType = ReturnType<typeof rootReducer>;

@@ -6,7 +6,6 @@ interface Props {
   isLogin: boolean;
   phoneNumber: string;
   isfinalSubmitDone: boolean;
-  isAdmissionFeePayed: boolean;
   isReceiveMail: boolean;
   studyPlanLength: number;
   selfIntroduceLength: number;
@@ -16,7 +15,6 @@ const HeaderDropdownContent: FC<Props> = ({
   name,
   isLogin,
   phoneNumber,
-  isAdmissionFeePayed,
   isfinalSubmitDone,
   isReceiveMail,
   studyPlanLength,
@@ -47,12 +45,6 @@ const HeaderDropdownContent: FC<Props> = ({
             2021년 12월 20일 - 20시 21분 제출 완료
           </S.HeaderDropdownContentProcessSubText>
         </div>
-      </S.HeaderDropdownColumn>
-      <S.HeaderDropdownColumn>
-        <S.HeaderDropdownContentTitle>전형료 납부</S.HeaderDropdownContentTitle>
-        <S.HeaderDropdownContentProcessText isComplete={isAdmissionFeePayed}>
-          {isAdmissionFeePayed ? '완료' : '미완료'}
-        </S.HeaderDropdownContentProcessText>
       </S.HeaderDropdownColumn>
       <S.HeaderDropdownColumn>
         <S.HeaderDropdownContentTitle>우편물 수령</S.HeaderDropdownContentTitle>

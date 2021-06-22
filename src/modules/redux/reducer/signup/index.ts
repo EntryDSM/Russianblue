@@ -9,6 +9,8 @@ import {
   CHECK_VERTIFY_CODE_FAILURE,
   SEND_VERTIFY_CODE_SUCCESS,
   SEND_VERTIFY_CODE_FAILURE,
+  SEND_VERTIFY_CODE,
+  CHECK_VERTIFY_CODE,
 } from '../../action/signup';
 import ISignUpState from './interface';
 
@@ -18,9 +20,13 @@ const initState: ISignUpState = {
   phoneCode: '',
   phoneNumber: '',
   ruleCheck: false,
-  checkVertifyCode: false,
-  sendvertifyCode: false,
-  error: null,
+  isCheckVertifyCode: false,
+  isSendVertifyCode: false,
+  error: {
+    status: 0,
+    message: '',
+    type: '',
+  },
 };
 
 const SignUpReducer = (state: ISignUpState = initState, action: signupActionType): ISignUpState => {
@@ -58,7 +64,7 @@ const SignUpReducer = (state: ISignUpState = initState, action: signupActionType
     case CHECK_VERTIFY_CODE_SUCCESS: {
       return {
         ...state,
-        checkVertifyCode: true,
+        isCheckVertifyCode: true,
       };
     }
     case CHECK_VERTIFY_CODE_FAILURE: {
@@ -70,13 +76,20 @@ const SignUpReducer = (state: ISignUpState = initState, action: signupActionType
     case SEND_VERTIFY_CODE_SUCCESS: {
       return {
         ...state,
-        sendvertifyCode: true,
+        isSendVertifyCode: true,
       };
     }
     case SEND_VERTIFY_CODE_FAILURE: {
       return {
         ...state,
         error: action.payload,
+      };
+    }
+    case SEND_VERTIFY_CODE: {
+      return {
+        ...state,
+        isSendVertifyCode: false,
+        isCheckVertifyCode: false,
       };
     }
     default: {
