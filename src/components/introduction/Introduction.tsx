@@ -16,14 +16,18 @@ interface Props {
   setIntroduction: (payload: string) => void;
   setStudyPlan: (payload: string) => void;
 }
-
-const Introduction: FC<Props> = ({ selfIntroduction, studyPlan }) => {
+const Introduction: FC<Props> = ({
+  selfIntroduction,
+  studyPlan,
+  setIntroduction,
+  setStudyPlan,
+}) => {
   const pagination = useMemo(() => {
     if (selfIntroduction !== '') {
       if (studyPlan !== '') {
         return <Pagination prevPagePath={'/grade'} nextPagePath={'/preview'} isNextPage />;
         // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification isNextPage />
-      }
+      } else return <Pagination prevPagePath={'/grade'} />;
     } else {
       return <Pagination prevPagePath={'/grade'} />;
       // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification />
@@ -36,8 +40,18 @@ const Introduction: FC<Props> = ({ selfIntroduction, studyPlan }) => {
         <S.School>{SCHOOL}</S.School>
         <S.Title>자기소개서 {'&'} 학업계획서</S.Title>
       </div>
-      <SubContents subTitle={SELFINTRODUCTION} explain={INTRODUCTIONEXPLAIN} />
-      <SubContents subTitle={STUDYPLAN} explain={STUDYPLANEXPLAIN} />
+      <SubContents
+        selfIntroduction={selfIntroduction}
+        subTitle={SELFINTRODUCTION}
+        explain={INTRODUCTIONEXPLAIN}
+        setIntroduction={setIntroduction}
+      />
+      <SubContents
+        studyPlan={studyPlan}
+        subTitle={STUDYPLAN}
+        explain={STUDYPLANEXPLAIN}
+        setStudyPlan={setStudyPlan}
+      />
       {pagination}
     </S.AllContents>
   );

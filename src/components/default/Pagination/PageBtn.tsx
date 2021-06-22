@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useEffect, useState } from 'react';
 import * as S from './style';
 import {
   left_arrow,
@@ -6,7 +6,8 @@ import {
   right_arrow,
   right_arrow_disabled,
 } from '../../../assets/default';
-import { useHistory } from 'react-router-dom';
+import useIntroduction from '../../../util/hooks/Introduction';
+import { useHistory, useLocation } from 'react-router-dom';
 
 interface Props {
   prevPagePath?: string;
@@ -17,13 +18,56 @@ interface Props {
 
 const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) => {
   const history = useHistory();
+  const { state, setState } = useIntroduction();
+  const pathname = useLocation().pathname.slice(1);
+  const selfIntroduction = state.selfIntroduction;
+  const studyPlan = state.studyPlan;
+  const isSuccessSaveBoth = state.isSuccessSaveBoth;
+  const [prevNextBtn, setPrevNextBtn] = useState({
+    prevBtn: false,
+    nextBtn: false,
+  });
+
+  useEffect(() => {
+    let isSuccessAction = undefined;
+    switch (pathname) {
+      case 'introduction':
+        isSuccessAction = isSuccessSaveBoth;
+        break;
+    }
+    if (isSuccessAction) {
+      if (prevNextBtn.prevBtn) {
+        history.push(prevPagePath);
+      }
+      if (prevNextBtn.nextBtn) {
+        history.push(nextPagePath);
+      }
+    } else if (isSuccessAction === false) {
+      alert('실패');
+    } else if (isSuccessAction === undefined) {
+      console.log('요청이 안갔습니다');
+    }
+  }, [isSuccessSaveBoth, prevNextBtn.prevBtn, prevNextBtn.nextBtn]);
 
   const prevBtnClickHandler = () => {
-    history.push(prevPagePath);
+    switch (pathname) {
+      case 'introduction':
+        setState.saveBoth({ selfIntroduction, studyPlan });
+        break;
+      default:
+    }
+    setPrevNextBtn({ prevBtn: true, nextBtn: false });
   };
 
   const nextBtnClickHandler = () => {
-    history.push(nextPagePath);
+    switch (pathname) {
+      case 'introduction':
+        setState.saveBoth({ selfIntroduction, studyPlan });
+        break;
+      default:
+    }
+    console.log(pathname);
+    setPrevNextBtn({ prevBtn: false, nextBtn: true });
   };
 
   const prevBtn = useMemo(() => {
@@ -43,7 +87,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           </S.PageBtn>
         );
     } else return;
-  }, [disabled]);
+  }, [disabled, selfIntroduction, studyPlan]);
 
   const nextBtn = useMemo(() => {
     if (content === '다음') {
@@ -62,7 +106,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           </S.PageBtn>
         );
     } else return;
-  }, [disabled]);
+  }, [disabled, selfIntroduction, studyPlan]);
 
   return (
     <>
