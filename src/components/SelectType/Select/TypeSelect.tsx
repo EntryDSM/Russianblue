@@ -8,9 +8,10 @@ interface Props {
   disabled: string;
   setDisabled: Dispatch<React.SetStateAction<string>>;
   setSocialType: (payload: string) => void;
+  setRemark: (payload: string) => void;
 }
 
-const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisabled }) => {
+const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisabled, setRemark }) => {
   const onSelectClick = () => {
     if (disabled === 'normal') {
       setDisabled('enabled');
@@ -22,22 +23,29 @@ const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisable
   const onSocialTypeClick = e => {
     switch (e.target.innerText) {
       case '기초생활수급자':
-        setSocialType('BASIC_LIVING');
+        setSocialType('기초생활수급자');
+        setRemark('BASIC_LIVING');
         break;
       case '한부모가족':
-        setSocialType('ONE_PARENT');
+        setSocialType('한부모가족');
+        setRemark('ONE_PARENT');
         break;
       case '차상위계층':
-        setSocialType('LOWEST_INCOME');
+        setSocialType('차상위계층');
+        setRemark('LOWEST_INCOME');
         break;
       case '소년소녀가장':
-        setSocialType('TEEN_HOUSEHOLDER');
+        setSocialType('소년소녀가장');
+        setRemark('TEEN_HOUSEHOLDER');
         break;
       case '북한이탈주민':
-        setSocialType('FROM_NORTH');
+        setSocialType('북한이탈주민');
+        setRemark('FROM_NORTH');
         break;
       case '다문화가정':
-        setSocialType('MULTICULTURA');
+        setSocialType('다문화가정');
+        setRemark('MULTICULTURA');
+        break;
     }
   };
 
