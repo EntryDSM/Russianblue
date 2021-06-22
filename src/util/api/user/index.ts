@@ -3,5 +3,5 @@ import { getRequestWithAccessToken } from '../default';
 
 export const getUser = async (token: string) => {
   const request = getRequestWithAccessToken(token);
-  request.get(uri.status);
+  return await request.get(uri.status);
 };

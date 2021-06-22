@@ -31,12 +31,12 @@ const useSignup = () => {
       dispatch(setRuleCheck(payload));
     },
     sendVertifyCode: (payload: string) => {
-      dispatch(sendVertifyCode(payload));
+      dispatch(sendVertifyCode({ email: payload }));
     },
     checkVertifyCode: (payload: { phoneNumber: string; code: string }) => {
       dispatch(
         checkVertifyCode({
-          phone_number: payload.phoneNumber,
+          email: payload.phoneNumber,
           code: payload.code,
         }),
       );
@@ -44,7 +44,7 @@ const useSignup = () => {
     signup: (payload: { phoneNumber: string; password: string; name: string }) => {
       dispatch(
         signup({
-          phone_number: payload.phoneNumber,
+          email: payload.phoneNumber,
           password: payload.password,
           name: payload.name,
         }),
