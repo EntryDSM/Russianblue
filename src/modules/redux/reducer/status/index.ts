@@ -21,12 +21,12 @@ const InitState: IStatusState = {
     },
     {
       year: '2022',
-      type: 'FIRST_ANNOUNCE',
+      type: 'FIRST_ANNOUNCEMENT',
       date: '2022-10-31',
     },
     {
       year: '2022',
-      type: 'SECOND_ANNOUNCE',
+      type: 'SECOND_ANNOUNCEMENT',
       date: '2022-10-31',
     },
     {
@@ -61,8 +61,7 @@ const statusReducer = (state: IStatusState = InitState, action: statusActionType
       return {
         ...state,
         date: action.payload.schedules,
-        // status: action.payload.current_status as statusType,
-        status: 'BEFORE_FIRST_ANNOUNCE',
+        status: action.payload.current_status as statusType,
       };
     }
     case STATUS_FAILURE: {

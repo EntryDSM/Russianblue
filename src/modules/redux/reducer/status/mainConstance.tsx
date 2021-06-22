@@ -3,10 +3,10 @@ import { processType } from './interface';
 
 export const START_DATE = 'START_DATE' as const;
 export const END_DATE = 'END_DATE' as const;
-export const FIRST_ANNOUNCE = 'FIRST_ANNOUNCE' as const;
+export const FIRST_ANNOUNCEMENT = 'FIRST_ANNOUNCEMENT' as const;
 export const BEFORE_INTERVIEW = 'BEFORE_INTERVIEW' as const;
 export const INTERVIEW = 'INTERVIEW' as const;
-export const SECOND_ANNOUNCE = 'SECOND_ANNOUNCE' as const;
+export const SECOND_ANNOUNCEMENT = 'SECOND_ANNOUNCEMENT' as const;
 export const BEFORE_SECOND_ANNOUNCE = 'BEFORE_SECOND_ANNOUNCE' as const;
 export const NOT_APPLICATION_PERIOD = 'NOT_APPLICATION_PERIOD' as const;
 export const BEFORE_FIRST_ANNOUNCE = 'BEFORE_FIRST_ANNOUNCE' as const;
@@ -14,8 +14,8 @@ export const BEFORE_FIRST_ANNOUNCE = 'BEFORE_FIRST_ANNOUNCE' as const;
 export type statusType =
   | typeof START_DATE
   | typeof END_DATE
-  | typeof FIRST_ANNOUNCE
-  | typeof SECOND_ANNOUNCE
+  | typeof FIRST_ANNOUNCEMENT
+  | typeof SECOND_ANNOUNCEMENT
   | typeof INTERVIEW
   | typeof NOT_APPLICATION_PERIOD
   | typeof BEFORE_FIRST_ANNOUNCE
@@ -47,7 +47,7 @@ const mainConstance: Record<statusType, processType> = {
     isButtonAble: false,
     uri: '',
   },
-  [FIRST_ANNOUNCE]: {
+  [FIRST_ANNOUNCEMENT]: {
     title: <p>지금은 {<span>1차 발표</span>} 기간입니다.</p>,
     getDescription: () => '',
     isHaveTerm: true,
@@ -79,7 +79,7 @@ const mainConstance: Record<statusType, processType> = {
     isButtonAble: false,
     uri: '',
   },
-  [SECOND_ANNOUNCE]: {
+  [SECOND_ANNOUNCEMENT]: {
     title: <p>지금은 {<span>발표 및 등록</span>} 기간입니다.</p>,
     getDescription: (date: string) => <p>등록 기간은 {<span>{date}</span>}입니다.</p>,
     isHaveTerm: true,
@@ -101,9 +101,9 @@ export const mainProcessNumber = {
   [NOT_APPLICATION_PERIOD]: 1,
   [START_DATE]: 2,
   [BEFORE_FIRST_ANNOUNCE]: 3,
-  [FIRST_ANNOUNCE]: 4,
+  [FIRST_ANNOUNCEMENT]: 4,
   [INTERVIEW]: 5,
-  [SECOND_ANNOUNCE]: 6,
+  [SECOND_ANNOUNCEMENT]: 6,
   [END_DATE]: 7,
 };
 

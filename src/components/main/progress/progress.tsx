@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import * as S from '../style';
 import ProgressContent from './progressContent';
 import {
-  FIRST_ANNOUNCE,
+  FIRST_ANNOUNCEMENT,
   INTERVIEW,
   mainProcessNumber,
-  SECOND_ANNOUNCE,
+  SECOND_ANNOUNCEMENT,
   START_DATE,
   statusType,
 } from '../../../modules/redux/reducer/status/mainConstance';
@@ -34,7 +34,7 @@ const Progress: FC<Props> = ({ status, date }) => {
       <S.ProgressBlankBar />
       <ProgressContent
         progressName='1차 발표'
-        isNow={status === FIRST_ANNOUNCE}
+        isNow={status === FIRST_ANNOUNCEMENT}
         isPassed={mainProcessNumber[status] >= 4}
         leftDate={getLeftDate(date)}
       />
@@ -48,7 +48,7 @@ const Progress: FC<Props> = ({ status, date }) => {
       <S.ProgressBlankBar />
       <ProgressContent
         progressName='발표 및 접수'
-        isNow={status === SECOND_ANNOUNCE}
+        isNow={status === SECOND_ANNOUNCEMENT}
         isPassed={mainProcessNumber[status] >= 6}
         leftDate={getLeftDate(date)}
       />

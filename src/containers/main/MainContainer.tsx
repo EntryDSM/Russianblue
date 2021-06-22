@@ -7,10 +7,10 @@ import {
   BEFORE_FIRST_ANNOUNCE,
   BEFORE_INTERVIEW,
   BEFORE_SECOND_ANNOUNCE,
-  FIRST_ANNOUNCE,
+  FIRST_ANNOUNCEMENT,
   INTERVIEW,
   NOT_APPLICATION_PERIOD,
-  SECOND_ANNOUNCE,
+  SECOND_ANNOUNCEMENT,
   START_DATE,
   statusType,
 } from '../../modules/redux/reducer/status/mainConstance';
@@ -24,8 +24,9 @@ const MainContainer: FC = () => {
   const getNowProcess = (status: string) => {
     if (!processState.state.processes[status]) return MainDummyData;
     if (status === 'NOT_APPLICATION_PERIOD') return processState.state.processes[START_DATE];
-    if (status === 'BEFORE_FIRST_ANNOUNCE') return processState.state.processes[FIRST_ANNOUNCE];
-    if (status === 'BEFORE_SECOND_ANNOUNCE') return processState.state.processes[SECOND_ANNOUNCE];
+    if (status === 'BEFORE_FIRST_ANNOUNCE') return processState.state.processes[FIRST_ANNOUNCEMENT];
+    if (status === 'BEFORE_SECOND_ANNOUNCE')
+      return processState.state.processes[SECOND_ANNOUNCEMENT];
     if (status === 'BEFORE_INTERVIEW') return processState.state.processes[INTERVIEW];
     return processState.state.processes[status];
   };
@@ -41,10 +42,10 @@ const MainContainer: FC = () => {
     if (status === NOT_APPLICATION_PERIOD)
       return dates.filter(date => date.type === START_DATE)[0].date;
     if (status === BEFORE_FIRST_ANNOUNCE) {
-      return dates.filter(date => date.type === FIRST_ANNOUNCE)[0].date;
+      return dates.filter(date => date.type === FIRST_ANNOUNCEMENT)[0].date;
     }
     if (status === BEFORE_SECOND_ANNOUNCE)
-      return dates.filter(date => date.type === SECOND_ANNOUNCE)[0].date;
+      return dates.filter(date => date.type === SECOND_ANNOUNCEMENT)[0].date;
     if (status === BEFORE_INTERVIEW) return dates.filter(date => date.type === INTERVIEW)[0].date;
     const result = dates.filter(date => {
       return status === date.type;
