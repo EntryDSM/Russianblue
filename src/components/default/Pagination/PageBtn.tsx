@@ -8,6 +8,7 @@ import {
 } from '../../../assets/default';
 import useIntroduction from '../../../util/hooks/Introduction';
 import { useHistory, useLocation } from 'react-router-dom';
+import useSelectType from '../../../util/hooks/selectType';
 
 interface Props {
   prevPagePath?: string;
@@ -18,21 +19,51 @@ interface Props {
 
 const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) => {
   const history = useHistory();
-  const { state, setState } = useIntroduction();
   const pathname = useLocation().pathname.slice(1);
-  const selfIntroduction = state.selfIntroduction;
-  const studyPlan = state.studyPlan;
-  const isSuccessSaveBoth = state.isSuccessSaveBoth;
   const [prevNextBtn, setPrevNextBtn] = useState({
     prevBtn: false,
     nextBtn: false,
   });
 
+  const introState = useIntroduction().state;
+  const introSetState = useIntroduction().setState;
+  const selfIntroduction = introState.selfIntroduction;
+  const studyPlan = introState.studyPlan;
+
+  const selectTypeState = useSelectType().state;
+  const selectTypeSetState = useSelectType().setState;
+  const educational_status = selectTypeState.educational_status;
+  const application_type = selectTypeState.application_type;
+  const is_daejeon = selectTypeState.is_daejeon;
+  const application_remark = selectTypeState.application_remark;
+  const graduation_year = selectTypeState.graduationYear;
+  const graduation_month = selectTypeState.graduationMonth;
+  let graduated_YM = '';
+  if (String(graduation_month).length === 1) {
+    graduated_YM = String(graduation_year) + '0' + String(graduation_month);
+  } else {
+    graduated_YM = String(graduation_year) + String(graduation_month);
+  }
+
+  const change = [
+    selfIntroduction,
+    studyPlan,
+    educational_status,
+    application_remark,
+    application_type,
+    is_daejeon,
+    graduation_month,
+    graduation_year,
+  ];
+
   useEffect(() => {
     let isSuccessAction = undefined;
     switch (pathname) {
       case 'introduction':
-        isSuccessAction = isSuccessSaveBoth;
+        isSuccessAction = introState.isSuccessSaveBoth;
+        break;
+      case 'select-type':
+        isSuccessAction = selectTypeState.isSuccessSaveSelectType;
         break;
     }
     if (isSuccessAction) {
@@ -47,12 +78,21 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     } else if (isSuccessAction === undefined) {
       console.log('요청이 안갔습니다');
     }
-  }, [isSuccessSaveBoth, prevNextBtn.prevBtn, prevNextBtn.nextBtn]);
+  }, [introState.isSuccessSaveBoth, prevNextBtn.prevBtn, prevNextBtn.nextBtn]);
 
   const prevBtnClickHandler = () => {
     switch (pathname) {
       case 'introduction':
-        setState.saveBoth({ selfIntroduction, studyPlan });
+        introSetState.saveBoth({ selfIntroduction, studyPlan });
+        break;
+      case 'select-type':
+        selectTypeSetState.selectType({
+          educational_status: educational_status,
+          application_type: application_type,
+          is_daejeon: is_daejeon,
+          application_remark: application_remark,
+          graduated_at: graduated_YM,
+        });
         break;
       default:
     }
@@ -62,11 +102,19 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
   const nextBtnClickHandler = () => {
     switch (pathname) {
       case 'introduction':
-        setState.saveBoth({ selfIntroduction, studyPlan });
+        introSetState.saveBoth({ selfIntroduction, studyPlan });
+        break;
+      case 'select-type':
+        selectTypeSetState.selectType({
+          educational_status: educational_status,
+          application_type: application_type,
+          is_daejeon: is_daejeon,
+          application_remark: application_remark,
+          graduated_at: graduated_YM,
+        });
         break;
       default:
     }
-    console.log(pathname);
     setPrevNextBtn({ prevBtn: false, nextBtn: true });
   };
 
@@ -87,7 +135,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           </S.PageBtn>
         );
     } else return;
-  }, [disabled, selfIntroduction, studyPlan]);
+  }, [disabled, ...change]);
 
   const nextBtn = useMemo(() => {
     if (content === '다음') {
@@ -106,7 +154,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           </S.PageBtn>
         );
     } else return;
-  }, [disabled, selfIntroduction, studyPlan]);
+  }, [disabled, ...change]);
 
   return (
     <>
