@@ -1,34 +1,89 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from '../style';
 import { TypeSelect } from '../Select';
 import { CHOOSETYPEINFO } from '../../../constance/SelectType';
 
 interface Props {
+  application_type: string;
   socialType: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
+  application_remark: string;
+  setRemark: (payload: string) => void;
 }
 
-const ChooseType: FC<Props> = ({ socialType, setType, setSocialType }) => {
-  const [isCheck, setIsCheck] = useState({ 1: false, 2: false, 3: false });
+const ChooseType: FC<Props> = ({
+  socialType,
+  setType,
+  setSocialType,
+  application_type,
+  application_remark,
+  setRemark,
+}) => {
+  const [isCheck, setIsCheck] = useState({ regular: false, meister: false, social: false });
   const [disabled, setDisabled] = useState('disabled');
+
+  useEffect(() => {
+    switch (application_type) {
+      case 'COMMON':
+        setIsCheck({ regular: true, meister: false, social: false });
+        setRemark(null);
+        break;
+      case 'MEISTER':
+        setIsCheck({ regular: false, meister: true, social: false });
+        setRemark(null);
+        break;
+      case 'SOCIAL':
+        setIsCheck({ regular: false, meister: false, social: true });
+        break;
+      default:
+        setIsCheck({ regular: false, meister: false, social: false });
+        break;
+    }
+    if (application_type === 'SOCIAL') {
+      if (application_remark !== null) {
+        setDisabled('normal');
+        switch (application_remark) {
+          case 'BASIC_LIVING':
+            setSocialType('기초생활수급자');
+            break;
+          case 'ONE_PARENT':
+            setSocialType('한부모가족');
+            break;
+          case 'LOWEST_INCOME':
+            setSocialType('차상위계층');
+            break;
+          case 'TEEN_HOUSEHOLDER':
+            setSocialType('소년소녀가장');
+            break;
+          case 'FROM_NORTH':
+            setSocialType('북한이탈주민');
+            break;
+          case 'MULTICULTURA':
+            setSocialType('다문화가정');
+            break;
+        }
+      }
+    }
+  }, [application_type]);
+
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     switch (dataId) {
       case 'regular':
-        setIsCheck({ 1: true, 2: false, 3: false });
+        setIsCheck({ regular: true, meister: false, social: false });
         setDisabled('disabled');
-        setType('일반전형');
+        setType('COMMON');
         break;
       case 'meister':
-        setIsCheck({ 1: false, 2: true, 3: false });
+        setIsCheck({ regular: false, meister: true, social: false });
         setDisabled('disabled');
-        setType('마이스터 인재전형');
+        setType('MEISTER');
         break;
       case 'social':
-        setIsCheck({ 1: false, 2: false, 3: true });
+        setIsCheck({ regular: false, meister: false, social: true });
         setDisabled('normal');
-        setType('사회통합전형');
+        setType('SOCIAL');
         break;
     }
   };
@@ -52,6 +107,7 @@ const ChooseType: FC<Props> = ({ socialType, setType, setSocialType }) => {
           {isCheck['social'] && <S.CheckedCircle />}
         </S.CheckCircle>
         <TypeSelect
+          setRemark={setRemark}
           socialType={socialType}
           setSocialType={setSocialType}
           disabled={disabled}
