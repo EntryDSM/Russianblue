@@ -1,4 +1,8 @@
-import { checkVertifyRequest, signupRequest } from '../../../../models/dto/request/signupRequest';
+import {
+  checkVertifyRequest,
+  signupRequest,
+  signupVertifyCodeRequest,
+} from '../../../../models/dto/request/signupRequest';
 import { error } from '../../../../models/error';
 import {
   NAME,
@@ -42,7 +46,7 @@ export const setRuleCheck = (payload: boolean) => ({
   payload,
 });
 
-export const sendVertifyCode = (payload: string) => ({
+export const sendVertifyCode = (payload: signupVertifyCodeRequest) => ({
   type: SEND_VERTIFY_CODE,
   payload,
 });

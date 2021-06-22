@@ -5,6 +5,6 @@ import { getRequest } from '../default';
 
 export const getStatus = async (statusRequest: statusRequest) => {
   const request = getRequest();
-  const { data } = await request.get<statusResponse>(uri.schedule);
-  return data;
+  const response = await request.get<statusResponse>(uri.schedule);
+  return response;
 };

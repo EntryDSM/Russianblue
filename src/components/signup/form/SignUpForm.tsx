@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { error } from '../../../models/error';
 import { isOneOfTextEmpty } from '../../../util/util';
 import * as S from '../style';
 import { NameColumn, PhoneNumberColumn, VertifyColumn, PasswordColumn } from './column';
@@ -17,6 +18,7 @@ interface Props {
   setPhoneNumber: (payload: string) => void;
   sendVertifyCode: (payload: string) => void;
   checkVertifyCode: (payload: { phoneNumber: string; code: string }) => void;
+  error: error;
 }
 
 const SignUpForm: FC<Props> = ({
@@ -29,8 +31,10 @@ const SignUpForm: FC<Props> = ({
   setPhoneNumber,
   setName,
   sendVertifyCode,
+  checkVertifyCode,
   isSendVertifyCode,
   isCheckVertifyCode,
+  error,
 }) => {
   return (
     <S.SignUpContent>
@@ -41,13 +45,24 @@ const SignUpForm: FC<Props> = ({
         disable={!ruleCheck || isOneOfTextEmpty(name)}
         setPhoneNumber={setPhoneNumber}
         phoneNumber={phoneNumber}
+        error={error}
       />
       <VertifyColumn
-        disable={!ruleCheck || !isSendVertifyCode}
+        disable={!ruleCheck || !isSendVertifyCode || isCheckVertifyCode}
         setPhoneCode={setPhoneCode}
         isSendVertifyCode={isSendVertifyCode}
+        isCheckVertifyCode={isCheckVertifyCode}
+        error={error}
+        checkVertifyCode={checkVertifyCode}
+        sendVertifyCode={sendVertifyCode}
+        phoneNumber={phoneNumber}
+        phoneCode={phoneCode}
       />
-      <PasswordColumn disable={!ruleCheck || !isSendVertifyCode} setPassword={setPassword} />
+      <PasswordColumn
+        disable={!ruleCheck || !isSendVertifyCode}
+        setPassword={setPassword}
+        isCheckVertifyCode={isCheckVertifyCode}
+      />
     </S.SignUpContent>
   );
 };
