@@ -102,7 +102,7 @@ export const getSelectTypeSuccess = (payload: {
   educational_status: string;
   application_type: string;
   is_daejeon: boolean;
-  application_remark: string;
+  application_remark: string | null;
   graduated_at: string;
 }) => ({
   type: GET_SELECTTYPE_SUCCESS,
