@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import * as S from './style';
 import { SCHOOL, SELECTTYPE } from '../../constance/SelectType';
 import Pagination from '../default/Pagination';
@@ -27,6 +27,13 @@ interface Props {
     application_remark: string;
     graduated_at: string;
   }) => void;
+  autoSaveSelectType: (payload: {
+    educational_status: string;
+    application_type: string;
+    is_daejeon: boolean;
+    application_remark: string;
+    graduated_at: string;
+  }) => void;
 }
 
 const SelectType: FC<Props> = ({
@@ -41,7 +48,7 @@ const SelectType: FC<Props> = ({
   setType,
   setSocialType,
   setArea,
-  selectType,
+  autoSaveSelectType,
   setGraduation,
   setGraduationMonth,
   setGraduationYear,
@@ -69,13 +76,13 @@ const SelectType: FC<Props> = ({
       </div>
       <SelectLine
         application_type={application_type}
-        socialType={socialType}
         is_daejeon={is_daejeon}
         educational_status={educational_status}
-        graduated_at={graduated_at}
         graduationMonth={graduationMonth}
         graduationYear={graduationYear}
         application_remark={application_remark}
+        socialType={socialType}
+        graduated_at={graduated_at}
         setType={setType}
         setSocialType={setSocialType}
         setArea={setArea}
@@ -83,6 +90,7 @@ const SelectType: FC<Props> = ({
         setGraduationMonth={setGraduationMonth}
         setGraduationYear={setGraduationYear}
         setRemark={setRemark}
+        autoSaveSelectType={autoSaveSelectType}
       />
       {pagination}
     </S.SelectType>
