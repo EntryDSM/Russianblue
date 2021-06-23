@@ -5,9 +5,30 @@ import { AREA } from '../../../constance/SelectType';
 interface Props {
   setArea: (payload: boolean) => void;
   is_daejeon: boolean;
+  application_remark: string;
+  application_type: string;
+  educational_status: string;
+  graduationYear: number;
+  graduationMonth: number;
+  autoSaveSelectType: (payload: {
+    educational_status: string;
+    application_type: string;
+    is_daejeon: boolean;
+    application_remark: string;
+    graduated_at: string;
+  }) => void;
 }
 
-const ChooseRegion: FC<Props> = ({ setArea, is_daejeon }) => {
+const ChooseRegion: FC<Props> = ({
+  setArea,
+  is_daejeon,
+  educational_status,
+  application_remark,
+  application_type,
+  graduationYear,
+  graduationMonth,
+  autoSaveSelectType,
+}) => {
   const [isCheck, setIsCheck] = useState({ daejeon: false, country: false });
   useEffect(() => {
     if (is_daejeon) {
@@ -17,6 +38,20 @@ const ChooseRegion: FC<Props> = ({ setArea, is_daejeon }) => {
     } else {
       setIsCheck({ daejeon: false, country: true });
     }
+  }, [is_daejeon]);
+
+  useEffect(() => {
+    let graduatedAt = '';
+    if (String(graduationMonth).length === 1) {
+      graduatedAt = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedAt = String(graduationYear) + String(graduationMonth);
+    autoSaveSelectType({
+      educational_status: educational_status,
+      application_type: application_type,
+      is_daejeon: is_daejeon,
+      application_remark: application_remark,
+      graduated_at: graduatedAt,
+    });
   }, [is_daejeon]);
 
   const onCheckBtnClick = e => {
@@ -32,6 +67,7 @@ const ChooseRegion: FC<Props> = ({ setArea, is_daejeon }) => {
         break;
     }
   };
+
   return (
     <S.Line>
       <S.LineTitle>
