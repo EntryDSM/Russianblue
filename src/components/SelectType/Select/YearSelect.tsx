@@ -40,8 +40,8 @@ const YearSelect: FC<Props> = ({
     }
     let graduatedAt = '';
     if (String(graduationMonth).length === 1) {
-      graduatedAt = '20200' + String(graduationMonth);
-    } else graduatedAt = '2020' + String(graduationMonth);
+      graduatedAt = '20220' + String(graduationMonth);
+    } else graduatedAt = '2022' + String(graduationMonth);
     autoSaveSelectType({
       educational_status: educational_status,
       application_type: application_type,
