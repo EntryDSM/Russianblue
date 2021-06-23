@@ -78,7 +78,12 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     } else if (isSuccessAction === undefined) {
       console.log('요청이 안갔습니다');
     }
-  }, [introState.isSuccessSaveBoth, prevNextBtn.prevBtn, prevNextBtn.nextBtn]);
+  }, [
+    introState.isSuccessSaveBoth,
+    prevNextBtn.prevBtn,
+    prevNextBtn.nextBtn,
+    selectTypeState.isSuccessSaveSelectType,
+  ]);
 
   const prevBtnClickHandler = () => {
     switch (pathname) {
