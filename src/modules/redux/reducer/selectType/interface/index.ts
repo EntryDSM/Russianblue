@@ -11,7 +11,7 @@ interface SelectTypeState {
   error: error;
   graduated_at: string;
   isSuccessSaveSelectType: boolean | undefined;
-  isSuccessGetSaveSelectType: boolean | undefined;
+  isSuccessGetSelectType: boolean | undefined;
 }
 
 export default SelectTypeState;
