@@ -4,21 +4,37 @@ import { TypeSelect } from '../Select';
 import { CHOOSETYPEINFO } from '../../../constance/SelectType';
 
 interface Props {
-  application_type: string;
   socialType: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
-  application_remark: string;
   setRemark: (payload: string) => void;
+  application_remark: string;
+  application_type: string;
+  is_daejeon: boolean;
+  educational_status: string;
+  graduationYear: number;
+  graduationMonth: number;
+  autoSaveSelectType: (payload: {
+    educational_status: string;
+    application_type: string;
+    is_daejeon: boolean;
+    application_remark: string;
+    graduated_at: string;
+  }) => void;
 }
 
 const ChooseType: FC<Props> = ({
   socialType,
   setType,
   setSocialType,
-  application_type,
-  application_remark,
   setRemark,
+  application_remark,
+  application_type,
+  educational_status,
+  is_daejeon,
+  graduationYear,
+  graduationMonth,
+  autoSaveSelectType,
 }) => {
   const [isCheck, setIsCheck] = useState({ regular: false, meister: false, social: false });
   const [disabled, setDisabled] = useState('disabled');
@@ -27,11 +43,9 @@ const ChooseType: FC<Props> = ({
     switch (application_type) {
       case 'COMMON':
         setIsCheck({ regular: true, meister: false, social: false });
-        setRemark(null);
         break;
       case 'MEISTER':
         setIsCheck({ regular: false, meister: true, social: false });
-        setRemark(null);
         break;
       case 'SOCIAL':
         setIsCheck({ regular: false, meister: false, social: true });
@@ -67,6 +81,20 @@ const ChooseType: FC<Props> = ({
     }
   }, [application_type]);
 
+  useEffect(() => {
+    let graduatedAt = '';
+    if (String(graduationMonth).length === 1) {
+      graduatedAt = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedAt = String(graduationYear) + String(graduationMonth);
+    autoSaveSelectType({
+      educational_status: educational_status,
+      application_type: application_type,
+      is_daejeon: is_daejeon,
+      application_remark: application_remark,
+      graduated_at: graduatedAt,
+    });
+  }, [application_type]);
+
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     switch (dataId) {
@@ -74,11 +102,21 @@ const ChooseType: FC<Props> = ({
         setIsCheck({ regular: true, meister: false, social: false });
         setDisabled('disabled');
         setType('COMMON');
+        if (
+          application_remark !== 'PRIVILEGED_ADMISSION' &&
+          application_remark !== 'NATIONAL_MERIT'
+        )
+          setRemark(null);
         break;
       case 'meister':
         setIsCheck({ regular: false, meister: true, social: false });
         setDisabled('disabled');
         setType('MEISTER');
+        if (
+          application_remark !== 'PRIVILEGED_ADMISSION' &&
+          application_remark !== 'NATIONAL_MERIT'
+        )
+          setRemark(null);
         break;
       case 'social':
         setIsCheck({ regular: false, meister: false, social: true });
@@ -87,6 +125,7 @@ const ChooseType: FC<Props> = ({
         break;
     }
   };
+
   return (
     <S.Line>
       <S.LineTitle>
@@ -112,6 +151,13 @@ const ChooseType: FC<Props> = ({
           setSocialType={setSocialType}
           disabled={disabled}
           setDisabled={setDisabled}
+          graduationMonth={graduationMonth}
+          application_type={application_type}
+          is_daejeon={is_daejeon}
+          educational_status={educational_status}
+          graduationYear={graduationYear}
+          application_remark={application_remark}
+          autoSaveSelectType={autoSaveSelectType}
         />
       </S.SelectBox>
     </S.Line>
