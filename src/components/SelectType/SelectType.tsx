@@ -62,9 +62,15 @@ const SelectType: FC<Props> = ({
       graduationYear &&
       graduationMonth
     ) {
-      return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
+      if (educational_status === 'QUALIFICATION_EXAM')
+        return (
+          <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage isQualification />
+        );
+      else return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
     } else {
-      return <Pagination prevPagePath={'/'} />;
+      if (educational_status === 'QUALIFICATION_EXAM')
+        return <Pagination prevPagePath={'/'} isQualification />;
+      else return <Pagination prevPagePath={'/'} />;
     }
   }, [application_type, is_daejeon, educational_status, graduationYear, graduationMonth]);
 
