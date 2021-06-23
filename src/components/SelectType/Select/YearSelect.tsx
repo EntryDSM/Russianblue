@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from '../style';
 import { dropdown, dropdown_active } from '../../../assets/selectType';
 
@@ -6,11 +6,50 @@ interface Props {
   disabled: string;
   graduationYear: number;
   setGraduationYear: (payload: number) => void;
+  graduationMonth: number;
+  autoSaveSelectType: (payload: {
+    educational_status: string;
+    application_type: string;
+    is_daejeon: boolean;
+    application_remark: string;
+    graduated_at: string;
+  }) => void;
+  educational_status: string;
+  application_remark: string;
+  application_type: string;
+  is_daejeon: boolean;
 }
 
-const YearSelect: FC<Props> = ({ disabled, graduationYear, setGraduationYear }) => {
+const YearSelect: FC<Props> = ({
+  disabled,
+  graduationYear,
+  setGraduationYear,
+  graduationMonth,
+  educational_status,
+  application_remark,
+  application_type,
+  is_daejeon,
+  autoSaveSelectType,
+}) => {
   const [active, setActive] = useState(false);
   const YearArray = [...Array(10)].map((_, i) => i + 2016);
+
+  useEffect(() => {
+    if (disabled === 'block') {
+      setGraduationYear(2022);
+    }
+    let graduatedAt = '';
+    if (String(graduationMonth).length === 1) {
+      graduatedAt = '20200' + String(graduationMonth);
+    } else graduatedAt = '2020' + String(graduationMonth);
+    autoSaveSelectType({
+      educational_status: educational_status,
+      application_type: application_type,
+      is_daejeon: is_daejeon,
+      application_remark: application_remark,
+      graduated_at: graduatedAt,
+    });
+  }, [disabled]);
 
   const onSelectClick = () => {
     if (disabled === 'normal') {
@@ -23,7 +62,19 @@ const YearSelect: FC<Props> = ({ disabled, graduationYear, setGraduationYear }) 
   };
 
   const onGraduationYearClick = e => {
-    setGraduationYear(e.target.innerText);
+    const year = e.target.innerText;
+    setGraduationYear(year);
+    let graduatedAt = '';
+    if (String(graduationMonth).length === 1) {
+      graduatedAt = String(year) + '0' + String(graduationMonth);
+    } else graduatedAt = String(year) + String(graduationMonth);
+    autoSaveSelectType({
+      educational_status: educational_status,
+      application_type: application_type,
+      is_daejeon: is_daejeon,
+      application_remark: application_remark,
+      graduated_at: graduatedAt,
+    });
   };
 
   const activeImg = useMemo(() => {
