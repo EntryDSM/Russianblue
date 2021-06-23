@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, useMemo } from 'react';
+import React, { Dispatch, FC, useEffect, useMemo } from 'react';
 import * as S from '../style';
 import { dropdown, dropdown_active, dropdown_disabled } from '../../../assets/selectType';
 import { SOCIAL } from '../../../constance/SelectType';
@@ -9,9 +9,35 @@ interface Props {
   setDisabled: Dispatch<React.SetStateAction<string>>;
   setSocialType: (payload: string) => void;
   setRemark: (payload: string) => void;
+  application_remark: string;
+  application_type: string;
+  is_daejeon: boolean;
+  educational_status: string;
+  graduationYear: number;
+  graduationMonth: number;
+  autoSaveSelectType: (payload: {
+    educational_status: string;
+    application_type: string;
+    is_daejeon: boolean;
+    application_remark: string;
+    graduated_at: string;
+  }) => void;
 }
 
-const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisabled, setRemark }) => {
+const TypeSelect: FC<Props> = ({
+  socialType,
+  setSocialType,
+  disabled,
+  setDisabled,
+  setRemark,
+  application_remark,
+  application_type,
+  educational_status,
+  is_daejeon,
+  graduationYear,
+  graduationMonth,
+  autoSaveSelectType,
+}) => {
   const onSelectClick = () => {
     if (disabled === 'normal') {
       setDisabled('enabled');
@@ -19,6 +45,20 @@ const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisable
       setDisabled('normal');
     }
   };
+
+  useEffect(() => {
+    let graduatedAt = '';
+    if (String(graduationMonth).length === 1) {
+      graduatedAt = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedAt = String(graduationYear) + String(graduationMonth);
+    autoSaveSelectType({
+      educational_status: educational_status,
+      application_type: application_type,
+      is_daejeon: is_daejeon,
+      application_remark: application_remark,
+      graduated_at: graduatedAt,
+    });
+  }, [application_remark]);
 
   const onSocialTypeClick = e => {
     switch (e.target.innerText) {
