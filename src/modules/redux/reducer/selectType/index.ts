@@ -29,7 +29,7 @@ const initState: SelectTypeState = {
   application_remark: null,
   error: null,
   isSuccessSaveSelectType: undefined,
-  isSuccessGetSaveSelectType: undefined,
+  isSuccessGetSelectType: undefined,
 };
 
 const SelectTypeReducer = (
@@ -96,7 +96,6 @@ const SelectTypeReducer = (
     case AUTOSAVE_SELECTTYPE:
       return {
         ...state,
-        isSuccessSaveSelectType: undefined,
         application_remark: action.payload.application_remark,
         is_daejeon: action.payload.is_daejeon,
         application_type: action.payload.application_type,
@@ -115,7 +114,7 @@ const SelectTypeReducer = (
     case GET_SELECTTYPE_SUCCESS:
       return {
         ...state,
-        isSuccessGetSaveSelectType: true,
+        isSuccessGetSelectType: true,
         application_remark: action.payload.application_remark,
         is_daejeon: action.payload.is_daejeon,
         application_type: action.payload.application_type,
@@ -125,7 +124,7 @@ const SelectTypeReducer = (
     case GET_SELECTTYPE_FAILURE:
       return {
         ...state,
-        isSuccessGetSaveSelectType: false,
+        isSuccessGetSelectType: false,
         error: action.payload,
       };
     default:
