@@ -7,13 +7,12 @@ export const selectType = async (
     educational_status: string;
     application_type: string;
     is_daejeon: boolean;
-    application_remark: string;
+    application_remark: string | null;
     graduated_at: string;
   },
 ) => {
   try {
     const request = getRequestWithAccessToken(access_token);
-    console.log(selectTypeRequest);
     await request.patch(uri.selectType, selectTypeRequest);
   } catch (error) {
     throw error;
@@ -35,7 +34,7 @@ export const autoSaveSelectType = async (
     educational_status: string;
     application_type: string;
     is_daejeon: boolean;
-    application_remark: string;
+    application_remark: string | null;
     graduated_at: string;
   },
 ) => {
