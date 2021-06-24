@@ -3,27 +3,67 @@ import * as S from './style';
 import Pagination from '../default/Pagination';
 import InformationForm from './InformationForm';
 import { SCHOOL, INFORMATIONTITLE } from '../../constance/information';
-import useSelectType from '../../util/hooks/selectType';
+import { informationType } from '../../constance/information';
 
 interface Props {
-  imageUrl: string;
+  name: string;
+  gender: string;
+  birthDay: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
+  schoolName: string;
+  schoolPhoneNumber: string;
+  parentName: string;
+  parentPhoneNumber: string;
+  phoneNumber: string;
+  homePhoneNumber: string;
+  zipCode: string;
+  fullAddress: string;
+  baseAddress: string;
+  detailAddress: string;
+  grade: string;
+  stdGrade: string;
+  stdClass: string;
+  stdNumber: string;
+  imageFile: File;
+  isGraduated: boolean;
+  imageUrl: string;
   setInput: (payload: { name: string; value: string }) => void;
   setGender: (payload: string) => void;
   setBirthYear: (payload: number) => void;
   setBirthMonth: (payload: number) => void;
   setBirthDate: (payload: number) => void;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: string) => void;
+  setImageFile: (payload: File) => void;
+  informationImage: (payload: File) => void;
+  information: (payload: informationType) => void;
+  autoSaveInformation: (payload: informationType) => void;
 }
 
 const Information: FC<Props> = ({
-  imageUrl,
+  name,
+  gender,
+  birthDay,
   birthYear,
   birthMonth,
   birthDate,
+  schoolName,
+  schoolPhoneNumber,
+  parentName,
+  parentPhoneNumber,
+  phoneNumber,
+  homePhoneNumber,
+  zipCode,
+  baseAddress,
+  detailAddress,
+  grade,
+  stdGrade,
+  stdClass,
+  stdNumber,
+  imageFile,
+  imageUrl,
+  isGraduated,
   setInput,
   setGender,
   setBirthYear,
@@ -31,8 +71,10 @@ const Information: FC<Props> = ({
   setBirthDate,
   setImageFile,
   setImageUrl,
+  informationImage,
+  information,
+  autoSaveInformation,
 }) => {
-  const { state } = useSelectType();
   return (
     <S.Information>
       <div>
@@ -40,10 +82,28 @@ const Information: FC<Props> = ({
         <S.Title>{INFORMATIONTITLE}</S.Title>
       </div>
       <InformationForm
-        imageUrl={imageUrl}
+        name={name}
+        gender={gender}
+        birthDay={birthDay}
         birthYear={birthYear}
         birthMonth={birthMonth}
         birthDate={birthDate}
+        schoolName={schoolName}
+        schoolPhoneNumber={schoolPhoneNumber}
+        parentName={parentName}
+        parentPhoneNumber={parentPhoneNumber}
+        phoneNumber={phoneNumber}
+        homePhoneNumber={homePhoneNumber}
+        zipCode={zipCode}
+        baseAddress={baseAddress}
+        detailAddress={detailAddress}
+        grade={grade}
+        stdGrade={stdGrade}
+        stdClass={stdClass}
+        stdNumber={stdNumber}
+        imageFile={imageFile}
+        isGraduated={isGraduated}
+        imageUrl={imageUrl}
         setInput={setInput}
         setGender={setGender}
         setBirthYear={setBirthYear}
@@ -51,6 +111,9 @@ const Information: FC<Props> = ({
         setBirthDate={setBirthDate}
         setImageUrl={setImageUrl}
         setImageFile={setImageFile}
+        informationImage={informationImage}
+        information={information}
+        autoSaveInformation={autoSaveInformation}
       />
       <Pagination />
     </S.Information>
