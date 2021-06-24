@@ -8,18 +8,18 @@ interface Props {
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setRemark: (payload: string) => void;
-  application_remark: string;
-  application_type: string;
-  is_daejeon: boolean;
-  educational_status: string;
+  applicationRemark: string;
+  applicationType: string;
+  isDaejeon: boolean;
+  educationalStatus: string;
   graduationYear: number;
   graduationMonth: number;
   autoSaveSelectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
 }
 
@@ -28,10 +28,10 @@ const ChooseType: FC<Props> = ({
   setType,
   setSocialType,
   setRemark,
-  application_remark,
-  application_type,
-  educational_status,
-  is_daejeon,
+  applicationRemark,
+  applicationType,
+  educationalStatus,
+  isDaejeon,
   graduationYear,
   graduationMonth,
   autoSaveSelectType,
@@ -40,7 +40,7 @@ const ChooseType: FC<Props> = ({
   const [disabled, setDisabled] = useState('disabled');
 
   useEffect(() => {
-    switch (application_type) {
+    switch (applicationType) {
       case 'COMMON':
         setIsCheck({ regular: true, meister: false, social: false });
         break;
@@ -54,10 +54,10 @@ const ChooseType: FC<Props> = ({
         setIsCheck({ regular: false, meister: false, social: false });
         break;
     }
-    if (application_type === 'SOCIAL') {
-      if (application_remark !== null) {
+    if (applicationType === 'SOCIAL') {
+      if (applicationRemark !== null) {
         setDisabled('normal');
-        switch (application_remark) {
+        switch (applicationRemark) {
           case 'BASIC_LIVING':
             setSocialType('기초생활수급자');
             break;
@@ -79,21 +79,21 @@ const ChooseType: FC<Props> = ({
         }
       }
     }
-  }, [application_type]);
+  }, [applicationType]);
 
   useEffect(() => {
-    let graduatedAt = '';
+    let graduatedDate = '';
     if (String(graduationMonth).length === 1) {
-      graduatedAt = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedAt = String(graduationYear) + String(graduationMonth);
+      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedDate = String(graduationYear) + String(graduationMonth);
     autoSaveSelectType({
-      educational_status: educational_status,
-      application_type: application_type,
-      is_daejeon: is_daejeon,
-      application_remark: application_remark,
-      graduated_at: graduatedAt,
+      educationalStatus: educationalStatus,
+      applicationType: applicationType,
+      isDaejeon: isDaejeon,
+      applicationRemark: applicationRemark,
+      graduatedAt: graduatedDate,
     });
-  }, [application_type]);
+  }, [applicationType]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
@@ -102,20 +102,14 @@ const ChooseType: FC<Props> = ({
         setIsCheck({ regular: true, meister: false, social: false });
         setDisabled('disabled');
         setType('COMMON');
-        if (
-          application_remark !== 'PRIVILEGED_ADMISSION' &&
-          application_remark !== 'NATIONAL_MERIT'
-        )
+        if (applicationRemark !== 'PRIVILEGED_ADMISSION' && applicationRemark !== 'NATIONAL_MERIT')
           setRemark(null);
         break;
       case 'meister':
         setIsCheck({ regular: false, meister: true, social: false });
         setDisabled('disabled');
         setType('MEISTER');
-        if (
-          application_remark !== 'PRIVILEGED_ADMISSION' &&
-          application_remark !== 'NATIONAL_MERIT'
-        )
+        if (applicationRemark !== 'PRIVILEGED_ADMISSION' && applicationRemark !== 'NATIONAL_MERIT')
           setRemark(null);
         break;
       case 'social':
@@ -152,11 +146,11 @@ const ChooseType: FC<Props> = ({
           disabled={disabled}
           setDisabled={setDisabled}
           graduationMonth={graduationMonth}
-          application_type={application_type}
-          is_daejeon={is_daejeon}
-          educational_status={educational_status}
+          applicationType={applicationType}
+          isDaejeon={isDaejeon}
+          educationalStatus={educationalStatus}
           graduationYear={graduationYear}
-          application_remark={application_remark}
+          applicationRemark={applicationRemark}
           autoSaveSelectType={autoSaveSelectType}
         />
       </S.SelectBox>

@@ -1,15 +1,15 @@
 import { error } from '../../../../../models/error';
 
 interface SelectTypeState {
-  application_type: string;
+  applicationType: string;
   socialType: string;
-  is_daejeon: boolean | undefined;
-  educational_status: string;
+  isDaejeon: boolean | undefined;
+  educationalStatus: string;
   graduationYear: number;
   graduationMonth: number;
-  application_remark: string | null;
+  applicationRemark: string | null;
   error: error;
-  graduated_at: string;
+  graduatedAt: string;
   isSuccessSaveSelectType: boolean | undefined;
   isSuccessGetSelectType: boolean | undefined;
 }

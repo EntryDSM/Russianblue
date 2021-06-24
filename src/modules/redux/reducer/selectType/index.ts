@@ -19,14 +19,14 @@ import {
 import SelectTypeState from './interface';
 
 const initState: SelectTypeState = {
-  application_type: '',
+  applicationType: '',
   socialType: '사회통합전형',
-  is_daejeon: undefined,
-  educational_status: '',
+  isDaejeon: undefined,
+  educationalStatus: '',
   graduationMonth: 1,
   graduationYear: 2022,
-  graduated_at: '',
-  application_remark: null,
+  graduatedAt: '',
+  applicationRemark: null,
   error: null,
   isSuccessSaveSelectType: undefined,
   isSuccessGetSelectType: undefined,
@@ -40,7 +40,7 @@ const SelectTypeReducer = (
     case TYPE:
       return {
         ...state,
-        application_type: action.payload,
+        applicationType: action.payload,
       };
     case SOCIALTYPE:
       return {
@@ -50,12 +50,12 @@ const SelectTypeReducer = (
     case AREA:
       return {
         ...state,
-        is_daejeon: action.payload,
+        isDaejeon: action.payload,
       };
     case GRADUATION:
       return {
         ...state,
-        educational_status: action.payload,
+        educationalStatus: action.payload,
       };
     case GRADUATION_MONTH:
       return {
@@ -70,17 +70,17 @@ const SelectTypeReducer = (
     case REMARK:
       return {
         ...state,
-        application_remark: action.payload,
+        applicationRemark: action.payload,
       };
     case SELECTTYPE:
       return {
         ...state,
         isSuccessSaveSelectType: undefined,
-        application_remark: action.payload.application_remark,
-        is_daejeon: action.payload.is_daejeon,
-        application_type: action.payload.application_type,
-        educational_status: action.payload.educational_status,
-        graduated_at: action.payload.graduated_at,
+        applicationRemark: action.payload.applicationRemark,
+        isDaejeon: action.payload.isDaejeon,
+        applicationType: action.payload.applicationType,
+        educationalStatus: action.payload.educationalStatus,
+        graduatedAt: action.payload.graduatedAt,
       };
     case SELECTTYPE_SUCCESS:
       return {
@@ -96,11 +96,11 @@ const SelectTypeReducer = (
     case AUTOSAVE_SELECTTYPE:
       return {
         ...state,
-        application_remark: action.payload.application_remark,
-        is_daejeon: action.payload.is_daejeon,
-        application_type: action.payload.application_type,
-        educational_status: action.payload.educational_status,
-        graduated_at: action.payload.graduated_at,
+        applicationRemark: action.payload.applicationRemark,
+        isDaejeon: action.payload.isDaejeon,
+        applicationType: action.payload.applicationType,
+        educationalStatus: action.payload.educationalStatus,
+        graduatedAt: action.payload.graduatedAt,
       };
     case AUTOSAVE_SELECTTYPE_SUCCESS:
       return {
@@ -115,11 +115,11 @@ const SelectTypeReducer = (
       return {
         ...state,
         isSuccessGetSelectType: true,
-        application_remark: action.payload.application_remark,
-        is_daejeon: action.payload.is_daejeon,
-        application_type: action.payload.application_type,
-        educational_status: action.payload.educational_status,
-        graduated_at: action.payload.graduated_at,
+        applicationRemark: action.payload.application_remark,
+        isDaejeon: action.payload.is_daejeon,
+        applicationType: action.payload.application_type,
+        educationalStatus: action.payload.educational_status,
+        graduatedAt: action.payload.graduated_at,
       };
     case GET_SELECTTYPE_FAILURE:
       return {

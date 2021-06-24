@@ -32,28 +32,28 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
 
   const selectTypeState = useSelectType().state;
   const selectTypeSetState = useSelectType().setState;
-  const educational_status = selectTypeState.educational_status;
-  const application_type = selectTypeState.application_type;
-  const is_daejeon = selectTypeState.is_daejeon;
-  const application_remark = selectTypeState.application_remark;
-  const graduation_year = selectTypeState.graduationYear;
-  const graduation_month = selectTypeState.graduationMonth;
+  const educationalStatus = selectTypeState.educationalStatus;
+  const applicationType = selectTypeState.applicationType;
+  const isDaejeon = selectTypeState.isDaejeon;
+  const applicationRemark = selectTypeState.applicationRemark;
+  const graduationYear = selectTypeState.graduationYear;
+  const graduationMonth = selectTypeState.graduationMonth;
   let graduated_YM = '';
-  if (String(graduation_month).length === 1) {
-    graduated_YM = String(graduation_year) + '0' + String(graduation_month);
+  if (String(graduationMonth).length === 1) {
+    graduated_YM = String(graduationYear) + '0' + String(graduationMonth);
   } else {
-    graduated_YM = String(graduation_year) + String(graduation_month);
+    graduated_YM = String(graduationYear) + String(graduationMonth);
   }
 
   const change = [
     selfIntroduction,
     studyPlan,
-    educational_status,
-    application_remark,
-    application_type,
-    is_daejeon,
-    graduation_month,
-    graduation_year,
+    educationalStatus,
+    applicationRemark,
+    applicationType,
+    isDaejeon,
+    graduationMonth,
+    graduationYear,
   ];
 
   useEffect(() => {
@@ -92,11 +92,11 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
       case 'select-type':
         selectTypeSetState.selectType({
-          educational_status: educational_status,
-          application_type: application_type,
-          is_daejeon: is_daejeon,
-          application_remark: application_remark,
-          graduated_at: graduated_YM,
+          educationalStatus: educationalStatus,
+          applicationType: applicationType,
+          isDaejeon: isDaejeon,
+          applicationRemark: applicationRemark,
+          graduatedAt: graduated_YM,
         });
         break;
       default:
@@ -111,11 +111,11 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
       case 'select-type':
         selectTypeSetState.selectType({
-          educational_status: educational_status,
-          application_type: application_type,
-          is_daejeon: is_daejeon,
-          application_remark: application_remark,
-          graduated_at: graduated_YM,
+          educationalStatus: educationalStatus,
+          applicationType: applicationType,
+          isDaejeon: isDaejeon,
+          applicationRemark: applicationRemark,
+          graduatedAt: graduated_YM,
         });
         break;
       default:

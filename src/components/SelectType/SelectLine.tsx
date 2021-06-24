@@ -9,14 +9,14 @@ import {
 } from './column';
 
 interface Props {
-  application_type: string;
+  applicationType: string;
   socialType: string;
-  is_daejeon: boolean;
-  educational_status: string;
-  graduated_at: string;
+  isDaejeon: boolean;
+  educationalStatus: string;
+  graduatedAt: string;
   graduationMonth: number;
   graduationYear: number;
-  application_remark: string;
+  applicationRemark: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: boolean) => void;
@@ -25,23 +25,23 @@ interface Props {
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
   autoSaveSelectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
 }
 
 const SelectLine: FC<Props> = ({
-  application_type,
+  applicationType,
   socialType,
-  is_daejeon,
-  educational_status,
-  graduated_at,
+  isDaejeon,
+  educationalStatus,
+  graduatedAt,
   graduationMonth,
   graduationYear,
-  application_remark,
+  applicationRemark,
   setType,
   setSocialType,
   setArea,
@@ -59,10 +59,10 @@ const SelectLine: FC<Props> = ({
         socialType={socialType}
         setType={setType}
         setSocialType={setSocialType}
-        application_type={application_type}
-        application_remark={application_remark}
-        is_daejeon={is_daejeon}
-        educational_status={educational_status}
+        applicationType={applicationType}
+        applicationRemark={applicationRemark}
+        isDaejeon={isDaejeon}
+        educationalStatus={educationalStatus}
         graduationYear={graduationYear}
         graduationMonth={graduationMonth}
         setRemark={setRemark}
@@ -70,10 +70,10 @@ const SelectLine: FC<Props> = ({
       <ChooseRegion
         autoSaveSelectType={autoSaveSelectType}
         setArea={setArea}
-        is_daejeon={is_daejeon}
-        application_type={application_type}
-        application_remark={application_remark}
-        educational_status={educational_status}
+        isDaejeon={isDaejeon}
+        applicationType={applicationType}
+        applicationRemark={applicationRemark}
+        educationalStatus={educationalStatus}
         graduationYear={graduationYear}
         graduationMonth={graduationMonth}
       />
@@ -81,20 +81,20 @@ const SelectLine: FC<Props> = ({
         autoSaveSelectType={autoSaveSelectType}
         setGraduation={setGraduation}
         setIsProspective={setIsProspective}
-        educational_status={educational_status}
-        application_type={application_type}
-        application_remark={application_remark}
-        is_daejeon={is_daejeon}
+        educationalStatus={educationalStatus}
+        applicationType={applicationType}
+        applicationRemark={applicationRemark}
+        isDaejeon={isDaejeon}
         graduationYear={graduationYear}
         graduationMonth={graduationMonth}
       />
       <ChooseGraduationDate
         autoSaveSelectType={autoSaveSelectType}
-        application_type={application_type}
-        application_remark={application_remark}
-        is_daejeon={is_daejeon}
-        graduated_at={graduated_at}
-        educational_status={educational_status}
+        applicationType={applicationType}
+        applicationRemark={applicationRemark}
+        isDaejeon={isDaejeon}
+        graduatedAt={graduatedAt}
+        educationalStatus={educationalStatus}
         graduationMonth={graduationMonth}
         graduationYear={graduationYear}
         setGraduationMonth={setGraduationMonth}
@@ -104,10 +104,10 @@ const SelectLine: FC<Props> = ({
       <ChooseRemark
         autoSaveSelectType={autoSaveSelectType}
         setRemark={setRemark}
-        application_remark={application_remark}
-        application_type={application_type}
-        is_daejeon={is_daejeon}
-        educational_status={educational_status}
+        applicationRemark={applicationRemark}
+        applicationType={applicationType}
+        isDaejeon={isDaejeon}
+        educationalStatus={educationalStatus}
         graduationYear={graduationYear}
         graduationMonth={graduationMonth}
       />

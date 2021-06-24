@@ -5,14 +5,14 @@ import Pagination from '../default/Pagination';
 import SelectLine from './SelectLine';
 
 interface Props {
-  application_type: string;
+  applicationType: string;
   socialType: string;
-  is_daejeon: boolean;
-  educational_status: string;
-  graduated_at: string;
+  isDaejeon: boolean;
+  educationalStatus: string;
+  graduatedAt: string;
   graduationMonth: number;
   graduationYear: number;
-  application_remark: string;
+  applicationRemark: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: boolean) => void;
@@ -21,30 +21,30 @@ interface Props {
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
   selectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
   autoSaveSelectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
 }
 
 const SelectType: FC<Props> = ({
-  application_type,
+  applicationType,
   socialType,
-  is_daejeon,
-  educational_status,
-  graduated_at,
+  isDaejeon,
+  educationalStatus,
+  graduatedAt,
   graduationMonth,
   graduationYear,
-  application_remark,
+  applicationRemark,
   setType,
   setSocialType,
   setArea,
@@ -56,23 +56,23 @@ const SelectType: FC<Props> = ({
 }) => {
   const pagination = useMemo(() => {
     if (
-      application_type &&
-      is_daejeon !== undefined &&
-      educational_status &&
+      applicationType &&
+      isDaejeon !== undefined &&
+      educationalStatus &&
       graduationYear &&
       graduationMonth
     ) {
-      if (educational_status === 'QUALIFICATION_EXAM')
+      if (educationalStatus === 'QUALIFICATION_EXAM')
         return (
           <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage isQualification />
         );
       else return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
     } else {
-      if (educational_status === 'QUALIFICATION_EXAM')
+      if (educationalStatus === 'QUALIFICATION_EXAM')
         return <Pagination prevPagePath={'/'} isQualification />;
       else return <Pagination prevPagePath={'/'} />;
     }
-  }, [application_type, is_daejeon, educational_status, graduationYear, graduationMonth]);
+  }, [applicationType, isDaejeon, educationalStatus, graduationYear, graduationMonth]);
 
   return (
     <S.SelectType>
@@ -81,14 +81,14 @@ const SelectType: FC<Props> = ({
         <S.Title>{SELECTTYPE}</S.Title>
       </div>
       <SelectLine
-        application_type={application_type}
-        is_daejeon={is_daejeon}
-        educational_status={educational_status}
+        applicationType={applicationType}
+        isDaejeon={isDaejeon}
+        educationalStatus={educationalStatus}
         graduationMonth={graduationMonth}
         graduationYear={graduationYear}
-        application_remark={application_remark}
+        applicationRemark={applicationRemark}
         socialType={socialType}
-        graduated_at={graduated_at}
+        graduatedAt={graduatedAt}
         setType={setType}
         setSocialType={setSocialType}
         setArea={setArea}

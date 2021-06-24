@@ -8,16 +8,16 @@ interface Props {
   setGraduationYear: (payload: number) => void;
   graduationMonth: number;
   autoSaveSelectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
-  educational_status: string;
-  application_remark: string;
-  application_type: string;
-  is_daejeon: boolean;
+  educationalStatus: string;
+  applicationRemark: string;
+  applicationType: string;
+  isDaejeon: boolean;
 }
 
 const YearSelect: FC<Props> = ({
@@ -25,10 +25,10 @@ const YearSelect: FC<Props> = ({
   graduationYear,
   setGraduationYear,
   graduationMonth,
-  educational_status,
-  application_remark,
-  application_type,
-  is_daejeon,
+  educationalStatus,
+  applicationRemark,
+  applicationType,
+  isDaejeon,
   autoSaveSelectType,
 }) => {
   const [active, setActive] = useState(false);
@@ -38,16 +38,16 @@ const YearSelect: FC<Props> = ({
     if (disabled === 'block') {
       setGraduationYear(2022);
     }
-    let graduatedAt = '';
+    let graduatedDate = '';
     if (String(graduationMonth).length === 1) {
-      graduatedAt = '20220' + String(graduationMonth);
-    } else graduatedAt = '2022' + String(graduationMonth);
+      graduatedDate = '20220' + String(graduationMonth);
+    } else graduatedDate = '2022' + String(graduationMonth);
     autoSaveSelectType({
-      educational_status: educational_status,
-      application_type: application_type,
-      is_daejeon: is_daejeon,
-      application_remark: application_remark,
-      graduated_at: graduatedAt,
+      educationalStatus: educationalStatus,
+      applicationType: applicationType,
+      isDaejeon: isDaejeon,
+      applicationRemark: applicationRemark,
+      graduatedAt: graduatedDate,
     });
   }, [disabled]);
 
@@ -64,16 +64,16 @@ const YearSelect: FC<Props> = ({
   const onGraduationYearClick = e => {
     const year = e.target.innerText;
     setGraduationYear(year);
-    let graduatedAt = '';
+    let graduatedDate = '';
     if (String(graduationMonth).length === 1) {
-      graduatedAt = String(year) + '0' + String(graduationMonth);
-    } else graduatedAt = String(year) + String(graduationMonth);
+      graduatedDate = String(year) + '0' + String(graduationMonth);
+    } else graduatedDate = String(year) + String(graduationMonth);
     autoSaveSelectType({
-      educational_status: educational_status,
-      application_type: application_type,
-      is_daejeon: is_daejeon,
-      application_remark: application_remark,
-      graduated_at: graduatedAt,
+      educationalStatus: educationalStatus,
+      applicationType: applicationType,
+      isDaejeon: isDaejeon,
+      applicationRemark: applicationRemark,
+      graduatedAt: graduatedDate,
     });
   };
 

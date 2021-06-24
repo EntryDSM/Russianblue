@@ -4,27 +4,27 @@ import { REMARKS, REMARK_EXPLAIN } from '../../../constance/SelectType';
 
 interface Props {
   setRemark: (payload: string) => void;
-  application_remark: string;
-  application_type: string;
-  is_daejeon: boolean;
-  educational_status: string;
+  applicationRemark: string;
+  applicationType: string;
+  isDaejeon: boolean;
+  educationalStatus: string;
   graduationYear: number;
   graduationMonth: number;
   autoSaveSelectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
 }
 
 const ChooseRemark: FC<Props> = ({
   setRemark,
-  application_remark,
-  educational_status,
-  application_type,
-  is_daejeon,
+  applicationRemark,
+  educationalStatus,
+  applicationType,
+  isDaejeon,
   graduationYear,
   graduationMonth,
   autoSaveSelectType,
@@ -32,7 +32,7 @@ const ChooseRemark: FC<Props> = ({
   const [isCheck, setIsCheck] = useState({ nationalMerit: false, specialAdmission: false });
 
   useEffect(() => {
-    switch (application_remark) {
+    switch (applicationRemark) {
       case 'PRIVILEGED_ADMISSION':
         setIsCheck({ nationalMerit: false, specialAdmission: true });
         break;
@@ -42,21 +42,21 @@ const ChooseRemark: FC<Props> = ({
       default:
         setIsCheck({ nationalMerit: false, specialAdmission: false });
     }
-  }, [application_remark]);
+  }, [applicationRemark]);
 
   useEffect(() => {
-    let graduatedAt = '';
+    let graduatedDate = '';
     if (String(graduationMonth).length === 1) {
-      graduatedAt = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedAt = String(graduationYear) + String(graduationMonth);
+      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedDate = String(graduationYear) + String(graduationMonth);
     autoSaveSelectType({
-      educational_status: educational_status,
-      application_type: application_type,
-      is_daejeon: is_daejeon,
-      application_remark: application_remark,
-      graduated_at: graduatedAt,
+      educationalStatus: educationalStatus,
+      applicationType: applicationType,
+      isDaejeon: isDaejeon,
+      applicationRemark: applicationRemark,
+      graduatedAt: graduatedDate,
     });
-  }, [application_remark]);
+  }, [applicationRemark]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;

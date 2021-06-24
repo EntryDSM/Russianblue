@@ -54,11 +54,11 @@ export const setRemark = (payload: string) => ({
 });
 
 export const selectType = (payload: {
-  educational_status: string;
-  application_type: string;
-  is_daejeon: boolean;
-  application_remark: string;
-  graduated_at: string;
+  educationalStatus: string;
+  applicationType: string;
+  isDaejeon: boolean;
+  applicationRemark: string;
+  graduatedAt: string;
 }) => ({
   type: SELECTTYPE,
   payload,
@@ -75,11 +75,11 @@ export const selectTypeFailure = (payload: error) => ({
 });
 
 export const autoSaveSelectType = (payload: {
-  educational_status: string;
-  application_type: string;
-  is_daejeon: boolean;
-  application_remark: string;
-  graduated_at: string;
+  educationalStatus: string;
+  applicationType: string;
+  isDaejeon: boolean;
+  applicationRemark: string;
+  graduatedAt: string;
 }) => ({
   type: AUTOSAVE_SELECTTYPE,
   payload,

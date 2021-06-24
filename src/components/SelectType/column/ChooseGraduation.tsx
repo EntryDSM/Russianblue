@@ -5,18 +5,18 @@ import { GRADUATION } from '../../../constance/SelectType';
 interface Props {
   setIsProspective: Dispatch<React.SetStateAction<boolean>>;
   setGraduation: (payload: string) => void;
-  educational_status: string;
-  application_remark: string;
-  application_type: string;
-  is_daejeon: boolean;
+  educationalStatus: string;
+  applicationRemark: string;
+  applicationType: string;
+  isDaejeon: boolean;
   graduationYear: number;
   graduationMonth: number;
   autoSaveSelectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
 }
 
@@ -29,17 +29,17 @@ const isCheckInit = {
 const ChooseGraduation: FC<Props> = ({
   setIsProspective,
   setGraduation,
-  educational_status,
-  application_remark,
-  application_type,
-  is_daejeon,
+  educationalStatus,
+  applicationRemark,
+  applicationType,
+  isDaejeon,
   graduationYear,
   graduationMonth,
   autoSaveSelectType,
 }) => {
   const [isCheck, setIsCheck] = useState(isCheckInit);
   useEffect(() => {
-    switch (educational_status) {
+    switch (educationalStatus) {
       case 'PROSPECTIVE_GRADUATE':
         setIsCheck({ ...isCheckInit, prospective: true });
         setIsProspective(true);
@@ -56,21 +56,21 @@ const ChooseGraduation: FC<Props> = ({
         setIsCheck(isCheckInit);
         break;
     }
-  }, [educational_status]);
+  }, [educationalStatus]);
 
   useEffect(() => {
-    let graduatedAt = '';
+    let graduatedDate = '';
     if (String(graduationMonth).length === 1) {
-      graduatedAt = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedAt = String(graduationYear) + String(graduationMonth);
+      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedDate = String(graduationYear) + String(graduationMonth);
     autoSaveSelectType({
-      educational_status: educational_status,
-      application_type: application_type,
-      is_daejeon: is_daejeon,
-      application_remark: application_remark,
-      graduated_at: graduatedAt,
+      educationalStatus: educationalStatus,
+      applicationType: applicationType,
+      isDaejeon: isDaejeon,
+      applicationRemark: applicationRemark,
+      graduatedAt: graduatedDate,
     });
-  }, [educational_status]);
+  }, [educationalStatus]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;

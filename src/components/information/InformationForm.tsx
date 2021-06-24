@@ -40,7 +40,7 @@ const InformationForm: FC<Props> = ({
   setImageFile,
   setImageUrl,
 }) => {
-  const graduation = useSelectType().state.educational_status;
+  const graduation = useSelectType().state.educationalStatus;
 
   const styleInfo = useMemo(() => {
     if (graduation === '검정고시')

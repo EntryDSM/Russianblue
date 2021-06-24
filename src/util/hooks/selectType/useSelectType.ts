@@ -38,20 +38,20 @@ const useSelectType = () => {
       dispatch(setRemark(payload));
     },
     selectType: (payload: {
-      educational_status: string;
-      application_type: string;
-      is_daejeon: boolean;
-      application_remark: string;
-      graduated_at: string;
+      educationalStatus: string;
+      applicationType: string;
+      isDaejeon: boolean;
+      applicationRemark: string;
+      graduatedAt: string;
     }) => {
       dispatch(selectType(payload));
     },
     autoSaveSelectType: (payload: {
-      educational_status: string;
-      application_type: string;
-      is_daejeon: boolean;
-      application_remark: string;
-      graduated_at: string;
+      educationalStatus: string;
+      applicationType: string;
+      isDaejeon: boolean;
+      applicationRemark: string;
+      graduatedAt: string;
     }) => {
       dispatch(autoSaveSelectType(payload));
     },

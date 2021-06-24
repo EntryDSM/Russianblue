@@ -4,49 +4,49 @@ import { YearSelect, MonthSelect } from '../Select';
 import { GRADUATION_DATE_EXPLAIN } from '../../../constance/SelectType';
 
 interface Props {
-  graduated_at: string;
+  graduatedAt: string;
   isProspective: boolean;
-  educational_status: string;
+  educationalStatus: string;
   graduationMonth: number;
   graduationYear: number;
-  application_remark: string;
-  application_type: string;
-  is_daejeon: boolean;
+  applicationRemark: string;
+  applicationType: string;
+  isDaejeon: boolean;
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
   autoSaveSelectType: (payload: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
   }) => void;
 }
 
 const ChooseGraduationDate: FC<Props> = ({
   isProspective,
-  educational_status,
+  educationalStatus,
   setGraduationMonth,
   setGraduationYear,
   graduationMonth,
   graduationYear,
-  graduated_at,
-  application_remark,
-  application_type,
-  is_daejeon,
+  graduatedAt,
+  applicationRemark,
+  applicationType,
+  isDaejeon,
   autoSaveSelectType,
 }) => {
   useEffect(() => {
-    if (graduated_at) {
-      const graduatedYear = graduated_at.slice(0, 4);
-      const graduatedMonth = graduated_at.slice(4);
+    if (graduatedAt) {
+      const graduatedYear = graduatedAt.slice(0, 4);
+      const graduatedMonth = graduatedAt.slice(4);
       setGraduationYear(Number(graduatedYear));
       setGraduationMonth(Number(graduatedMonth));
     }
-  }, [graduated_at]);
+  }, [graduatedAt]);
 
   const graduationDateTitle = useMemo(() => {
-    if (educational_status === 'QUALIFICATION_EXAM')
+    if (educationalStatus === 'QUALIFICATION_EXAM')
       return (
         <S.LineTitle>
           <span>*</span>합격 연월
@@ -58,10 +58,10 @@ const ChooseGraduationDate: FC<Props> = ({
           <span>*</span>졸업 연월
         </S.LineTitle>
       );
-  }, [educational_status]);
+  }, [educationalStatus]);
 
   const explain = useMemo(() => {
-    if (educational_status === 'QUALIFICATION_EXAM') return;
+    if (educationalStatus === 'QUALIFICATION_EXAM') return;
     else
       return (
         <S.Explain>
@@ -69,7 +69,7 @@ const ChooseGraduationDate: FC<Props> = ({
           {GRADUATION_DATE_EXPLAIN}
         </S.Explain>
       );
-  }, [educational_status]);
+  }, [educationalStatus]);
 
   return (
     <S.Line>
@@ -78,22 +78,22 @@ const ChooseGraduationDate: FC<Props> = ({
         graduationYear={graduationYear}
         setGraduationYear={setGraduationYear}
         disabled={isProspective ? 'block' : 'normal'}
-        application_type={application_type}
-        is_daejeon={is_daejeon}
-        educational_status={educational_status}
+        applicationType={applicationType}
+        isDaejeon={isDaejeon}
+        educationalStatus={educationalStatus}
         graduationMonth={graduationMonth}
-        application_remark={application_remark}
+        applicationRemark={applicationRemark}
         autoSaveSelectType={autoSaveSelectType}
       />
       <S.Date>년</S.Date>
       <MonthSelect
         graduationMonth={graduationMonth}
         setGraduationMonth={setGraduationMonth}
-        application_type={application_type}
-        is_daejeon={is_daejeon}
-        educational_status={educational_status}
+        applicationType={applicationType}
+        isDaejeon={isDaejeon}
+        educationalStatus={educationalStatus}
         graduationYear={graduationYear}
-        application_remark={application_remark}
+        applicationRemark={applicationRemark}
         autoSaveSelectType={autoSaveSelectType}
       />
       <S.Date>월</S.Date>
