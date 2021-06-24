@@ -13,9 +13,11 @@ import {
   AUTOSAVE_INFORMATION,
   AUTOSAVE_INFORMATION_SUCCESS,
   AUTOSAVE_INFORMATION_FAILURE,
-  GET_INFORMATION,
   GET_INFORMATION_SUCCESS,
   GET_INFORMATION_FAILURE,
+  INFORMATION_IMAGE,
+  INFORMATION_IMAGE_FAILURE,
+  INFORMATION_IMAGE_SUCCESS,
 } from '../../action/information/interface';
 import InformationState from './interface';
 
@@ -41,9 +43,10 @@ const initState: InformationState = {
   stdClass: '',
   stdNumber: '',
   imageUrl: '',
-  imageFile: '',
+  imageFile: null,
   isGraduated: false,
   error: null,
+  isSuccessSaveInformationImage: undefined,
   isSuccessGetInformation: undefined,
   isSuccessSaveInformation: undefined,
 };
@@ -104,7 +107,7 @@ const informationReducer = (
         baseAddress: action.payload.baseAddress,
         detailAddress: action.payload.detailAddress,
         zipCode: action.payload.zipcode,
-        imageFile: action.payload.imageFile,
+        imageUrl: action.payload.imageUrl,
         grade: action.payload.grade,
         isGraduated: action.payload.isGraduated,
       };
@@ -134,7 +137,7 @@ const informationReducer = (
         baseAddress: action.payload.baseAddress,
         detailAddress: action.payload.detailAddress,
         zipCode: action.payload.zipcode,
-        imageFile: action.payload.imageFile,
+        imageUrl: action.payload.imageUrl,
         grade: action.payload.grade,
         isGraduated: action.payload.isGraduated,
       };
@@ -163,7 +166,7 @@ const informationReducer = (
         baseAddress: action.payload.address,
         detailAddress: action.payload.detail_address,
         zipCode: action.payload.post_code,
-        imageFile: action.payload.photo_file_name,
+        imageUrl: action.payload.photo_file_name,
         grade: action.payload.student_number,
         isGraduated: action.payload.is_graduated,
       };
@@ -171,6 +174,23 @@ const informationReducer = (
       return {
         ...state,
         isSuccessGetInformation: false,
+        error: action.payload,
+      };
+    case INFORMATION_IMAGE:
+      return {
+        ...state,
+        isSuccessSaveInformationImage: undefined,
+        imageFile: action.payload,
+      };
+    case INFORMATION_IMAGE_SUCCESS:
+      return {
+        ...state,
+        isSuccessSaveInformationImage: true,
+      };
+    case INFORMATION_IMAGE_FAILURE:
+      return {
+        ...state,
+        isSuccessSaveInformationImage: false,
         error: action.payload,
       };
     default:
