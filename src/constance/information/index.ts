@@ -12,3 +12,21 @@ export const GRADE = [
   { name: 'class', content: '반' },
   { name: 'number', content: '번' },
 ];
+
+export type informationType = {
+  name: string;
+  gender: string;
+  birthDay: string;
+  schoolName: string;
+  schoolPhoneNumber: string;
+  parentName: string;
+  parentPhoneNumber: string;
+  phoneNumber: string;
+  homePhoneNumber: string;
+  baseAddress: string;
+  detailAddress: string;
+  zipcode: string;
+  imageUrl: string;
+  grade: string;
+  isGraduated: boolean;
+};
