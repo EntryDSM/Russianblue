@@ -24,7 +24,7 @@ interface Props {
   setBirthMonth: (payload: number) => void;
   setBirthDate: (payload: number) => void;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: File) => void;
+  setImageFile: (payload: string) => void;
 }
 
 const InformationForm: FC<Props> = ({
@@ -43,7 +43,7 @@ const InformationForm: FC<Props> = ({
   const graduation = useSelectType().state.educationalStatus;
 
   const styleInfo = useMemo(() => {
-    if (graduation === '검정고시')
+    if (graduation === 'QUALIFICATION_EXAM')
       return {
         widthHeight: {
           width: 904,
@@ -74,7 +74,7 @@ const InformationForm: FC<Props> = ({
   }, [graduation]);
 
   const grade = useMemo(() => {
-    if (graduation === '검정고시') return <TotalScoreColumn setInput={setInput} />;
+    if (graduation === 'QUALIFICATION_EXAM') return <TotalScoreColumn setInput={setInput} />;
     else
       return (
         <>
@@ -85,7 +85,7 @@ const InformationForm: FC<Props> = ({
   }, [graduation]);
 
   const phoneNumberColumn = useMemo(() => {
-    if (graduation !== '검정고시')
+    if (graduation !== 'QUALIFICATION_EXAM')
       return (
         <PhoneNumberColumn title={'학교 연락처'} name={'schoolPhoneNumber'} setInput={setInput} />
       );
