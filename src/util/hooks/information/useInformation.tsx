@@ -32,7 +32,7 @@ const useInformation = () => {
     setImageUrl: (payload: string) => {
       dispatch(setImageUrl(payload));
     },
-    setImageFile: (payload: File) => {
+    setImageFile: (payload: string) => {
       dispatch(setImageFile(payload));
     },
   };
