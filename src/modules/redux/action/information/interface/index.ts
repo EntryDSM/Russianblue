@@ -1,7 +1,19 @@
-export const INPUT = 'information/INPUT' as const;
-export const GENDER = 'information/GENDER' as const;
-export const BIRTHYEAR = 'information/BIRTHYEAR' as const;
-export const BIRTHMONTH = 'information/BIRTHMONTH' as const;
-export const BIRTHDATE = 'information/BIRTHDATE' as const;
-export const IMAGEURL = 'information/IMAGEURL' as const;
-export const IMAGEFILE = 'information/IMAGEFILE' as const;
+export const INPUT = 'INFORMATION/INPUT' as const;
+export const GENDER = 'INFORMATION/GENDER' as const;
+export const BIRTHYEAR = 'INFORMATION/BIRTHYEAR' as const;
+export const BIRTHMONTH = 'INFORMATION/BIRTHMONTH' as const;
+export const BIRTHDATE = 'INFORMATION/BIRTHDATE' as const;
+export const IMAGEURL = 'INFORMATION/IMAGEURL' as const;
+export const IMAGEFILE = 'INFORMATION/IMAGEFILE' as const;
+
+export const INFORMATION = 'INFORMATION/INFORMATION' as const;
+export const INFORMATION_SUCCESS = 'INFORMATION/SUCCESS' as const;
+export const INFORMATION_FAILURE = 'INFORMATION/FAILURE' as const;
+
+export const AUTOSAVE_INFORMATION = 'INFORMATION/AUTOSAVE_INFORMATION' as const;
+export const AUTOSAVE_INFORMATION_SUCCESS = 'INFORMATION/AUTOSAVE_INFORMATION_SUCCESS' as const;
+export const AUTOSAVE_INFORMATION_FAILURE = 'INFORMATION/AUTOSAVE_INFORMATION_FAILURE' as const;
+
+export const GET_INFORMATION = 'INFORMATION/GET_INFORMATION' as const;
+export const GET_INFORMATION_SUCCESS = 'INFORMATION/GET_INFORMATION_SUCCESS' as const;
+export const GET_INFORMATION_FAILURE = 'INFORMATION/GET_INFORMATION_FAILURE' as const;
