@@ -6,11 +6,12 @@ interface Props {
   height?: number;
   disable: boolean;
   margin?: string;
+  onClick?: () => void;
 }
 
-const Button: FC<Props> = ({ width, height, disable, children, margin }) => {
+const Button: FC<Props> = ({ width, height, disable, children, margin, onClick }) => {
   return (
-    <S.Button width={width} height={height} disable={disable} margin={margin}>
+    <S.Button width={width} height={height} disable={disable} margin={margin} onClick={onClick}>
       {children}
     </S.Button>
   );

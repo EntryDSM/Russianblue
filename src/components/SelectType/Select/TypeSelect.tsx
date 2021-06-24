@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, useMemo } from 'react';
+import React, { Dispatch, FC, useEffect, useMemo } from 'react';
 import * as S from '../style';
 import { dropdown, dropdown_active, dropdown_disabled } from '../../../assets/selectType';
 import { SOCIAL } from '../../../constance/SelectType';
@@ -8,9 +8,36 @@ interface Props {
   disabled: string;
   setDisabled: Dispatch<React.SetStateAction<string>>;
   setSocialType: (payload: string) => void;
+  setRemark: (payload: string) => void;
+  applicationRemark: string;
+  applicationType: string;
+  isDaejeon: boolean;
+  educationalStatus: string;
+  graduationYear: number;
+  graduationMonth: number;
+  autoSaveSelectType: (payload: {
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
+  }) => void;
 }
 
-const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisabled }) => {
+const TypeSelect: FC<Props> = ({
+  socialType,
+  setSocialType,
+  disabled,
+  setDisabled,
+  setRemark,
+  applicationRemark,
+  applicationType,
+  educationalStatus,
+  isDaejeon,
+  graduationYear,
+  graduationMonth,
+  autoSaveSelectType,
+}) => {
   const onSelectClick = () => {
     if (disabled === 'normal') {
       setDisabled('enabled');
@@ -19,8 +46,47 @@ const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisable
     }
   };
 
+  useEffect(() => {
+    let graduatedDate = '';
+    if (String(graduationMonth).length === 1) {
+      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedDate = String(graduationYear) + String(graduationMonth);
+    autoSaveSelectType({
+      educationalStatus: educationalStatus,
+      applicationType: applicationType,
+      isDaejeon: isDaejeon,
+      applicationRemark: applicationRemark,
+      graduatedAt: graduatedDate,
+    });
+  }, [applicationRemark]);
+
   const onSocialTypeClick = e => {
-    setSocialType(e.target.innerText);
+    switch (e.target.innerText) {
+      case '기초생활수급자':
+        setSocialType('기초생활수급자');
+        setRemark('BASIC_LIVING');
+        break;
+      case '한부모가족':
+        setSocialType('한부모가족');
+        setRemark('ONE_PARENT');
+        break;
+      case '차상위계층':
+        setSocialType('차상위계층');
+        setRemark('LOWEST_INCOME');
+        break;
+      case '소년소녀가장':
+        setSocialType('소년소녀가장');
+        setRemark('TEEN_HOUSEHOLDER');
+        break;
+      case '북한이탈주민':
+        setSocialType('북한이탈주민');
+        setRemark('FROM_NORTH');
+        break;
+      case '다문화가정':
+        setSocialType('다문화가정');
+        setRemark('MULTICULTURA');
+        break;
+    }
   };
 
   const dropDown = useMemo(() => {

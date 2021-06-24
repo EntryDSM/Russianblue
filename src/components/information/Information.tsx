@@ -3,7 +3,7 @@ import * as S from './style';
 import Pagination from '../default/Pagination';
 import InformationForm from './InformationForm';
 import { SCHOOL, INFORMATIONTITLE } from '../../constance/information';
-import { useSelectType } from '../../util/hooks/selectType';
+import useSelectType from '../../util/hooks/selectType';
 
 interface Props {
   imageUrl: string;
@@ -52,7 +52,7 @@ const Information: FC<Props> = ({
         setImageUrl={setImageUrl}
         setImageFile={setImageFile}
       />
-      <Pagination nowPage={[false, true, false, false, false]} />
+      <Pagination />
     </S.Information>
   );
 };

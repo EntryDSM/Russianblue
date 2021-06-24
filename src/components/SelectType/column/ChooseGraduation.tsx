@@ -1,10 +1,23 @@
-import React, { Dispatch, FC, useState } from 'react';
+import React, { Dispatch, FC, useEffect, useState } from 'react';
 import * as S from '../style';
 import { GRADUATION } from '../../../constance/SelectType';
 
 interface Props {
   setIsProspective: Dispatch<React.SetStateAction<boolean>>;
   setGraduation: (payload: string) => void;
+  educationalStatus: string;
+  applicationRemark: string;
+  applicationType: string;
+  isDaejeon: boolean;
+  graduationYear: number;
+  graduationMonth: number;
+  autoSaveSelectType: (payload: {
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string;
+    graduatedAt: string;
+  }) => void;
 }
 
 const isCheckInit = {
@@ -13,28 +26,73 @@ const isCheckInit = {
   qualification: false,
 };
 
-const ChooseGraduation: FC<Props> = ({ setIsProspective, setGraduation }) => {
+const ChooseGraduation: FC<Props> = ({
+  setIsProspective,
+  setGraduation,
+  educationalStatus,
+  applicationRemark,
+  applicationType,
+  isDaejeon,
+  graduationYear,
+  graduationMonth,
+  autoSaveSelectType,
+}) => {
   const [isCheck, setIsCheck] = useState(isCheckInit);
+  useEffect(() => {
+    switch (educationalStatus) {
+      case 'PROSPECTIVE_GRADUATE':
+        setIsCheck({ ...isCheckInit, prospective: true });
+        setIsProspective(true);
+        break;
+      case 'GRADUATE':
+        setIsCheck({ ...isCheckInit, graduate: true });
+        setIsProspective(false);
+        break;
+      case 'QUALIFICATION_EXAM':
+        setIsCheck({ ...isCheckInit, qualification: true });
+        setIsProspective(false);
+        break;
+      default:
+        setIsCheck(isCheckInit);
+        break;
+    }
+  }, [educationalStatus]);
+
+  useEffect(() => {
+    let graduatedDate = '';
+    if (String(graduationMonth).length === 1) {
+      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
+    } else graduatedDate = String(graduationYear) + String(graduationMonth);
+    autoSaveSelectType({
+      educationalStatus: educationalStatus,
+      applicationType: applicationType,
+      isDaejeon: isDaejeon,
+      applicationRemark: applicationRemark,
+      graduatedAt: graduatedDate,
+    });
+  }, [educationalStatus]);
+
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     switch (dataId) {
       case 'prospective':
         setIsCheck({ ...isCheckInit, prospective: true });
         setIsProspective(true);
-        setGraduation('졸업예정자');
+        setGraduation('PROSPECTIVE_GRADUATE');
         break;
       case 'graduate':
         setIsCheck({ ...isCheckInit, graduate: true });
         setIsProspective(false);
-        setGraduation('졸업자');
+        setGraduation('GRADUATE');
         break;
       case 'qualification':
         setIsCheck({ ...isCheckInit, qualification: true });
         setIsProspective(false);
-        setGraduation('검정고시');
+        setGraduation('QUALIFICATION_EXAM');
         break;
     }
   };
+
   return (
     <S.Line>
       <S.LineTitle>

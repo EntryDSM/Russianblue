@@ -30,7 +30,10 @@ export const setIsEnd = (payload: boolean) => ({
   payload,
 });
 
-export const getStatusSuccess = (payload: Array<processTimeType>) => ({
+export const getStatusSuccess = (payload: {
+  schedules: Array<processTimeType>;
+  current_status: string;
+}) => ({
   type: STATUS_SUCCESS,
   payload,
 });
