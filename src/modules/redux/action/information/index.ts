@@ -16,6 +16,9 @@ import {
   GET_INFORMATION,
   GET_INFORMATION_FAILURE,
   GET_INFORMATION_SUCCESS,
+  INFORMATION_IMAGE,
+  INFORMATION_IMAGE_FAILURE,
+  INFORMATION_IMAGE_SUCCESS,
 } from './interface';
 
 export const setInput = (payload: { name: string; value: string }) => ({
@@ -48,8 +51,23 @@ export const setImageUrl = (payload: string) => ({
   payload,
 });
 
-export const setImageFile = (payload: String) => ({
+export const setImageFile = (payload: File) => ({
   type: IMAGEFILE,
+  payload,
+});
+
+export const informationImage = (payload: File) => ({
+  type: INFORMATION_IMAGE,
+  payload,
+});
+
+export const informationImageSuccess = (payload: boolean) => ({
+  type: INFORMATION_IMAGE_SUCCESS,
+  payload,
+});
+
+export const informationImageFailure = (payload: error) => ({
+  type: INFORMATION_IMAGE_FAILURE,
   payload,
 });
 
@@ -66,7 +84,7 @@ export const information = (payload: {
   baseAddress: string;
   detailAddress: string;
   zipcode: string;
-  imageFile: string;
+  imageUrl: string;
   grade: string;
   isGraduated: boolean;
 }) => ({
@@ -97,7 +115,7 @@ export const autoSaveInformation = (payload: {
   baseAddress: string;
   detailAddress: string;
   zipcode: string;
-  imageFile: string;
+  imageUrl: string;
   grade: string;
   isGraduated: boolean;
 }) => ({
@@ -160,4 +178,7 @@ export type informationActionType =
   | ReturnType<typeof autoSaveInformationFailure>
   | ReturnType<typeof getInformation>
   | ReturnType<typeof getInformationSuccess>
-  | ReturnType<typeof getInformationFailure>;
+  | ReturnType<typeof getInformationFailure>
+  | ReturnType<typeof informationImage>
+  | ReturnType<typeof informationImageSuccess>
+  | ReturnType<typeof informationImageFailure>;
