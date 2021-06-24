@@ -10,6 +10,7 @@ enum uri {
   schedule = '/admin/schedules',
   selectType = '/application/users/type',
   information = '/application/users',
+  informationImage = '/application/users/photo',
 }
 
 export default uri;
