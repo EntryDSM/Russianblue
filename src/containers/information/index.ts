@@ -1,2 +1,2 @@
-import InformaionContainer from './InformationContainer';
-export default InformaionContainer;
+import InformationContainer from './InformationContainer';
+export default InformationContainer;
