@@ -22,8 +22,9 @@ interface InformationState {
   stdClass: string;
   stdNumber: string;
   imageUrl: string;
-  imageFile: String;
+  imageFile: File;
   isGraduated: boolean;
+  isSuccessSaveInformationImage: boolean | undefined;
   isSuccessSaveInformation: boolean | undefined;
   isSuccessGetInformation: boolean | undefined;
   error: error;
