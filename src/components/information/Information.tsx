@@ -3,7 +3,7 @@ import * as S from './style';
 import Pagination from '../default/Pagination';
 import InformationForm from './InformationForm';
 import { SCHOOL, INFORMATIONTITLE } from '../../constance/information';
-import { useSelectType } from '../../util/hooks/selectType';
+import useSelectType from '../../util/hooks/selectType';
 
 interface Props {
   imageUrl: string;

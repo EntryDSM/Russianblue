@@ -8,6 +8,7 @@ enum uri {
   introduction = '/application/intro',
   studyPlan = '/application/study-plan',
   schedule = '/admin/schedules',
+  selectType = '/application/users/type',
 }
 
 export default uri;
