@@ -9,7 +9,7 @@ const SelectTypeContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const selectType = dispatch({ type: GET_SELECTTYPE });
+    dispatch({ type: GET_SELECTTYPE });
   }, []);
   return <SelectType {...state} {...setState} />;
 };
