@@ -11,7 +11,7 @@ interface Props {
   top: number;
   imageUrl: string;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: File) => void;
+  setImageFile: (payload: string) => void;
 }
 
 const PictureBtn: FC<Props> = ({
@@ -25,7 +25,7 @@ const PictureBtn: FC<Props> = ({
   top,
 }) => {
   const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImageFile(e.target.files[0]);
+    setImageFile(e.target.files[0].name);
     let filedes = URL.createObjectURL(e.target.files[0]);
     setImageUrl(filedes);
     console.log(e.target.files[0]);
