@@ -16,7 +16,7 @@ interface Props {
   setBirthMonth: (payload: number) => void;
   setBirthDate: (payload: number) => void;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: File) => void;
+  setImageFile: (payload: string) => void;
 }
 
 const Information: FC<Props> = ({
