@@ -10,6 +10,7 @@ interface Props {
   inputChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   name?: string;
+  defaultValue?: string;
 }
 
 const Input: FC<Props> = ({
@@ -21,9 +22,11 @@ const Input: FC<Props> = ({
   inputChangeHandler,
   type,
   name,
+  defaultValue,
 }) => {
   return (
     <S.Input
+      defaultValue={defaultValue}
       width={width}
       height={height}
       disable={disable}
