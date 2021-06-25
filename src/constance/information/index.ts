@@ -8,9 +8,9 @@ export const GENDER = [
   { id: 'female', content: '여자' },
 ];
 export const GRADE = [
-  { name: 'grade', content: '학년' },
-  { name: 'class', content: '반' },
-  { name: 'number', content: '번' },
+  { name: 'stdGrade', content: '학년' },
+  { name: 'stdClass', content: '반' },
+  { name: 'stdNumber', content: '번' },
 ];
 
 export type informationType = {
