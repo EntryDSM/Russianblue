@@ -24,7 +24,7 @@ import InformationState from './interface';
 const initState: InformationState = {
   name: '',
   gender: '',
-  birthDay: '',
+  birthDay: '20060101',
   birthYear: 2006,
   birthMonth: 1,
   birthDate: 1,
