@@ -7,7 +7,7 @@ export const information = async (
     name: string;
     gender: string;
     birthDay: string;
-    schoolName: string;
+    schoolCode: string;
     schoolPhoneNumber: string;
     parentName: string;
     parentPhoneNumber: string;
@@ -27,7 +27,7 @@ export const information = async (
       name: informationRequest.name,
       sex: informationRequest.gender,
       birthday: informationRequest.birthDay,
-      school_code: informationRequest.schoolName,
+      school_code: informationRequest.schoolCode,
       school_tel: informationRequest.schoolPhoneNumber,
       parent_name: informationRequest.parentName,
       parent_tel: informationRequest.parentPhoneNumber,
@@ -50,7 +50,7 @@ export const autoSaveInformation = async (
     name: string;
     gender: string;
     birthDay: string;
-    schoolName: string;
+    schoolCode: string;
     schoolPhoneNumber: string;
     parentName: string;
     parentPhoneNumber: string;
@@ -70,7 +70,7 @@ export const autoSaveInformation = async (
       name: informationRequest.name,
       sex: informationRequest.gender,
       birthday: informationRequest.birthDay,
-      school_code: informationRequest.schoolName,
+      school_code: informationRequest.schoolCode,
       school_tel: informationRequest.schoolPhoneNumber,
       parent_name: informationRequest.parentName,
       parent_tel: informationRequest.parentPhoneNumber,
@@ -100,6 +100,19 @@ export const informationImage = async (access_token: string, informationImageReq
   try {
     const request = getRequestWithAccessToken(access_token);
     await request.post(uri.informationImage, { file: informationImageRequest });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const searchSchool = async (access_token: string, searchSchoolRequest) => {
+  try {
+    const request = getRequestWithAccessToken(access_token);
+    return await request.get(
+      `${uri.searchSchool}?name=${encodeURI(searchSchoolRequest.schoolSearchName)}&size=${
+        searchSchoolRequest.size
+      }&page=${searchSchoolRequest.page}`,
+    );
   } catch (error) {
     throw error;
   }
