@@ -11,6 +11,7 @@ enum uri {
   selectType = '/application/users/type',
   information = '/application/users',
   informationImage = '/application/users/photo',
+  searchSchool = '/application/schools',
 }
 
 export default uri;
