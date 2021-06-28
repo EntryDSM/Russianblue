@@ -1,3 +1,4 @@
+import { schoolArrayType } from 'src/constance/information';
 import { error } from '../../../../../models/error';
 
 interface InformationState {
@@ -7,14 +8,13 @@ interface InformationState {
   birthYear: number;
   birthMonth: number;
   birthDate: number;
-  schoolName: string;
+  schoolCode: string;
   schoolPhoneNumber: string;
   parentName: string;
   parentPhoneNumber: string;
   phoneNumber: string;
   homePhoneNumber: string;
   zipCode: string;
-  fullAddress: string;
   baseAddress: string;
   detailAddress: string;
   grade: string;
@@ -27,7 +27,13 @@ interface InformationState {
   isSuccessSaveInformationImage: boolean | undefined;
   isSuccessSaveInformation: boolean | undefined;
   isSuccessGetInformation: boolean | undefined;
+  isSuccessSaveSearchSchool: boolean | undefined;
   error: error;
+  schoolSearchName: string;
+  page: number;
+  size: number;
+  content: Array<schoolArrayType>;
+  totalPages: number;
 }
 
 export default InformationState;
