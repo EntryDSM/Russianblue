@@ -18,6 +18,10 @@ import {
   INFORMATION_IMAGE,
   INFORMATION_IMAGE_FAILURE,
   INFORMATION_IMAGE_SUCCESS,
+  SEARCH_SCHOOL,
+  SEARCH_SCHOOL_FAILURE,
+  SEARCH_SCHOOL_SUCCESS,
+  SCHOOLCODE,
 } from '../../action/information/interface';
 import InformationState from './interface';
 
@@ -28,14 +32,13 @@ const initState: InformationState = {
   birthYear: 2006,
   birthMonth: 1,
   birthDate: 1,
-  schoolName: '',
+  schoolCode: '',
   schoolPhoneNumber: '',
   parentName: '',
   parentPhoneNumber: '',
   phoneNumber: '',
   homePhoneNumber: '',
   zipCode: '',
-  fullAddress: '',
   baseAddress: '',
   detailAddress: '',
   grade: '',
@@ -45,10 +48,16 @@ const initState: InformationState = {
   imageUrl: '',
   imageFile: null,
   isGraduated: false,
+  schoolSearchName: '',
+  page: 0,
+  size: 10,
+  content: null,
+  totalPages: 0,
   error: null,
   isSuccessSaveInformationImage: undefined,
   isSuccessGetInformation: undefined,
   isSuccessSaveInformation: undefined,
+  isSuccessSaveSearchSchool: undefined,
 };
 
 const informationReducer = (
@@ -91,6 +100,11 @@ const informationReducer = (
         ...state,
         imageFile: action.payload,
       };
+    case SCHOOLCODE:
+      return {
+        ...state,
+        schoolCode: action.payload,
+      };
     case INFORMATION:
       return {
         ...state,
@@ -98,7 +112,7 @@ const informationReducer = (
         name: action.payload.name,
         gender: action.payload.grade,
         birthDay: action.payload.birthDay,
-        schoolName: action.payload.schoolName,
+        schoolCode: action.payload.schoolCode,
         schoolPhoneNumber: action.payload.schoolPhoneNumber,
         parentName: action.payload.parentName,
         parentPhoneNumber: action.payload.parentPhoneNumber,
@@ -128,7 +142,7 @@ const informationReducer = (
         name: action.payload.name,
         gender: action.payload.grade,
         birthDay: action.payload.birthDay,
-        schoolName: action.payload.schoolName,
+        schoolCode: action.payload.schoolCode,
         schoolPhoneNumber: action.payload.schoolPhoneNumber,
         parentName: action.payload.parentName,
         parentPhoneNumber: action.payload.parentPhoneNumber,
@@ -157,7 +171,7 @@ const informationReducer = (
         name: action.payload.name,
         gender: action.payload.sex,
         birthDay: action.payload.birthday,
-        schoolName: action.payload.school_code,
+        schoolCode: action.payload.school_code,
         schoolPhoneNumber: action.payload.school_tel,
         parentName: action.payload.parent_name,
         parentPhoneNumber: action.payload.parent_tel,
@@ -191,6 +205,29 @@ const informationReducer = (
       return {
         ...state,
         isSuccessSaveInformationImage: false,
+        error: action.payload,
+      };
+    case SEARCH_SCHOOL:
+      return {
+        ...state,
+        isSuccessSaveSearchSchool: undefined,
+        schoolSearchName: action.payload.schoolSearchName,
+        page: action.payload.page,
+        size: action.payload.size,
+      };
+    case SEARCH_SCHOOL_SUCCESS:
+      return {
+        ...state,
+        isSuccessSaveSearchSchool: true,
+        content: state.content
+          ? state.content.concat(action.payload.content)
+          : action.payload.content,
+        totalPages: action.payload.total_pages,
+      };
+    case SEARCH_SCHOOL_FAILURE:
+      return {
+        ...state,
+        isSuccessSaveSearchSchool: false,
         error: action.payload,
       };
     default:
