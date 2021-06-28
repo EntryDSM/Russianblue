@@ -1,3 +1,4 @@
+import { addressType, schoolArrayType } from 'src/constance/information';
 import { error } from '../../../../models/error';
 import {
   INPUT,
@@ -19,6 +20,11 @@ import {
   INFORMATION_IMAGE,
   INFORMATION_IMAGE_FAILURE,
   INFORMATION_IMAGE_SUCCESS,
+  SEARCH_SCHOOL,
+  SEARCH_SCHOOL_FAILURE,
+  SEARCH_SCHOOL_SUCCESS,
+  SCHOOLCODE,
+  ADDRESS_AND_CODE,
 } from './interface';
 
 export const setInput = (payload: { name: string; value: string }) => ({
@@ -56,6 +62,16 @@ export const setImageFile = (payload: File) => ({
   payload,
 });
 
+export const setSchoolCode = (payload: string) => ({
+  type: SCHOOLCODE,
+  payload,
+});
+
+export const setAddress = (payload: addressType) => ({
+  type: ADDRESS_AND_CODE,
+  payload,
+});
+
 export const informationImage = (payload: File) => ({
   type: INFORMATION_IMAGE,
   payload,
@@ -75,7 +91,7 @@ export const information = (payload: {
   name: string;
   gender: string;
   birthDay: string;
-  schoolName: string;
+  schoolCode: string;
   schoolPhoneNumber: string;
   parentName: string;
   parentPhoneNumber: string;
@@ -106,7 +122,7 @@ export const autoSaveInformation = (payload: {
   name: string;
   gender: string;
   birthDay: string;
-  schoolName: string;
+  schoolCode: string;
   schoolPhoneNumber: string;
   parentName: string;
   parentPhoneNumber: string;
@@ -162,6 +178,28 @@ export const getInformationFailure = (payload: error) => ({
   payload,
 });
 
+export const searchSchool = (payload: {
+  schoolSearchName: string;
+  size: number;
+  page: number;
+}) => ({
+  type: SEARCH_SCHOOL,
+  payload,
+});
+
+export const searchSchoolSuccess = (payload: {
+  content: Array<schoolArrayType>;
+  total_pages: number;
+}) => ({
+  type: SEARCH_SCHOOL_SUCCESS,
+  payload,
+});
+
+export const searchSchoolFailure = (payload: error) => ({
+  type: SEARCH_SCHOOL_FAILURE,
+  payload,
+});
+
 export type informationActionType =
   | ReturnType<typeof setInput>
   | ReturnType<typeof setBirthYear>
@@ -181,4 +219,9 @@ export type informationActionType =
   | ReturnType<typeof getInformationFailure>
   | ReturnType<typeof informationImage>
   | ReturnType<typeof informationImageSuccess>
-  | ReturnType<typeof informationImageFailure>;
+  | ReturnType<typeof informationImageFailure>
+  | ReturnType<typeof searchSchool>
+  | ReturnType<typeof searchSchoolSuccess>
+  | ReturnType<typeof searchSchoolFailure>
+  | ReturnType<typeof setSchoolCode>
+  | ReturnType<typeof setAddress>;
