@@ -17,7 +17,7 @@ export type informationType = {
   name: string;
   gender: string;
   birthDay: string;
-  schoolName: string;
+  schoolCode: string;
   schoolPhoneNumber: string;
   parentName: string;
   parentPhoneNumber: string;
@@ -29,4 +29,16 @@ export type informationType = {
   imageUrl: string;
   grade: string;
   isGraduated: boolean;
+};
+
+export type schoolArrayType = {
+  code: string;
+  name: string;
+  information: string;
+  address: string;
+};
+
+export type addressType = {
+  zipcode: string;
+  baseAddress: string;
 };
