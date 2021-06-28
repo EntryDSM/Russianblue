@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import * as S from '../style';
 import { YearSelect, MonthSelect, DateSelect } from '../select';
 
 interface Props {
   width: number;
+  birthDay: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
@@ -17,10 +18,20 @@ const BirthDateColumn: FC<Props> = ({
   birthYear,
   birthMonth,
   birthDate,
+  birthDay,
   setBirthYear,
   setBirthMonth,
   setBirthDate,
 }) => {
+  useEffect(() => {
+    const birthYear = birthDay ? Number(birthDay.slice(0, 4)) : 2006;
+    const birthMonth = birthDay ? Number(birthDay.slice(4, 6)) : 1;
+    const birthDate = birthDay ? Number(birthDay.slice(6)) : 1;
+    setBirthYear(birthYear);
+    setBirthMonth(birthMonth);
+    setBirthDate(birthDate);
+  }, [birthDay]);
+
   return (
     <S.InformationLine width={width}>
       <S.InformationLineTitle>
