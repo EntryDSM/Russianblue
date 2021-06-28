@@ -38,8 +38,8 @@ const ChooseGraduationDate: FC<Props> = ({
 }) => {
   useEffect(() => {
     if (graduatedAt) {
-      const graduatedYear = graduatedAt.slice(0, 4);
-      const graduatedMonth = graduatedAt.slice(4);
+      const graduatedYear = graduatedAt ? graduatedAt.slice(0, 4) : 2022;
+      const graduatedMonth = graduatedAt ? graduatedAt.slice(4) : 3;
       setGraduationYear(Number(graduatedYear));
       setGraduationMonth(Number(graduatedMonth));
     }
