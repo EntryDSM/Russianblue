@@ -22,6 +22,7 @@ import {
   SEARCH_SCHOOL_FAILURE,
   SEARCH_SCHOOL_SUCCESS,
   SCHOOLCODE,
+  ADDRESS_AND_CODE,
 } from '../../action/information/interface';
 import InformationState from './interface';
 
@@ -104,6 +105,12 @@ const informationReducer = (
       return {
         ...state,
         schoolCode: action.payload,
+      };
+    case ADDRESS_AND_CODE:
+      return {
+        ...state,
+        baseAddress: action.payload.baseAddress,
+        zipCode: action.payload.zipcode,
       };
     case INFORMATION:
       return {
