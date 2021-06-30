@@ -1,4 +1,11 @@
-import { addressType, schoolArrayType } from 'src/constance/information';
+import {
+  addressType,
+  gedInformationType,
+  getGedInformationType,
+  getInformationType,
+  informationType,
+  schoolArrayType,
+} from 'src/constance/information';
 import { error } from '../../../../models/error';
 import {
   INPUT,
@@ -8,6 +15,8 @@ import {
   BIRTHYEAR,
   IMAGEURL,
   IMAGEFILE,
+  SCHOOLCODE,
+  ADDRESS_AND_CODE,
   INFORMATION,
   INFORMATION_FAILURE,
   INFORMATION_SUCCESS,
@@ -23,8 +32,15 @@ import {
   SEARCH_SCHOOL,
   SEARCH_SCHOOL_FAILURE,
   SEARCH_SCHOOL_SUCCESS,
-  SCHOOLCODE,
-  ADDRESS_AND_CODE,
+  GEDINFORMATION,
+  GEDINFORMATION_FAILURE,
+  GEDINFORMATION_SUCCESS,
+  GET_GEDINFORMATION,
+  GET_GEDINFORMATION_FAILURE,
+  GET_GEDINFORMATION_SUCCESS,
+  AUTOSAVE_GEDINFORMATION,
+  AUTOSAVE_GEDINFORMATION_FAILURE,
+  AUTOSAVE_GEDINFORMATION_SUCCESS,
 } from './interface';
 
 export const setInput = (payload: { name: string; value: string }) => ({
@@ -77,7 +93,7 @@ export const informationImage = (payload: File) => ({
   payload,
 });
 
-export const informationImageSuccess = (payload: boolean) => ({
+export const informationImageSuccess = (payload: string) => ({
   type: INFORMATION_IMAGE_SUCCESS,
   payload,
 });
@@ -87,23 +103,35 @@ export const informationImageFailure = (payload: error) => ({
   payload,
 });
 
-export const information = (payload: {
-  name: string;
-  gender: string;
-  birthDay: string;
-  schoolCode: string;
-  schoolPhoneNumber: string;
-  parentName: string;
-  parentPhoneNumber: string;
-  phoneNumber: string;
-  homePhoneNumber: string;
-  baseAddress: string;
-  detailAddress: string;
-  zipcode: string;
-  imageUrl: string;
-  grade: string;
-  isGraduated: boolean;
-}) => ({
+export const gedInformation = (payload: gedInformationType) => ({
+  type: GEDINFORMATION,
+  payload,
+});
+
+export const gedInformationSuccess = () => ({
+  type: GEDINFORMATION_SUCCESS,
+});
+
+export const gedInformationFailure = (payload: error) => ({
+  type: GEDINFORMATION_FAILURE,
+  payload,
+});
+
+export const getGedInformation = () => ({
+  type: GET_GEDINFORMATION,
+});
+
+export const getGedInformationSuccess = (payload: getGedInformationType) => ({
+  type: GET_GEDINFORMATION_SUCCESS,
+  payload,
+});
+
+export const getGedInformationFailure = (payload: error) => ({
+  type: GET_GEDINFORMATION_FAILURE,
+  payload,
+});
+
+export const information = (payload: informationType) => ({
   type: INFORMATION,
   payload,
 });
@@ -118,26 +146,12 @@ export const informationFailure = (payload: error) => ({
   payload,
 });
 
-export const autoSaveInformation = (payload: {
-  name: string;
-  gender: string;
-  birthDay: string;
-  schoolCode: string;
-  schoolPhoneNumber: string;
-  parentName: string;
-  parentPhoneNumber: string;
-  phoneNumber: string;
-  homePhoneNumber: string;
-  baseAddress: string;
-  detailAddress: string;
-  zipcode: string;
-  imageUrl: string;
-  grade: string;
-  isGraduated: boolean;
-}) => ({
-  type: AUTOSAVE_INFORMATION,
-  payload,
-});
+export const autoSaveInformation = (payload: informationType) => {
+  return {
+    type: AUTOSAVE_INFORMATION,
+    payload,
+  };
+};
 
 export const autoSaveInformationSuccess = () => ({
   type: AUTOSAVE_INFORMATION_SUCCESS,
@@ -148,27 +162,27 @@ export const autoSaveInformationFailure = (payload: error) => ({
   payload,
 });
 
+export const autoSaveGedInformation = (payload: gedInformationType) => {
+  return {
+    type: AUTOSAVE_GEDINFORMATION,
+    payload,
+  };
+};
+
+export const autoSaveGedInformationSuccess = () => ({
+  type: AUTOSAVE_GEDINFORMATION_SUCCESS,
+});
+
+export const autoSaveGedInformationFailure = (payload: error) => ({
+  type: AUTOSAVE_GEDINFORMATION_FAILURE,
+  payload,
+});
+
 export const getInformation = () => ({
   type: GET_INFORMATION,
 });
 
-export const getInformationSuccess = (payload: {
-  name: string;
-  sex: string;
-  birthday: string;
-  school_code: string;
-  school_tel: string;
-  parent_name: string;
-  parent_tel: string;
-  telephone_number: string;
-  home_tel: string;
-  address: string;
-  detail_address: string;
-  post_code: string;
-  photo_file_name: string;
-  student_number: string;
-  is_graduated: boolean;
-}) => ({
+export const getInformationSuccess = (payload: getInformationType) => ({
   type: GET_INFORMATION_SUCCESS,
   payload,
 });
@@ -208,6 +222,8 @@ export type informationActionType =
   | ReturnType<typeof setGender>
   | ReturnType<typeof setImageUrl>
   | ReturnType<typeof setImageFile>
+  | ReturnType<typeof setSchoolCode>
+  | ReturnType<typeof setAddress>
   | ReturnType<typeof information>
   | ReturnType<typeof informationSuccess>
   | ReturnType<typeof informationFailure>
@@ -223,5 +239,12 @@ export type informationActionType =
   | ReturnType<typeof searchSchool>
   | ReturnType<typeof searchSchoolSuccess>
   | ReturnType<typeof searchSchoolFailure>
-  | ReturnType<typeof setSchoolCode>
-  | ReturnType<typeof setAddress>;
+  | ReturnType<typeof gedInformation>
+  | ReturnType<typeof gedInformationSuccess>
+  | ReturnType<typeof gedInformationFailure>
+  | ReturnType<typeof getGedInformation>
+  | ReturnType<typeof getGedInformationSuccess>
+  | ReturnType<typeof getGedInformationFailure>
+  | ReturnType<typeof autoSaveGedInformation>
+  | ReturnType<typeof autoSaveGedInformationSuccess>
+  | ReturnType<typeof autoSaveGedInformationFailure>;
