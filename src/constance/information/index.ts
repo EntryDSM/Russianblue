@@ -16,7 +16,9 @@ export const GRADE = [
 export type informationType = {
   name: string;
   gender: string;
-  birthDay: string;
+  birthYear: number;
+  birthMonth: number;
+  birthDate: number;
   schoolCode: string;
   schoolPhoneNumber: string;
   parentName: string;
@@ -25,10 +27,59 @@ export type informationType = {
   homePhoneNumber: string;
   baseAddress: string;
   detailAddress: string;
-  zipcode: string;
-  imageUrl: string;
-  grade: string;
-  isGraduated: boolean;
+  zipCode: string;
+  stdGrade: string;
+  stdClass: string;
+  stdNumber: string;
+};
+
+export type getInformationType = {
+  name: string;
+  sex: string;
+  birthday: string;
+  school_code: string;
+  school_tel: string;
+  parent_name: string;
+  parent_tel: string;
+  telephone_number: string;
+  home_tel: string;
+  address: string;
+  detail_address: string;
+  post_code: string;
+  photo_file_name: string;
+  student_number: string;
+  school_name: string;
+};
+
+export type gedInformationType = {
+  name: string;
+  gender: string;
+  birthYear: number;
+  birthMonth: number;
+  birthDate: number;
+  parentName: string;
+  parentPhoneNumber: string;
+  phoneNumber: string;
+  homePhoneNumber: string;
+  baseAddress: string;
+  detailAddress: string;
+  zipCode: string;
+  totalScore: number;
+};
+
+export type getGedInformationType = {
+  name: string;
+  sex: string;
+  birthday: string;
+  parent_name: string;
+  parent_tel: string;
+  telephone_number: string;
+  home_tel: string;
+  address: string;
+  detail_address: string;
+  post_code: string;
+  photo_file_name: string;
+  average_score: number;
 };
 
 export type schoolArrayType = {
@@ -39,6 +90,6 @@ export type schoolArrayType = {
 };
 
 export type addressType = {
-  zipcode: string;
+  zipCode: string;
   baseAddress: string;
 };
