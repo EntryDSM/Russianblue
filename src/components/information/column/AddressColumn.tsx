@@ -3,12 +3,26 @@ import * as S from '../style';
 import Input from '../../default/input';
 
 interface Props {
+  zipCode: string;
+  baseAddress: string;
+  detailAddress: string;
   setInput: (payload: { name: string; value: string }) => void;
+  setIsClickAddressBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddressColumn: FC<Props> = ({ setInput }) => {
+const AddressColumn: FC<Props> = ({
+  setInput,
+  setIsClickAddressBtn,
+  zipCode,
+  baseAddress,
+  detailAddress,
+}) => {
   const addressChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ name: e.target.name, value: e.target.value });
+  };
+
+  const searchBtnClickHandler = () => {
+    setIsClickAddressBtn(true);
   };
 
   return (
@@ -21,20 +35,22 @@ const AddressColumn: FC<Props> = ({ setInput }) => {
           <Input
             width={166}
             height={42}
-            inputChangeHandler={addressChangeHandler}
+            inputChangeHandler={() => {}}
             name={'zipCode'}
             placeholder={'우편번호'}
+            defaultValue={zipCode}
             disable
           />
           <Input
             width={312}
             height={42}
-            inputChangeHandler={addressChangeHandler}
+            inputChangeHandler={() => {}}
             name={'basicAddress'}
             placeholder={'기본주소'}
+            defaultValue={baseAddress}
             disable
           />
-          <S.SearchBtn>검색</S.SearchBtn>
+          <S.SearchBtn onClick={searchBtnClickHandler}>검색</S.SearchBtn>
         </div>
         <div>
           <Input
@@ -42,7 +58,8 @@ const AddressColumn: FC<Props> = ({ setInput }) => {
             height={42}
             inputChangeHandler={addressChangeHandler}
             placeholder={'상세주소'}
-            name={'datailAddress'}
+            defaultValue={detailAddress}
+            name={'detailAddress'}
           />
         </div>
       </div>
