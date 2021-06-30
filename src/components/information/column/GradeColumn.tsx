@@ -1,47 +1,50 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
 import { GRADE } from '../../../constance/information';
 
 interface Props {
+  grade: string;
   stdGrade: string;
   stdNumber: string;
   stdClass: string;
   setInput: (payload: { name: string; value: string }) => void;
 }
 
-const GradeColumn: FC<Props> = ({ setInput, stdClass, stdGrade, stdNumber }) => {
+const GradeColumn: FC<Props> = ({ setInput, grade, stdGrade, stdClass, stdNumber }) => {
   const gradeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ name: e.target.name, value: e.target.value });
   };
 
-  const grade = useMemo(() => {
-    let gradeDefaultValue = '';
-    return GRADE.map(grade => {
-      if (grade.name === 'stdGrade') gradeDefaultValue = stdGrade;
-      else if (grade.name === 'stdClass') gradeDefaultValue = stdClass;
-      else if (grade.name === 'stdNumber') gradeDefaultValue = stdNumber;
+  const showGrade = useMemo(() => {
+    return GRADE.map(grades => {
       return (
         <>
           <Input
             width={63}
             height={42}
             inputChangeHandler={gradeChangeHandler}
-            defaultValue={gradeDefaultValue}
-            name={grade.name}
+            defaultValue={
+              grades.name === 'stdGrade'
+                ? stdGrade
+                : grades.name === 'stdClass'
+                ? stdClass
+                : stdNumber
+            }
+            name={grades.name}
           />
-          <S.Unit>{grade.content}</S.Unit>
+          <S.Unit>{grades.content}</S.Unit>
         </>
       );
     });
-  }, [stdGrade, stdClass, stdNumber]);
+  }, [setInput, grade, stdNumber, stdClass, stdGrade]);
 
   return (
     <S.InformationLine width={860}>
       <S.InformationLineTitle>
         <span>*</span>학번
       </S.InformationLineTitle>
-      {grade}
+      {showGrade}
     </S.InformationLine>
   );
 };
