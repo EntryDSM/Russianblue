@@ -1,34 +1,43 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import Pagination from '../default/Pagination';
 import InformationForm from './InformationForm';
-import { SCHOOL, INFORMATIONTITLE } from '../../constance/information';
+import {
+  SCHOOL,
+  INFORMATIONTITLE,
+  schoolArrayType,
+  addressType,
+} from '../../constance/information';
 import { informationType } from '../../constance/information';
+import SearchSchoolModal from '../modal/searchSchool';
+import AddressModal from '../modal/address';
+import useSelectType from '../../util/hooks/selectType';
 
 interface Props {
   name: string;
   gender: string;
-  birthDay: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
-  schoolName: string;
+  schoolCode: string;
   schoolPhoneNumber: string;
   parentName: string;
   parentPhoneNumber: string;
   phoneNumber: string;
+  schoolName: string;
   homePhoneNumber: string;
   zipCode: string;
-  fullAddress: string;
   baseAddress: string;
   detailAddress: string;
   grade: string;
   stdGrade: string;
   stdClass: string;
   stdNumber: string;
+  totalScore: number;
   imageFile: File;
-  isGraduated: boolean;
   imageUrl: string;
+  content: Array<schoolArrayType>;
+  totalPages: number;
   setInput: (payload: { name: string; value: string }) => void;
   setGender: (payload: string) => void;
   setBirthYear: (payload: number) => void;
@@ -38,17 +47,18 @@ interface Props {
   setImageFile: (payload: File) => void;
   informationImage: (payload: File) => void;
   information: (payload: informationType) => void;
-  autoSaveInformation: (payload: informationType) => void;
+  searchSchool: (payload: { schoolSearchName: string; size: number; page: number }) => void;
+  setSchoolCode: (payload: string) => void;
+  setAddress: (payload: addressType) => void;
 }
 
 const Information: FC<Props> = ({
   name,
   gender,
-  birthDay,
   birthYear,
   birthMonth,
   birthDate,
-  schoolName,
+  schoolCode,
   schoolPhoneNumber,
   parentName,
   parentPhoneNumber,
@@ -61,9 +71,12 @@ const Information: FC<Props> = ({
   stdGrade,
   stdClass,
   stdNumber,
+  totalScore,
   imageFile,
   imageUrl,
-  isGraduated,
+  content,
+  schoolName,
+  totalPages,
   setInput,
   setGender,
   setBirthYear,
@@ -73,8 +86,90 @@ const Information: FC<Props> = ({
   setImageUrl,
   informationImage,
   information,
-  autoSaveInformation,
+  searchSchool,
+  setSchoolCode,
+  setAddress,
 }) => {
+  const changes = [
+    name,
+    gender,
+    birthYear,
+    birthMonth,
+    birthDate,
+    schoolCode,
+    schoolPhoneNumber,
+    totalScore,
+    parentName,
+    parentPhoneNumber,
+    phoneNumber,
+    homePhoneNumber,
+    zipCode,
+    baseAddress,
+    detailAddress,
+    stdGrade,
+    stdClass,
+    stdNumber,
+    imageUrl,
+  ];
+  const [isClickSearchBtn, setIsClickSearchBtn] = useState(false);
+  const [isClickAddressBtn, setIsClickAddressBtn] = useState(false);
+  const [showSchoolName, setShowSchoolName] = useState('');
+  const educationalStatus = useSelectType().state.educationalStatus;
+
+  const searchSchoolModal = useMemo(() => {
+    if (isClickSearchBtn)
+      return (
+        <SearchSchoolModal
+          setSchoolCode={setSchoolCode}
+          searchSchool={searchSchool}
+          setSchoolName={setShowSchoolName}
+          content={content}
+          setIsClickSearchBtn={setIsClickSearchBtn}
+          totalPages={totalPages}
+        />
+      );
+    else return;
+  }, [isClickSearchBtn, content]);
+
+  const addressModal = useMemo(() => {
+    if (isClickAddressBtn)
+      return <AddressModal setIsClickAddressBtn={setIsClickAddressBtn} setAddress={setAddress} />;
+    else return;
+  }, [isClickAddressBtn]);
+
+  const pagination = useMemo(() => {
+    if (
+      name &&
+      gender &&
+      birthYear &&
+      birthMonth &&
+      birthDate &&
+      parentName &&
+      parentPhoneNumber &&
+      phoneNumber &&
+      zipCode &&
+      baseAddress &&
+      detailAddress &&
+      ((schoolCode && schoolPhoneNumber && stdGrade && stdClass && stdNumber) || totalScore) &&
+      imageUrl
+    ) {
+      if (educationalStatus === 'QUALIFICATION_EXAM')
+        return (
+          <Pagination
+            prevPagePath={'/select-type'}
+            nextPagePath={'/introduction'}
+            isNextPage
+            isQualification
+          />
+        );
+      else return <Pagination prevPagePath={'/select-type'} nextPagePath={'/grade'} isNextPage />;
+    } else {
+      if (educationalStatus === 'QUALIFICATION_EXAM')
+        return <Pagination prevPagePath={'/select-type'} isQualification />;
+      else return <Pagination prevPagePath={'/select-type'} />;
+    }
+  }, [...changes]);
+
   return (
     <S.Information>
       <div>
@@ -84,17 +179,18 @@ const Information: FC<Props> = ({
       <InformationForm
         name={name}
         gender={gender}
-        birthDay={birthDay}
         birthYear={birthYear}
         birthMonth={birthMonth}
         birthDate={birthDate}
-        schoolName={schoolName}
+        schoolCode={schoolCode}
+        showSchoolName={showSchoolName}
         schoolPhoneNumber={schoolPhoneNumber}
         parentName={parentName}
         parentPhoneNumber={parentPhoneNumber}
         phoneNumber={phoneNumber}
         homePhoneNumber={homePhoneNumber}
         zipCode={zipCode}
+        schoolName={schoolName}
         baseAddress={baseAddress}
         detailAddress={detailAddress}
         grade={grade}
@@ -102,8 +198,8 @@ const Information: FC<Props> = ({
         stdClass={stdClass}
         stdNumber={stdNumber}
         imageFile={imageFile}
-        isGraduated={isGraduated}
         imageUrl={imageUrl}
+        totalScore={totalScore}
         setInput={setInput}
         setGender={setGender}
         setBirthYear={setBirthYear}
@@ -113,9 +209,12 @@ const Information: FC<Props> = ({
         setImageFile={setImageFile}
         informationImage={informationImage}
         information={information}
-        autoSaveInformation={autoSaveInformation}
+        setIsClickSearchBtn={setIsClickSearchBtn}
+        setIsClickAddressBtn={setIsClickAddressBtn}
       />
-      <Pagination />
+      {searchSchoolModal}
+      {addressModal}
+      {pagination}
     </S.Information>
   );
 };
