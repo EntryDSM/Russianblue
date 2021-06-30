@@ -24,6 +24,12 @@ const SetNewPasswordModal: FC<Props> = ({ goNext, goPrev }) => {
     setIsNextAble(true);
   }, [state.newPassword]);
 
+  useEffect(() => {
+    return () => {
+      setState.resetState();
+    };
+  }, []);
+
   return (
     <S.ModalMain>
       <S.ModalTitle>비밀번호 재설정</S.ModalTitle>
