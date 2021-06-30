@@ -9,6 +9,7 @@ import {
 import useIntroduction from '../../../util/hooks/Introduction';
 import { useHistory, useLocation } from 'react-router-dom';
 import useSelectType from '../../../util/hooks/selectType';
+import useInformation from '../../../util/hooks/information';
 
 interface Props {
   prevPagePath?: string;
@@ -36,14 +37,36 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
   const applicationType = selectTypeState.applicationType;
   const isDaejeon = selectTypeState.isDaejeon;
   const applicationRemark = selectTypeState.applicationRemark;
-  const graduationYear = selectTypeState.graduationYear;
-  const graduationMonth = selectTypeState.graduationMonth;
+  const graduationYear = String(selectTypeState.graduationYear);
+  const graduationMonth = String(selectTypeState.graduationMonth);
   let graduated_YM = '';
-  if (String(graduationMonth).length === 1) {
-    graduated_YM = String(graduationYear) + '0' + String(graduationMonth);
+  if (graduationMonth.length === 1) {
+    graduated_YM = graduationYear + '0' + graduationMonth;
   } else {
-    graduated_YM = String(graduationYear) + String(graduationMonth);
+    graduated_YM = graduationYear + graduationMonth;
   }
+
+  const inforState = useInformation().state;
+  const inforSetState = useInformation().setState;
+  const name = inforState.name;
+  const gender = inforState.gender;
+  const birthYear = inforState.birthYear;
+  const birthMonth = inforState.birthMonth;
+  const birthDate = inforState.birthDate;
+  const schoolCode = educationalStatus === 'QUALIFICATION_EXAM' ? null : inforState.schoolCode;
+  const schoolPhoneNumber =
+    educationalStatus === 'QUALIFICATION_EXAM' ? null : inforState.schoolPhoneNumber;
+  const parentName = inforState.parentName;
+  const parentPhoneNumber = inforState.parentPhoneNumber;
+  const phoneNumber = inforState.phoneNumber;
+  const homePhoneNumber = inforState.homePhoneNumber;
+  const baseAddress = inforState.baseAddress;
+  const detailAddress = inforState.detailAddress;
+  const zipCode = inforState.zipCode;
+  const stdClass = inforState.stdClass;
+  const stdGrade = inforState.stdGrade;
+  const stdNumber = inforState.stdNumber;
+  const totalScore = inforState.totalScore;
 
   const change = [
     selfIntroduction,
@@ -54,6 +77,24 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     isDaejeon,
     graduationMonth,
     graduationYear,
+    name,
+    gender,
+    birthYear,
+    totalScore,
+    birthMonth,
+    birthDate,
+    schoolCode,
+    schoolPhoneNumber,
+    parentName,
+    parentPhoneNumber,
+    phoneNumber,
+    homePhoneNumber,
+    baseAddress,
+    detailAddress,
+    zipCode,
+    stdClass,
+    stdGrade,
+    stdNumber,
   ];
 
   useEffect(() => {
@@ -64,6 +105,15 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
       case 'select-type':
         isSuccessAction = selectTypeState.isSuccessSaveSelectType;
+        break;
+      case 'information':
+        if (educationalStatus === 'QUALIFICATION_EXAM') {
+          isSuccessAction = inforState.isSuccessSaveGedInformation;
+        } else isSuccessAction = inforState.isSuccessSaveInformation;
+        break;
+      case 'grade':
+        break;
+      case 'preview':
         break;
     }
     if (isSuccessAction) {
@@ -83,6 +133,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     prevNextBtn.prevBtn,
     prevNextBtn.nextBtn,
     selectTypeState.isSuccessSaveSelectType,
+    inforState.isSuccessSaveInformation,
   ]);
 
   const prevBtnClickHandler = () => {
@@ -98,6 +149,44 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           applicationRemark: applicationRemark,
           graduatedAt: graduated_YM,
         });
+        break;
+      case 'information':
+        if (educationalStatus === 'QUALIFICATION_EXAM')
+          inforSetState.gedInformation({
+            name: name,
+            gender: gender,
+            birthYear: birthYear,
+            birthMonth: birthMonth,
+            birthDate: birthDate,
+            parentName: parentName,
+            parentPhoneNumber: parentPhoneNumber,
+            phoneNumber: phoneNumber,
+            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
+            baseAddress: baseAddress,
+            detailAddress: detailAddress,
+            zipCode: zipCode,
+            totalScore: totalScore,
+          });
+        else
+          inforSetState.information({
+            name: name,
+            gender: gender,
+            birthYear: birthYear,
+            birthMonth: birthMonth,
+            birthDate: birthDate,
+            parentName: parentName,
+            parentPhoneNumber: parentPhoneNumber,
+            phoneNumber: phoneNumber,
+            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
+            baseAddress: baseAddress,
+            detailAddress: detailAddress,
+            zipCode: zipCode,
+            schoolCode: schoolCode,
+            schoolPhoneNumber: schoolPhoneNumber,
+            stdGrade: stdGrade,
+            stdClass: stdClass,
+            stdNumber: stdNumber,
+          });
         break;
       default:
     }
@@ -118,6 +207,43 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           graduatedAt: graduated_YM,
         });
         break;
+      case 'information':
+        if (educationalStatus === 'QUALIFICATION_EXAM')
+          inforSetState.gedInformation({
+            name: name,
+            gender: gender,
+            birthYear: birthYear,
+            birthMonth: birthMonth,
+            birthDate: birthDate,
+            parentName: parentName,
+            parentPhoneNumber: parentPhoneNumber,
+            phoneNumber: phoneNumber,
+            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
+            baseAddress: baseAddress,
+            detailAddress: detailAddress,
+            zipCode: zipCode,
+            totalScore: totalScore,
+          });
+        else
+          inforSetState.information({
+            name: name,
+            gender: gender,
+            birthYear: birthYear,
+            birthMonth: birthMonth,
+            birthDate: birthDate,
+            parentName: parentName,
+            parentPhoneNumber: parentPhoneNumber,
+            phoneNumber: phoneNumber,
+            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
+            baseAddress: baseAddress,
+            detailAddress: detailAddress,
+            zipCode: zipCode,
+            schoolCode: schoolCode,
+            schoolPhoneNumber: schoolPhoneNumber,
+            stdGrade: stdGrade,
+            stdClass: stdClass,
+            stdNumber: stdNumber,
+          });
       default:
     }
     setPrevNextBtn({ prevBtn: false, nextBtn: true });
