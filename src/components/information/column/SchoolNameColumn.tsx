@@ -3,12 +3,18 @@ import * as S from '../style';
 import Input from '../../default/input';
 
 interface Props {
+  showSchoolName: string;
   schoolName: string;
   setInput: (payload: { name: string; value: string }) => void;
   setIsClickSearchBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SchoolNameColumn: FC<Props> = ({ setInput, setIsClickSearchBtn, schoolName }) => {
+const SchoolNameColumn: FC<Props> = ({
+  setInput,
+  setIsClickSearchBtn,
+  showSchoolName,
+  schoolName,
+}) => {
   const schoolNameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInput({ name: e.target.name, value: e.target.value });
   };
@@ -28,7 +34,7 @@ const SchoolNameColumn: FC<Props> = ({ setInput, setIsClickSearchBtn, schoolName
         inputChangeHandler={schoolNameChangeHandler}
         name={'schoolName'}
         disable
-        defaultValue={schoolName}
+        defaultValue={schoolName ? schoolName : showSchoolName}
       />
       <S.SearchBtn onClick={searchBtnClickHandler}>검색</S.SearchBtn>
     </S.InformationLine>
