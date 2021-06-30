@@ -22,7 +22,6 @@ const GenderColumn: FC<Props> = ({ setGender, width, gender }) => {
   useEffect(() => {
     if (gender === 'MALE') setGenderBtnCheck({ male: true, female: false });
     else if (gender === 'FEMALE') setGenderBtnCheck({ male: false, female: true });
-    console.log(gender);
   }, [gender]);
 
   const showGenderCheck = useMemo(() => {
