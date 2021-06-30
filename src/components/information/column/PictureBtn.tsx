@@ -10,8 +10,10 @@ interface Props {
   paddingSide: number;
   top: number;
   imageUrl: string;
+  imageFile: File;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: string) => void;
+  setImageFile: (payload: File) => void;
+  informationImage: (payload: File) => void;
 }
 
 const PictureBtn: FC<Props> = ({
@@ -23,12 +25,13 @@ const PictureBtn: FC<Props> = ({
   paddingTop,
   paddingSide,
   top,
+  informationImage,
 }) => {
   const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImageFile(e.target.files[0].name);
+    setImageFile(e.target.files[0]);
     let filedes = URL.createObjectURL(e.target.files[0]);
     setImageUrl(filedes);
-    console.log(e.target.files[0]);
+    informationImage(e.target.files[0]);
   };
 
   const picture = useMemo(() => {
