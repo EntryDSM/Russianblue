@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useSelectState } from '../default';
-import { setId, setPassword, signin } from '../../../modules/redux/action/signin';
+import { refreshToken, setId, setPassword, signin } from '../../../modules/redux/action/signin';
 import {} from '../../../modules/redux/action/auth';
 import { signinRequest } from 'src/models/dto/request/signinRequest';
 
@@ -16,6 +16,9 @@ const useSignin = () => {
     },
     signin: (payload: signinRequest) => {
       dispatch(signin(payload));
+    },
+    refreshToken: (callback: () => void) => {
+      dispatch(refreshToken({ callback }));
     },
   };
   return {
