@@ -4,8 +4,17 @@ import user from './user';
 import signin from './signin';
 import signup from './signup';
 import introductionSaga from './introduction';
+import resetPasswordSaga from './resetPassword';
 import selectTypeSaga from './selectType';
 
 export default function* rootSaga() {
-  yield all([status(), user(), signin(), signup(), introductionSaga(), selectTypeSaga()]);
+  yield all([
+    status(),
+    user(),
+    signin(),
+    signup(),
+    introductionSaga(),
+    selectTypeSaga(),
+    resetPasswordSaga(),
+  ]);
 }
