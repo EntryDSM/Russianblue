@@ -4,6 +4,7 @@ import {
   signupVertifyCodeRequest,
   resetPasswordVertifyCodeRequest,
   checkVertifyCodeRequest,
+  resetPasswordRequest,
 } from '../../../models/dto/request/signupRequest';
 import { getRequest } from '../default';
 
@@ -29,6 +30,7 @@ export const sendSignUpVertifyCode = async (
 };
 
 export const sendResetPasswordVertifyCode = async (
+  _,
   resetPasswordVertifyCodeRequest: resetPasswordVertifyCodeRequest,
 ) => {
   try {
@@ -43,6 +45,15 @@ export const chekckVertifyCode = async (_, checkVertifyRequest: checkVertifyCode
   try {
     const request = getRequest();
     await request.put(uri.sendVertify, checkVertifyRequest);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const resetPassword = async (_, resetPasswordRequest: resetPasswordRequest) => {
+  try {
+    const request = getRequest();
+    await request.put(uri.resetPassword, resetPasswordRequest);
   } catch (error) {
     throw error;
   }
