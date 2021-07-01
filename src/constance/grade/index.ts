@@ -18,6 +18,16 @@ export const GRADEANDSEMESTER = [
 ];
 export const SUBJECT = ['korean', 'social', 'history', 'math', 'science', 'technical', 'english'];
 
+export const SUBJECTANDTITLE = [
+  { title: '국어', subject: 'korean' },
+  { title: '사회', subject: 'social' },
+  { title: '역사', subject: 'history' },
+  { title: '수학', subject: 'math' },
+  { title: '과학', subject: 'science' },
+  { title: '기술가정', subject: 'technical' },
+  { title: '영어', subject: 'english' },
+];
+
 export type GradeType = {
   korean: string;
   social: string;
