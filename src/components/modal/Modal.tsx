@@ -54,8 +54,8 @@ const Modal: FC<Props> = ({ type, setType }) => {
     });
     setType(MODAL_TYPE.endSetNewPasswordModal);
   };
+  if (!isAgreeBefore) return <NoticeModal deleteModal={deleteModal} />;
   if (type === '') return <></>;
-  if (type === 'notice' && isAgreeBefore != true) return <NoticeModal deleteModal={deleteModal} />;
   return (
     <>
       <S.ModalWrapper onClick={deleteModal}>
