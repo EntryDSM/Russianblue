@@ -35,7 +35,7 @@ export type GradeType = {
     seniorSecond: boolean;
   };
 };
-export type semesterType = {
+export type SemesterType = {
   freshmanFirst: boolean;
   freshmanSecond: boolean;
   sophomoreFirst: boolean;
