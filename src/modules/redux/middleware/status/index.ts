@@ -6,7 +6,7 @@ import { GET_STATUS } from '../../action/status/interface';
 export const getUserSaga = createRequestSaga(GET_STATUS, getStatus);
 
 function* userSaga() {
-  takeLatest(GET_STATUS, getUserSaga);
+  yield takeLatest(GET_STATUS, getUserSaga);
 }
 
 export default userSaga;

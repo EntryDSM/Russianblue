@@ -167,10 +167,11 @@ export const ModalMoveButtonWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const ModalTimer = styled.div<{ top?: number; bottom?: number }>`
-  ${({ top, bottom }) => css`
-    margin-top: ${top ? pxToRem(top) : '0'}rem;
-    margin-bottom: ${bottom ? pxToRem(bottom) : pxToRem(45)}rem;
+export const ModalTimer = styled.div<{ top?: number; bottom?: number; left?: number }>`
+  ${({ top, bottom, left }) => css`
+    margin-top: ${typeof top === 'number' ? pxToRem(top) : '0'}rem;
+    margin-bottom: ${typeof bottom === 'number' ? pxToRem(bottom) : pxToRem(45)}rem;
+    margin-left: ${typeof left === 'number' ? left : 0}px;
   `}
   display: flex;
   justify-content: center;

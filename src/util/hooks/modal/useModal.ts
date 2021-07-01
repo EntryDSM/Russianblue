@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useSelectState } from '../default';
 import { setModalOff, setModalOn } from '../../../modules/redux/action/modal';
 
-const useProcess = () => {
+const useModal = () => {
   const dispatch = useDispatch();
   const state = useSelectState().modal;
   const setState = {
@@ -19,4 +19,4 @@ const useProcess = () => {
   };
 };
 
-export default useProcess;
+export default useModal;

@@ -11,7 +11,7 @@ import {
   PictureBtn,
   TotalScoreColumn,
 } from './column';
-import { useSelectType } from '../../util/hooks/selectType';
+import useSelectType from '../../util/hooks/selectType';
 
 interface Props {
   imageUrl: string;
@@ -40,7 +40,7 @@ const InformationForm: FC<Props> = ({
   setImageFile,
   setImageUrl,
 }) => {
-  const graduation = useSelectType().state.graduation;
+  const graduation = useSelectType().state.educationalStatus;
 
   const styleInfo = useMemo(() => {
     if (graduation === '검정고시')

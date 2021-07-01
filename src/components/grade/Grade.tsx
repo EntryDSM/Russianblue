@@ -40,7 +40,7 @@ const Grade: FC<Props> = ({ setInput, setGrade, grade }) => {
         setGrade={setGrade}
         grade={grade}
       />
-      <Pagination nowPage={[false, false, false, true, false]} />
+      <Pagination />
     </S.Grade>
   );
 };

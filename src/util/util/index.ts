@@ -1,4 +1,4 @@
-export const isSignUpDataAble = (...texts: string[]) => {
+export const isOneOfTextEmpty = (...texts: string[]) => {
   let flag = false;
   texts.forEach(text => {
     if (text.length <= 0) {

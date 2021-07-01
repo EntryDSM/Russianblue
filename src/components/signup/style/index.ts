@@ -129,6 +129,23 @@ export const SignUpItem = styled.div`
     border-bottom: 1px solid ${color.disable};
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 40px;
+    > p {
+      font-size: 12px;
+      > span {
+        color: ${color.main};
+      }
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      > div {
+        display: flex;
+        align-items: center;
+      }
+    }
   }
 `;
 

@@ -14,11 +14,14 @@ const InitState: IUserState = {
   phoneNumber: '',
   name: '',
   isfinalSubmitDone: false,
-  isAdmissionFeePayed: false,
   isReceiveMail: false,
   studyPlanLength: 0,
   selfIntroduceLength: 0,
-  error: null,
+  error: {
+    status: 0,
+    message: '',
+    type: '',
+  },
 };
 
 const userReducer = (state: IUserState = InitState, action: userActionType): IUserState => {
@@ -28,9 +31,6 @@ const userReducer = (state: IUserState = InitState, action: userActionType): IUs
     }
     case NAME: {
       return { ...state, name: action.payload };
-    }
-    case IS_ADMISSION_FEE_PAYED: {
-      return { ...state, isAdmissionFeePayed: action.payload };
     }
     case IS_FINAL_SUBMIT_DONE: {
       return { ...state, isfinalSubmitDone: action.payload };
@@ -62,13 +62,12 @@ const userReducer = (state: IUserState = InitState, action: userActionType): IUs
     case GET_USER_SUCCESS: {
       return {
         ...state,
-        phoneNumber: action.payload.phone_number,
+        phoneNumber: action.payload.email,
         name: action.payload.name,
         isfinalSubmitDone: action.payload.is_submit,
-        isAdmissionFeePayed: action.payload.is_paid,
         isReceiveMail: action.payload.is_printed_arrived,
-        studyPlanLength: parseInt(action.payload.study_plan),
-        selfIntroduceLength: parseInt(action.payload.self_introduce),
+        studyPlanLength: action.payload.study_plan,
+        selfIntroduceLength: action.payload.self_introduce,
       };
     }
     default: {
