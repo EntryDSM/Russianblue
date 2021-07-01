@@ -38,6 +38,9 @@ const PhoneNumberColumn: FC<Props> = ({
     if (error.type === SEND_VERTIFY_CODE && error.status === 429) {
       return '이메일 전송 한도를 초과했습니다. 잠시 후에 시도해 주세요.';
     }
+    if (error.type === SEND_VERTIFY_CODE && error.status === 409) {
+      return '이미 사용된 이메일 입니다. 다른 이메일을 사용해 주세요.';
+    }
   }, [isSendVertifyCode, error.type]);
   return (
     <SignUpColumn text='이메일' description={description}>
