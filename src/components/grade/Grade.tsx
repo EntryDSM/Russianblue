@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from './style';
-import { SCHOOL, ENTERGRADE } from '../../constance/grade';
+import { SCHOOL, ENTERGRADE, GradeType } from '../../constance/grade';
 import Pagination from '../default/Pagination';
 import { ResetGrade } from './column';
 import { VolunteerTable, GradeTable } from './table';
-import { GradeType } from '../../modules/redux/action/grade/interface';
+import { useSelectState } from '../../util/hooks/default';
 
 interface Props {
   grade: GradeType;
@@ -13,13 +13,22 @@ interface Props {
 }
 
 const Grade: FC<Props> = ({ setInput, setGrade, grade }) => {
+  const graduated = useSelectState().selectType.educationalStatus;
   const [isResetZeroClick, setIsResetZeroClick] = useState({
     freshmanFirst: false,
     freshmanSecond: false,
     sophomoreFirst: false,
     sophomoreSecond: false,
     seniorFirst: false,
+    seniorSecond: false,
   });
+  const [isGraduated, setIsGraduated] = useState(false);
+
+  useEffect(() => {
+    if (graduated === 'PROSPECTIVE_GRADUATE') setIsGraduated(true);
+    else if (graduated === 'GRADUATE') setIsGraduated(false);
+  }, [graduated]);
+
   return (
     <S.Grade>
       <div>
@@ -28,17 +37,13 @@ const Grade: FC<Props> = ({ setInput, setGrade, grade }) => {
       </div>
       <S.TableName>봉사 {'&'} 출석</S.TableName>
       <VolunteerTable setInput={setInput} />
-      <ResetGrade
-        isResetZeroClick={isResetZeroClick}
-        setIsResetZeroClick={setIsResetZeroClick}
-        grade={grade}
-        setGrade={setGrade}
-      />
+      <ResetGrade setIsResetZeroClick={setIsResetZeroClick} grade={grade} setGrade={setGrade} />
       <GradeTable
         isResetZeroClick={isResetZeroClick}
         setIsResetZeroClick={setIsResetZeroClick}
         setGrade={setGrade}
         grade={grade}
+        isGraduated={isGraduated}
       />
       <Pagination />
     </S.Grade>

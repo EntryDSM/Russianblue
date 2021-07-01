@@ -1,4 +1,5 @@
-import { INPUT, GRADE, GradeType } from './interface';
+import { GradeType } from '../../../../constance/grade';
+import { INPUT, GRADE } from './interface';
 
 export const setInput = (payload: { name: string; value: number }) => ({
   type: INPUT,

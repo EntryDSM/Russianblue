@@ -3,33 +3,35 @@ import React, { FC, useEffect, useState } from 'react';
 import * as S from '../style';
 import MoveButton from './moveButton';
 import useResetPassword from '../../../util/hooks/resetPassword/useResetPassword';
-import { isHaveError, isPhoneNumber } from '../../../util/util/format';
+import { isHaveError } from '../../../util/util/format';
 
 interface Props {
   goNext: () => void;
 }
 
 const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
-  const [isNextAble, setIsNextAble] = useState(false);
   const { state, setState } = useResetPassword();
   const phoneNumberChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState.setVertifyPhoneNumber(e.target.value);
   };
   const sendVertifyCodeButtonClickHandler = () => {
     const { vertifyPhoneNumber } = state;
-    if (!isPhoneNumber(vertifyPhoneNumber)) {
-      setState.setResetPasswordError({
-        status: 400,
-        message: '잘못된 형식의 전화번호 입니다',
-        type: '',
-      });
-      return;
-    }
-    setIsNextAble(true);
+    // if (!isPhoneNumber(vertifyPhoneNumber)) {
+    //   setState.setResetPasswordError({
+    //     status: 400,
+    //     message: '잘못된 형식의 이메일 입니다',
+    //     type: '',
+    //   });
+    //   return;
+    // }
+    setState.sendVertifyCode({ email: state.vertifyPhoneNumber });
   };
 
   useEffect(() => {
     setState.setResetPasswordError({ status: 0, message: '', type: '' });
+    return () => {
+      setState.resetState();
+    };
   }, []);
 
   return (
@@ -46,7 +48,6 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
         height={48}
         margin='0px 0px 15px 0px'
         placeholder='이메일'
-        type='number'
       />
       <S.ModalDefaultButtonWrapper>
         <S.ModalDefaultButton onClick={sendVertifyCodeButtonClickHandler}>
@@ -55,7 +56,12 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
       </S.ModalDefaultButtonWrapper>
       <S.ModalMoveButtonWrapper>
         <div />
-        <MoveButton text='다음' type='next' buttonClickHandler={goNext} disable={!isNextAble} />
+        <MoveButton
+          text='다음'
+          type='next'
+          buttonClickHandler={goNext}
+          disable={!state.vertifyCodeSend}
+        />
       </S.ModalMoveButtonWrapper>
     </S.ModalMain>
   );

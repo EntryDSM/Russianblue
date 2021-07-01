@@ -36,7 +36,7 @@ const LoginModal: FC = () => {
   return (
     <S.ModalMain>
       <Title>로그인</Title>
-      <S.ModalErrorText></S.ModalErrorText>
+      <S.ModalErrorText>{state.error ? '로그인 정보를 확인해 주세요.' : ''}</S.ModalErrorText>
       <Input
         inputChangeHandler={idChangeHandler}
         width={280}
