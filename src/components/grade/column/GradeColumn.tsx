@@ -1,23 +1,24 @@
 import React, { FC, useMemo, useState } from 'react';
 import * as S from '../style';
-import { GRADEANDSEMESTER, GRADE } from '../../../constance/grade';
-import { GradeType } from '../../../modules/redux/action/grade/interface';
+import { GRADEANDSEMESTER, GRADE, GradeType } from '../../../constance/grade';
 import { Grade } from '../../../modules/redux/reducer/grade/interface';
 
 interface Props {
+  isGraduated: boolean;
   grade: GradeType;
   title: string;
   subject: string;
   setGrade: (payload: { grade: GradeType }) => void;
 }
 
-const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject }) => {
+const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject, isGraduated }) => {
   const [isClick, setIsClick] = useState({
     freshmanFirst: false,
     freshmanSecond: false,
     sophomoreFirst: false,
     sophomoreSecond: false,
     seniorFirst: false,
+    seniorSecond: false,
   });
 
   const gradeChange = (subject: string, dataId: string, dataGrade: string) => {
@@ -50,6 +51,35 @@ const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject }) => {
 
   const gradeTableTd = useMemo(() => {
     return GRADEANDSEMESTER.map(data => {
+      if (data.id === 'seniorSecond') {
+        return (
+          <S.GradeTableTd
+            disabled={isGraduated}
+            data-grade={data.grade}
+            data-semester={data.semester}
+            key={data.id}
+            border
+          >
+            {isGraduated ? (
+              <S.ScoreBtn disabled data-id={data.id} onClick={btnClickHandler}>
+                X
+              </S.ScoreBtn>
+            ) : isClick[data.id] ? (
+              GRADE.map(props => {
+                return (
+                  <S.ScoreBtn data-id={data.id} onClick={gradeClickHandler}>
+                    {props.grade}
+                  </S.ScoreBtn>
+                );
+              })
+            ) : (
+              <S.ScoreBtn data-id={data.id} onClick={btnClickHandler}>
+                {grade[subject][Grade[data.id]]}
+              </S.ScoreBtn>
+            )}
+          </S.GradeTableTd>
+        );
+      }
       return (
         <S.GradeTableTd data-grade={data.grade} data-semester={data.semester} key={data.id} border>
           {isClick[data.id] ? (
@@ -68,7 +98,7 @@ const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject }) => {
         </S.GradeTableTd>
       );
     });
-  }, [isClick, grade]);
+  }, [isGraduated, isClick, grade]);
 
   return (
     <S.GradeColumn>

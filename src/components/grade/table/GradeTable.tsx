@@ -1,16 +1,23 @@
 import React, { FC } from 'react';
 import * as S from '../style';
 import { GradeColumn, CheckColumn, GradeTr } from '../column';
-import { GradeType, semesterType } from '../../../modules/redux/action/grade/interface';
+import { GradeType, SemesterType, SUBJECTANDTITLE } from '../../../constance/grade';
 
 interface Props {
+  isGraduated: boolean;
   grade: GradeType;
-  isResetZeroClick: semesterType;
-  setIsResetZeroClick: React.Dispatch<React.SetStateAction<semesterType>>;
+  isResetZeroClick: SemesterType;
+  setIsResetZeroClick: React.Dispatch<React.SetStateAction<SemesterType>>;
   setGrade: (payload: { grade: GradeType }) => void;
 }
 
-const GradeTable: FC<Props> = ({ isResetZeroClick, setIsResetZeroClick, setGrade, grade }) => {
+const GradeTable: FC<Props> = ({
+  isResetZeroClick,
+  setIsResetZeroClick,
+  setGrade,
+  grade,
+  isGraduated,
+}) => {
   return (
     <S.GradeTable>
       <GradeTr />
@@ -19,14 +26,20 @@ const GradeTable: FC<Props> = ({ isResetZeroClick, setIsResetZeroClick, setGrade
         setIsResetZeroClick={setIsResetZeroClick}
         grade={grade}
         setGrade={setGrade}
+        isGraduated={isGraduated}
       />
-      <GradeColumn title={'국어'} subject={'korean'} setGrade={setGrade} grade={grade} />
-      <GradeColumn title={'사회'} subject={'social'} setGrade={setGrade} grade={grade} />
-      <GradeColumn title={'역사'} subject={'history'} setGrade={setGrade} grade={grade} />
-      <GradeColumn title={'수학'} subject={'math'} setGrade={setGrade} grade={grade} />
-      <GradeColumn title={'과학'} subject={'science'} setGrade={setGrade} grade={grade} />
-      <GradeColumn title={'기술가정'} subject={'technical'} setGrade={setGrade} grade={grade} />
-      <GradeColumn title={'영어'} subject={'english'} setGrade={setGrade} grade={grade} />
+      {SUBJECTANDTITLE.map(data => {
+        return (
+          <GradeColumn
+            isGraduated={isGraduated}
+            title={data.title}
+            subject={data.subject}
+            setGrade={setGrade}
+            grade={grade}
+            key={data.subject}
+          />
+        );
+      })}
     </S.GradeTable>
   );
 };

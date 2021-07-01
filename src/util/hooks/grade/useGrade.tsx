@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { GradeType } from 'src/modules/redux/action/grade/interface';
+import { GradeType } from '../../../constance/grade';
 import { setInput, setGrade } from '../../../modules/redux/action/grade';
 import { useSelectState } from '../default';
 
