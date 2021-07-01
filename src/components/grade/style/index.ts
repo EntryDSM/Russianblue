@@ -55,7 +55,7 @@ export const TableTitle = styled.div<{
   height: number;
   padding: number;
 }>`
-  width: 160px;
+  width: 151px;
   background-color: ${color.light};
   font-size: 20px;
   box-sizing: border-box;
@@ -98,29 +98,44 @@ export const GradeColumn = styled.div`
   display: flex;
 `;
 
-export const GradeTableTd = styled(TableTd)`
-  width: 212px;
+export const GradeTableTd = styled(TableTd)<{
+  disabled?: boolean;
+}>`
+  width: 178.5px;
   height: 75px;
   justify-content: center;
   > p:last-child {
     margin: 0px;
   }
+  ${({ disabled }) => css`
+    background-color: ${disabled ? 'rgba(0, 0, 0, 0.05)' : 'white'};
+  `}
 `;
 
-export const CheckBtnBox = styled.div`
+export const CheckBtnBox = styled.div<{
+  disabled?: boolean;
+}>`
   width: 19px;
   height: 19px;
   border: 1px solid #000000;
   border-radius: 4px;
   box-sizing: border-box;
   padding: 3px;
+  ${({ disabled }) => css`
+    cursor: ${disabled ? 'default' : 'pointer'};
+  `}
 `;
 
-export const CheckedBtnBox = styled.div`
+export const CheckedBtnBox = styled.div<{
+  disabled?: boolean;
+}>`
   width: 11px;
   height: 11px;
-  background-color: ${color.main};
   border-radius: 2px;
+  ${({ disabled }) => css`
+    background-color: ${disabled ? color.disable : color.main};
+    cursor: ${disabled ? 'default' : 'pointer'};
+  `}
 `;
 
 export const GradeTr = styled.div`
@@ -188,12 +203,16 @@ export const GradeBtn = styled.div<{
   `}
 `;
 
-export const ScoreBtn = styled.p`
+export const ScoreBtn = styled.p<{
+  disabled?: boolean;
+}>`
   font-size: 18px;
   margin-right: 6px;
-  cursor: pointer;
-  :hover {
-    color: ${color.main};
-    font-weight: 900;
-  }
+  ${({ disabled }) => css`
+    cursor: ${disabled ? 'default' : 'pointer'};
+    :hover {
+      color: ${disabled ? 'black' : color.main};
+      font-weight: ${disabled ? 'normal' : '900'};
+    }
+  `}
 `;
