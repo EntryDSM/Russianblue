@@ -14,31 +14,69 @@ export const GRADE = [
 ];
 
 export type informationType = {
-  name: string;
-  gender: string;
+  userName: string;
+  sex: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
-  schoolCode: string;
-  schoolPhoneNumber: string;
   parentName: string;
-  parentPhoneNumber: string;
-  phoneNumber: string;
-  homePhoneNumber: string;
-  baseAddress: string;
+  parentTel: string;
+  telephoneNumber: string;
+  homeTel: string;
+  address: string;
   detailAddress: string;
-  zipCode: string;
+  postCode: string;
+};
+
+export interface informationInterface {
+  name: string | null;
+  sex: string | null;
+  birthday: string | null;
+  parent_name: string | null;
+  parent_tel: string | null;
+  telephone_number: string | null;
+  home_tel: string | null;
+  address: string | null;
+  detail_address: string | null;
+  post_code: string | null;
+}
+
+export type graduateInformationType = {
   stdGrade: string;
   stdClass: string;
   stdNumber: string;
+  schoolCode: string;
+  schoolTel: string;
+};
+
+export interface graduateInformationInterFace {
+  student_number: string | null;
+  school_code: string | null;
+  school_tel: string | null;
+}
+
+export type getGraduateInformationType = {
+  name: string;
+  sex: string;
+  birthday: string;
+  parent_name: string;
+  parent_tel: string;
+  telephone_number: string;
+  home_tel: string;
+  address: string;
+  detail_address: string;
+  post_code: string;
+  student_number: string;
+  school_code: string;
+  school_tel: string;
+  school_name: string;
+  photo_file_name: string;
 };
 
 export type getInformationType = {
   name: string;
   sex: string;
   birthday: string;
-  school_code: string;
-  school_tel: string;
   parent_name: string;
   parent_tel: string;
   telephone_number: string;
@@ -47,49 +85,26 @@ export type getInformationType = {
   detail_address: string;
   post_code: string;
   photo_file_name: string;
-  student_number: string;
-  school_name: string;
 };
 
-export type gedInformationType = {
+export type searchSchoolQueryType = {
   name: string;
-  gender: string;
-  birthYear: number;
-  birthMonth: number;
-  birthDate: number;
-  parentName: string;
-  parentPhoneNumber: string;
-  phoneNumber: string;
-  homePhoneNumber: string;
-  baseAddress: string;
-  detailAddress: string;
-  zipCode: string;
-  totalScore: number;
-};
-
-export type getGedInformationType = {
-  name: string;
-  sex: string;
-  birthday: string;
-  parent_name: string;
-  parent_tel: string;
-  telephone_number: string;
-  home_tel: string;
-  address: string;
-  detail_address: string;
-  post_code: string;
-  photo_file_name: string;
-  average_score: number;
+  size: number;
+  page: number;
 };
 
 export type schoolArrayType = {
   code: string;
   name: string;
   information: string;
-  address: string;
+};
+
+export type searchSchoolResponse = {
+  content: Array<schoolArrayType>;
+  total_pages: number;
 };
 
 export type addressType = {
-  zipCode: string;
-  baseAddress: string;
+  postCode: string;
+  address: string;
 };
