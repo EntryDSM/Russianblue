@@ -3,11 +3,11 @@ import useInformation from '../../util/hooks/information';
 import Information from '../../components/information';
 import { useDispatch } from 'react-redux';
 import { GET_SELECTTYPE } from '../../modules/redux/action/selectType/interface';
+import useSelectType from '../../util/hooks/selectType';
 import {
-  GET_GEDINFORMATION,
+  GET_GRADUATE_INFORMATION,
   GET_INFORMATION,
 } from '../../modules/redux/action/information/interface';
-import useSelectType from '../../util/hooks/selectType';
 
 const InformationContainer = () => {
   const { state, setState } = useInformation();
@@ -16,14 +16,11 @@ const InformationContainer = () => {
 
   useEffect(() => {
     dispatch({ type: GET_SELECTTYPE });
-  }, []);
-  useEffect(() => {
-    if (educationalStatus === 'QUALIFICATION_EXAM') {
-      dispatch({ type: GET_GEDINFORMATION });
-    } else {
-      dispatch({ type: GET_INFORMATION });
+    dispatch({ type: GET_INFORMATION });
+    if (educationalStatus !== 'QUALIFICATION_EXAM') {
+      dispatch({ type: GET_GRADUATE_INFORMATION });
     }
-  }, [educationalStatus]);
+  }, []);
   return <Information {...state} {...setState} />;
 };
 
