@@ -12,8 +12,8 @@ const AddressModal: FC<Props> = ({ setAddress, setIsClickAddressBtn }) => {
   const onComplete = (data: AddressData) => {
     const { zonecode, roadAddress } = data;
     setAddress({
-      baseAddress: roadAddress,
-      zipCode: zonecode,
+      address: roadAddress,
+      postCode: zonecode,
     });
     setIsClickAddressBtn(false);
   };
