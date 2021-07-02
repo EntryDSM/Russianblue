@@ -1,14 +1,14 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import { XBtn, search } from '../../../assets/modal';
-import { schoolArrayType } from 'src/constance/information';
+import { schoolArrayType, searchSchoolQueryType } from 'src/constance/information';
 
 interface Props {
   content: Array<schoolArrayType>;
   totalPages: number;
-  searchSchool: (payload: { schoolSearchName: string; size: number; page: number }) => void;
+  searchSchool: (payload: searchSchoolQueryType) => void;
   setSchoolCode: (payload: string) => void;
-  setSchoolName: React.Dispatch<React.SetStateAction<string>>;
+  setSchoolName: (payload: string) => void;
   setIsClickSearchBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -32,7 +32,7 @@ const SearchSchoolModal: FC<Props> = ({
   };
 
   const searchBtnClickHandler = () => {
-    searchSchool({ schoolSearchName: searchText, size: 10, page: 0 });
+    searchSchool({ name: searchText, size: 10, page: 0 });
   };
 
   const schoolNameClickHandler = e => {
@@ -43,7 +43,7 @@ const SearchSchoolModal: FC<Props> = ({
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      searchSchool({ schoolSearchName: searchText, size: 10, page: 0 });
+      searchSchool({ name: searchText, size: 10, page: 0 });
     }
   };
 
@@ -68,7 +68,7 @@ const SearchSchoolModal: FC<Props> = ({
 
   useEffect(() => {
     if (page !== 0) {
-      searchSchool({ schoolSearchName: searchText, size: 10, page: page });
+      searchSchool({ name: searchText, size: 10, page: page });
     }
   }, [page, content]);
 
