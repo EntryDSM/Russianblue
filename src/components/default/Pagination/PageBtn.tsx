@@ -88,9 +88,6 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
     }
     if (isSuccessAction) {
-      if (prevNextBtn.prevBtn) {
-        history.push(prevPagePath);
-      }
       if (prevNextBtn.nextBtn) {
         history.push(nextPagePath);
       }
@@ -109,26 +106,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
   ]);
 
   const prevBtnClickHandler = () => {
-    switch (pathname) {
-      case 'introduction':
-        introSetState.saveBoth({ selfIntroduction, studyPlan });
-        break;
-      case 'select-type':
-        selectTypeSetState.selectType({
-          educationalStatus: educationalStatus,
-          applicationType: applicationType,
-          isDaejeon: isDaejeon,
-          applicationRemark: applicationRemark,
-          graduatedAt: graduated_YM,
-        });
-        break;
-      case 'information':
-        dispatch({ type: INFORMATION });
-        if (selectTypeState.educationalStatus !== 'QUALIFICATION_EXAM')
-          dispatch({ type: GRADUATE_INFORMATION });
-        break;
-      default:
-    }
+    history.push(prevPagePath);
     setPrevNextBtn({ prevBtn: true, nextBtn: false });
   };
 
