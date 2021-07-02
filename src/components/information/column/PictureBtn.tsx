@@ -9,33 +9,35 @@ interface Props {
   paddingTop: number;
   paddingSide: number;
   top: number;
-  imageUrl: string;
-  imageFile: File;
+  pictureUrl: string;
+  photoFileName: string;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: File) => void;
-  informationImage: (payload: File) => void;
+  setUserPicture: (payload: File) => void;
 }
 
 const PictureBtn: FC<Props> = ({
-  setImageFile,
   setImageUrl,
-  imageUrl,
+  setUserPicture,
+  pictureUrl,
   width,
   height,
   paddingTop,
   paddingSide,
   top,
-  informationImage,
+  photoFileName,
 }) => {
   const fileChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImageFile(e.target.files[0]);
     let filedes = URL.createObjectURL(e.target.files[0]);
+    setUserPicture(e.target.files[0]);
     setImageUrl(filedes);
-    informationImage(e.target.files[0]);
   };
 
   const picture = useMemo(() => {
-    if (imageUrl) return <S.Picture src={imageUrl} />;
+    if (photoFileName) {
+      if (pictureUrl) {
+        return <S.Picture src={pictureUrl} />;
+      } else return <S.Picture src={photoFileName} />;
+    } else if (pictureUrl) return <S.Picture src={pictureUrl} />;
     else
       return (
         <>
@@ -44,7 +46,7 @@ const PictureBtn: FC<Props> = ({
           <p>{IMG_FORMATS}</p>
         </>
       );
-  }, [imageUrl]);
+  }, [pictureUrl, photoFileName]);
 
   return (
     <>
