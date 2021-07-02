@@ -3,8 +3,8 @@ import * as S from '../style';
 import Input from '../../default/input';
 
 interface Props {
-  zipCode: string;
-  baseAddress: string;
+  postCode: string;
+  address: string;
   detailAddress: string;
   setInput: (payload: { name: string; value: string }) => void;
   setIsClickAddressBtn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,8 +13,8 @@ interface Props {
 const AddressColumn: FC<Props> = ({
   setInput,
   setIsClickAddressBtn,
-  zipCode,
-  baseAddress,
+  postCode,
+  address,
   detailAddress,
 }) => {
   const addressChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,18 +36,18 @@ const AddressColumn: FC<Props> = ({
             width={166}
             height={42}
             inputChangeHandler={() => {}}
-            name={'zipCode'}
+            name={'postCode'}
             placeholder={'우편번호'}
-            defaultValue={zipCode}
+            defaultValue={postCode}
             disable
           />
           <Input
             width={312}
             height={42}
             inputChangeHandler={() => {}}
-            name={'basicAddress'}
+            name={'address'}
             placeholder={'기본주소'}
-            defaultValue={baseAddress}
+            defaultValue={address}
             disable
           />
           <S.SearchBtn onClick={searchBtnClickHandler}>검색</S.SearchBtn>
