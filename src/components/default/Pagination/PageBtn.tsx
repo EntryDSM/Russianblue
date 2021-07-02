@@ -10,6 +10,11 @@ import useIntroduction from '../../../util/hooks/Introduction';
 import { useHistory, useLocation } from 'react-router-dom';
 import useSelectType from '../../../util/hooks/selectType';
 import useInformation from '../../../util/hooks/information';
+import { useDispatch } from 'react-redux';
+import {
+  GRADUATE_INFORMATION,
+  INFORMATION,
+} from '../../../modules/redux/action/information/interface';
 
 interface Props {
   prevPagePath?: string;
@@ -46,27 +51,8 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     graduated_YM = graduationYear + graduationMonth;
   }
 
-  const inforState = useInformation().state;
-  const inforSetState = useInformation().setState;
-  const name = inforState.name;
-  const gender = inforState.gender;
-  const birthYear = inforState.birthYear;
-  const birthMonth = inforState.birthMonth;
-  const birthDate = inforState.birthDate;
-  const schoolCode = educationalStatus === 'QUALIFICATION_EXAM' ? null : inforState.schoolCode;
-  const schoolPhoneNumber =
-    educationalStatus === 'QUALIFICATION_EXAM' ? null : inforState.schoolPhoneNumber;
-  const parentName = inforState.parentName;
-  const parentPhoneNumber = inforState.parentPhoneNumber;
-  const phoneNumber = inforState.phoneNumber;
-  const homePhoneNumber = inforState.homePhoneNumber;
-  const baseAddress = inforState.baseAddress;
-  const detailAddress = inforState.detailAddress;
-  const zipCode = inforState.zipCode;
-  const stdClass = inforState.stdClass;
-  const stdGrade = inforState.stdGrade;
-  const stdNumber = inforState.stdNumber;
-  const totalScore = inforState.totalScore;
+  const informationState = useInformation().state;
+  const dispatch = useDispatch();
 
   const change = [
     selfIntroduction,
@@ -77,24 +63,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     isDaejeon,
     graduationMonth,
     graduationYear,
-    name,
-    gender,
-    birthYear,
-    totalScore,
-    birthMonth,
-    birthDate,
-    schoolCode,
-    schoolPhoneNumber,
-    parentName,
-    parentPhoneNumber,
-    phoneNumber,
-    homePhoneNumber,
-    baseAddress,
-    detailAddress,
-    zipCode,
-    stdClass,
-    stdGrade,
-    stdNumber,
+    informationState,
   ];
 
   useEffect(() => {
@@ -107,10 +76,12 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         isSuccessAction = selectTypeState.isSuccessSaveSelectType;
         break;
       case 'information':
-        if (educationalStatus === 'QUALIFICATION_EXAM') {
-          isSuccessAction = inforState.isSuccessSaveGedInformation;
-        } else isSuccessAction = inforState.isSuccessSaveInformation;
-        break;
+        if (selectTypeState.educationalStatus === 'QUALIFICATION_EXAM')
+          isSuccessAction = informationState.isSuccessSaveInformation;
+        else
+          isSuccessAction =
+            informationState.isSuccessSaveInformation &&
+            informationState.isSuccessSaveGraduateInformation;
       case 'grade':
         break;
       case 'preview':
@@ -133,7 +104,8 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     prevNextBtn.prevBtn,
     prevNextBtn.nextBtn,
     selectTypeState.isSuccessSaveSelectType,
-    inforState.isSuccessSaveInformation,
+    informationState.isSuccessSaveInformation,
+    informationState.isSuccessSaveGraduateInformation,
   ]);
 
   const prevBtnClickHandler = () => {
@@ -151,42 +123,9 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         });
         break;
       case 'information':
-        if (educationalStatus === 'QUALIFICATION_EXAM')
-          inforSetState.gedInformation({
-            name: name,
-            gender: gender,
-            birthYear: birthYear,
-            birthMonth: birthMonth,
-            birthDate: birthDate,
-            parentName: parentName,
-            parentPhoneNumber: parentPhoneNumber,
-            phoneNumber: phoneNumber,
-            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
-            baseAddress: baseAddress,
-            detailAddress: detailAddress,
-            zipCode: zipCode,
-            totalScore: totalScore,
-          });
-        else
-          inforSetState.information({
-            name: name,
-            gender: gender,
-            birthYear: birthYear,
-            birthMonth: birthMonth,
-            birthDate: birthDate,
-            parentName: parentName,
-            parentPhoneNumber: parentPhoneNumber,
-            phoneNumber: phoneNumber,
-            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
-            baseAddress: baseAddress,
-            detailAddress: detailAddress,
-            zipCode: zipCode,
-            schoolCode: schoolCode,
-            schoolPhoneNumber: schoolPhoneNumber,
-            stdGrade: stdGrade,
-            stdClass: stdClass,
-            stdNumber: stdNumber,
-          });
+        dispatch({ type: INFORMATION });
+        if (selectTypeState.educationalStatus !== 'QUALIFICATION_EXAM')
+          dispatch({ type: GRADUATE_INFORMATION });
         break;
       default:
     }
@@ -208,42 +147,10 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         });
         break;
       case 'information':
-        if (educationalStatus === 'QUALIFICATION_EXAM')
-          inforSetState.gedInformation({
-            name: name,
-            gender: gender,
-            birthYear: birthYear,
-            birthMonth: birthMonth,
-            birthDate: birthDate,
-            parentName: parentName,
-            parentPhoneNumber: parentPhoneNumber,
-            phoneNumber: phoneNumber,
-            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
-            baseAddress: baseAddress,
-            detailAddress: detailAddress,
-            zipCode: zipCode,
-            totalScore: totalScore,
-          });
-        else
-          inforSetState.information({
-            name: name,
-            gender: gender,
-            birthYear: birthYear,
-            birthMonth: birthMonth,
-            birthDate: birthDate,
-            parentName: parentName,
-            parentPhoneNumber: parentPhoneNumber,
-            phoneNumber: phoneNumber,
-            homePhoneNumber: homePhoneNumber ? homePhoneNumber : null,
-            baseAddress: baseAddress,
-            detailAddress: detailAddress,
-            zipCode: zipCode,
-            schoolCode: schoolCode,
-            schoolPhoneNumber: schoolPhoneNumber,
-            stdGrade: stdGrade,
-            stdClass: stdClass,
-            stdNumber: stdNumber,
-          });
+        dispatch({ type: INFORMATION });
+        if (selectTypeState.educationalStatus !== 'QUALIFICATION_EXAM')
+          dispatch({ type: GRADUATE_INFORMATION });
+        break;
       default:
     }
     setPrevNextBtn({ prevBtn: false, nextBtn: true });
