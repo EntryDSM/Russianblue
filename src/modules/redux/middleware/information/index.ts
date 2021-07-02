@@ -100,14 +100,12 @@ const graduateInformationSaveSaga = function* () {
   }
 };
 
-const proxySaga = () => {
-  return function* () {
-    const state = yield select(getSelectTypeStateFunc);
-    yield call(informationSaveSaga);
-    if (state.educationalStatus !== 'QUALIFICATION_EXAM') {
-      yield call(graduateInformationSaveSaga);
-    }
-  };
+const proxySaga = function* () {
+  const state = yield select(getSelectTypeStateFunc);
+  yield call(informationSaveSaga);
+  if (state.educationalStatus !== 'QUALIFICATION_EXAM') {
+    yield call(graduateInformationSaveSaga);
+  }
 };
 
 function* informationSaga() {
