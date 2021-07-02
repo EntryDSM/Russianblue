@@ -4,25 +4,25 @@ import { GENDER } from '../../../constance/information';
 
 interface Props {
   width: number;
-  gender: string;
-  setGender: (payload: string) => void;
+  sex: string;
+  setSex: (payload: string) => void;
 }
 
-const GenderColumn: FC<Props> = ({ setGender, width, gender }) => {
+const GenderColumn: FC<Props> = ({ setSex, width, sex }) => {
   const [genderBtnCheck, setGenderBtnCheck] = useState({ male: false, female: false });
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     if (dataId === 'male') {
-      setGender('MALE');
+      setSex('MALE');
     } else {
-      setGender('FEMALE');
+      setSex('FEMALE');
     }
   };
 
   useEffect(() => {
-    if (gender === 'MALE') setGenderBtnCheck({ male: true, female: false });
-    else if (gender === 'FEMALE') setGenderBtnCheck({ male: false, female: true });
-  }, [gender]);
+    if (sex === 'MALE') setGenderBtnCheck({ male: true, female: false });
+    else if (sex === 'FEMALE') setGenderBtnCheck({ male: false, female: true });
+  }, [sex]);
 
   const showGenderCheck = useMemo(() => {
     return GENDER.map(data => {
