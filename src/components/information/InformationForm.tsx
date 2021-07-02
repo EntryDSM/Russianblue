@@ -12,78 +12,72 @@ import {
   TotalScoreColumn,
 } from './column';
 import useSelectType from '../../util/hooks/selectType';
-import { informationType } from '../../constance/information';
 
 interface Props {
-  name: string;
-  gender: string;
+  userName: string;
+  sex: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
   schoolCode: string;
-  showSchoolName: string;
   schoolName: string;
-  schoolPhoneNumber: string;
+  schoolTel: string;
   parentName: string;
-  parentPhoneNumber: string;
-  phoneNumber: string;
-  homePhoneNumber: string;
-  zipCode: string;
-  baseAddress: string;
+  parentTel: string;
+  telephoneNumber: string;
+  homeTel: string;
+  postCode: string;
+  address: string;
   detailAddress: string;
-  grade: string;
   stdGrade: string;
   stdClass: string;
   stdNumber: string;
-  imageFile: File;
-  imageUrl: string;
+  pictureUrl: string;
   totalScore: number;
+  photoFileName: string;
   setInput: (payload: { name: string; value: string }) => void;
-  setGender: (payload: string) => void;
+  setSex: (payload: string) => void;
   setBirthYear: (payload: number) => void;
   setBirthMonth: (payload: number) => void;
   setBirthDate: (payload: number) => void;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: File) => void;
-  informationImage: (payload: File) => void;
-  information: (payload: informationType) => void;
+  setUserPicture: (payload: File) => void;
+  setSchoolName: (payload: string) => void;
   setIsClickSearchBtn: React.Dispatch<React.SetStateAction<boolean>>;
   setIsClickAddressBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const InformationForm: FC<Props> = ({
-  name,
-  gender,
+  userName,
+  sex,
   birthYear,
   birthMonth,
   birthDate,
-  showSchoolName,
   schoolName,
-  schoolPhoneNumber,
+  schoolTel,
   parentName,
-  parentPhoneNumber,
-  phoneNumber,
-  homePhoneNumber,
-  zipCode,
-  baseAddress,
+  parentTel,
+  telephoneNumber,
+  homeTel,
+  postCode,
+  address,
   detailAddress,
-  grade,
   stdGrade,
   stdClass,
   stdNumber,
-  imageFile,
-  imageUrl,
+  pictureUrl,
   totalScore,
+  photoFileName,
   setInput,
-  setGender,
+  setSex,
   setBirthYear,
   setBirthMonth,
   setBirthDate,
-  setImageFile,
+  setUserPicture,
   setImageUrl,
-  informationImage,
   setIsClickSearchBtn,
   setIsClickAddressBtn,
+  setSchoolName,
 }) => {
   const graduation = useSelectType().state.educationalStatus;
 
@@ -129,48 +123,45 @@ const InformationForm: FC<Props> = ({
             stdGrade={stdGrade}
             stdClass={stdClass}
             stdNumber={stdNumber}
-            grade={grade}
           />
           <SchoolNameColumn
-            showSchoolName={showSchoolName}
             schoolName={schoolName}
             setIsClickSearchBtn={setIsClickSearchBtn}
             setInput={setInput}
           />
         </>
       );
-  }, [setInput, graduation, grade, schoolName]);
+  }, [setInput, graduation, schoolName]);
 
   const phoneNumberColumn = useMemo(() => {
     if (graduation !== 'QUALIFICATION_EXAM')
       return (
         <PhoneNumberColumn
-          schoolPhoneNumber={schoolPhoneNumber}
+          schoolTel={schoolTel}
           title={'학교 연락처'}
-          inputName={'schoolPhoneNumber'}
+          inputName={'schoolTel'}
           setInput={setInput}
         />
       );
-  }, [graduation, schoolPhoneNumber]);
+  }, [graduation, schoolTel]);
 
   return (
     <S.InformationForm height={styleInfo.widthHeight.height}>
       <NameColumn
-        name={name}
+        userName={userName}
         title={'이름'}
         width={styleInfo.widthHeight.width}
-        inputName={'name'}
+        inputName={'userName'}
         setInput={setInput}
       />
       <PictureBtn
         {...styleInfo.picture}
-        imageFile={imageFile}
-        imageUrl={imageUrl}
+        pictureUrl={pictureUrl}
+        photoFileName={photoFileName}
         setImageUrl={setImageUrl}
-        setImageFile={setImageFile}
-        informationImage={informationImage}
+        setUserPicture={setUserPicture}
       />
-      <GenderColumn width={styleInfo.widthHeight.width} setGender={setGender} gender={gender} />
+      <GenderColumn width={styleInfo.widthHeight.width} setSex={setSex} sex={sex} />
       <BirthDateColumn
         width={styleInfo.widthHeight.width}
         birthYear={birthYear}
@@ -190,28 +181,28 @@ const InformationForm: FC<Props> = ({
       />
       {phoneNumberColumn}
       <PhoneNumberColumn
-        parentPhoneNumber={parentPhoneNumber}
+        parentTel={parentTel}
         title={'보호자 연락처'}
-        inputName={'parentPhoneNumber'}
+        inputName={'parentTel'}
         setInput={setInput}
       />
       <PhoneNumberColumn
-        phoneNumber={phoneNumber}
+        telephoneNumber={telephoneNumber}
         title={'본인 연락처'}
-        inputName={'phoneNumber'}
+        inputName={'telephoneNumber'}
         setInput={setInput}
       />
       <PhoneNumberColumn
-        homePhoneNumber={homePhoneNumber}
+        homeTel={homeTel}
         title={'자택 연락처'}
-        inputName={'homePhoneNumber'}
+        inputName={'homeTel'}
         setInput={setInput}
       />
       <AddressColumn
         setInput={setInput}
         setIsClickAddressBtn={setIsClickAddressBtn}
-        zipCode={zipCode}
-        baseAddress={baseAddress}
+        postCode={postCode}
+        address={address}
         detailAddress={detailAddress}
       />
     </S.InformationForm>

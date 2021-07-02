@@ -7,113 +7,112 @@ import {
   INFORMATIONTITLE,
   schoolArrayType,
   addressType,
+  searchSchoolQueryType,
 } from '../../constance/information';
-import { informationType } from '../../constance/information';
 import SearchSchoolModal from '../modal/searchSchool';
 import AddressModal from '../modal/address';
 import useSelectType from '../../util/hooks/selectType';
 
 interface Props {
-  name: string;
-  gender: string;
+  userName: string;
+  sex: string;
   birthYear: number;
   birthMonth: number;
   birthDate: number;
-  schoolCode: string;
-  schoolPhoneNumber: string;
   parentName: string;
-  parentPhoneNumber: string;
-  phoneNumber: string;
-  schoolName: string;
-  homePhoneNumber: string;
-  zipCode: string;
-  baseAddress: string;
+  parentTel: string;
+  telephoneNumber: string;
+  homeTel: string;
+  address: string;
   detailAddress: string;
-  grade: string;
+  postCode: string;
+  schoolCode: string;
+  schoolTel: string;
   stdGrade: string;
   stdClass: string;
   stdNumber: string;
+  schoolName: string;
   totalScore: number;
-  imageFile: File;
-  imageUrl: string;
-  content: Array<schoolArrayType>;
+  photoFileName: string;
+  pictureUrl: string;
+  userPicture: File;
+  page: number;
+  size: number;
   totalPages: number;
+  content: Array<schoolArrayType>;
   setInput: (payload: { name: string; value: string }) => void;
-  setGender: (payload: string) => void;
+  setSex: (payload: string) => void;
   setBirthYear: (payload: number) => void;
   setBirthMonth: (payload: number) => void;
   setBirthDate: (payload: number) => void;
   setImageUrl: (payload: string) => void;
-  setImageFile: (payload: File) => void;
-  informationImage: (payload: File) => void;
-  information: (payload: informationType) => void;
-  searchSchool: (payload: { schoolSearchName: string; size: number; page: number }) => void;
   setSchoolCode: (payload: string) => void;
+  setSchoolName: (payload: string) => void;
   setAddress: (payload: addressType) => void;
+  setUserPicture: (payload: File) => void;
+  searchSchool: (payload: searchSchoolQueryType) => void;
 }
 
 const Information: FC<Props> = ({
-  name,
-  gender,
+  userName,
+  sex,
   birthYear,
   birthMonth,
   birthDate,
-  schoolCode,
-  schoolPhoneNumber,
   parentName,
-  parentPhoneNumber,
-  phoneNumber,
-  homePhoneNumber,
-  zipCode,
-  baseAddress,
+  parentTel,
+  telephoneNumber,
+  homeTel,
+  address,
   detailAddress,
-  grade,
+  postCode,
+  schoolCode,
+  schoolTel,
   stdGrade,
   stdClass,
   stdNumber,
-  totalScore,
-  imageFile,
-  imageUrl,
-  content,
   schoolName,
+  totalScore,
+  photoFileName,
+  pictureUrl,
+  userPicture,
   totalPages,
+  content,
   setInput,
-  setGender,
+  setSex,
   setBirthYear,
   setBirthMonth,
   setBirthDate,
-  setImageFile,
+  setUserPicture,
   setImageUrl,
-  informationImage,
-  information,
-  searchSchool,
   setSchoolCode,
   setAddress,
+  searchSchool,
+  setSchoolName,
 }) => {
   const changes = [
-    name,
-    gender,
+    userName,
+    sex,
     birthYear,
     birthMonth,
     birthDate,
     schoolCode,
-    schoolPhoneNumber,
+    schoolTel,
     totalScore,
     parentName,
-    parentPhoneNumber,
-    phoneNumber,
-    homePhoneNumber,
-    zipCode,
-    baseAddress,
+    parentTel,
+    telephoneNumber,
+    homeTel,
+    postCode,
+    address,
     detailAddress,
     stdGrade,
     stdClass,
     stdNumber,
-    imageUrl,
+    pictureUrl,
   ];
   const [isClickSearchBtn, setIsClickSearchBtn] = useState(false);
   const [isClickAddressBtn, setIsClickAddressBtn] = useState(false);
-  const [showSchoolName, setShowSchoolName] = useState('');
   const educationalStatus = useSelectType().state.educationalStatus;
 
   const searchSchoolModal = useMemo(() => {
@@ -121,11 +120,11 @@ const Information: FC<Props> = ({
       return (
         <SearchSchoolModal
           setSchoolCode={setSchoolCode}
-          searchSchool={searchSchool}
-          setSchoolName={setShowSchoolName}
           content={content}
           setIsClickSearchBtn={setIsClickSearchBtn}
           totalPages={totalPages}
+          setSchoolName={setSchoolName}
+          searchSchool={searchSchool}
         />
       );
     else return;
@@ -139,19 +138,19 @@ const Information: FC<Props> = ({
 
   const pagination = useMemo(() => {
     if (
-      name &&
-      gender &&
+      userName &&
+      sex &&
       birthYear &&
       birthMonth &&
       birthDate &&
       parentName &&
-      parentPhoneNumber &&
-      phoneNumber &&
-      zipCode &&
-      baseAddress &&
+      parentTel &&
+      telephoneNumber &&
+      postCode &&
+      address &&
       detailAddress &&
-      ((schoolCode && schoolPhoneNumber && stdGrade && stdClass && stdNumber) || totalScore) &&
-      imageUrl
+      ((schoolCode && schoolTel && stdGrade && stdClass && stdNumber) || totalScore) &&
+      (pictureUrl || photoFileName)
     ) {
       if (educationalStatus === 'QUALIFICATION_EXAM')
         return (
@@ -177,38 +176,35 @@ const Information: FC<Props> = ({
         <S.Title>{INFORMATIONTITLE}</S.Title>
       </div>
       <InformationForm
-        name={name}
-        gender={gender}
+        userName={userName}
+        sex={sex}
         birthYear={birthYear}
         birthMonth={birthMonth}
         birthDate={birthDate}
         schoolCode={schoolCode}
-        showSchoolName={showSchoolName}
-        schoolPhoneNumber={schoolPhoneNumber}
+        schoolTel={schoolTel}
         parentName={parentName}
-        parentPhoneNumber={parentPhoneNumber}
-        phoneNumber={phoneNumber}
-        homePhoneNumber={homePhoneNumber}
-        zipCode={zipCode}
+        parentTel={parentTel}
+        telephoneNumber={telephoneNumber}
+        homeTel={homeTel}
+        postCode={postCode}
         schoolName={schoolName}
-        baseAddress={baseAddress}
+        photoFileName={photoFileName}
+        address={address}
         detailAddress={detailAddress}
-        grade={grade}
         stdGrade={stdGrade}
         stdClass={stdClass}
         stdNumber={stdNumber}
-        imageFile={imageFile}
-        imageUrl={imageUrl}
+        pictureUrl={pictureUrl}
         totalScore={totalScore}
         setInput={setInput}
-        setGender={setGender}
+        setSex={setSex}
         setBirthYear={setBirthYear}
         setBirthMonth={setBirthMonth}
         setBirthDate={setBirthDate}
         setImageUrl={setImageUrl}
-        setImageFile={setImageFile}
-        informationImage={informationImage}
-        information={information}
+        setUserPicture={setUserPicture}
+        setSchoolName={setSchoolName}
         setIsClickSearchBtn={setIsClickSearchBtn}
         setIsClickAddressBtn={setIsClickAddressBtn}
       />
