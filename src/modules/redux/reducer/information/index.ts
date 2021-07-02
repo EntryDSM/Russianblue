@@ -1,73 +1,65 @@
 import { informationActionType } from '../../action/information';
 import {
   INPUT,
-  GENDER,
+  SEX,
   BIRTHDATE,
   BIRTHMONTH,
   BIRTHYEAR,
-  IMAGEURL,
-  IMAGEFILE,
+  PICTUREURL,
   SCHOOLCODE,
   ADDRESS_AND_CODE,
   INFORMATION,
   INFORMATION_SUCCESS,
   INFORMATION_FAILURE,
-  AUTOSAVE_INFORMATION,
-  AUTOSAVE_INFORMATION_SUCCESS,
-  AUTOSAVE_INFORMATION_FAILURE,
-  INFORMATION_IMAGE,
-  INFORMATION_IMAGE_FAILURE,
-  INFORMATION_IMAGE_SUCCESS,
-  SEARCH_SCHOOL,
-  SEARCH_SCHOOL_FAILURE,
-  SEARCH_SCHOOL_SUCCESS,
+  GRADUATE_INFORMATION,
+  GRADUATE_INFORMATION_SUCCESS,
+  GRADUATE_INFORMATION_FAILURE,
   GET_INFORMATION_SUCCESS,
   GET_INFORMATION_FAILURE,
-  GEDINFORMATION,
-  GEDINFORMATION_SUCCESS,
-  GEDINFORMATION_FAILURE,
-  GET_GEDINFORMATION_SUCCESS,
-  GET_GEDINFORMATION_FAILURE,
-  AUTOSAVE_GEDINFORMATION,
-  AUTOSAVE_GEDINFORMATION_FAILURE,
-  AUTOSAVE_GEDINFORMATION_SUCCESS,
+  GET_GRADUATE_INFORMATION_SUCCESS,
+  GET_GRADUATE_INFORMATION_FAILURE,
+  USER_PICTURE,
+  USER_PICTURE_SUCCESS,
+  USER_PICTURE_FAILURE,
+  SEARCH_SCHOOL,
+  SEARCH_SCHOOL_SUCCESS,
+  SEARCH_SCHOOL_FAILURE,
+  SCHOOL_NAME,
 } from '../../action/information/interface';
 import InformationState from './interface';
 
 const initState: InformationState = {
-  name: '',
-  gender: '',
-  birthYear: 2006,
+  userName: '',
+  sex: '',
+  birthYear: 2021,
   birthMonth: 1,
   birthDate: 1,
-  schoolCode: '',
-  schoolName: '',
-  schoolPhoneNumber: '',
   parentName: '',
-  parentPhoneNumber: '',
-  phoneNumber: '',
-  homePhoneNumber: '',
-  zipCode: '',
-  baseAddress: '',
+  parentTel: '',
+  telephoneNumber: '',
+  homeTel: '',
+  address: '',
   detailAddress: '',
-  grade: '',
+  postCode: '',
+  schoolCode: '',
+  schoolTel: '',
   stdGrade: '',
   stdClass: '',
   stdNumber: '',
+  schoolName: '',
   totalScore: 0,
-  imageUrl: '',
-  imageFile: null,
-  schoolSearchName: '',
+  photoFileName: '',
+  pictureUrl: '',
+  userPicture: null,
   page: 0,
-  size: 10,
-  content: null,
+  size: 0,
   totalPages: 0,
+  content: [],
   error: null,
-  isSuccessSaveInformationImage: undefined,
-  isSuccessGetInformation: undefined,
+  isSuccessSaveUserPicture: undefined,
   isSuccessSaveInformation: undefined,
-  isSuccessSaveSearchSchool: undefined,
-  isSuccessSaveGedInformation: undefined,
+  isSuccessSaveGraduateInformation: undefined,
+  isSuccessGetSearchSchool: undefined,
 };
 
 const informationReducer = (
@@ -80,10 +72,10 @@ const informationReducer = (
         ...state,
         [action.payload.name]: action.payload.value,
       };
-    case GENDER:
+    case SEX:
       return {
         ...state,
-        gender: action.payload,
+        sex: action.payload,
       };
     case BIRTHYEAR:
       return {
@@ -100,64 +92,26 @@ const informationReducer = (
         ...state,
         birthDate: action.payload,
       };
-    case IMAGEURL:
+    case PICTUREURL:
       return {
         ...state,
-        imageUrl: action.payload,
-      };
-    case IMAGEFILE:
-      return {
-        ...state,
-        imageFile: action.payload,
+        pictureUrl: action.payload,
       };
     case SCHOOLCODE:
       return {
         ...state,
         schoolCode: action.payload,
       };
+    case SCHOOL_NAME:
+      return {
+        ...state,
+        schoolName: action.payload,
+      };
     case ADDRESS_AND_CODE:
       return {
         ...state,
-        baseAddress: action.payload.baseAddress,
-        zipCode: action.payload.zipCode,
-      };
-    case GEDINFORMATION:
-      return {
-        ...state,
-      };
-    case GEDINFORMATION_SUCCESS:
-      return {
-        ...state,
-        isSuccessSaveGedInformation: true,
-      };
-    case GEDINFORMATION_FAILURE:
-      return {
-        ...state,
-        isSuccessSaveGedInformation: false,
-        error: action.payload,
-      };
-    case GET_GEDINFORMATION_SUCCESS:
-      return {
-        ...state,
-        name: action.payload.name,
-        gender: action.payload.sex,
-        birthYear: Number(action.payload.birthday.slice(0, 4)),
-        birthMonth: Number(action.payload.birthday.slice(5, 7)),
-        birthDate: Number(action.payload.birthday.slice(8)),
-        parentName: action.payload.parent_name,
-        parentPhoneNumber: action.payload.parent_tel,
-        phoneNumber: action.payload.telephone_number,
-        homePhoneNumber: action.payload.home_tel,
-        baseAddress: action.payload.address,
-        detailAddress: action.payload.detail_address,
-        zipCode: action.payload.post_code,
-        imageUrl: action.payload.photo_file_name,
-        totalScore: action.payload.average_score,
-      };
-    case GET_GEDINFORMATION_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
+        address: action.payload.address,
+        postCode: action.payload.postCode,
       };
     case INFORMATION:
       return {
@@ -172,96 +126,101 @@ const informationReducer = (
     case INFORMATION_FAILURE:
       return {
         ...state,
-        error: action.payload,
+        isSuccessSaveInformation: false,
       };
-    case AUTOSAVE_INFORMATION:
+    case GRADUATE_INFORMATION:
       return {
         ...state,
-        isSuccessSaveInformation: undefined,
+        isSuccessSaveGraduateInformation: undefined,
       };
-    case AUTOSAVE_INFORMATION_SUCCESS:
+    case GRADUATE_INFORMATION_SUCCESS:
       return {
         ...state,
+        isSuccessSaveGraduateInformation: true,
       };
-    case AUTOSAVE_INFORMATION_FAILURE:
+    case GRADUATE_INFORMATION_FAILURE:
       return {
         ...state,
-        error: action.payload,
-      };
-    case AUTOSAVE_GEDINFORMATION:
-      return {
-        ...state,
-        isSuccessSaveGedInformation: undefined,
-      };
-    case AUTOSAVE_GEDINFORMATION_SUCCESS:
-      return {
-        ...state,
-      };
-    case AUTOSAVE_GEDINFORMATION_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
+        isSuccessSaveGraduateInformation: false,
       };
     case GET_INFORMATION_SUCCESS:
       return {
         ...state,
-        isSuccessGetInformation: true,
-        name: action.payload.name,
-        gender: action.payload.sex,
-        birthYear: Number(action.payload.birthday.slice(0, 4)),
-        birthMonth: Number(action.payload.birthday.slice(5, 7)),
-        birthDate: Number(action.payload.birthday.slice(8)),
-        schoolCode: action.payload.school_code,
-        schoolPhoneNumber: action.payload.school_tel,
+        userName: action.payload.name,
+        sex: action.payload.sex,
+        birthYear: action.payload.birthday ? Number(action.payload.birthday.slice(0, 4)) : 2021,
+        birthMonth: action.payload.birthday ? Number(action.payload.birthday.slice(5, 7)) : 1,
+        birthDate: action.payload.birthday ? Number(action.payload.birthday.slice(8)) : 1,
         parentName: action.payload.parent_name,
-        parentPhoneNumber: action.payload.parent_tel,
-        phoneNumber: action.payload.telephone_number,
-        homePhoneNumber: action.payload.home_tel,
-        baseAddress: action.payload.address,
+        parentTel: action.payload.parent_tel,
+        telephoneNumber: action.payload.telephone_number,
+        homeTel: action.payload.home_tel,
+        address: action.payload.address,
         detailAddress: action.payload.detail_address,
-        zipCode: action.payload.post_code,
-        imageUrl: action.payload.photo_file_name,
-        stdGrade: action.payload.student_number.slice(0, 1),
-        stdClass: action.payload.student_number.slice(1, 2),
-        stdNumber: action.payload.student_number.slice(3),
-        schoolName: action.payload.school_name,
+        postCode: action.payload.post_code,
+        photoFileName: action.payload.photo_file_name,
       };
     case GET_INFORMATION_FAILURE:
       return {
         ...state,
-        isSuccessGetInformation: false,
         error: action.payload,
       };
-    case INFORMATION_IMAGE:
+    case GET_GRADUATE_INFORMATION_SUCCESS:
       return {
         ...state,
-        isSuccessSaveInformationImage: undefined,
-        imageFile: action.payload,
+        userName: action.payload.name,
+        sex: action.payload.sex,
+        birthYear: action.payload.birthday ? Number(action.payload.birthday.slice(0, 4)) : 2021,
+        birthMonth: action.payload.birthday ? Number(action.payload.birthday.slice(5, 7)) : 1,
+        birthDate: action.payload.birthday ? Number(action.payload.birthday.slice(8)) : 1,
+        parentName: action.payload.parent_name,
+        parentTel: action.payload.parent_tel,
+        telephoneNumber: action.payload.telephone_number,
+        homeTel: action.payload.home_tel,
+        address: action.payload.address,
+        detailAddress: action.payload.detail_address,
+        postCode: action.payload.post_code,
+        photoFileName: action.payload.photo_file_name,
+        stdGrade: action.payload.student_number ? action.payload.student_number.slice(0, 1) : '',
+        stdClass: action.payload.student_number ? action.payload.student_number.slice(1, 2) : '',
+        stdNumber: action.payload.student_number ? action.payload.student_number.slice(2) : '',
+        schoolName: action.payload.school_name,
+        schoolCode: action.payload.school_code,
+        schoolTel: action.payload.school_tel,
       };
-    case INFORMATION_IMAGE_SUCCESS:
+    case GET_GRADUATE_INFORMATION_FAILURE:
       return {
         ...state,
-        imageUrl: action.payload,
-        isSuccessSaveInformationImage: true,
-      };
-    case INFORMATION_IMAGE_FAILURE:
-      return {
-        ...state,
-        isSuccessSaveInformationImage: false,
         error: action.payload,
+      };
+    case USER_PICTURE:
+      return {
+        ...state,
+        userPicture: action.payload,
+        isSuccessSaveUserPicture: undefined,
+      };
+    case USER_PICTURE_SUCCESS:
+      return {
+        ...state,
+        isSuccessSaveUserPicture: true,
+      };
+    case USER_PICTURE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isSuccessSaveUserPicture: false,
       };
     case SEARCH_SCHOOL:
       return {
         ...state,
-        isSuccessSaveSearchSchool: undefined,
-        schoolSearchName: action.payload.schoolSearchName,
-        page: action.payload.page,
+        schoolName: action.payload.name,
         size: action.payload.size,
+        page: action.payload.page,
       };
     case SEARCH_SCHOOL_SUCCESS:
       return {
         ...state,
-        isSuccessSaveSearchSchool: true,
+        isSuccessGetSearchSchool: true,
         content: state.content
           ? state.content.concat(action.payload.content)
           : action.payload.content,
@@ -270,8 +229,7 @@ const informationReducer = (
     case SEARCH_SCHOOL_FAILURE:
       return {
         ...state,
-        isSuccessSaveSearchSchool: false,
-        error: action.payload,
+        isSuccessGetSearchSchool: false,
       };
     default:
       return state;
