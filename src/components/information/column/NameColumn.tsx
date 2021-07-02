@@ -3,7 +3,7 @@ import * as S from '../style';
 import Input from '../../default/input';
 
 interface Props {
-  name?: string;
+  userName?: string;
   parentName?: string;
   title: string;
   width: number;
@@ -11,20 +11,20 @@ interface Props {
   setInput: (payload: { name: string; value: string }) => void;
 }
 
-const NameColumn: FC<Props> = ({ title, width, inputName, setInput, name, parentName }) => {
+const NameColumn: FC<Props> = ({ title, width, inputName, setInput, userName, parentName }) => {
   const nameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ name: e.target.name, value: e.target.value });
   };
 
   const nameInput = useMemo(() => {
-    if (inputName === 'name')
+    if (inputName === 'userName')
       return (
         <Input
           width={166}
           height={42}
           inputChangeHandler={nameChangeHandler}
           name={inputName}
-          defaultValue={name}
+          defaultValue={userName}
         />
       );
     else if (inputName === 'parentName')
@@ -37,7 +37,7 @@ const NameColumn: FC<Props> = ({ title, width, inputName, setInput, name, parent
           defaultValue={parentName}
         />
       );
-  }, [name, parentName]);
+  }, [userName, parentName]);
 
   return (
     <S.InformationLine width={width}>
