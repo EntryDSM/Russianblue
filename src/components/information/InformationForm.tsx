@@ -42,7 +42,7 @@ interface Props {
   setBirthDate: (payload: number) => void;
   setImageUrl: (payload: string) => void;
   setUserPicture: (payload: File) => void;
-  setSchoolName: (payload: string) => void;
+  setGedScore: (payload: number) => void;
   setIsClickSearchBtn: React.Dispatch<React.SetStateAction<boolean>>;
   setIsClickAddressBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -77,7 +77,7 @@ const InformationForm: FC<Props> = ({
   setImageUrl,
   setIsClickSearchBtn,
   setIsClickAddressBtn,
-  setSchoolName,
+  setGedScore,
 }) => {
   const graduation = useSelectType().state.educationalStatus;
 
@@ -114,7 +114,7 @@ const InformationForm: FC<Props> = ({
 
   const showGrade = useMemo(() => {
     if (graduation === 'QUALIFICATION_EXAM')
-      return <TotalScoreColumn setInput={setInput} totalScore={totalScore} />;
+      return <TotalScoreColumn setGedScore={setGedScore} totalScore={totalScore} />;
     else
       return (
         <>
