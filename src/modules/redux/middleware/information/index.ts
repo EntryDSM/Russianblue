@@ -8,6 +8,8 @@ import {
   getGraduateInformation,
   userPhoto,
   getSearchSchool,
+  gedScore,
+  getGedScore,
 } from '../../../../util/api/information';
 import {
   INFORMATION,
@@ -23,6 +25,8 @@ import {
   GRADUATE_INFORMATION,
   USER_PICTURE,
   SEARCH_SCHOOL,
+  GET_GED_SCORE,
+  GED_SCORE,
 } from '../../action/information/interface';
 import { call, debounce, put, select, takeLatest } from 'redux-saga/effects';
 import { reducerType } from '../../reducer';
@@ -39,6 +43,8 @@ export const graduateInformationGetSaga = createRequestSaga(
 );
 export const userPhotoSaveSaga = createRequestSaga(USER_PICTURE, userPhoto);
 export const searchSchoolGetSaga = createRequestSaga(SEARCH_SCHOOL, getSearchSchool);
+export const gedScoreSaveSaga = createRequestSaga(GED_SCORE, gedScore);
+export const gedScoreGetSaga = createRequestSaga(GET_GED_SCORE, getGedScore);
 
 const informationSaveSaga = function* () {
   const SUCCESS = 'INFORMATION/INFORMATION_SUCCESS';
@@ -115,6 +121,8 @@ function* informationSaga() {
   yield takeLatest(GET_GRADUATE_INFORMATION, graduateInformationGetSaga);
   yield takeLatest(USER_PICTURE, userPhotoSaveSaga);
   yield takeLatest(SEARCH_SCHOOL, searchSchoolGetSaga);
+  yield takeLatest(GET_GED_SCORE, gedScoreGetSaga);
+  yield debounce(1000, GED_SCORE, gedScoreSaveSaga);
   yield debounce(3000, actionArray, proxySaga);
 }
 
