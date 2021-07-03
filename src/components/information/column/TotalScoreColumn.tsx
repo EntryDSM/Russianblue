@@ -4,12 +4,12 @@ import Input from '../../default/input';
 
 interface Props {
   totalScore: number;
-  setInput: (payload: { name: string; value: string }) => void;
+  setGedScore: (payload: number) => void;
 }
 
-const TotalScoreColumn: FC<Props> = ({ setInput, totalScore }) => {
+const TotalScoreColumn: FC<Props> = ({ setGedScore, totalScore }) => {
   const totalScoreChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ name: e.target.name, value: e.target.value });
+    setGedScore(Number(e.target.value));
   };
 
   return (
