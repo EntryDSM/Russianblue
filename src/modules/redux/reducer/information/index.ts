@@ -25,6 +25,12 @@ import {
   SEARCH_SCHOOL_SUCCESS,
   SEARCH_SCHOOL_FAILURE,
   SCHOOL_NAME,
+  GED_SCORE,
+  GED_SCORE_FAILURE,
+  GED_SCORE_SUCCESS,
+  GET_GED_SCORE,
+  GET_GED_SCORE_FAILURE,
+  GET_GED_SCORE_SUCCESS,
 } from '../../action/information/interface';
 import InformationState from './interface';
 
@@ -230,6 +236,26 @@ const informationReducer = (
       return {
         ...state,
         isSuccessGetSearchSchool: false,
+      };
+    case GED_SCORE:
+      return {
+        ...state,
+        totalScore: action.payload,
+      };
+    case GED_SCORE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case GET_GED_SCORE_SUCCESS:
+      return {
+        ...state,
+        totalScore: action.payload,
+      };
+    case GET_GED_SCORE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

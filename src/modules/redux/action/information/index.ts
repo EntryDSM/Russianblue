@@ -4,7 +4,6 @@ import {
   getInformationType,
   graduateInformationType,
   informationType,
-  schoolArrayType,
   searchSchoolQueryType,
   searchSchoolResponse,
 } from '../../../../constance/information';
@@ -37,6 +36,12 @@ import {
   SEARCH_SCHOOL,
   SEARCH_SCHOOL_FAILURE,
   SEARCH_SCHOOL_SUCCESS,
+  GED_SCORE,
+  GED_SCORE_FAILURE,
+  GED_SCORE_SUCCESS,
+  GET_GED_SCORE,
+  GET_GED_SCORE_FAILURE,
+  GET_GED_SCORE_SUCCESS,
 } from './interface';
 
 export const setInput = (payload: { name: string; value: string }) => ({
@@ -170,6 +175,34 @@ export const searchSchoolFailure = (payload: error) => ({
   payload,
 });
 
+export const gedScore = (payload: number) => ({
+  type: GED_SCORE,
+  payload,
+});
+
+export const gedScoreSuccess = () => ({
+  type: GED_SCORE_SUCCESS,
+});
+
+export const gedScoreFailure = (payload: error) => ({
+  type: GED_SCORE_FAILURE,
+  payload,
+});
+
+export const getGedScore = () => ({
+  type: GET_GED_SCORE,
+});
+
+export const getGedScoreSuccess = (payload: number) => ({
+  type: GET_GED_SCORE_SUCCESS,
+  payload,
+});
+
+export const getGedScoreFailure = (payload: error) => ({
+  type: GET_GED_SCORE_FAILURE,
+  payload,
+});
+
 export type informationActionType =
   | ReturnType<typeof setInput>
   | ReturnType<typeof setBirthYear>
@@ -197,4 +230,10 @@ export type informationActionType =
   | ReturnType<typeof userPictureFailure>
   | ReturnType<typeof searchSchool>
   | ReturnType<typeof searchSchoolSuccess>
-  | ReturnType<typeof searchSchoolFailure>;
+  | ReturnType<typeof searchSchoolFailure>
+  | ReturnType<typeof gedScore>
+  | ReturnType<typeof gedScoreSuccess>
+  | ReturnType<typeof gedScoreFailure>
+  | ReturnType<typeof getGedScore>
+  | ReturnType<typeof getGedScoreSuccess>
+  | ReturnType<typeof getGedScoreFailure>;
