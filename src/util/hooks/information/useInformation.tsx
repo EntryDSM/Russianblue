@@ -12,6 +12,7 @@ import {
   userPicture,
   searchSchool,
   setSchoolName,
+  gedScore,
 } from '../../../modules/redux/action/information';
 import { useSelectState } from '../default';
 
@@ -51,6 +52,9 @@ const useInformation = () => {
     },
     setSchoolName: (payload: string) => {
       dispatch(setSchoolName(payload));
+    },
+    setGedScore: (payload: number) => {
+      dispatch(gedScore(payload));
     },
   };
 
