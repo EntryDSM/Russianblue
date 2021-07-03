@@ -13,6 +13,7 @@ enum uri {
   graduateInformation = '/application/users/graduation',
   userPhoto = '/application/users/photo',
   searchSchool = '/application/schools',
+  gedScore = '/score/qualification-exam',
 }
 
 export default uri;
