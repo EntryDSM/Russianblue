@@ -51,6 +51,7 @@ interface Props {
   setAddress: (payload: addressType) => void;
   setUserPicture: (payload: File) => void;
   searchSchool: (payload: searchSchoolQueryType) => void;
+  setGedScore: (payload: number) => void;
 }
 
 const Information: FC<Props> = ({
@@ -89,6 +90,7 @@ const Information: FC<Props> = ({
   setAddress,
   searchSchool,
   setSchoolName,
+  setGedScore,
 }) => {
   const changes = [
     userName,
@@ -110,6 +112,7 @@ const Information: FC<Props> = ({
     stdClass,
     stdNumber,
     pictureUrl,
+    totalScore,
   ];
   const [isClickSearchBtn, setIsClickSearchBtn] = useState(false);
   const [isClickAddressBtn, setIsClickAddressBtn] = useState(false);
@@ -204,8 +207,8 @@ const Information: FC<Props> = ({
         setBirthDate={setBirthDate}
         setImageUrl={setImageUrl}
         setUserPicture={setUserPicture}
-        setSchoolName={setSchoolName}
         setIsClickSearchBtn={setIsClickSearchBtn}
+        setGedScore={setGedScore}
         setIsClickAddressBtn={setIsClickAddressBtn}
       />
       {searchSchoolModal}
