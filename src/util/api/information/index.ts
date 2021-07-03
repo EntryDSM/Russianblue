@@ -118,3 +118,21 @@ export const getSearchSchool = async (
     throw error;
   }
 };
+
+export const gedScore = async (access_token: string, gedScoreRequest: number) => {
+  try {
+    const request = getRequestWithAccessToken(access_token);
+    await request.patch(uri.gedScore, { average_score: Number((gedScoreRequest / 6).toFixed(2)) });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getGedScore = async (access_token: string) => {
+  try {
+    const request = getRequestWithAccessToken(access_token);
+    return await request.get(uri.gedScore);
+  } catch (error) {
+    throw error;
+  }
+};
