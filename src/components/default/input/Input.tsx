@@ -11,6 +11,8 @@ interface Props {
   type?: string;
   name?: string;
   defaultValue?: string;
+  maxValue?: number;
+  minValue?: number;
 }
 
 const Input: FC<Props> = ({
@@ -23,6 +25,8 @@ const Input: FC<Props> = ({
   type,
   name,
   defaultValue,
+  maxValue,
+  minValue,
 }) => {
   return (
     <S.Input
@@ -36,6 +40,8 @@ const Input: FC<Props> = ({
       disabled={disable}
       type={type}
       name={name}
+      max={maxValue}
+      min={minValue}
     />
   );
 };

@@ -175,7 +175,7 @@ export const searchSchoolFailure = (payload: error) => ({
   payload,
 });
 
-export const gedScore = (payload: number) => ({
+export const gedScore = (payload: string) => ({
   type: GED_SCORE,
   payload,
 });
@@ -193,7 +193,7 @@ export const getGedScore = () => ({
   type: GET_GED_SCORE,
 });
 
-export const getGedScoreSuccess = (payload: number) => ({
+export const getGedScoreSuccess = (payload: { average_score: number }) => ({
   type: GET_GED_SCORE_SUCCESS,
   payload,
 });

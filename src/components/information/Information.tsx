@@ -32,7 +32,7 @@ interface Props {
   stdClass: string;
   stdNumber: string;
   schoolName: string;
-  totalScore: number;
+  totalScore: string;
   photoFileName: string;
   pictureUrl: string;
   userPicture: File;
@@ -51,7 +51,7 @@ interface Props {
   setAddress: (payload: addressType) => void;
   setUserPicture: (payload: File) => void;
   searchSchool: (payload: searchSchoolQueryType) => void;
-  setGedScore: (payload: number) => void;
+  setGedScore: (payload: string) => void;
 }
 
 const Information: FC<Props> = ({

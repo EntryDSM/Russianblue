@@ -33,7 +33,7 @@ interface Props {
   stdClass: string;
   stdNumber: string;
   pictureUrl: string;
-  totalScore: number;
+  totalScore: string;
   photoFileName: string;
   setInput: (payload: { name: string; value: string }) => void;
   setSex: (payload: string) => void;
@@ -42,7 +42,7 @@ interface Props {
   setBirthDate: (payload: number) => void;
   setImageUrl: (payload: string) => void;
   setUserPicture: (payload: File) => void;
-  setGedScore: (payload: number) => void;
+  setGedScore: (payload: string) => void;
   setIsClickSearchBtn: React.Dispatch<React.SetStateAction<boolean>>;
   setIsClickAddressBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -131,7 +131,7 @@ const InformationForm: FC<Props> = ({
           />
         </>
       );
-  }, [setInput, graduation, schoolName]);
+  }, [setInput, graduation, schoolName, totalScore]);
 
   const phoneNumberColumn = useMemo(() => {
     if (graduation !== 'QUALIFICATION_EXAM')

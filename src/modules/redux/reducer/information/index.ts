@@ -53,7 +53,7 @@ const initState: InformationState = {
   stdClass: '',
   stdNumber: '',
   schoolName: '',
-  totalScore: 0,
+  totalScore: '0',
   photoFileName: '',
   pictureUrl: '',
   userPicture: null,
@@ -250,7 +250,7 @@ const informationReducer = (
     case GET_GED_SCORE_SUCCESS:
       return {
         ...state,
-        totalScore: action.payload,
+        totalScore: String(action.payload.average_score),
       };
     case GET_GED_SCORE_FAILURE:
       return {
