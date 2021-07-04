@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-
 module.exports = {
   entry: { app: './src/index.tsx' },
   resolve: {
@@ -50,8 +50,12 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: './public/favicon.ico' }],
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/favicon.ico',
     }),
     new Dotenv({
       path: path.join(__dirname, 'src/.env'),

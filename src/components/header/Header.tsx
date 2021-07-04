@@ -3,6 +3,7 @@ import * as S from './style';
 import HeaderMenu from './menu';
 import { error } from '../../models/error';
 import { useHistory } from 'react-router-dom';
+import { refreshToken } from '../../util/api/signin';
 
 interface Props {
   isLogin: boolean;
@@ -22,10 +23,12 @@ const Header: FC<Props> = props => {
   const logout = () => {
     props.setIsLogin(false);
     props.setAccessToken('');
+    localStorage.removeItem('access_token');
   };
   const logoClickHandler = () => {
     history.push('/');
   };
+
   return (
     <S.Header>
       <S.HeaderIcon onClick={logoClickHandler} />

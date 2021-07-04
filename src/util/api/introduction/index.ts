@@ -40,7 +40,6 @@ export const getIntroduction = async (access_token: string) => {
     const request = getRequestWithAccessToken(access_token);
     return await request.get(uri.introduction);
   } catch (error) {
-    console.log(10, error);
     throw error;
   }
 };

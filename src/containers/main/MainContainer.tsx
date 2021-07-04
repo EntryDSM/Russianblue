@@ -23,11 +23,6 @@ const MainContainer: FC = () => {
   const modalState = useModal();
   const getNowProcess = (status: string) => {
     if (!processState.state.processes[status]) return MainDummyData;
-    if (status === 'NOT_APPLICATION_PERIOD') return processState.state.processes[START_DATE];
-    if (status === 'BEFORE_FIRST_ANNOUNCE') return processState.state.processes[FIRST_ANNOUNCEMENT];
-    if (status === 'BEFORE_SECOND_ANNOUNCE')
-      return processState.state.processes[SECOND_ANNOUNCEMENT];
-    if (status === 'BEFORE_INTERVIEW') return processState.state.processes[INTERVIEW];
     return processState.state.processes[status];
   };
 
