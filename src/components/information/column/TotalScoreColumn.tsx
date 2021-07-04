@@ -13,13 +13,12 @@ const TotalScoreColumn: FC<Props> = ({ setGedScore, totalScore }) => {
   };
 
   const totalScoreInput = useMemo(() => {
-    console.log(1, totalScore);
     return (
       <Input
         width={114}
         height={42}
         inputChangeHandler={totalScoreChangeHandler}
-        defaultValue={totalScore}
+        defaultValue={String(Number(totalScore) * 6)}
         maxValue={600}
         minValue={360}
         name='totalScore'
