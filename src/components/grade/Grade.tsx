@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import { SCHOOL, ENTERGRADE, GradeType } from '../../constance/grade';
 import Pagination from '../default/Pagination';
 import { ResetGrade } from './column';
 import { VolunteerTable, GradeTable } from './table';
 import { useSelectState } from '../../util/hooks/default';
+import useSelectType from '../../util/hooks/selectType';
 
 interface Props {
   volunteerTime: number;
@@ -36,12 +37,34 @@ const Grade: FC<Props> = ({
     seniorFirst: false,
     seniorSecond: false,
   });
-  const [isGraduated, setIsGraduated] = useState(false);
+  const [isGraduated, setIsGraduated] = useState<boolean>(false);
+  const educationalStatus = useSelectType().state.educationalStatus;
 
   useEffect(() => {
     if (graduated === 'PROSPECTIVE_GRADUATE') setIsGraduated(true);
     else if (graduated === 'GRADUATE') setIsGraduated(false);
   }, [graduated]);
+
+  const pagination = useMemo(() => {
+    if (
+      volunteerTime &&
+      absence &&
+      leave &&
+      lateness &&
+      truancy &&
+      grade.korean !== 'XXXXXX' &&
+      grade.english !== 'XXXXXX' &&
+      grade.history !== 'XXXXXX' &&
+      grade.math !== 'XXXXXX' &&
+      grade.science !== 'XXXXXX' &&
+      grade.social !== 'XXXXXX' &&
+      grade.technical !== 'XXXXXX'
+    ) {
+      return <Pagination prevPagePath={'/'} nextPagePath={'/introduction'} isNextPage />;
+    } else {
+      return <Pagination prevPagePath={'/'} />;
+    }
+  }, [volunteerTime, absence, leave, lateness, truancy, grade]);
 
   return (
     <S.Grade>
@@ -66,7 +89,7 @@ const Grade: FC<Props> = ({
         grade={grade}
         isGraduated={isGraduated}
       />
-      <Pagination />
+      {pagination}
     </S.Grade>
   );
 };
