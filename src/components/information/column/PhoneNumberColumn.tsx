@@ -27,18 +27,18 @@ const PhoneNumberColumn: FC<Props> = ({
   };
 
   const phoneNumberInput = useMemo(() => {
-    let inputDefaultValue = '';
-    if (inputName === 'schoolTel') inputDefaultValue = schoolTel;
-    else if (inputName === 'parentTel') inputDefaultValue = parentTel;
-    else if (inputName === 'telephoneNumber') inputDefaultValue = telephoneNumber;
-    else if (inputName === 'homeTel') inputDefaultValue = homeTel;
+    let inputvalue = '';
+    if (inputName === 'schoolTel') inputvalue = schoolTel;
+    else if (inputName === 'parentTel') inputvalue = parentTel;
+    else if (inputName === 'telephoneNumber') inputvalue = telephoneNumber;
+    else if (inputName === 'homeTel') inputvalue = homeTel;
     return (
       <Input
         width={260}
         height={41}
         inputChangeHandler={phoneNumberChangeHandler}
         name={inputName}
-        defaultValue={inputDefaultValue}
+        value={inputvalue}
       />
     );
   }, [schoolTel, parentTel, telephoneNumber, homeTel]);

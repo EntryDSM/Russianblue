@@ -23,7 +23,7 @@ const GradeColumn: FC<Props> = ({ setInput, stdGrade, stdClass, stdNumber }) => 
             width={63}
             height={42}
             inputChangeHandler={gradeChangeHandler}
-            defaultValue={
+            value={
               grades.name === 'stdGrade'
                 ? stdGrade
                 : grades.name === 'stdClass'
