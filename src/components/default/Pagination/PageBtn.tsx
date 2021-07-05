@@ -85,6 +85,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           isSuccessAction =
             informationState.isSuccessSaveInformation &&
             informationState.isSuccessSaveGraduateInformation;
+        break;
       case 'grade':
         isSuccessAction = gradeState.isSuccessSaveGrade;
         break;
