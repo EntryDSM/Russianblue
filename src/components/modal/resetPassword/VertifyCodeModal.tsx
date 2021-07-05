@@ -17,7 +17,6 @@ const VertifyCodeModal: FC<Props> = ({ goNext, goPrev }) => {
   const { state, setState } = useResetPassword();
   const [timer, setTimer] = useState<TimeOut>();
   const [time, setTime] = useState<number>(MAX_TIME);
-  const [isNextAble, setIsNextAble] = useState<boolean>(false);
   const vertifyCodeInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState.setVertifyCode(e.target.value);
   };
@@ -25,9 +24,15 @@ const VertifyCodeModal: FC<Props> = ({ goNext, goPrev }) => {
     clearInterval(timer);
   };
   const vertifyButtonClickHandler = () => {
-    setIsNextAble(true);
+    setState.checkVertifyCode({
+      email: state.vertifyPhoneNumber,
+      code: state.vertifyCode,
+    });
   };
   const reSendVertifyCodeButtonClickHandler = () => {
+    setState.sendVertifyCode({
+      email: state.vertifyPhoneNumber,
+    });
     setTime(180);
   };
   useEffect(() => {
@@ -35,10 +40,11 @@ const VertifyCodeModal: FC<Props> = ({ goNext, goPrev }) => {
       setTime(time => time - 1);
     }, 1000);
     setTimer(timer);
-    setState.setResetPasswordError({ status: 0, message: '' });
+    setState.setResetPasswordError({ status: 0, message: '', type: '' });
     return () => {
       stopTimer(timer);
       setTime(MAX_TIME);
+      setState.resetState();
     };
   }, []);
   useEffect(() => {
@@ -46,6 +52,10 @@ const VertifyCodeModal: FC<Props> = ({ goNext, goPrev }) => {
       stopTimer(timer);
     }
   }, [time]);
+  useEffect(() => {
+    if (state.vertifyCodeChecked) setTime(0);
+    stopTimer(timer);
+  }, [state.vertifyCodeChecked]);
   return (
     <S.ModalMain>
       <S.ModalTitle bottom={25}>비밀번호 재설정</S.ModalTitle>
@@ -70,7 +80,12 @@ const VertifyCodeModal: FC<Props> = ({ goNext, goPrev }) => {
       <S.ModalSubTitle>문자가 오지 않았다면, 전화번호를 확인해 주세요.</S.ModalSubTitle>
       <S.ModalMoveButtonWrapper>
         <MoveButton text='이전' type='prev' buttonClickHandler={goPrev} />
-        <MoveButton text='다음' type='next' buttonClickHandler={goNext} disable={!isNextAble} />
+        <MoveButton
+          text='다음'
+          type='next'
+          buttonClickHandler={goNext}
+          disable={!state.vertifyCodeChecked}
+        />
       </S.ModalMoveButtonWrapper>
     </S.ModalMain>
   );

@@ -18,8 +18,10 @@ interface GradeState {
       sophomoreFirst: boolean;
       sophomoreSecond: boolean;
       seniorFirst: boolean;
+      seniorSecond: boolean;
     };
   };
+  isSuccessSaveGrade: boolean;
 }
 
 export enum Grade {
@@ -28,6 +30,7 @@ export enum Grade {
   sophomoreFirst = 2,
   sophomoreSecond = 3,
   seniorFirst = 4,
+  seniorSecond = 5,
 }
 
 export default GradeState;

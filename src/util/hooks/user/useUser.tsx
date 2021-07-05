@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setName, setPhoneNumber } from '../../../modules/redux/action/user';
+import { getUser, setName, setPhoneNumber } from '../../../modules/redux/action/user';
 import { useSelectState } from '../default';
 
 const useSignup = () => {
@@ -11,6 +11,9 @@ const useSignup = () => {
     },
     setPhoneNumber: (payload: string) => {
       dispatch(setPhoneNumber(payload));
+    },
+    getUser: () => {
+      dispatch(getUser());
     },
   };
   return { state, setState };

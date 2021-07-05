@@ -1,1 +1,2 @@
-export { default as useSelectType } from './useSelectType';
+import useSelectType from './useSelectType';
+export default useSelectType;

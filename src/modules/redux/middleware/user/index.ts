@@ -6,7 +6,7 @@ import { getUser } from '../../../../util/api/user';
 export const getUserSaga = createRequestSaga(GET_USER, getUser);
 
 function* userSaga() {
-  takeLatest(GET_USER, getUserSaga);
+  yield takeLatest(GET_USER, getUserSaga);
 }
 
 export default userSaga;

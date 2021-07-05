@@ -60,6 +60,10 @@ export const setApplicationType = (payload: string) => ({
   payload,
 });
 
+export const getUser = () => ({
+  type: GET_USER,
+});
+
 export const getUserFailure = (payload: error) => ({
   type: GET_USER_FAILURE,
   payload,
