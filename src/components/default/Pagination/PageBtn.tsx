@@ -23,9 +23,16 @@ interface Props {
   nextPagePath?: string;
   content: String;
   disabled?: boolean;
+  setIsOpenSubmitModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) => {
+const PageBtn: FC<Props> = ({
+  content,
+  disabled,
+  prevPagePath,
+  nextPagePath,
+  setIsOpenSubmitModal,
+}) => {
   const history = useHistory();
   const pathname = useLocation().pathname.slice(1);
   const [prevNextBtn, setPrevNextBtn] = useState({
@@ -88,8 +95,6 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
       case 'grade':
         isSuccessAction = gradeState.isSuccessSaveGrade;
         break;
-      case 'preview':
-        break;
     }
     if (isSuccessAction) {
       if (prevNextBtn.nextBtn) {
@@ -136,6 +141,9 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
       case 'grade':
         dispatch({ type: SAVE_GRADE });
+        break;
+      case 'preview':
+        setIsOpenSubmitModal(true);
         break;
       default:
     }
