@@ -1,8 +1,9 @@
 import { PasswordInput } from '../../default/input';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from '../style';
 import MoveButton from './moveButton';
 import useResetPassword from '../../../util/hooks/resetPassword/useResetPassword';
+import { isPassword } from '../../../util/util/format';
 
 interface Props {
   goNext: () => void;
@@ -15,6 +16,20 @@ const SetNewPasswordModal: FC<Props> = ({ goNext, goPrev }) => {
   const newPasswordInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState.setNewPassword(e.target.value);
   };
+  useEffect(() => {
+    if (!isPassword(state.newPassword)) {
+      setIsNextAble(false);
+      return;
+    }
+    setIsNextAble(true);
+  }, [state.newPassword]);
+
+  useEffect(() => {
+    return () => {
+      setState.resetState();
+    };
+  }, []);
+
   return (
     <S.ModalMain>
       <S.ModalTitle>비밀번호 재설정</S.ModalTitle>

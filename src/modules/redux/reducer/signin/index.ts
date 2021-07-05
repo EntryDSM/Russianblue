@@ -11,7 +11,7 @@ import ISignInState from './interface';
 const initState: ISignInState = {
   id: '',
   password: '',
-  error: 0,
+  error: null,
 };
 
 const SignInState = (state: ISignInState = initState, action: signinActionType) => {
@@ -43,7 +43,6 @@ const SignInState = (state: ISignInState = initState, action: signinActionType) 
     case SIGNIN_SUCCESS: {
       return {
         ...state,
-        accessToken: action.payload,
       };
     }
     default: {

@@ -3,9 +3,12 @@ import * as S from '../../style';
 
 interface Props {
   time: number;
+  marginBottom?: number;
+  marginLeft?: number;
+  marginTop?: number;
 }
 
-const Timer: FC<Props> = ({ time }) => {
+const Timer: FC<Props> = ({ time, marginBottom, marginLeft, marginTop }) => {
   const getMinutes = (time: number) => Math.floor(time / 60);
   const getSeconds = (time: number) => {
     const seconds = time % 60;
@@ -15,7 +18,7 @@ const Timer: FC<Props> = ({ time }) => {
     return seconds;
   };
   return (
-    <S.ModalTimer>
+    <S.ModalTimer bottom={marginBottom} top={marginTop} left={marginLeft}>
       <p>{getMinutes(time)}</p>
       <p>:</p>
       <p>{getSeconds(time)}</p>

@@ -9,7 +9,7 @@ import { useModal } from '../../../util/hooks/modal';
 
 const LoginModal: FC = () => {
   const history = useHistory();
-  const { setState } = useSignIn();
+  const { setState, state } = useSignIn();
   const modalState = useModal();
   const signupButtonClickHandler = () => {
     history.push('/signup');
@@ -25,17 +25,24 @@ const LoginModal: FC = () => {
     modalState.setState.setModalOff('loginModal');
     modalState.setState.setModalOn('resetPassword1');
   };
+
+  const loginButtonClickHandler = () => {
+    setState.signin({
+      email: state.id,
+      password: state.password,
+    });
+  };
+
   return (
     <S.ModalMain>
       <Title>로그인</Title>
-      <S.ModalErrorText></S.ModalErrorText>
+      <S.ModalErrorText>{state.error ? '로그인 정보를 확인해 주세요.' : ''}</S.ModalErrorText>
       <Input
         inputChangeHandler={idChangeHandler}
         width={280}
         height={48}
         margin='0px 0px 15px 0px'
-        placeholder='전화번호'
-        type='number'
+        placeholder='이메일'
       />
       <PasswordInput
         inputChangeHandler={passwordChangeHandler}
@@ -45,7 +52,7 @@ const LoginModal: FC = () => {
         placeholder='비밀번호'
       />
       <S.ModalDefaultButtonWrapper>
-        <DefaultButton text='로그인' buttonClickHandler={() => {}} />
+        <DefaultButton text='로그인' buttonClickHandler={loginButtonClickHandler} />
       </S.ModalDefaultButtonWrapper>
       <S.ModalSubButton onClick={signupButtonClickHandler}>
         아직 계정이 없으신가요?

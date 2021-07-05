@@ -26,11 +26,12 @@ const PasswordInput: FC<Props> = ({
     return isPasswordWatchAble ? 'text' : 'password';
   };
   return (
-    <S.PasswordInput width={width} height={height} margin={margin} onChange={inputChangeHandler}>
+    <S.PasswordInput width={width} height={height} margin={margin}>
       <input
         disabled={disable}
         placeholder={placeholder}
         type={getPasswordInputType(isPasswordWatchAble)}
+        onChange={inputChangeHandler}
       />
       <label>
         <input type='checkbox' onChange={checkboxChangeHandler} checked={isPasswordWatchAble} />

@@ -20,7 +20,8 @@ const useProcess = () => {
     setIsEnd: (payload: boolean) => dispatch(setIsEnd(payload)),
     setProcess: (payload: processType[]) => dispatch(setProcess(payload)),
     getStatus: () => dispatch(getStatus()),
-    setStatusSuccess: (payload: Array<processTimeType>) => dispatch(getStatusSuccess(payload)),
+    setStatusSuccess: (payload: { schedules: Array<processTimeType>; current_status: string }) =>
+      dispatch(getStatusSuccess(payload)),
   };
   return {
     state,

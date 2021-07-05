@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useSelectState } from '../default';
 import { setAccessToken, setIsLogin } from '../../../modules/redux/action/auth';
 
-const useProcess = () => {
+const useAuth = () => {
   const dispatch = useDispatch();
   const state = useSelectState().auth;
   const setState = {
@@ -15,4 +15,4 @@ const useProcess = () => {
   };
 };
 
-export default useProcess;
+export default useAuth;
