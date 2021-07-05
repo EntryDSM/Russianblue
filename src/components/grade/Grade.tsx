@@ -7,12 +7,26 @@ import { VolunteerTable, GradeTable } from './table';
 import { useSelectState } from '../../util/hooks/default';
 
 interface Props {
+  volunteerTime: number;
+  absence: number;
+  leave: number;
+  lateness: number;
+  truancy: number;
   grade: GradeType;
   setInput: (payload: { name: string; value: number }) => void;
   setGrade: (payload: { grade: GradeType }) => void;
 }
 
-const Grade: FC<Props> = ({ setInput, setGrade, grade }) => {
+const Grade: FC<Props> = ({
+  setInput,
+  setGrade,
+  grade,
+  volunteerTime,
+  absence,
+  leave,
+  lateness,
+  truancy,
+}) => {
   const graduated = useSelectState().selectType.educationalStatus;
   const [isResetZeroClick, setIsResetZeroClick] = useState({
     freshmanFirst: false,
@@ -36,7 +50,14 @@ const Grade: FC<Props> = ({ setInput, setGrade, grade }) => {
         <S.Title>{ENTERGRADE}</S.Title>
       </div>
       <S.TableName>봉사 {'&'} 출석</S.TableName>
-      <VolunteerTable setInput={setInput} />
+      <VolunteerTable
+        setInput={setInput}
+        volunteerTime={volunteerTime}
+        absence={absence}
+        leave={leave}
+        lateness={lateness}
+        truancy={truancy}
+      />
       <ResetGrade setIsResetZeroClick={setIsResetZeroClick} grade={grade} setGrade={setGrade} />
       <GradeTable
         isResetZeroClick={isResetZeroClick}
