@@ -131,7 +131,7 @@ const Information: FC<Props> = ({
         />
       );
     else return;
-  }, [isClickSearchBtn, content]);
+  }, [isClickSearchBtn, content, totalPages]);
 
   const addressModal = useMemo(() => {
     if (isClickAddressBtn)
