@@ -21,6 +21,7 @@ interface GradeState {
       seniorSecond: boolean;
     };
   };
+  isSuccessSaveGrade: boolean;
 }
 
 export enum Grade {
