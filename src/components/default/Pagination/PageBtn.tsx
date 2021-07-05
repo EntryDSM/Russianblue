@@ -15,6 +15,8 @@ import {
   GRADUATE_INFORMATION,
   INFORMATION,
 } from '../../../modules/redux/action/information/interface';
+import { useGrade } from '../../../util/hooks/grade';
+import { SAVE_GRADE } from '../../../modules/redux/action/grade/interface';
 
 interface Props {
   prevPagePath?: string;
@@ -52,6 +54,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
   }
 
   const informationState = useInformation().state;
+  const gradeState = useGrade().state;
   const dispatch = useDispatch();
 
   const change = [
@@ -83,6 +86,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
             informationState.isSuccessSaveInformation &&
             informationState.isSuccessSaveGraduateInformation;
       case 'grade':
+        isSuccessAction = gradeState.isSuccessSaveGrade;
         break;
       case 'preview':
         break;
@@ -103,6 +107,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
     selectTypeState.isSuccessSaveSelectType,
     informationState.isSuccessSaveInformation,
     informationState.isSuccessSaveGraduateInformation,
+    gradeState.isSuccessSaveGrade,
   ]);
 
   const prevBtnClickHandler = () => {
@@ -128,6 +133,9 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         dispatch({ type: INFORMATION });
         if (selectTypeState.educationalStatus !== 'QUALIFICATION_EXAM')
           dispatch({ type: GRADUATE_INFORMATION });
+        break;
+      case 'grade':
+        dispatch({ type: SAVE_GRADE });
         break;
       default:
     }

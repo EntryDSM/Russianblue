@@ -53,3 +53,48 @@ export type SemesterType = {
   seniorFirst: boolean;
   seniorSecond: boolean;
 };
+
+export type gradeType = {
+  volunteerTime: number;
+  absence: number;
+  truancy: number;
+  lateness: number;
+  leave: number;
+  korean: string;
+  social: string;
+  history: string;
+  math: string;
+  science: string;
+  technical: string;
+  english: string;
+};
+
+export type getGradeType = {
+  volunteer_time: number;
+  day_absence_count: number;
+  lecture_absence_count: number;
+  lateness_count: number;
+  early_leave_count: number;
+  korean_grade: string;
+  social_grade: string;
+  history_grade: string;
+  math_grade: string;
+  science_grade: string;
+  tech_and_home_grade: string;
+  english_grade: string;
+};
+
+export interface gradeInterface {
+  volunteer_time: number | null;
+  day_absence_count: number | null;
+  lecture_absence_count: number | null;
+  lateness_count: number | null;
+  early_leave_count: number | null;
+  korean_grade: string | null;
+  social_grade: string | null;
+  history_grade: string | null;
+  math_grade: string | null;
+  science_grade: string | null;
+  tech_and_home_grade: string | null;
+  english_grade: string | null;
+}
