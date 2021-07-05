@@ -1,14 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import * as S from './style';
 import { SCHOOL, SELFINTRODUCTION } from '../../constance/preview';
 import Pagination from '../default/Pagination';
+import PrecautionModal from '../modal/preview/PrecautionModal';
+import ConfirmSubmissionModal from '../modal/preview/ConfirmSubmissionModal';
 
 interface Props {
   preview: string;
-  setPreview: (payload: string) => void;
 }
 
-const Preview: FC<Props> = ({ preview, setPreview }) => {
+const Preview: FC<Props> = ({ preview }) => {
+  const [isOpenPrecautionModal, setIsOpenPrecautionMoal] = useState(true);
+  const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
   return (
     <S.Preview>
       <div>
@@ -16,7 +19,11 @@ const Preview: FC<Props> = ({ preview, setPreview }) => {
         <S.Title>{SELFINTRODUCTION}</S.Title>
       </div>
       <S.PreviewIframe src={preview} />
-      <Pagination />
+      <Pagination isNextPage nextPagePath={'/'} setIsOpenSubmitModal={setIsOpenSubmitModal} />
+      {isOpenPrecautionModal && (
+        <PrecautionModal setIsOpenPrecautionMoal={setIsOpenPrecautionMoal} />
+      )}
+      {isOpenSubmitModal && <ConfirmSubmissionModal setIsOpenSubmitModal={setIsOpenSubmitModal} />}
     </S.Preview>
   );
 };
