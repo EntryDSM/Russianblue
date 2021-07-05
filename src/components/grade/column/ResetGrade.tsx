@@ -1,6 +1,7 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from '../style';
 import { GRADE, GradeType, SemesterType } from '../../../constance/grade';
+import { useSelectState } from '../../../util/hooks/default';
 
 interface Props {
   grade: GradeType;
@@ -18,9 +19,14 @@ const isCheckInit = {
 
 const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
   const [isClick, setIsClick] = useState(isCheckInit);
+  const graduated = useSelectState().selectType.educationalStatus;
+  console.log(graduated);
   const gradeBtnClickHandler = e => {
     const gradeId = e.target.dataset.id;
-    const score = gradeId.toUpperCase().repeat(6);
+    const score =
+      graduated === 'PROSPECTIVE_GRADUATE'
+        ? gradeId.toUpperCase().repeat(5) + 'X'
+        : gradeId.toUpperCase().repeat(6);
     setIsClick({ ...isCheckInit, [gradeId]: true });
     setIsResetZeroClick({
       freshmanFirst: false,
@@ -56,7 +62,7 @@ const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
         </S.GradeBtn>
       );
     });
-  }, [isClick]);
+  }, [isClick, graduated]);
 
   return (
     <S.ResetGrade>
