@@ -1,9 +1,10 @@
 import { previewActionType } from '../../action/preview';
-import { PREVIEW } from '../../action/preview/interface';
+import { GET_PREVIEW_FAILURE, GET_PREVIEW_SUCCESS } from '../../action/preview/interface';
 import PreviewState from './interface';
 
 const initState: PreviewState = {
   preview: '',
+  error: null,
 };
 
 const previewReducer = (
@@ -11,10 +12,15 @@ const previewReducer = (
   action: previewActionType,
 ): PreviewState => {
   switch (action.type) {
-    case PREVIEW:
+    case GET_PREVIEW_SUCCESS:
       return {
         ...state,
         preview: action.payload,
+      };
+    case GET_PREVIEW_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;
