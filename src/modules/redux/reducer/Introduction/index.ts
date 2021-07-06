@@ -36,11 +36,13 @@ const IntroductionReducer = (
       return {
         ...state,
         selfIntroduction: action.payload,
+        isSuccessSaveSelfIntroduction: undefined,
       };
     case STUDY_PLAN:
       return {
         ...state,
         studyPlan: action.payload,
+        isSuccessSaveStudyPlan: undefined,
       };
     case SAVE_BOTH:
       return {

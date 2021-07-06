@@ -42,11 +42,13 @@ const gradeReducer = (state: GradeState = initState, action: gradeActionType): G
       return {
         ...state,
         [action.payload.name]: action.payload.value,
+        isSuccessSaveGrade: undefined,
       };
     case GRADE:
       return {
         ...state,
         grade: action.payload.grade,
+        isSuccessSaveGrade: undefined,
       };
     case SAVE_GRADE:
       return {
