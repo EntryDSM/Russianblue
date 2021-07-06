@@ -85,6 +85,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           isSuccessAction =
             informationState.isSuccessSaveInformation &&
             informationState.isSuccessSaveGraduateInformation;
+        break;
       case 'grade':
         isSuccessAction = gradeState.isSuccessSaveGrade;
         break;
@@ -96,7 +97,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         history.push(nextPagePath);
       }
     } else if (isSuccessAction === false) {
-      alert('실패');
+      console.log('실패');
     } else if (isSuccessAction === undefined) {
       console.log('요청이 안갔습니다');
     }

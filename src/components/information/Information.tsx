@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import * as S from './style';
 import Pagination from '../default/Pagination';
 import InformationForm from './InformationForm';
@@ -12,6 +12,7 @@ import {
 import SearchSchoolModal from '../modal/searchSchool';
 import AddressModal from '../modal/address';
 import useSelectType from '../../util/hooks/selectType';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   userName: string;
@@ -40,6 +41,10 @@ interface Props {
   size: number;
   totalPages: number;
   content: Array<schoolArrayType>;
+  isSuccessSaveInformation: boolean;
+  isSuccessSaveUserPicture: boolean;
+  isSuccessSaveGraduateInformation: boolean;
+  isSuccessSaveGedScore: boolean;
   setInput: (payload: { name: string; value: string }) => void;
   setSex: (payload: string) => void;
   setBirthYear: (payload: number) => void;
@@ -76,9 +81,12 @@ const Information: FC<Props> = ({
   totalScore,
   photoFileName,
   pictureUrl,
-  userPicture,
   totalPages,
   content,
+  isSuccessSaveInformation,
+  isSuccessSaveUserPicture,
+  isSuccessSaveGraduateInformation,
+  isSuccessSaveGedScore,
   setInput,
   setSex,
   setBirthYear,
@@ -113,10 +121,30 @@ const Information: FC<Props> = ({
     stdNumber,
     pictureUrl,
     totalScore,
+    isSuccessSaveInformation,
+    isSuccessSaveUserPicture,
+    isSuccessSaveGraduateInformation,
+    isSuccessSaveGedScore,
   ];
   const [isClickSearchBtn, setIsClickSearchBtn] = useState(false);
   const [isClickAddressBtn, setIsClickAddressBtn] = useState(false);
   const educationalStatus = useSelectType().state.educationalStatus;
+
+  const toastPopUp = useMemo(() => {
+    // if (isSuccessSaveGedScore !== undefined)
+    //   return <ToastPopUp isSuccessSave={isSuccessSaveGedScore} />;
+    // else if (isSuccessSaveUserPicture !== undefined)
+    //   return <ToastPopUp isSuccessSave={isSuccessSaveUserPicture} />;
+    // else if (isSuccessSaveGraduateInformation !== undefined)
+    //   return <ToastPopUp isSuccessSave={isSuccessSaveGraduateInformation} />;
+    // else if (isSuccessSaveInformation !== undefined)
+    //   return <ToastPopUp isSuccessSave={isSuccessSaveInformation} />;
+  }, [
+    isSuccessSaveInformation,
+    isSuccessSaveUserPicture,
+    isSuccessSaveGraduateInformation,
+    isSuccessSaveGedScore,
+  ]);
 
   const searchSchoolModal = useMemo(() => {
     if (isClickSearchBtn)
@@ -131,7 +159,7 @@ const Information: FC<Props> = ({
         />
       );
     else return;
-  }, [isClickSearchBtn, content]);
+  }, [isClickSearchBtn, content, totalPages]);
 
   const addressModal = useMemo(() => {
     if (isClickAddressBtn)
@@ -214,6 +242,26 @@ const Information: FC<Props> = ({
       {searchSchoolModal}
       {addressModal}
       {pagination}
+      {isSuccessSaveInformation !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveInformation} />
+      ) : (
+        ''
+      )}
+      {isSuccessSaveGedScore !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveGedScore} />
+      ) : (
+        ''
+      )}
+      {isSuccessSaveUserPicture !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveUserPicture} />
+      ) : (
+        ''
+      )}
+      {isSuccessSaveGraduateInformation !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveGraduateInformation} />
+      ) : (
+        ''
+      )}
     </S.Information>
   );
 };

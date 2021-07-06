@@ -20,7 +20,6 @@ const isCheckInit = {
 const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
   const [isClick, setIsClick] = useState(isCheckInit);
   const graduated = useSelectState().selectType.educationalStatus;
-  console.log(graduated);
   const gradeBtnClickHandler = e => {
     const gradeId = e.target.dataset.id;
     const score =

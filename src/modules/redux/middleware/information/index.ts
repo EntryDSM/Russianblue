@@ -122,7 +122,7 @@ function* informationSaga() {
   yield takeLatest(USER_PICTURE, userPhotoSaveSaga);
   yield takeLatest(SEARCH_SCHOOL, searchSchoolGetSaga);
   yield takeLatest(GET_GED_SCORE, gedScoreGetSaga);
-  yield debounce(1000, GED_SCORE, gedScoreSaveSaga);
+  yield debounce(3000, GED_SCORE, gedScoreSaveSaga);
   yield debounce(3000, actionArray, proxySaga);
 }
 

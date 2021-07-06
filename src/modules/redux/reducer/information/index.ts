@@ -28,7 +28,6 @@ import {
   GED_SCORE,
   GED_SCORE_FAILURE,
   GED_SCORE_SUCCESS,
-  GET_GED_SCORE,
   GET_GED_SCORE_FAILURE,
   GET_GED_SCORE_SUCCESS,
 } from '../../action/information/interface';
@@ -65,6 +64,7 @@ const initState: InformationState = {
   isSuccessSaveUserPicture: undefined,
   isSuccessSaveInformation: undefined,
   isSuccessSaveGraduateInformation: undefined,
+  isSuccessSaveGedScore: undefined,
   isSuccessGetSearchSchool: undefined,
 };
 
@@ -77,26 +77,32 @@ const informationReducer = (
       return {
         ...state,
         [action.payload.name]: action.payload.value,
+        isSuccessSaveInformation: undefined,
+        isSuccessSaveGraduateInformation: undefined,
       };
     case SEX:
       return {
         ...state,
         sex: action.payload,
+        isSuccessSaveInformation: undefined,
       };
     case BIRTHYEAR:
       return {
         ...state,
         birthYear: action.payload,
+        isSuccessSaveInformation: undefined,
       };
     case BIRTHMONTH:
       return {
         ...state,
         birthMonth: action.payload,
+        isSuccessSaveInformation: undefined,
       };
     case BIRTHDATE:
       return {
         ...state,
         birthDate: action.payload,
+        isSuccessSaveInformation: undefined,
       };
     case PICTUREURL:
       return {
@@ -107,6 +113,7 @@ const informationReducer = (
       return {
         ...state,
         schoolCode: action.payload,
+        isSuccessSaveGraduateInformation: undefined,
       };
     case SCHOOL_NAME:
       return {
@@ -118,6 +125,7 @@ const informationReducer = (
         ...state,
         address: action.payload.address,
         postCode: action.payload.postCode,
+        isSuccessSaveInformation: undefined,
       };
     case INFORMATION:
       return {
@@ -240,11 +248,18 @@ const informationReducer = (
     case GED_SCORE:
       return {
         ...state,
+        isSuccessSaveGedScore: undefined,
         totalScore: action.payload,
+      };
+    case GED_SCORE_SUCCESS:
+      return {
+        ...state,
+        isSuccessSaveGedScore: true,
       };
     case GED_SCORE_FAILURE:
       return {
         ...state,
+        isSuccessSaveGedScore: false,
         error: action.payload,
       };
     case GET_GED_SCORE_SUCCESS:

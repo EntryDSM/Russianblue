@@ -18,11 +18,10 @@ const TotalScoreColumn: FC<Props> = ({ setGedScore, totalScore }) => {
         width={114}
         height={42}
         inputChangeHandler={totalScoreChangeHandler}
-        defaultValue={String(Number(totalScore) * 6)}
-        maxValue={600}
-        minValue={360}
+        value={totalScore}
+        maxValue={60}
+        minValue={100}
         name='totalScore'
-        key={totalScore}
       />
     );
   }, [totalScore]);
@@ -30,7 +29,7 @@ const TotalScoreColumn: FC<Props> = ({ setGedScore, totalScore }) => {
   return (
     <S.InformationLine width={904}>
       <S.InformationLineTitle>
-        <span>*</span>검정고시 총점
+        <span>*</span>검정고시 평균
       </S.InformationLineTitle>
       {totalScoreInput}
       <S.Unit>점</S.Unit>

@@ -41,7 +41,7 @@ const Pagination: FC<Props> = ({ isNextPage, isQualification, prevPagePath, next
   const goToNextPage = useMemo(() => {
     if (isNextPage) return <PageBtn content='다음' nextPagePath={nextPagePath} />;
     else return <PageBtn content='다음' disabled />;
-  }, [isNextPage]);
+  }, [isNextPage, nextPagePath]);
 
   return (
     <S.Page>

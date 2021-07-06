@@ -24,7 +24,7 @@ const NameColumn: FC<Props> = ({ title, width, inputName, setInput, userName, pa
           height={42}
           inputChangeHandler={nameChangeHandler}
           name={inputName}
-          defaultValue={userName}
+          value={userName}
         />
       );
     else if (inputName === 'parentName')
@@ -34,7 +34,7 @@ const NameColumn: FC<Props> = ({ title, width, inputName, setInput, userName, pa
           height={42}
           inputChangeHandler={nameChangeHandler}
           name={inputName}
-          defaultValue={parentName}
+          value={parentName}
         />
       );
   }, [userName, parentName]);

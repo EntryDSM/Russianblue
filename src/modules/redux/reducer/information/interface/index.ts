@@ -32,6 +32,7 @@ interface InformationState {
   isSuccessSaveUserPicture: boolean | undefined;
   isSuccessSaveInformation: boolean | undefined;
   isSuccessSaveGraduateInformation: boolean | undefined;
+  isSuccessSaveGedScore: boolean | undefined;
   isSuccessGetSearchSchool: boolean | undefined;
 }
 
