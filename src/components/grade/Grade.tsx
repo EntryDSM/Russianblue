@@ -5,7 +5,7 @@ import Pagination from '../default/Pagination';
 import { ResetGrade } from './column';
 import { VolunteerTable, GradeTable } from './table';
 import { useSelectState } from '../../util/hooks/default';
-import useSelectType from '../../util/hooks/selectType';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   volunteerTime: number;
@@ -14,6 +14,7 @@ interface Props {
   lateness: number;
   truancy: number;
   grade: GradeType;
+  isSuccessSaveGrade: boolean;
   setInput: (payload: { name: string; value: number }) => void;
   setGrade: (payload: { grade: GradeType }) => void;
 }
@@ -27,6 +28,7 @@ const Grade: FC<Props> = ({
   leave,
   lateness,
   truancy,
+  isSuccessSaveGrade,
 }) => {
   const graduated = useSelectState().selectType.educationalStatus;
   const [isResetZeroClick, setIsResetZeroClick] = useState({
@@ -38,7 +40,6 @@ const Grade: FC<Props> = ({
     seniorSecond: false,
   });
   const [isGraduated, setIsGraduated] = useState<boolean>(false);
-  const educationalStatus = useSelectType().state.educationalStatus;
 
   useEffect(() => {
     if (graduated === 'PROSPECTIVE_GRADUATE') setIsGraduated(true);
@@ -46,12 +47,9 @@ const Grade: FC<Props> = ({
   }, [graduated]);
 
   const pagination = useMemo(() => {
+    console.log(volunteerTime, absence, leave, lateness, truancy, grade);
     if (
       volunteerTime &&
-      absence &&
-      leave &&
-      lateness &&
-      truancy &&
       grade.korean !== 'XXXXXX' &&
       grade.english !== 'XXXXXX' &&
       grade.history !== 'XXXXXX' &&
@@ -90,6 +88,7 @@ const Grade: FC<Props> = ({
         isGraduated={isGraduated}
       />
       {pagination}
+      <ToastPopUp isSuccessSave={isSuccessSaveGrade} />
     </S.Grade>
   );
 };
