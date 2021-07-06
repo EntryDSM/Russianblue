@@ -1,8 +1,6 @@
 import { PREVIEW } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setPreview = (payload: string) => ({
-  type: PREVIEW,
-  payload,
-});
+export const setPreview = createAction(PREVIEW)<string>();
 
 export type previewActionType = ReturnType<typeof setPreview>;

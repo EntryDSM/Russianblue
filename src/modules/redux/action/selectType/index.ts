@@ -17,102 +17,43 @@ import {
   AUTOSAVE_SELECTTYPE_FAILURE,
   AUTOSAVE_SELECTTYPE_SUCCESS,
 } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setType = (payload: string) => ({
-  type: TYPE,
-  payload,
-});
-
-export const setSocialType = (payload: string) => ({
-  type: SOCIALTYPE,
-  payload,
-});
-
-export const setArea = (payload: boolean) => ({
-  type: AREA,
-  payload,
-});
-
-export const setGraduation = (payload: string) => ({
-  type: GRADUATION,
-  payload,
-});
-
-export const setGraduationYear = (payload: number) => ({
-  type: GRADUATION_YEAR,
-  payload,
-});
-
-export const setGraduationMonth = (payload: number) => ({
-  type: GRADUATION_MONTH,
-  payload,
-});
-
-export const setRemark = (payload: string) => ({
-  type: REMARK,
-  payload,
-});
-
-export const selectType = (payload: {
+export const setType = createAction(TYPE)<string>();
+export const setSocialType = createAction(SOCIALTYPE)<string>();
+export const setArea = createAction(AREA)<boolean>();
+export const setGraduation = createAction(GRADUATION)<string>();
+export const setGraduationYear = createAction(GRADUATION_YEAR)<number>();
+export const setGraduationMonth = createAction(GRADUATION_MONTH)<number>();
+export const setRemark = createAction(REMARK)<string>();
+export const selectType = createAction(SELECTTYPE)<{
   educationalStatus: string;
   applicationType: string;
   isDaejeon: boolean;
   applicationRemark: string;
   graduatedAt: string;
-}) => ({
-  type: SELECTTYPE,
-  payload,
-});
-
-export const selectTypeSuccess = (payload: boolean) => ({
-  type: SELECTTYPE_SUCCESS,
-  payload,
-});
-
-export const selectTypeFailure = (payload: error) => ({
-  type: SELECTTYPE_FAILURE,
-  payload,
-});
-
-export const autoSaveSelectType = (payload: {
+}>();
+export const selectTypeSuccess = createAction(SELECTTYPE_SUCCESS)<boolean>();
+export const selectTypeFailure = createAction(SELECTTYPE_FAILURE)<error>();
+export const autoSaveSelectType = createAction(AUTOSAVE_SELECTTYPE)<{
   educationalStatus: string;
   applicationType: string;
   isDaejeon: boolean;
   applicationRemark: string;
   graduatedAt: string;
-}) => ({
-  type: AUTOSAVE_SELECTTYPE,
-  payload,
-});
-
-export const autoSaveSelectTypeSuccess = () => ({
-  type: AUTOSAVE_SELECTTYPE_SUCCESS,
-});
-
-export const autoSaveSelectTypeFailure = (payload: error) => ({
-  type: AUTOSAVE_SELECTTYPE_FAILURE,
-  payload,
-});
-
-export const getSelectType = () => ({
-  type: GET_SELECTTYPE,
-});
-
-export const getSelectTypeSuccess = (payload: {
+}>();
+export const autoSaveSelectTypeSuccess = createAction(AUTOSAVE_SELECTTYPE_SUCCESS)();
+export const autoSaveSelectTypeFailure = createAction(AUTOSAVE_SELECTTYPE_FAILURE)<error>();
+export const getSelectType = createAction(GET_SELECTTYPE)();
+export const getSelectTypeSuccess = createAction(GET_SELECTTYPE_SUCCESS)<{
   educational_status: string;
   application_type: string;
   is_daejeon: boolean;
   application_remark: string | null;
   graduated_at: string;
-}) => ({
-  type: GET_SELECTTYPE_SUCCESS,
-  payload,
-});
+}>();
+export const getSelectTypeFailure = createAction(GET_SELECTTYPE_FAILURE)<error>();
 
-export const getSelectTypeFailure = (payload: error) => ({
-  type: GET_SELECTTYPE_FAILURE,
-  payload,
-});
 
 export type selectTypeActionType =
   | ReturnType<typeof setType>
