@@ -19,7 +19,7 @@ const Preview: FC<Props> = ({ preview }) => {
         <S.Title>{SELFINTRODUCTION}</S.Title>
       </div>
       <S.PreviewIframe src={preview} />
-      <Pagination isNextPage nextPagePath={'/'} setIsOpenSubmitModal={setIsOpenSubmitModal} />
+      <Pagination isNextPage setIsOpenSubmitModal={setIsOpenSubmitModal} />
       {isOpenPrecautionModal && (
         <PrecautionModal setIsOpenPrecautionMoal={setIsOpenPrecautionMoal} />
       )}

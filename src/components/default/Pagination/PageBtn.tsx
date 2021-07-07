@@ -45,13 +45,6 @@ const PageBtn: FC<Props> = ({
   const introSetState = useIntroduction().setState;
   const selfIntroduction = introState.selfIntroduction;
   const studyPlan = introState.studyPlan;
-  // const selectTypeSetState = useSelectType().setState;
-  // const educationalStatus = selectTypeState.educationalStatus;
-  // const applicationType = selectTypeState.applicationType;
-  // const isDaejeon = selectTypeState.isDaejeon;
-  // const applicationRemark = selectTypeState.applicationRemark;
-  // const graduationYear = String(selectTypeState.graduationYear);
-  // const graduationMonth = String(selectTypeState.graduationMonth);
 
   const selectTypeState = useSelectType().state;
   const informationState = useInformation().state;

@@ -9,3 +9,12 @@ export const getPreview = async (access_token: string) => {
     throw error;
   }
 };
+
+export const final = async (access_token: string) => {
+  try {
+    const request = getRequestWithAccessToken(access_token);
+    await request.patch(uri.status);
+  } catch (error) {
+    throw error;
+  }
+};

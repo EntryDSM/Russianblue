@@ -1,5 +1,12 @@
 import { error } from '../../../../models/error';
-import { GET_PREVIEW, GET_PREVIEW_SUCCESS, GET_PREVIEW_FAILURE } from './interface';
+import {
+  GET_PREVIEW,
+  GET_PREVIEW_SUCCESS,
+  GET_PREVIEW_FAILURE,
+  FINAL,
+  FINAL_SUCCESS,
+  FINAL_FAILURE,
+} from './interface';
 
 export const getPreview = () => ({
   type: GET_PREVIEW,
@@ -15,7 +22,23 @@ export const getPreviewFailure = (payload: error) => ({
   payload,
 });
 
+export const final = () => ({
+  type: FINAL,
+});
+
+export const finalSuccess = () => ({
+  type: FINAL_SUCCESS,
+});
+
+export const finalFailure = (payload: error) => ({
+  type: FINAL_FAILURE,
+  payload,
+});
+
 export type previewActionType =
   | ReturnType<typeof getPreview>
   | ReturnType<typeof getPreviewSuccess>
-  | ReturnType<typeof getPreviewFailure>;
+  | ReturnType<typeof getPreviewFailure>
+  | ReturnType<typeof final>
+  | ReturnType<typeof finalSuccess>
+  | ReturnType<typeof finalFailure>;
