@@ -5,30 +5,9 @@ import { REMARKS, REMARK_EXPLAIN } from '../../../constance/SelectType';
 interface Props {
   setRemark: (payload: string) => void;
   applicationRemark: string;
-  applicationType: string;
-  isDaejeon: boolean;
-  educationalStatus: string;
-  graduationYear: number;
-  graduationMonth: number;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
-const ChooseRemark: FC<Props> = ({
-  setRemark,
-  applicationRemark,
-  educationalStatus,
-  applicationType,
-  isDaejeon,
-  graduationYear,
-  graduationMonth,
-  autoSaveSelectType,
-}) => {
+const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark }) => {
   const [isCheck, setIsCheck] = useState({ nationalMerit: false, specialAdmission: false });
 
   useEffect(() => {
@@ -42,20 +21,6 @@ const ChooseRemark: FC<Props> = ({
       default:
         setIsCheck({ nationalMerit: false, specialAdmission: false });
     }
-  }, [applicationRemark]);
-
-  useEffect(() => {
-    let graduatedDate = '';
-    if (String(graduationMonth).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedDate = String(graduationYear) + String(graduationMonth);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
   }, [applicationRemark]);
 
   const onCheckBtnClick = e => {

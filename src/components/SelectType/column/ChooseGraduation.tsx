@@ -6,18 +6,6 @@ interface Props {
   setIsProspective: Dispatch<React.SetStateAction<boolean>>;
   setGraduation: (payload: string) => void;
   educationalStatus: string;
-  applicationRemark: string;
-  applicationType: string;
-  isDaejeon: boolean;
-  graduationYear: number;
-  graduationMonth: number;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
 const isCheckInit = {
@@ -26,17 +14,7 @@ const isCheckInit = {
   qualification: false,
 };
 
-const ChooseGraduation: FC<Props> = ({
-  setIsProspective,
-  setGraduation,
-  educationalStatus,
-  applicationRemark,
-  applicationType,
-  isDaejeon,
-  graduationYear,
-  graduationMonth,
-  autoSaveSelectType,
-}) => {
+const ChooseGraduation: FC<Props> = ({ setIsProspective, setGraduation, educationalStatus }) => {
   const [isCheck, setIsCheck] = useState(isCheckInit);
   useEffect(() => {
     switch (educationalStatus) {
@@ -56,20 +34,6 @@ const ChooseGraduation: FC<Props> = ({
         setIsCheck(isCheckInit);
         break;
     }
-  }, [educationalStatus]);
-
-  useEffect(() => {
-    let graduatedDate = '';
-    if (String(graduationMonth).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedDate = String(graduationYear) + String(graduationMonth);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
   }, [educationalStatus]);
 
   const onCheckBtnClick = e => {

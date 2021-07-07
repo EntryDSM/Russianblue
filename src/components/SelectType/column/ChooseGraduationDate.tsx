@@ -14,13 +14,6 @@ interface Props {
   isDaejeon: boolean;
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
 const ChooseGraduationDate: FC<Props> = ({
@@ -34,7 +27,6 @@ const ChooseGraduationDate: FC<Props> = ({
   applicationRemark,
   applicationType,
   isDaejeon,
-  autoSaveSelectType,
 }) => {
   useEffect(() => {
     if (graduatedAt) {
@@ -78,24 +70,9 @@ const ChooseGraduationDate: FC<Props> = ({
         graduationYear={graduationYear}
         setGraduationYear={setGraduationYear}
         disabled={isProspective ? 'block' : 'normal'}
-        applicationType={applicationType}
-        isDaejeon={isDaejeon}
-        educationalStatus={educationalStatus}
-        graduationMonth={graduationMonth}
-        applicationRemark={applicationRemark}
-        autoSaveSelectType={autoSaveSelectType}
       />
       <S.Date>년</S.Date>
-      <MonthSelect
-        graduationMonth={graduationMonth}
-        setGraduationMonth={setGraduationMonth}
-        applicationType={applicationType}
-        isDaejeon={isDaejeon}
-        educationalStatus={educationalStatus}
-        graduationYear={graduationYear}
-        applicationRemark={applicationRemark}
-        autoSaveSelectType={autoSaveSelectType}
-      />
+      <MonthSelect graduationMonth={graduationMonth} setGraduationMonth={setGraduationMonth} />
       <S.Date>월</S.Date>
       {explain}
     </S.Line>
