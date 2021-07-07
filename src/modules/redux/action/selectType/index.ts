@@ -1,3 +1,4 @@
+import { selectTypeSaveType, selectTypeType } from 'src/constance/SelectType';
 import { error } from '../../../../models/error';
 import {
   TYPE,
@@ -13,9 +14,6 @@ import {
   GET_SELECTTYPE,
   GET_SELECTTYPE_FAILURE,
   GET_SELECTTYPE_SUCCESS,
-  AUTOSAVE_SELECTTYPE,
-  AUTOSAVE_SELECTTYPE_FAILURE,
-  AUTOSAVE_SELECTTYPE_SUCCESS,
 } from './interface';
 
 export const setType = (payload: string) => ({
@@ -53,13 +51,7 @@ export const setRemark = (payload: string) => ({
   payload,
 });
 
-export const selectType = (payload: {
-  educationalStatus: string;
-  applicationType: string;
-  isDaejeon: boolean;
-  applicationRemark: string;
-  graduatedAt: string;
-}) => ({
+export const selectType = (payload: selectTypeSaveType) => ({
   type: SELECTTYPE,
   payload,
 });
@@ -74,37 +66,11 @@ export const selectTypeFailure = (payload: error) => ({
   payload,
 });
 
-export const autoSaveSelectType = (payload: {
-  educationalStatus: string;
-  applicationType: string;
-  isDaejeon: boolean;
-  applicationRemark: string;
-  graduatedAt: string;
-}) => ({
-  type: AUTOSAVE_SELECTTYPE,
-  payload,
-});
-
-export const autoSaveSelectTypeSuccess = () => ({
-  type: AUTOSAVE_SELECTTYPE_SUCCESS,
-});
-
-export const autoSaveSelectTypeFailure = (payload: error) => ({
-  type: AUTOSAVE_SELECTTYPE_FAILURE,
-  payload,
-});
-
 export const getSelectType = () => ({
   type: GET_SELECTTYPE,
 });
 
-export const getSelectTypeSuccess = (payload: {
-  educational_status: string;
-  application_type: string;
-  is_daejeon: boolean;
-  application_remark: string | null;
-  graduated_at: string;
-}) => ({
+export const getSelectTypeSuccess = (payload: selectTypeType) => ({
   type: GET_SELECTTYPE_SUCCESS,
   payload,
 });
@@ -125,9 +91,6 @@ export type selectTypeActionType =
   | ReturnType<typeof selectType>
   | ReturnType<typeof selectTypeSuccess>
   | ReturnType<typeof selectTypeFailure>
-  | ReturnType<typeof autoSaveSelectType>
-  | ReturnType<typeof autoSaveSelectTypeSuccess>
-  | ReturnType<typeof autoSaveSelectTypeFailure>
   | ReturnType<typeof getSelectType>
   | ReturnType<typeof getSelectTypeSuccess>
   | ReturnType<typeof getSelectTypeFailure>;
