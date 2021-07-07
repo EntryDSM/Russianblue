@@ -28,7 +28,7 @@ const SchoolNameColumn: FC<Props> = ({ setInput, setIsClickSearchBtn, schoolName
         inputChangeHandler={schoolNameChangeHandler}
         name={'schoolName'}
         disable
-        defaultValue={schoolName}
+        value={schoolName}
       />
       <S.SearchBtn onClick={searchBtnClickHandler}>검색</S.SearchBtn>
     </S.InformationLine>

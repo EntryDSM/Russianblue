@@ -55,7 +55,7 @@ const Pagination: FC<Props> = ({
         />
       );
     else return <PageBtn content='다음' disabled />;
-  }, [isNextPage]);
+  }, [isNextPage, nextPagePath]);
 
   return (
     <S.Page>

@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import { SCHOOL, SELECTTYPE } from '../../constance/SelectType';
 import Pagination from '../default/Pagination';
 import SelectLine from './SelectLine';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   applicationType: string;
@@ -13,6 +14,7 @@ interface Props {
   graduationMonth: number;
   graduationYear: number;
   applicationRemark: string;
+  isSuccessSaveSelectType: boolean;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: boolean) => void;
@@ -20,20 +22,6 @@ interface Props {
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
-  selectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
 const SelectType: FC<Props> = ({
@@ -45,10 +33,10 @@ const SelectType: FC<Props> = ({
   graduationMonth,
   graduationYear,
   applicationRemark,
+  isSuccessSaveSelectType,
   setType,
   setSocialType,
   setArea,
-  autoSaveSelectType,
   setGraduation,
   setGraduationMonth,
   setGraduationYear,
@@ -96,9 +84,9 @@ const SelectType: FC<Props> = ({
         setGraduationMonth={setGraduationMonth}
         setGraduationYear={setGraduationYear}
         setRemark={setRemark}
-        autoSaveSelectType={autoSaveSelectType}
       />
       {pagination}
+      <ToastPopUp isSuccessSave={isSuccessSaveSelectType} />
     </S.SelectType>
   );
 };

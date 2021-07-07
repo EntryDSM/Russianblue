@@ -123,7 +123,7 @@ export const gedScore = async (access_token: string, gedScoreRequest: string) =>
   try {
     const request = getRequestWithAccessToken(access_token);
     await request.patch(uri.gedScore, {
-      ged_average_score: Number((Number(gedScoreRequest) / 6).toFixed(2)),
+      ged_average_score: Number(gedScoreRequest),
     });
   } catch (error) {
     throw error;
