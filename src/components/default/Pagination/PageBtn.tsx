@@ -24,9 +24,16 @@ interface Props {
   nextPagePath?: string;
   content: String;
   disabled?: boolean;
+  setIsOpenSubmitModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) => {
+const PageBtn: FC<Props> = ({
+  content,
+  disabled,
+  prevPagePath,
+  nextPagePath,
+  setIsOpenSubmitModal,
+}) => {
   const history = useHistory();
   const pathname = useLocation().pathname.slice(1);
   const [prevNextBtn, setPrevNextBtn] = useState({
@@ -38,13 +45,6 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
   const introSetState = useIntroduction().setState;
   const selfIntroduction = introState.selfIntroduction;
   const studyPlan = introState.studyPlan;
-  // const selectTypeSetState = useSelectType().setState;
-  // const educationalStatus = selectTypeState.educationalStatus;
-  // const applicationType = selectTypeState.applicationType;
-  // const isDaejeon = selectTypeState.isDaejeon;
-  // const applicationRemark = selectTypeState.applicationRemark;
-  // const graduationYear = String(selectTypeState.graduationYear);
-  // const graduationMonth = String(selectTypeState.graduationMonth);
 
   const selectTypeState = useSelectType().state;
   const informationState = useInformation().state;
@@ -72,8 +72,6 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
       case 'grade':
         isSuccessAction = gradeState.isSuccessSaveGrade;
-        break;
-      case 'preview':
         break;
     }
     if (isSuccessAction) {
@@ -115,6 +113,9 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
       case 'grade':
         dispatch({ type: SAVE_GRADE });
+        break;
+      case 'preview':
+        setIsOpenSubmitModal(true);
         break;
       default:
     }
