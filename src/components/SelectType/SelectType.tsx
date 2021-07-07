@@ -22,20 +22,6 @@ interface Props {
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
-  selectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
 const SelectType: FC<Props> = ({
@@ -51,7 +37,6 @@ const SelectType: FC<Props> = ({
   setType,
   setSocialType,
   setArea,
-  autoSaveSelectType,
   setGraduation,
   setGraduationMonth,
   setGraduationYear,
@@ -99,7 +84,6 @@ const SelectType: FC<Props> = ({
         setGraduationMonth={setGraduationMonth}
         setGraduationYear={setGraduationYear}
         setRemark={setRemark}
-        autoSaveSelectType={autoSaveSelectType}
       />
       {pagination}
       <ToastPopUp isSuccessSave={isSuccessSaveSelectType} />

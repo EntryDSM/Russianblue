@@ -17,6 +17,7 @@ import {
 } from '../../../modules/redux/action/information/interface';
 import { useGrade } from '../../../util/hooks/grade';
 import { SAVE_GRADE } from '../../../modules/redux/action/grade/interface';
+import { SELECTTYPE } from '../../../constance/SelectType';
 
 interface Props {
   prevPagePath?: string;
@@ -37,37 +38,20 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
   const introSetState = useIntroduction().setState;
   const selfIntroduction = introState.selfIntroduction;
   const studyPlan = introState.studyPlan;
+  // const selectTypeSetState = useSelectType().setState;
+  // const educationalStatus = selectTypeState.educationalStatus;
+  // const applicationType = selectTypeState.applicationType;
+  // const isDaejeon = selectTypeState.isDaejeon;
+  // const applicationRemark = selectTypeState.applicationRemark;
+  // const graduationYear = String(selectTypeState.graduationYear);
+  // const graduationMonth = String(selectTypeState.graduationMonth);
 
   const selectTypeState = useSelectType().state;
-  const selectTypeSetState = useSelectType().setState;
-  const educationalStatus = selectTypeState.educationalStatus;
-  const applicationType = selectTypeState.applicationType;
-  const isDaejeon = selectTypeState.isDaejeon;
-  const applicationRemark = selectTypeState.applicationRemark;
-  const graduationYear = String(selectTypeState.graduationYear);
-  const graduationMonth = String(selectTypeState.graduationMonth);
-  let graduated_YM = '';
-  if (graduationMonth.length === 1) {
-    graduated_YM = graduationYear + '0' + graduationMonth;
-  } else {
-    graduated_YM = graduationYear + graduationMonth;
-  }
-
   const informationState = useInformation().state;
   const gradeState = useGrade().state;
   const dispatch = useDispatch();
 
-  const change = [
-    selfIntroduction,
-    studyPlan,
-    educationalStatus,
-    applicationRemark,
-    applicationType,
-    isDaejeon,
-    graduationMonth,
-    graduationYear,
-    informationState,
-  ];
+  const change = [selfIntroduction, studyPlan, informationState];
 
   useEffect(() => {
     let isSuccessAction = undefined;
@@ -122,13 +106,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         introSetState.saveBoth({ selfIntroduction, studyPlan });
         break;
       case 'select-type':
-        selectTypeSetState.selectType({
-          educationalStatus: educationalStatus,
-          applicationType: applicationType,
-          isDaejeon: isDaejeon,
-          applicationRemark: applicationRemark,
-          graduatedAt: graduated_YM,
-        });
+        dispatch({ type: SELECTTYPE });
         break;
       case 'information':
         dispatch({ type: INFORMATION });

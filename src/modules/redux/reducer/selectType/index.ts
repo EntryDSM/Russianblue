@@ -12,9 +12,6 @@ import {
   SELECTTYPE_FAILURE,
   GET_SELECTTYPE_FAILURE,
   GET_SELECTTYPE_SUCCESS,
-  AUTOSAVE_SELECTTYPE,
-  AUTOSAVE_SELECTTYPE_SUCCESS,
-  AUTOSAVE_SELECTTYPE_FAILURE,
 } from '../../action/selectType/interface';
 import SelectTypeState from './interface';
 
@@ -41,46 +38,48 @@ const SelectTypeReducer = (
       return {
         ...state,
         applicationType: action.payload,
+        isSuccessSaveSelectType: undefined,
       };
     case SOCIALTYPE:
       return {
         ...state,
         socialType: action.payload,
+        isSuccessSaveSelectType: undefined,
       };
     case AREA:
       return {
         ...state,
         isDaejeon: action.payload,
+        isSuccessSaveSelectType: undefined,
       };
     case GRADUATION:
       return {
         ...state,
         educationalStatus: action.payload,
+        isSuccessSaveSelectType: undefined,
       };
     case GRADUATION_MONTH:
       return {
         ...state,
         graduationMonth: action.payload,
+        isSuccessSaveSelectType: undefined,
       };
     case GRADUATION_YEAR:
       return {
         ...state,
         graduationYear: action.payload,
+        isSuccessSaveSelectType: undefined,
       };
     case REMARK:
       return {
         ...state,
         applicationRemark: action.payload,
+        isSuccessSaveSelectType: undefined,
       };
     case SELECTTYPE:
       return {
         ...state,
         isSuccessSaveSelectType: undefined,
-        applicationRemark: action.payload.applicationRemark,
-        isDaejeon: action.payload.isDaejeon,
-        applicationType: action.payload.applicationType,
-        educationalStatus: action.payload.educationalStatus,
-        graduatedAt: action.payload.graduatedAt,
       };
     case SELECTTYPE_SUCCESS:
       return {
@@ -92,27 +91,6 @@ const SelectTypeReducer = (
         ...state,
         isSuccessSaveSelectType: false,
         error: action.payload,
-      };
-    case AUTOSAVE_SELECTTYPE:
-      return {
-        ...state,
-        isSuccessSaveSelectType: undefined,
-        applicationRemark: action.payload.applicationRemark,
-        isDaejeon: action.payload.isDaejeon,
-        applicationType: action.payload.applicationType,
-        educationalStatus: action.payload.educationalStatus,
-        graduatedAt: action.payload.graduatedAt,
-      };
-    case AUTOSAVE_SELECTTYPE_SUCCESS:
-      return {
-        ...state,
-        isSuccessSaveSelectType: true,
-      };
-    case AUTOSAVE_SELECTTYPE_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        isSuccessSaveSelectType: false,
       };
     case GET_SELECTTYPE_SUCCESS:
       return {
