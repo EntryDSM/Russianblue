@@ -17,7 +17,7 @@ export interface resetPasswordVertifyCodeRequest {
   email: string;
 }
 
-export interface resetPassword {
+export interface resetPasswordRequest {
   email: string;
   password: string;
 }

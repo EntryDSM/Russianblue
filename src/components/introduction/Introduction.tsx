@@ -9,28 +9,42 @@ import {
   SCHOOL,
 } from '../../constance/introduction';
 import Pagination from '../default/Pagination';
+import { useSelectState } from '../../util/hooks/default';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   selfIntroduction: string;
   studyPlan: string;
+  isSuccessSaveSelfIntroduction: boolean;
+  isSuccessSaveStudyPlan: boolean;
   setIntroduction: (payload: string) => void;
   setStudyPlan: (payload: string) => void;
 }
 const Introduction: FC<Props> = ({
   selfIntroduction,
   studyPlan,
+  isSuccessSaveSelfIntroduction,
+  isSuccessSaveStudyPlan,
   setIntroduction,
   setStudyPlan,
 }) => {
+  const educationalStatus = useSelectState().selectType.educationalStatus;
   const pagination = useMemo(() => {
-    if (selfIntroduction !== '') {
-      if (studyPlan !== '') {
-        return <Pagination prevPagePath={'/grade'} nextPagePath={'/preview'} isNextPage />;
-        // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification isNextPage />
-      } else return <Pagination prevPagePath={'/grade'} />;
+    if (selfIntroduction !== '' && studyPlan !== '') {
+      if (educationalStatus === 'QUALIFICATION_EXAM')
+        return (
+          <Pagination
+            prevPagePath={'/information'}
+            nextPagePath={'/preview'}
+            isQualification
+            isNextPage
+          />
+        );
+      else return <Pagination prevPagePath={'/grade'} nextPagePath={'/preview'} isNextPage />;
     } else {
-      return <Pagination prevPagePath={'/grade'} />;
-      // 검정고시라면 <Pagination prevPagePath={'/information'} nextPagePath={'/preview'} isQualification />
+      if (educationalStatus === 'QUALIFICATION_EXAM')
+        return <Pagination prevPagePath={'/information'} isQualification />;
+      else return <Pagination prevPagePath={'/grade'} />;
     }
   }, [selfIntroduction, studyPlan]);
 
@@ -53,6 +67,16 @@ const Introduction: FC<Props> = ({
         setStudyPlan={setStudyPlan}
       />
       {pagination}
+      {isSuccessSaveSelfIntroduction !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveSelfIntroduction} />
+      ) : (
+        ''
+      )}
+      {isSuccessSaveStudyPlan !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveStudyPlan} />
+      ) : (
+        ''
+      )}
     </S.AllContents>
   );
 };

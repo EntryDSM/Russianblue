@@ -4,16 +4,22 @@ import { getRequestWithAccessToken } from '../default';
 export const selectType = async (
   access_token: string,
   selectTypeRequest: {
-    educational_status: string;
-    application_type: string;
-    is_daejeon: boolean;
-    application_remark: string | null;
-    graduated_at: string;
+    educationalStatus: string;
+    applicationType: string;
+    isDaejeon: boolean;
+    applicationRemark: string | null;
+    graduatedAt: string;
   },
 ) => {
   try {
     const request = getRequestWithAccessToken(access_token);
-    await request.patch(uri.selectType, selectTypeRequest);
+    await request.patch(uri.selectType, {
+      educational_status: selectTypeRequest.educationalStatus,
+      application_type: selectTypeRequest.applicationType,
+      is_daejeon: selectTypeRequest.isDaejeon,
+      application_remark: selectTypeRequest.applicationRemark,
+      graduated_at: selectTypeRequest.graduatedAt,
+    });
   } catch (error) {
     throw error;
   }

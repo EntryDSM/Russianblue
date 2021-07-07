@@ -1,27 +1,37 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
 
 interface Props {
-  setInput: (payload: { name: string; value: string }) => void;
+  totalScore: string;
+  setGedScore: (payload: string) => void;
 }
 
-const TotalScoreColumn: FC<Props> = ({ setInput }) => {
+const TotalScoreColumn: FC<Props> = ({ setGedScore, totalScore }) => {
   const totalScoreChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ name: e.target.name, value: e.target.value });
+    setGedScore(e.target.value);
   };
 
-  return (
-    <S.InformationLine width={904}>
-      <S.InformationLineTitle>
-        <span>*</span>검정고시 총점
-      </S.InformationLineTitle>
+  const totalScoreInput = useMemo(() => {
+    return (
       <Input
         width={114}
         height={42}
         inputChangeHandler={totalScoreChangeHandler}
+        value={totalScore}
+        maxValue={60}
+        minValue={100}
         name='totalScore'
       />
+    );
+  }, [totalScore]);
+
+  return (
+    <S.InformationLine width={904}>
+      <S.InformationLineTitle>
+        <span>*</span>검정고시 평균
+      </S.InformationLineTitle>
+      {totalScoreInput}
       <S.Unit>점</S.Unit>
     </S.InformationLine>
   );

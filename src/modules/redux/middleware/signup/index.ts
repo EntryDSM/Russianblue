@@ -44,16 +44,11 @@ export const sendSignupVertifyCodeSaga = createRequestSaga(
   sendSignUpVertifyCode,
 );
 export const checkVertifyCodeSaga = createRequestSaga(CHECK_VERTIFY_CODE, chekckVertifyCode);
-export const sendResetPasswordVertifyCodeSaga = createRequestSaga(
-  SEND_RESET_PASSWORD_VERTIFY_CODE,
-  sendResetPasswordVertifyCode,
-);
 
 function* signinSaga() {
   yield takeLatest(SIGNUP, sigupRequestSaga);
   yield takeLatest(SEND_VERTIFY_CODE, sendSignupVertifyCodeSaga);
   yield takeLatest(CHECK_VERTIFY_CODE, checkVertifyCodeSaga);
-  yield takeLatest(SEND_RESET_PASSWORD_VERTIFY_CODE, sendResetPasswordVertifyCodeSaga);
 }
 
 export default signinSaga;

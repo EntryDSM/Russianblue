@@ -206,9 +206,10 @@ export const ModalSubmitImage = styled(ModalResetPasswordSuccessImage)`
 
 export const ModalNotice = styled.div`
   width: ${pxToRem(1200 * windowWidthRatio)}rem;
-  height: ${pxToRem(900 * windowHeightRatio)}rem;
+  height: ${pxToRem(835 * windowHeightRatio)}rem;
   padding: 40px;
   background-color: white;
+  overflow: scroll;
 `;
 
 export const ModalNoticeTitle = styled.div`

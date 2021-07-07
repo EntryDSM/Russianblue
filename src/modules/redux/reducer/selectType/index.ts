@@ -96,6 +96,7 @@ const SelectTypeReducer = (
     case AUTOSAVE_SELECTTYPE:
       return {
         ...state,
+        isSuccessSaveSelectType: undefined,
         applicationRemark: action.payload.applicationRemark,
         isDaejeon: action.payload.isDaejeon,
         applicationType: action.payload.applicationType,
@@ -105,11 +106,13 @@ const SelectTypeReducer = (
     case AUTOSAVE_SELECTTYPE_SUCCESS:
       return {
         ...state,
+        isSuccessSaveSelectType: true,
       };
     case AUTOSAVE_SELECTTYPE_FAILURE:
       return {
         ...state,
         error: action.payload,
+        isSuccessSaveSelectType: false,
       };
     case GET_SELECTTYPE_SUCCESS:
       return {

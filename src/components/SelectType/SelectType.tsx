@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import { SCHOOL, SELECTTYPE } from '../../constance/SelectType';
 import Pagination from '../default/Pagination';
 import SelectLine from './SelectLine';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   applicationType: string;
@@ -13,6 +14,7 @@ interface Props {
   graduationMonth: number;
   graduationYear: number;
   applicationRemark: string;
+  isSuccessSaveSelectType: boolean;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: boolean) => void;
@@ -45,6 +47,7 @@ const SelectType: FC<Props> = ({
   graduationMonth,
   graduationYear,
   applicationRemark,
+  isSuccessSaveSelectType,
   setType,
   setSocialType,
   setArea,
@@ -99,6 +102,7 @@ const SelectType: FC<Props> = ({
         autoSaveSelectType={autoSaveSelectType}
       />
       {pagination}
+      <ToastPopUp isSuccessSave={isSuccessSaveSelectType} />
     </S.SelectType>
   );
 };

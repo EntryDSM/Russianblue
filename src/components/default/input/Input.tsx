@@ -10,6 +10,9 @@ interface Props {
   inputChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   name?: string;
+  maxValue?: number;
+  minValue?: number;
+  value?: string;
 }
 
 const Input: FC<Props> = ({
@@ -21,6 +24,9 @@ const Input: FC<Props> = ({
   inputChangeHandler,
   type,
   name,
+  maxValue,
+  minValue,
+  value,
 }) => {
   return (
     <S.Input
@@ -33,6 +39,9 @@ const Input: FC<Props> = ({
       disabled={disable}
       type={type}
       name={name}
+      max={maxValue}
+      min={minValue}
+      value={value}
     />
   );
 };

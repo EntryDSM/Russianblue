@@ -1,1 +1,2 @@
-export { default as useInformation } from './useInformation';
+import useInformation from './useInformation';
+export default useInformation;

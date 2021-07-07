@@ -1,14 +1,20 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useMemo, useState } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
 
 interface Props {
+  schoolName: string;
   setInput: (payload: { name: string; value: string }) => void;
+  setIsClickSearchBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SchoolNameColumn: FC<Props> = ({ setInput }) => {
+const SchoolNameColumn: FC<Props> = ({ setInput, setIsClickSearchBtn, schoolName }) => {
   const schoolNameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInput({ name: e.target.name, value: e.target.value });
+  };
+
+  const searchBtnClickHandler = () => {
+    setIsClickSearchBtn(true);
   };
 
   return (
@@ -22,8 +28,9 @@ const SchoolNameColumn: FC<Props> = ({ setInput }) => {
         inputChangeHandler={schoolNameChangeHandler}
         name={'schoolName'}
         disable
+        value={schoolName}
       />
-      <S.SearchBtn>검색</S.SearchBtn>
+      <S.SearchBtn onClick={searchBtnClickHandler}>검색</S.SearchBtn>
     </S.InformationLine>
   );
 };

@@ -8,10 +8,11 @@ interface Props {
   unit: string;
   border?: boolean;
   name: string;
+  value?: string;
   setInput: (payload: { name: string; value: number }) => void;
 }
 
-const VolunteerColumn: FC<Props> = ({ title, unit, border, name, setInput }) => {
+const VolunteerColumn: FC<Props> = ({ title, unit, border, name, setInput, value }) => {
   const { state } = useGrade();
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ name: e.target.name, value: Number(e.target.value) });
@@ -20,7 +21,13 @@ const VolunteerColumn: FC<Props> = ({ title, unit, border, name, setInput }) => 
     <S.TableTd border={border}>
       {title && <p>{title}</p>}
       <div>
-        <Input width={76} height={36} inputChangeHandler={inputChangeHandler} name={name} />
+        <Input
+          width={76}
+          height={36}
+          inputChangeHandler={inputChangeHandler}
+          name={name}
+          value={value}
+        />
         <p>{unit}</p>
       </div>
     </S.TableTd>

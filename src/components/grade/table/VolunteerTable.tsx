@@ -3,10 +3,22 @@ import * as S from '../style';
 import { VolunteerColumn } from '../column';
 
 interface Props {
+  volunteerTime: number;
+  absence: number;
+  leave: number;
+  lateness: number;
+  truancy: number;
   setInput: (payload: { name: string; value: number }) => void;
 }
 
-const VolunteerTable: FC<Props> = ({ setInput }) => {
+const VolunteerTable: FC<Props> = ({
+  setInput,
+  volunteerTime,
+  absence,
+  leave,
+  lateness,
+  truancy,
+}) => {
   return (
     <S.VolunteerTable>
       <div>
@@ -19,7 +31,13 @@ const VolunteerTable: FC<Props> = ({ setInput }) => {
       </div>
       <div>
         <div>
-          <VolunteerColumn unit={'시간'} border name={'volunteerTime'} setInput={setInput} />
+          <VolunteerColumn
+            unit={'시간'}
+            border
+            name={'volunteerTime'}
+            setInput={setInput}
+            value={String(volunteerTime)}
+          />
           <S.TableTd />
         </div>
         <div>
@@ -29,12 +47,14 @@ const VolunteerTable: FC<Props> = ({ setInput }) => {
             border
             name={'absence'}
             setInput={setInput}
+            value={String(absence)}
           />
           <VolunteerColumn
             title={'전체 무단 조퇴 일수'}
             unit={'일'}
             name={'leave'}
             setInput={setInput}
+            value={String(leave)}
           />
         </div>
         <div>
@@ -44,12 +64,14 @@ const VolunteerTable: FC<Props> = ({ setInput }) => {
             border
             name={'lateness'}
             setInput={setInput}
+            value={String(lateness)}
           />
           <VolunteerColumn
             title={'전체 무단 결과 일수'}
             unit={'일'}
             name={'truancy'}
             setInput={setInput}
+            value={String(truancy)}
           />
         </div>
       </div>
