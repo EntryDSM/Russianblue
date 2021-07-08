@@ -6,9 +6,9 @@ import { getRequest } from '../default';
 export const signin = async (body: signinRequest) => {
   try {
     const request = getRequest();
-    const { data } = await request.post<signinResponse>(uri.signin, body);
-    localStorage.setItem('access_token', data.access_token);
-    return data;
+    const response = await request.post<signinResponse>(uri.signin, body);
+    localStorage.setItem('access_token', response.data.access_token);
+    return response.data;
   } catch (error) {
     throw error;
   }

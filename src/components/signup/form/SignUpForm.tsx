@@ -62,6 +62,7 @@ const SignUpForm: FC<Props> = ({
         disable={!ruleCheck || !isSendVertifyCode}
         setPassword={setPassword}
         isCheckVertifyCode={isCheckVertifyCode}
+        error={error}
       />
     </S.SignUpContent>
   );
