@@ -11,15 +11,7 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@master
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-            
+        
       - name: Install dependencies
         run: yarn
 
