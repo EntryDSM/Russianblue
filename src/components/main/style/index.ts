@@ -67,7 +67,7 @@ export const MainDescription = styled.p`
   }
 `;
 
-export const MainButton = styled.button`
+export const MainButton = styled.button<{ disabled: boolean }>`
   width: ${pxToRem(360) * (4 / 5)}rem;
   height: ${pxToRem(100) * (4 / 5)}rem;
   border-radius: ${pxToRem(18)}rem;
@@ -80,6 +80,7 @@ export const MainButton = styled.button`
   flex-shrink: 0;
   transition: all 0.3s;
   outline: none;
+  cursor: ${props => (props.disabled ? 'pointer' : 'disable')};
   > div {
     width: ${pxToRem(17)}rem;
     height: ${pxToRem(3)}rem;
