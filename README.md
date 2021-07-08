@@ -9,7 +9,7 @@
 ### Get Codes
 
 ```npm
-git clone https://github.com/EntryDSM/Russianblue.git // code clone
+git clone https://github.com/EntryDSM/Russianblue.git code clone
 ```
 
 ### Prerequisites
