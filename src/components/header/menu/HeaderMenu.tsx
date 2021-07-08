@@ -6,18 +6,24 @@ import HeaderDropDown from './HeaderDropdown';
 interface Props {
   isLogin: boolean;
   name: string;
+  phoneNumber: string;
+  isfinalSubmitDone: boolean;
+  isReceiveMail: boolean;
+  studyPlanLength: number;
+  selfIntroduceLength: number;
+  logout: () => void;
 }
 
-const HeaderMenu: FC<Props> = ({ isLogin, name }) => {
+const HeaderMenu: FC<Props> = state => {
   const userMenu = (
     <S.HeaderMenu>
-      <HeaderButton buttonClickHandler={() => {}}>로그아웃</HeaderButton>
+      <HeaderButton buttonClickHandler={state.logout}>로그아웃</HeaderButton>
       <S.HeaderPartition>|</S.HeaderPartition>
-      <HeaderDropDown name={name} />
+      <HeaderDropDown {...state} />
     </S.HeaderMenu>
   );
   const renderMenu = () => {
-    if (isLogin) {
+    if (state.isLogin) {
       return userMenu;
     } else {
       return <S.HeaderMenu />;

@@ -17,3 +17,8 @@ declare module '*.pdf' {
   const value: any;
   export default value;
 }
+
+declare module '*.gz' {
+  const value: any;
+  export default value;
+}

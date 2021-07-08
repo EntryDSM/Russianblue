@@ -1,35 +1,73 @@
-import { NAME, PASSWORD, PHONE_CODE, PHONE_NUMBER, SIGN_UP, RULE_CHECK } from './interface';
+import {
+  checkVertifyRequest,
+  signupRequest,
+  signupVertifyCodeRequest,
+} from '../../../../models/dto/request/signupRequest';
+import { error } from '../../../../models/error';
+import {
+  NAME,
+  PASSWORD,
+  PHONE_CODE,
+  PHONE_NUMBER,
+  SIGNUP,
+  RULE_CHECK,
+  SIGNUP_SUCCESS,
+  SEND_VERTIFY_CODE_SUCCESS,
+  CHECK_VERTIFY_CODE_SUCCESS,
+  CHECK_VERTIFY_CODE_FAILURE,
+  SIGNUP_FAILURE,
+  SEND_VERTIFY_CODE_FAILURE,
+  SEND_VERTIFY_CODE,
+  CHECK_VERTIFY_CODE,
+} from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setName = (payload: string) => ({
-  type: NAME,
-  payload,
-});
 
-export const setPassword = (payload: string) => ({
-  type: PASSWORD,
-  payload,
-});
+export const setName = createAction(NAME)<string>();
+export const setPassword = createAction(PASSWORD)<string>();
+export const setPhoneNumber = createAction(PHONE_NUMBER)<string>();
+export const setPhoneCode = createAction(PHONE_CODE)<string>();
+export const setRuleCheck = createAction(RULE_CHECK)<boolean>();
+export const sendVertifyCode = createAction(SEND_VERTIFY_CODE)<signupVertifyCodeRequest>();
+export const signup = createAction(SIGNUP)<signupRequest>();
+export const checkVertifyCode = createAction(CHECK_VERTIFY_CODE)<checkVertifyRequest>();
+export const signupSuccess = createAction(SIGNUP_SUCCESS)<boolean>();
+export const sendVertifyCodeSuccess = createAction(SEND_VERTIFY_CODE_SUCCESS)<boolean>();
+export const checkVertifyCodeSuccess = createAction(CHECK_VERTIFY_CODE_SUCCESS)<boolean>();
+export const signupFailure = createAction(SIGNUP_FAILURE)<error>();
+export const checkVertifyCodeFailure = createAction(CHECK_VERTIFY_CODE_FAILURE)<error>();
+export const sendVertifyCodeFailure = createAction(SEND_VERTIFY_CODE_FAILURE)<error>();
 
-export const setPhoneNumber = (payload: string) => ({
-  type: PHONE_NUMBER,
-  payload,
-});
 
-export const setPhoneCode = (payload: string) => ({
-  type: PHONE_CODE,
-  payload,
-});
-
-export const setRuleCheck = (payload: boolean) => ({
-  type: RULE_CHECK,
-  payload,
-});
-
-export { NAME, PASSWORD, PHONE_CODE, PHONE_NUMBER, SIGN_UP, RULE_CHECK };
+export {
+  NAME,
+  PASSWORD,
+  PHONE_CODE,
+  PHONE_NUMBER,
+  SIGNUP,
+  RULE_CHECK,
+  SEND_VERTIFY_CODE_FAILURE,
+  SEND_VERTIFY_CODE_SUCCESS,
+  CHECK_VERTIFY_CODE_FAILURE,
+  CHECK_VERTIFY_CODE_SUCCESS,
+  SEND_VERTIFY_CODE,
+  CHECK_VERTIFY_CODE,
+  SIGNUP_FAILURE,
+  SIGNUP_SUCCESS,
+};
 
 export type signupActionType =
   | ReturnType<typeof setName>
   | ReturnType<typeof setPassword>
   | ReturnType<typeof setPhoneNumber>
   | ReturnType<typeof setPhoneCode>
-  | ReturnType<typeof setRuleCheck>;
+  | ReturnType<typeof setRuleCheck>
+  | ReturnType<typeof signupFailure>
+  | ReturnType<typeof signupSuccess>
+  | ReturnType<typeof sendVertifyCodeSuccess>
+  | ReturnType<typeof sendVertifyCodeFailure>
+  | ReturnType<typeof checkVertifyCodeSuccess>
+  | ReturnType<typeof checkVertifyCodeFailure>
+  | ReturnType<typeof signup>
+  | ReturnType<typeof sendVertifyCode>
+  | ReturnType<typeof checkVertifyCode>;

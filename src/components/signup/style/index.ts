@@ -124,10 +124,29 @@ export const SignUpContent = styled.div`
 
 export const SignUpItem = styled.div`
   width: 100%;
-  height: ${pxToRem(75)}rem;
-  border-bottom: 1px solid ${color.disable};
-  display: flex;
-  align-items: center;
+  > div {
+    height: ${pxToRem(75)}rem;
+    border-bottom: 1px solid ${color.disable};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 40px;
+    > p {
+      font-size: 12px;
+      > span {
+        color: ${color.main};
+      }
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      > div {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
 `;
 
 export const SignUpItemText = styled.div`
@@ -155,6 +174,7 @@ export const SignUpSubmitButton = styled.div<{ disable: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   ${({ disable }) =>
     disable
       ? css`
@@ -183,5 +203,13 @@ export const SignUpSubmitButton = styled.div<{ disable: boolean }>`
       content: '';
       transform: rotate(90deg) translate(5px, -5px);
     }
+  }
+`;
+
+export const SignUpFormDescription = styled.div`
+  font-size: ${pxToRem(12)}rem;
+  color: #606060;
+  > span {
+    color: #f57278;
   }
 `;

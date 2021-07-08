@@ -10,6 +10,7 @@ import {
 } from './resetPassword';
 import { AccessErrorModal, FileErrorModal, SubmitModal } from './other';
 import NoticeModal from './notice/NoticeModal';
+import useResetPassword from '../../util/hooks/resetPassword/useResetPassword';
 
 const MODAL_TYPE = {
   setPhoneNumberModal: 'resetPassword1',
@@ -29,6 +30,7 @@ interface Props {
 }
 
 const Modal: FC<Props> = ({ type, setType }) => {
+  const { state, setState } = useResetPassword();
   const isAgreeBefore: boolean = localStorage.getItem('agree') === 'true';
   const deleteModal = () => {
     setType('');
@@ -46,10 +48,14 @@ const Modal: FC<Props> = ({ type, setType }) => {
     setType(MODAL_TYPE.setPhoneNumberModal);
   };
   const goEndResetPasswordModal = () => {
+    setState.resetPassword({
+      email: state.vertifyPhoneNumber,
+      password: state.newPassword,
+    });
     setType(MODAL_TYPE.endSetNewPasswordModal);
   };
+  if (!isAgreeBefore) return <NoticeModal deleteModal={deleteModal} />;
   if (type === '') return <></>;
-  if (type === 'notice' && isAgreeBefore != true) return <NoticeModal deleteModal={deleteModal} />;
   return (
     <>
       <S.ModalWrapper onClick={deleteModal}>
@@ -77,7 +83,6 @@ const Modal: FC<Props> = ({ type, setType }) => {
           {type === MODAL_TYPE.accessErrorModal ? <AccessErrorModal goNext={deleteModal} /> : ''}
         </S.Modal>
       </S.ModalWrapper>
-      )
     </>
   );
 };

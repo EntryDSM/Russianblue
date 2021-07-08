@@ -3,11 +3,12 @@ import styled, { css } from 'styled-components';
 import { eye, eye_active } from '../../../../assets/default';
 
 export const Input = styled.input<{
-  width: number;
+  width?: number;
   height?: number;
-  disable: boolean;
+  disable?: boolean;
   margin?: string;
 }>`
+  border-radius: 5px;
   outline: none;
   box-sizing: border-box;
   border: 1px solid ${color.fail};
@@ -25,6 +26,7 @@ export const PasswordInput = styled.div<{
   height?: number;
   margin?: string;
 }>`
+  border-radius: 5px;
   outline: none;
   box-sizing: border-box;
   ${({ width, height, margin }) => css`

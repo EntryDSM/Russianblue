@@ -1,3 +1,4 @@
+import { ERROR } from '../../action/signin';
 import {
   PASSWORD,
   NAME,
@@ -5,6 +6,13 @@ import {
   PHONE_CODE,
   PHONE_NUMBER,
   RULE_CHECK,
+  CHECK_VERTIFY_CODE_SUCCESS,
+  CHECK_VERTIFY_CODE_FAILURE,
+  SEND_VERTIFY_CODE_SUCCESS,
+  SEND_VERTIFY_CODE_FAILURE,
+  SEND_VERTIFY_CODE,
+  CHECK_VERTIFY_CODE,
+  SIGNUP_FAILURE,
 } from '../../action/signup';
 import ISignUpState from './interface';
 
@@ -14,6 +22,13 @@ const initState: ISignUpState = {
   phoneCode: '',
   phoneNumber: '',
   ruleCheck: false,
+  isCheckVertifyCode: false,
+  isSendVertifyCode: false,
+  error: {
+    status: 0,
+    message: '',
+    type: '',
+  },
 };
 
 const SignUpReducer = (state: ISignUpState = initState, action: signupActionType): ISignUpState => {
@@ -46,6 +61,43 @@ const SignUpReducer = (state: ISignUpState = initState, action: signupActionType
       return {
         ...state,
         ruleCheck: action.payload,
+      };
+    }
+    case CHECK_VERTIFY_CODE_SUCCESS: {
+      return {
+        ...state,
+        isCheckVertifyCode: true,
+      };
+    }
+    case CHECK_VERTIFY_CODE_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case SEND_VERTIFY_CODE_SUCCESS: {
+      return {
+        ...state,
+        isSendVertifyCode: true,
+      };
+    }
+    case SEND_VERTIFY_CODE_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case SEND_VERTIFY_CODE: {
+      return {
+        ...state,
+        isSendVertifyCode: false,
+        isCheckVertifyCode: false,
+      };
+    }
+    case SIGNUP_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
       };
     }
     default: {

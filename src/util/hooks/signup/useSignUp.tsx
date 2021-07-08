@@ -1,16 +1,19 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
+  checkVertifyCode,
+  sendVertifyCode,
   setName,
   setPassword,
   setPhoneCode,
   setPhoneNumber,
   setRuleCheck,
+  signup,
 } from '../../../modules/redux/action/signup';
-import { ReducerType } from 'src/modules/redux/store';
+import { useSelectState } from '../default';
 
 const useSignup = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state: ReducerType) => state.signup);
+  const state = useSelectState().signup;
   const setState = {
     setName: (payload: string) => {
       dispatch(setName(payload));
@@ -26,6 +29,26 @@ const useSignup = () => {
     },
     setRuleCheck: (payload: boolean) => {
       dispatch(setRuleCheck(payload));
+    },
+    sendVertifyCode: (payload: string) => {
+      dispatch(sendVertifyCode({ email: payload }));
+    },
+    checkVertifyCode: (payload: { phoneNumber: string; code: string }) => {
+      dispatch(
+        checkVertifyCode({
+          email: payload.phoneNumber,
+          code: payload.code,
+        }),
+      );
+    },
+    signup: (payload: { phoneNumber: string; password: string; name: string }) => {
+      dispatch(
+        signup({
+          email: payload.phoneNumber,
+          password: payload.password,
+          name: payload.name,
+        }),
+      );
     },
   };
   return { state, setState };

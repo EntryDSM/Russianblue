@@ -1,18 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-
 module.exports = {
-  entry: './src/index.tsx',
+  entry: { app: './src/index.tsx' },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'bundle_[hash].min.js',
+    filename: '[name].min.js',
     publicPath: '/',
   },
+  mode: 'production',
   module: {
     rules: [
       {
@@ -50,11 +50,15 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: './public/favicon.ico' }],
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/favicon.ico',
     }),
     new Dotenv({
-      path: path.join('./src/.env'),
+      path: path.join(__dirname, 'src/.env'),
     }),
   ],
   devServer: {

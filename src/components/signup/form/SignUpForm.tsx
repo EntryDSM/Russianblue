@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { isSignUpDataAble } from '../../../util/util';
+import { error } from '../../../models/error';
+import { isOneOfTextEmpty } from '../../../util/util';
 import * as S from '../style';
 import { NameColumn, PhoneNumberColumn, VertifyColumn, PasswordColumn } from './column';
 
@@ -9,10 +10,15 @@ interface Props {
   phoneCode: string;
   password: string;
   ruleCheck: boolean;
+  isSendVertifyCode: boolean;
+  isCheckVertifyCode: boolean;
   setPassword: (payload: string) => void;
   setPhoneCode: (payload: string) => void;
   setName: (payload: string) => void;
   setPhoneNumber: (payload: string) => void;
+  sendVertifyCode: (payload: string) => void;
+  checkVertifyCode: (payload: { phoneNumber: string; code: string }) => void;
+  error: error;
 }
 
 const SignUpForm: FC<Props> = ({
@@ -24,21 +30,39 @@ const SignUpForm: FC<Props> = ({
   setPhoneCode,
   setPhoneNumber,
   setName,
+  sendVertifyCode,
+  checkVertifyCode,
+  isSendVertifyCode,
+  isCheckVertifyCode,
+  error,
 }) => {
   return (
     <S.SignUpContent>
       <NameColumn disable={!ruleCheck} setName={setName} />
       <PhoneNumberColumn
-        disable={!ruleCheck || isSignUpDataAble(name)}
+        isSendVertifyCode={isSendVertifyCode}
+        sendVertifyCode={sendVertifyCode}
+        disable={!ruleCheck || isOneOfTextEmpty(name)}
         setPhoneNumber={setPhoneNumber}
+        phoneNumber={phoneNumber}
+        error={error}
       />
       <VertifyColumn
-        disable={!ruleCheck || isSignUpDataAble(name, phoneNumber)}
+        disable={!ruleCheck || !isSendVertifyCode || isCheckVertifyCode}
         setPhoneCode={setPhoneCode}
+        isSendVertifyCode={isSendVertifyCode}
+        isCheckVertifyCode={isCheckVertifyCode}
+        error={error}
+        checkVertifyCode={checkVertifyCode}
+        sendVertifyCode={sendVertifyCode}
+        phoneNumber={phoneNumber}
+        phoneCode={phoneCode}
       />
       <PasswordColumn
-        disable={!ruleCheck || isSignUpDataAble(name, phoneNumber, phoneCode)}
+        disable={!ruleCheck || !isSendVertifyCode}
         setPassword={setPassword}
+        isCheckVertifyCode={isCheckVertifyCode}
+        error={error}
       />
     </S.SignUpContent>
   );
