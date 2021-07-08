@@ -51,24 +51,34 @@ export const LineTitle = styled.p`
   }
 `;
 
-export const CheckCircle = styled.div`
+export const CheckCircle = styled.div<{
+  isBlock?: boolean;
+}>`
   width: 21px;
   height: 21px;
   border: 1px solid black;
   border-radius: 11px;
   cursor: pointer;
   margin-right: 10px;
+  ${({ isBlock }) => css`
+    border: 1px solid ${isBlock ? '#7E7E7E' : '#000000'};
+  `}
 `;
 
-export const CheckedCircle = styled.div`
+export const CheckedCircle = styled.div<{
+  isBlock?: boolean;
+}>`
   width: 13px;
   height: 13px;
   border-radius: 7px;
   background-color: ${color.main};
   margin: 4px;
+  ${({ isBlock }) => css`
+    background-color: ${isBlock ? '#7E7E7E' : color.main};
+  `}
 `;
 
-export const SelectBox = styled.div<{ margin?: number }>`
+export const SelectBox = styled.div<{ margin?: number; isBlock?: boolean }>`
   height: 21px;
   display: flex;
   align-items: center;
@@ -78,6 +88,10 @@ export const SelectBox = styled.div<{ margin?: number }>`
   > p {
     height: 18px;
     font-size: 18px;
+    cursor: pointer;
+    ${({ isBlock }) => css`
+      color: ${isBlock ? '#595959' : '000000'};
+    `}
   }
 `;
 

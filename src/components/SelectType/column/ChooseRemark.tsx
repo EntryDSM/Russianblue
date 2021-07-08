@@ -5,10 +5,12 @@ import { REMARKS, REMARK_EXPLAIN } from '../../../constance/SelectType';
 interface Props {
   setRemark: (payload: string) => void;
   applicationRemark: string;
+  applicationType: string;
 }
 
-const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark }) => {
+const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark, applicationType }) => {
   const [isCheck, setIsCheck] = useState({ nationalMerit: false, specialAdmission: false });
+  const [isBlock, setIsBlock] = useState(false);
 
   useEffect(() => {
     switch (applicationRemark) {
@@ -19,25 +21,38 @@ const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark }) => {
         setIsCheck({ nationalMerit: true, specialAdmission: false });
         break;
       default:
-        setIsCheck({ nationalMerit: false, specialAdmission: false });
+        if (applicationType !== 'SOCIAL')
+          setIsCheck({ nationalMerit: false, specialAdmission: false });
     }
-  }, [applicationRemark]);
+  }, [applicationRemark, applicationType]);
+
+  useEffect(() => {
+    if (applicationType === 'SOCIAL') {
+      setIsCheck({ nationalMerit: true, specialAdmission: true });
+      setIsBlock(true);
+    } else {
+      setIsCheck({ nationalMerit: false, specialAdmission: false });
+      setIsBlock(false);
+    }
+  }, [applicationType]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
-    switch (dataId) {
-      case 'nationalMerit':
-        setIsCheck({ nationalMerit: !isCheck.nationalMerit, specialAdmission: false });
-        if (!isCheck.nationalMerit) {
-          setRemark('NATIONAL_MERIT');
-        } else setRemark(null);
-        break;
-      case 'specialAdmission':
-        setIsCheck({ nationalMerit: false, specialAdmission: !isCheck.specialAdmission });
-        if (!isCheck.specialAdmission) {
-          setRemark('PRIVILEGED_ADMISSION');
-        } else setRemark(null);
-        break;
+    if (applicationType !== 'SOCIAL') {
+      switch (dataId) {
+        case 'nationalMerit':
+          setIsCheck({ nationalMerit: !isCheck.nationalMerit, specialAdmission: false });
+          if (!isCheck.nationalMerit) {
+            setRemark('NATIONAL_MERIT');
+          } else setRemark(null);
+          break;
+        case 'specialAdmission':
+          setIsCheck({ nationalMerit: false, specialAdmission: !isCheck.specialAdmission });
+          if (!isCheck.specialAdmission) {
+            setRemark('PRIVILEGED_ADMISSION');
+          } else setRemark(null);
+          break;
+      }
     }
   };
   return (
@@ -48,11 +63,15 @@ const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark }) => {
       </S.LineTitle>
       {REMARKS.map(data => {
         return (
-          <S.SelectBox margin={65} key={data.id}>
-            <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
-              {isCheck[data.id] && <S.CheckedCircle data-id={data.id} onClick={onCheckBtnClick} />}
+          <S.SelectBox margin={65} key={data.id} isBlock={isBlock}>
+            <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id} isBlock={isBlock}>
+              {isCheck[data.id] && (
+                <S.CheckedCircle data-id={data.id} isBlock={isBlock} onClick={onCheckBtnClick} />
+              )}
             </S.CheckCircle>
-            <p>{data.content}</p>
+            <p onClick={onCheckBtnClick} data-id={data.id}>
+              {data.content}
+            </p>
           </S.SelectBox>
         );
       })}
