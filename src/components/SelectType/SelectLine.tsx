@@ -72,7 +72,11 @@ const SelectLine: FC<Props> = ({
         setGraduationYear={setGraduationYear}
         isProspective={isProspective}
       />
-      <ChooseRemark setRemark={setRemark} applicationRemark={applicationRemark} />
+      <ChooseRemark
+        setRemark={setRemark}
+        applicationRemark={applicationRemark}
+        applicationType={applicationType}
+      />
     </S.SelectLine>
   );
 };

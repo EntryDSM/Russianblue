@@ -44,7 +44,9 @@ const ChooseRegion: FC<Props> = ({ setArea, isDaejeon }) => {
             <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
               {isCheck[data.id] && <S.CheckedCircle />}
             </S.CheckCircle>
-            <p>{data.content}</p>
+            <p data-id={data.id} onClick={onCheckBtnClick}>
+              {data.content}
+            </p>
           </S.SelectBox>
         );
       })}

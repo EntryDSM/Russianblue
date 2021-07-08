@@ -101,7 +101,9 @@ const ChooseType: FC<Props> = ({
             <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
               {isCheck[data.id] && <S.CheckedCircle />}
             </S.CheckCircle>
-            <p>{data.content}</p>
+            <p onClick={onCheckBtnClick} data-id={data.id}>
+              {data.content}
+            </p>
           </S.SelectBox>
         );
       })}

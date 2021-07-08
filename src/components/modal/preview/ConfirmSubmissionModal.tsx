@@ -23,9 +23,8 @@ const ConfirmSubmissionModal: FC<Props> = ({ setIsOpenSubmitModal }) => {
   };
 
   useEffect(() => {
-    console.log(isSuccessSaveFinal);
     if (isSuccessSaveFinal) {
-      history.replace('/');
+      history.push('/');
     } else if (isSuccessSaveFinal === false) {
       alert('실패');
     }
