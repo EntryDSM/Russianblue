@@ -40,7 +40,7 @@ export const Line = styled.div`
 `;
 
 export const LineTitle = styled.p`
-  width: 92px;
+  width: 103px;
   font-size: 21px;
   text-align: center;
   margin-right: 97px;

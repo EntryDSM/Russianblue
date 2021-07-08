@@ -195,7 +195,7 @@ export const GradeBtn = styled.div<{
   font-size: 17px;
   margin-left: 4px;
   box-sizing: border-box;
-  padding: 2px 0px;
+  padding: 1% 0px;
   cursor: pointer;
   ${({ isClick }) => css`
     border: 1px solid ${isClick ? color.main : color.disable};

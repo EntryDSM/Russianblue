@@ -228,8 +228,8 @@ export const PictureBtn = styled.label<{
     margin: 0px 0px 15px 28px;
   }
   > p:nth-child(2) {
+    width: 138px;
     font-size: 12px;
-    margin-left: 7px;
   }
   > p:last-child {
     font-size: 12px;

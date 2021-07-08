@@ -21,7 +21,7 @@ export const Title = styled.p`
 `;
 
 export const SubTitle = styled.p`
-  width: 115px;
+  width: 130px;
   height: 36px;
   font-size: 25px;
   margin: 80px 0px 2px 0px;
