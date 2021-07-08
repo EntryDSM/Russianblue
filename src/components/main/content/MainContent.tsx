@@ -29,9 +29,13 @@ const MainContent: FC<Props> = ({
       <S.MainDescription className='mainDescription'>{title}</S.MainDescription>
       <S.MainDescription className='subDescription'>{getDescription(date)}</S.MainDescription>
       {isLogin ? (
-        <MainButton onClick={buttonClickHandler}>{buttonText}</MainButton>
+        <MainButton onClick={buttonClickHandler} isButtonAble={isButtonAble}>
+          {buttonText}
+        </MainButton>
       ) : (
-        <MainButton onClick={buttonClickHandler}>로그인</MainButton>
+        <MainButton onClick={buttonClickHandler} isButtonAble={true}>
+          로그인
+        </MainButton>
       )}
     </S.MainContentWrapper>
   );
