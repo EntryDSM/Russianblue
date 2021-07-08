@@ -1,6 +1,5 @@
 # Russianblue
 
-**[뱃지나 프로젝트에 관한 이미지들이 이 위치에 들어가면 좋습니다]**  
 2022년 대덕소프트웨어마이스터고등학교 입학 전형 시스템입니다.
 
 ![EntryDSM Developers(EntryDSM 2.0) 기업, 채용, 투자, 뉴스](https://image.rocketpunch.com/company/35947/entrydsm-developers_logo_1535246780.png?s=400x400&t=inside)
