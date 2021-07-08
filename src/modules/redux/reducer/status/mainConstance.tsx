@@ -29,7 +29,7 @@ const mainConstance: Record<statusType, processType> = {
     isHaveTerm: true,
     buttonText: '원서 작성',
     isButtonAble: false,
-    uri: '',
+    uri: '/',
   },
   [START_DATE]: {
     title: <p>지금은 {<span>원서 작성</span>} 기간입니다.</p>,
@@ -37,7 +37,7 @@ const mainConstance: Record<statusType, processType> = {
     isHaveTerm: true,
     buttonText: '원서 작성',
     isButtonAble: true,
-    uri: '/',
+    uri: '/select-type',
   },
   [BEFORE_FIRST_ANNOUNCE]: {
     title: <p>원서 접수가 끝났습니다.</p>,

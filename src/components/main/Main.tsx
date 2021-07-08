@@ -20,7 +20,7 @@ const Main: FC<Props> = ({ status, process, isLogin, date, defaultMainButtonClic
   const history = useHistory();
   const mainButtonClickHandler = () => {
     if (isLogin) {
-      history.push(`/${process.uri}`);
+      history.push(process.uri);
     } else {
       defaultMainButtonClickHandler();
     }
