@@ -53,7 +53,7 @@ export const Textarea = styled.textarea`
   font-family: sans-serif;
   font-weight: 300;
   line-height: 1.5;
-  margin: 18px 0px 6px 20px;
+  margin: 18px 10px 6px 10px;
   overflow-y: auto;
   border: none;
   ::-webkit-scrollbar {
