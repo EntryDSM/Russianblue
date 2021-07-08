@@ -67,7 +67,7 @@ export const MainDescription = styled.p`
   }
 `;
 
-export const MainButton = styled.button<{ disabled: boolean }>`
+export const MainButton = styled.button`
   width: ${pxToRem(360) * (4 / 5)}rem;
   height: ${pxToRem(100) * (4 / 5)}rem;
   border-radius: ${pxToRem(18)}rem;
