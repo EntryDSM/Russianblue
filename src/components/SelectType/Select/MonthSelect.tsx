@@ -5,30 +5,9 @@ import { dropdown, dropdown_active } from '../../../assets/selectType';
 interface Props {
   graduationMonth: number;
   setGraduationMonth: (payload: number) => void;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
-  educationalStatus: string;
-  graduationYear: number;
-  applicationRemark: string;
-  applicationType: string;
-  isDaejeon: boolean;
 }
 
-const MonthSelect: FC<Props> = ({
-  educationalStatus,
-  graduationMonth,
-  setGraduationMonth,
-  graduationYear,
-  applicationRemark,
-  applicationType,
-  isDaejeon,
-  autoSaveSelectType,
-}) => {
+const MonthSelect: FC<Props> = ({ graduationMonth, setGraduationMonth }) => {
   const [active, setActive] = useState(false);
   const [disabled, setDisabled] = useState('normal');
   const JanuaryToDecember = [...Array(12)].map((_, i) => i + 1);
@@ -46,17 +25,6 @@ const MonthSelect: FC<Props> = ({
   const onGraduationMonthClick = e => {
     const month = e.target.innerText;
     setGraduationMonth(month);
-    let graduatedDate = '';
-    if (String(month).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(month);
-    } else graduatedDate = String(graduationYear) + String(month);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
   };
 
   const activeImg = useMemo(() => {

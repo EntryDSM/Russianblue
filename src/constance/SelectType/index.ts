@@ -27,3 +27,28 @@ export const REMARKS = [
 ];
 export const GRADUATION_DATE_EXPLAIN = '졸업 예정자의 경우 졸업 예정월만 선택해주세요';
 export const REMARK_EXPLAIN = '해당하는 특기사항에 체크해주세요';
+
+export type selectTypeType = {
+  educational_status: string | null;
+  application_type: string | null;
+  is_daejeon: boolean | null;
+  application_remark: string | null;
+  graduated_at: string | null;
+};
+
+export type selectTypeSaveType = {
+  educationalStatus: string | null;
+  applicationType: string | null;
+  isDaejeon: boolean | null;
+  applicationRemark: string | null;
+  graduationMonth: number | null;
+  graduationYear: number | null;
+};
+
+export interface selectTypeInterface {
+  educational_status: string | null;
+  application_type: string | null;
+  is_daejeon: boolean | null;
+  application_remark: string | null;
+  graduated_at: string | null;
+}

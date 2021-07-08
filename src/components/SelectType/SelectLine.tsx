@@ -24,13 +24,6 @@ interface Props {
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
 const SelectLine: FC<Props> = ({
@@ -49,47 +42,25 @@ const SelectLine: FC<Props> = ({
   setGraduationMonth,
   setGraduationYear,
   setRemark,
-  autoSaveSelectType,
 }) => {
   const [isProspective, setIsProspective] = useState(false);
   return (
     <S.SelectLine>
       <ChooseType
-        autoSaveSelectType={autoSaveSelectType}
         socialType={socialType}
         setType={setType}
         setSocialType={setSocialType}
         applicationType={applicationType}
         applicationRemark={applicationRemark}
-        isDaejeon={isDaejeon}
-        educationalStatus={educationalStatus}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
         setRemark={setRemark}
       />
-      <ChooseRegion
-        autoSaveSelectType={autoSaveSelectType}
-        setArea={setArea}
-        isDaejeon={isDaejeon}
-        applicationType={applicationType}
-        applicationRemark={applicationRemark}
-        educationalStatus={educationalStatus}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
-      />
+      <ChooseRegion setArea={setArea} isDaejeon={isDaejeon} />
       <ChooseGraduation
-        autoSaveSelectType={autoSaveSelectType}
         setGraduation={setGraduation}
         setIsProspective={setIsProspective}
         educationalStatus={educationalStatus}
-        applicationType={applicationType}
-        applicationRemark={applicationRemark}
-        isDaejeon={isDaejeon}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
       />
       <ChooseGraduationDate
-        autoSaveSelectType={autoSaveSelectType}
         applicationType={applicationType}
         applicationRemark={applicationRemark}
         isDaejeon={isDaejeon}
@@ -101,16 +72,7 @@ const SelectLine: FC<Props> = ({
         setGraduationYear={setGraduationYear}
         isProspective={isProspective}
       />
-      <ChooseRemark
-        autoSaveSelectType={autoSaveSelectType}
-        setRemark={setRemark}
-        applicationRemark={applicationRemark}
-        applicationType={applicationType}
-        isDaejeon={isDaejeon}
-        educationalStatus={educationalStatus}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
-      />
+      <ChooseRemark setRemark={setRemark} applicationRemark={applicationRemark} />
     </S.SelectLine>
   );
 };

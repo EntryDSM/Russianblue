@@ -5,30 +5,9 @@ import { AREA } from '../../../constance/SelectType';
 interface Props {
   setArea: (payload: boolean) => void;
   isDaejeon: boolean;
-  applicationRemark: string;
-  applicationType: string;
-  educationalStatus: string;
-  graduationYear: number;
-  graduationMonth: number;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
-const ChooseRegion: FC<Props> = ({
-  setArea,
-  isDaejeon,
-  educationalStatus,
-  applicationRemark,
-  applicationType,
-  graduationYear,
-  graduationMonth,
-  autoSaveSelectType,
-}) => {
+const ChooseRegion: FC<Props> = ({ setArea, isDaejeon }) => {
   const [isCheck, setIsCheck] = useState({ daejeon: false, country: false });
   useEffect(() => {
     if (isDaejeon) {
@@ -38,20 +17,6 @@ const ChooseRegion: FC<Props> = ({
     } else {
       setIsCheck({ daejeon: false, country: true });
     }
-  }, [isDaejeon]);
-
-  useEffect(() => {
-    let graduatedDate = '';
-    if (String(graduationMonth).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedDate = String(graduationYear) + String(graduationMonth);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
   }, [isDaejeon]);
 
   const onCheckBtnClick = e => {
