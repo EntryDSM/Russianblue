@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
-        run: npm install
+        run: ls; npm install
 
       - name: Build
         run: GENERATE_SOURCEMAP=false npm run build
