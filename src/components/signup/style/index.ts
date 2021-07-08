@@ -174,6 +174,7 @@ export const SignUpSubmitButton = styled.div<{ disable: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   ${({ disable }) =>
     disable
       ? css`

@@ -1,3 +1,4 @@
+import { ERROR } from '../../action/signin';
 import {
   PASSWORD,
   NAME,
@@ -11,6 +12,7 @@ import {
   SEND_VERTIFY_CODE_FAILURE,
   SEND_VERTIFY_CODE,
   CHECK_VERTIFY_CODE,
+  SIGNUP_FAILURE,
 } from '../../action/signup';
 import ISignUpState from './interface';
 
@@ -90,6 +92,12 @@ const SignUpReducer = (state: ISignUpState = initState, action: signupActionType
         ...state,
         isSendVertifyCode: false,
         isCheckVertifyCode: false,
+      };
+    }
+    case SIGNUP_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
       };
     }
     default: {
