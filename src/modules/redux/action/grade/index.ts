@@ -1,5 +1,6 @@
 import { error } from '../../../../models/error';
 import { GradeType, gradeType, getGradeType } from '../../../../constance/grade';
+import { createAction } from 'typesafe-actions'
 import {
   INPUT,
   GRADE,
@@ -11,43 +12,15 @@ import {
   GET_GRADE_SUCCESS,
 } from './interface';
 
-export const setInput = (payload: { name: string; value: number }) => ({
-  type: INPUT,
-  payload,
-});
+export const setInput = createAction(INPUT)<{ name: string; value: number }>();
+export const setGrade = createAction(GRADE)<{ grade: GradeType }>();
+export const grade = createAction(SAVE_GRADE)<gradeType>();
+export const gradeSuccess = createAction(SAVE_GRADE_SUCCESS)();
+export const gradeFailure = createAction(SAVE_GRADE_FAILURE)<error>();
+export const getGrade = createAction(GET_GRADE)();
+export const getGradeSuccess = createAction(GET_GRADE_SUCCESS)<getGradeType>();
+export const getGradeFailure = createAction(GET_GRADE_FAILURE)<error>();
 
-export const setGrade = (payload: { grade: GradeType }) => ({
-  type: GRADE,
-  payload,
-});
-
-export const grade = (payload: gradeType) => ({
-  type: SAVE_GRADE,
-  payload,
-});
-
-export const gradeSuccess = () => ({
-  type: SAVE_GRADE_SUCCESS,
-});
-
-export const gradeFailure = (payload: error) => ({
-  type: SAVE_GRADE_FAILURE,
-  payload,
-});
-
-export const getGrade = () => ({
-  type: GET_GRADE,
-});
-
-export const getGradeSuccess = (payload: getGradeType) => ({
-  type: GET_GRADE_SUCCESS,
-  payload,
-});
-
-export const getGradeFailure = (payload: error) => ({
-  type: GET_GRADE_FAILURE,
-  payload,
-});
 
 export type gradeActionType =
   | ReturnType<typeof setInput>

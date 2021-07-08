@@ -14,65 +14,20 @@ import {
   GET_USER_FAILURE,
   GET_USER_SUCCESS,
 } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setPhoneNumber = (payload: string) => ({
-  type: PHONE_NUMBER,
-  payload,
-});
-
-export const setName = (payload: string) => ({
-  type: NAME,
-  payload,
-});
-
-export const setIsAdmissionFeePayed = (payload: boolean) => ({
-  type: IS_ADMISSION_FEE_PAYED,
-  payload,
-});
-
-export const setIsFinalSubmitDone = (payload: boolean) => ({
-  type: IS_FINAL_SUBMIT_DONE,
-  payload,
-});
-
-export const setIsReceivMain = (payload: boolean) => ({
-  type: IS_RECEIVE_MAIL,
-  payload,
-});
-
-export const setStudyPlanLength = (payload: number) => ({
-  type: STUDY_PLAN_LENGTH,
-  payload,
-});
-
-export const setSelfIntroduceLength = (payload: number) => ({
-  type: SELF_INTRODUCE_LENGTH,
-  payload,
-});
-
-export const setSubmitTime = (payload: string) => ({
-  type: SUBMIT_TIME,
-  payload,
-});
-
-export const setApplicationType = (payload: string) => ({
-  type: APPLICATION_TYPE,
-  payload,
-});
-
-export const getUser = () => ({
-  type: GET_USER,
-});
-
-export const getUserFailure = (payload: error) => ({
-  type: GET_USER_FAILURE,
-  payload,
-});
-
-export const getUserSuccess = (payload: userResponse) => ({
-  type: GET_USER_SUCCESS,
-  payload,
-});
+export const setPhoneNumber = createAction(PHONE_NUMBER)<string>();
+export const setName = createAction(NAME)<string>();
+export const setIsAdmissionFeePayed = createAction(IS_ADMISSION_FEE_PAYED)<boolean>();
+export const setIsFinalSubmitDone = createAction(IS_FINAL_SUBMIT_DONE)<boolean>();
+export const setIsReceivMain = createAction(IS_RECEIVE_MAIL)<boolean>();
+export const setStudyPlanLength = createAction(STUDY_PLAN_LENGTH)<number>();
+export const setSelfIntroduceLength = createAction(SELF_INTRODUCE_LENGTH)<number>();
+export const setSubmitTime = createAction(SUBMIT_TIME)<string>();
+export const setApplicationType = createAction(APPLICATION_TYPE)<string>();
+export const getUser = createAction(GET_USER)();
+export const getUserFailure = createAction(GET_USER_FAILURE)<error>();
+export const getUserSuccess = createAction(GET_USER_SUCCESS)<userResponse>();
 
 export type userActionType =
   | ReturnType<typeof setPhoneNumber>

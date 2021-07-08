@@ -9,43 +9,19 @@ import {
   STATUS_FAILURE,
   GET_STATUS,
 } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setStatus = (payload: statusType) => ({
-  type: STATUS,
-  payload,
-});
-
-export const setProcess = (payload: Object) => ({
-  type: PROCESS,
-  payload,
-});
-
-export const setIsStart = (payload: boolean) => ({
-  type: IS_START,
-  payload,
-});
-
-export const setIsEnd = (payload: boolean) => ({
-  type: IS_END,
-  payload,
-});
-
-export const getStatusSuccess = (payload: {
+export const setStatus = createAction(STATUS)<statusType>();
+export const setProcess = createAction(PROCESS)<Object>();
+export const setIsStart = createAction(IS_START)<boolean>();
+export const setIsEnd = createAction(IS_END)<boolean>();
+export const getStatusSuccess = createAction(STATUS_SUCCESS)<{
   schedules: Array<processTimeType>;
   current_status: string;
-}) => ({
-  type: STATUS_SUCCESS,
-  payload,
-});
+}>();
+export const getStatusFailure = createAction(STATUS_FAILURE)<number>()
+export const getStatus = createAction(GET_STATUS)();
 
-export const getStatusFailure = (payload: number) => ({
-  type: STATUS_FAILURE,
-  payload,
-});
-
-export const getStatus = () => ({
-  type: GET_STATUS,
-});
 
 export { IS_END, IS_START, STATUS, PROCESS };
 export type statusActionType =

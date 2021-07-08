@@ -7,33 +7,14 @@ import {
   FINAL_SUCCESS,
   FINAL_FAILURE,
 } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const getPreview = () => ({
-  type: GET_PREVIEW,
-});
-
-export const getPreviewSuccess = (payload: string) => ({
-  type: GET_PREVIEW_SUCCESS,
-  payload,
-});
-
-export const getPreviewFailure = (payload: error) => ({
-  type: GET_PREVIEW_FAILURE,
-  payload,
-});
-
-export const final = () => ({
-  type: FINAL,
-});
-
-export const finalSuccess = () => ({
-  type: FINAL_SUCCESS,
-});
-
-export const finalFailure = (payload: error) => ({
-  type: FINAL_FAILURE,
-  payload,
-});
+export const getPreview = createAction(GET_PREVIEW)();
+export const getPreviewSuccess = createAction(GET_PREVIEW_SUCCESS)<string>();
+export const getPreviewFailure = createAction(GET_PREVIEW_FAILURE)<error>();
+export const final = createAction(FINAL)();
+export const finalSuccess = createAction(FINAL_SUCCESS)();
+export const finalFailure = createAction(FINAL_FAILURE)<error>();
 
 export type previewActionType =
   | ReturnType<typeof getPreview>
