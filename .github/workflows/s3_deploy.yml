@@ -22,16 +22,13 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: ./
 
       - name: Build
         run: GENERATE_SOURCEMAP=false npm run build
-        working-directory: ./
         env:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
       - name: Deploy to S3
-        working-directory: ./
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
