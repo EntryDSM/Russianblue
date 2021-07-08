@@ -22,7 +22,6 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: ./russianblue
 
       - name: Build
         run: GENERATE_SOURCEMAP=false npm run build
