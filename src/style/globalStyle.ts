@@ -95,33 +95,8 @@ input[type=number] {
     border-radius: 8px;
     background-color: #ff8888;
     }
-    @font-face {
-      font-family: 'Noto Sans';
-      font-weight: 200;
-      src: url('../assets/font/NotoSansKR-Thin.otf');
-    }
-    @font-face {
-      font-family: 'Noto Sans';
-      font-weight: 300;
-      src: url('../assets/font/NotoSansKR-Light.otf');
-    }
-    @font-face {
-      font-family: 'Noto Sans';
-      font-weight: 400;
-      src: url('../assets/font/NotoSansKR-Regular.otf');
-    }
-    @font-face {
-      font-family: 'Noto Sans';
-      font-weight: 500;
-      src: url('../assets/font/NotoSansKR-Bold.otf');
-    }
-    @font-face {
-      font-family: 'Noto Sans';
-      font-weight: 600;
-      src: url('../assets/font/NotoSansKR-Black.otf');
-    }
     * {
-      font-family: 'Noto Sans';
+      font-family: 'Noto Sans KR', sans-serif;
     }
 `;
 
