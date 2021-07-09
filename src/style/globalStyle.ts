@@ -32,9 +32,6 @@ input[type=number] {
     }
     border: solid 1px rgba(121, 194, 202, 0.5);
     border-radius: 5px;
-    &[type=password] {
-    font-family: sans-serif;
-    }
     &:focus {
     outline: none;
     }
@@ -97,7 +94,35 @@ input[type=number] {
     ::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background-color: #ff8888;
-}
+    }
+    @font-face {
+      font-family: 'Noto Sans';
+      font-weight: 200;
+      src: url('../assets/font/NotoSansKR-Thin.otf');
+    }
+    @font-face {
+      font-family: 'Noto Sans';
+      font-weight: 300;
+      src: url('../assets/font/NotoSansKR-Light.otf');
+    }
+    @font-face {
+      font-family: 'Noto Sans';
+      font-weight: 400;
+      src: url('../assets/font/NotoSansKR-Regular.otf');
+    }
+    @font-face {
+      font-family: 'Noto Sans';
+      font-weight: 500;
+      src: url('../assets/font/NotoSansKR-Bold.otf');
+    }
+    @font-face {
+      font-family: 'Noto Sans';
+      font-weight: 600;
+      src: url('../assets/font/NotoSansKR-Black.otf');
+    }
+    * {
+      font-family: 'Noto Sans';
+    }
 `;
 
 export default global;
