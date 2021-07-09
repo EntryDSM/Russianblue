@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export const getRequest = () => {
   const request = axios.create({
@@ -17,4 +19,12 @@ export const getRequestWithAccessToken = (token: string) => {
     },
   });
   return request;
+};
+
+export const useIsLogin = () => {
+  const history = useHistory();
+  useEffect(() => {
+    const ACCESS_TOKEN = localStorage.getItem('access_token');
+    if (!ACCESS_TOKEN) history.push('/');
+  }, [history]);
 };
