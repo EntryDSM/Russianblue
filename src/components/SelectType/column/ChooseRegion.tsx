@@ -12,7 +12,7 @@ const ChooseRegion: FC<Props> = ({ setArea, isDaejeon }) => {
   useEffect(() => {
     if (isDaejeon) {
       setIsCheck({ daejeon: true, country: false });
-    } else if (isDaejeon === undefined) {
+    } else if (isDaejeon === null) {
       setIsCheck({ daejeon: false, country: false });
     } else {
       setIsCheck({ daejeon: false, country: true });
