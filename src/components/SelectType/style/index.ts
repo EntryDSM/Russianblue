@@ -86,7 +86,6 @@ export const SelectBox = styled.div<{ margin?: number; isBlock?: boolean }>`
     margin-right: ${margin}px;
   `}
   > p {
-    height: 18px;
     font-size: 18px;
     cursor: pointer;
     ${({ isBlock }) => css`
