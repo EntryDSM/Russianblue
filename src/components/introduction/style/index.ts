@@ -70,14 +70,15 @@ export const Textarea = styled.textarea`
   }
   :focus {
     & + div {
-      display: block;
+      opacity: 1;
     }
   }
 `;
 export const CountText = styled.div`
   width: 100%;
   height: 45px;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.1s, visibility 0.1s, transform 0.1s;
   background-color: rgba(255, 155, 159, 0.7);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
