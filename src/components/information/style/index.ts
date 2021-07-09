@@ -81,7 +81,7 @@ export const SelectBox = styled.div`
   align-items: center;
   margin-right: 39px;
   > p {
-    height: 18px;
+    height: 29px;
     font-size: 18px;
   }
 `;
@@ -113,7 +113,7 @@ export const Select = styled.div<{
   border: 1px solid #606060;
   border-radius: 4px;
   box-sizing: border-box;
-  padding: 10px 16px;
+  padding: 6px 16px;
   position: relative;
   cursor: pointer;
 `;
@@ -132,6 +132,7 @@ export const SelectContent = styled.div<{
   }
   > img {
     width: 13px;
+    margin-top: 2px;
   }
 `;
 
@@ -185,7 +186,7 @@ export const SearchBtn = styled.div`
   color: #606060;
   font-size: 16px;
   text-align: center;
-  padding: 12px 0px;
+  padding: 7px 0px;
   border: 1px solid #606060;
   border-radius: 4px;
   margin-left: 18px;
@@ -223,15 +224,19 @@ export const PictureBtn = styled.label<{
     top: ${top}px;
   `}
   > img {
+    display: block;
     width: 74.2px;
     height: 74.2px;
-    margin: 0px 0px 15px 28px;
+    margin: 0px auto 15px auto;
   }
   > p:nth-child(2) {
-    width: 138px;
+    width: 145px;
+    text-align: center;
     font-size: 12px;
   }
   > p:last-child {
+    width: 145px;
+    text-align: center;
     font-size: 12px;
     font-weight: 300;
   }
