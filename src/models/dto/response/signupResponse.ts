@@ -10,3 +10,7 @@ export interface signupVertifyCodeResponse {}
 export interface resetPasswordVertifyCodeResponse {}
 
 export interface resetPasswordResponse {}
+
+export interface signUpResponse {
+  access_token: string;
+}
