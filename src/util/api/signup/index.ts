@@ -1,3 +1,4 @@
+import { signupResponse } from '../../../models/dto/response/signupResponse';
 import uri from '../../../constance/uri';
 import {
   signupRequest,
@@ -8,17 +9,22 @@ import {
 } from '../../../models/dto/request/signupRequest';
 import { getRequest } from '../default';
 
-export const signup = async (_, signupRequest: signupRequest) => {
+export const signup = async (
+  _,
+  signupRequest: signupRequest,
+): Promise<{ access_token: string }> => {
   try {
     const request = getRequest();
-    await request.post(uri.signup, signupRequest);
+    const { data } = await request.post<signupResponse>(uri.signup, signupRequest);
+    window.localStorage.setItem('access_token', data.access_token);
+    return data;
   } catch (error) {
     throw error;
   }
 };
 
 export const sendSignUpVertifyCode = async (
-  accessToken: string,
+  _,
   signupVertifyCodeRequest: signupVertifyCodeRequest,
 ) => {
   try {
