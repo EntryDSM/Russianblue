@@ -5,6 +5,7 @@ import {
   GET_STUDY_PLAN,
 } from '../../modules/redux/action/Introduction/interface';
 import useIntroduction from '../../util/hooks/Introduction';
+import { useIsLogin } from '../../util/api/default';
 
 const Introduction = React.lazy(() => import('../../components/introduction'));
 
@@ -15,7 +16,7 @@ const IntroductionContainer: FC = () => {
     dispatch({ type: GET_SELF_INTRODUCTION });
     dispatch({ type: GET_STUDY_PLAN });
   }, []);
-
+  useIsLogin();
   return (
     <Suspense fallback={<div>Loading</div>}>
       <Introduction {...state} {...setState} />

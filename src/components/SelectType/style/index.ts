@@ -88,6 +88,7 @@ export const SelectBox = styled.div<{ margin?: number; isBlock?: boolean }>`
   > p {
     font-size: 18px;
     cursor: pointer;
+    height: 28px;
     ${({ isBlock }) => css`
       color: ${isBlock ? '#595959' : '000000'};
     `}
@@ -123,7 +124,7 @@ export const Select = styled.div<{
   height: 42px;
   border-radius: 5px;
   box-sizing: border-box;
-  padding: 10px 16px;
+  padding: 6px 16px;
   position: relative;
   cursor: pointer;
 `;
@@ -142,6 +143,7 @@ export const SelectContent = styled.div<{
   }
   > img {
     width: 13px;
+    margin-top: 2px;
   }
 `;
 

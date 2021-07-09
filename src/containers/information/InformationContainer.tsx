@@ -9,13 +9,14 @@ import {
   GET_GRADUATE_INFORMATION,
   GET_INFORMATION,
 } from '../../modules/redux/action/information/interface';
+import { useIsLogin } from '../../util/api/default';
 
 const InformationContainer = () => {
   const { state, setState } = useInformation();
   const educationalStatus = useSelectType().state.educationalStatus;
   const dispatch = useDispatch();
   const mounted = useRef(false);
-
+  useIsLogin();
   useEffect(() => {
     dispatch({ type: GET_SELECTTYPE });
     dispatch({ type: GET_INFORMATION });

@@ -4,11 +4,12 @@ import Grade from '../../components/grade';
 import { useDispatch } from 'react-redux';
 import { GET_GRADE } from '../../modules/redux/action/grade/interface';
 import { GET_SELECTTYPE } from '../../modules/redux/action/selectType/interface';
+import { useIsLogin } from '../../util/api/default';
 
 const GradeContainer = () => {
   const { state, setState } = useGrade();
   const dispatch = useDispatch();
-
+  useIsLogin();
   useEffect(() => {
     dispatch({ type: GET_GRADE });
     dispatch({ type: GET_SELECTTYPE });
