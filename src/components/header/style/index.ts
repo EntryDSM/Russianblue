@@ -140,7 +140,7 @@ export const HeaderDropdownContentProcessButton = styled.button`
   border-radius: 2px;
   background-color: ${color.main};
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   color: #ffffff;
   border: none;
   margin-left: ${pxToRem(72)}rem;

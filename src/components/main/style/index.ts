@@ -61,7 +61,7 @@ export const MainDescription = styled.p`
     font-size: ${pxToRem(30)}rem;
     > span {
       color: ${color.main};
-      font-weight: 600;
+      font-weight: 500;
       font-size: ${pxToRem(34)}rem;
     }
   }
@@ -109,7 +109,7 @@ export const Progress = styled.div``;
 export const ProgressText = styled.p<{ isNow: boolean; isPassed: boolean }>`
   color: ${({ isNow, isPassed }) => (isNow ? color.main : isPassed ? 'black' : color.fail)};
   font-size: ${pxToRem(25)}rem;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 export const ProgressSubText = styled.p`
