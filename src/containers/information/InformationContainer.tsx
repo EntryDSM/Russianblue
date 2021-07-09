@@ -10,11 +10,15 @@ import {
   GET_INFORMATION,
 } from '../../modules/redux/action/information/interface';
 import { useIsLogin } from '../../util/api/default';
+import { useUser } from '../../util/hooks/user';
+import { useHistory } from 'react-router-dom';
 
 const InformationContainer = () => {
   const { state, setState } = useInformation();
   const educationalStatus = useSelectType().state.educationalStatus;
+  const isFinalSubmitDone = useUser().state.isfinalSubmitDone;
   const dispatch = useDispatch();
+  const history = useHistory();
   const mounted = useRef(false);
   useIsLogin();
   useEffect(() => {
@@ -33,6 +37,10 @@ const InformationContainer = () => {
       }
     }
   }, [educationalStatus]);
+
+  useEffect(() => {
+    if (isFinalSubmitDone) history.push('/');
+  }, [isFinalSubmitDone]);
 
   return <Information {...state} {...setState} />;
 };
