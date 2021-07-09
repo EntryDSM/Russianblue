@@ -52,9 +52,9 @@ const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
     return GRADE.map(grade => {
       return (
         <S.GradeBtn key={grade.id} isClick={isClick[grade.id]}>
-          <span onClick={gradeBtnClickHandler} data-id={grade.id}>
+          <div onClick={gradeBtnClickHandler} data-id={grade.id}>
             {grade.grade}
-          </span>
+          </div>
         </S.GradeBtn>
       );
     });
