@@ -1,5 +1,5 @@
 import Input from '../../default/input';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import * as S from '../style';
 import MoveButton from './moveButton';
 import useResetPassword from '../../../util/hooks/resetPassword/useResetPassword';
@@ -16,14 +16,6 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
   };
   const sendVertifyCodeButtonClickHandler = () => {
     const { vertifyPhoneNumber } = state;
-    // if (!isPhoneNumber(vertifyPhoneNumber)) {
-    //   setState.setResetPasswordError({
-    //     status: 400,
-    //     message: '잘못된 형식의 이메일 입니다',
-    //     type: '',
-    //   });
-    //   return;
-    // }
     setState.sendVertifyCode({ email: state.vertifyPhoneNumber });
   };
 
@@ -38,7 +30,7 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
     <S.ModalMain>
       <S.ModalTitle>비밀번호 재설정</S.ModalTitle>
       {isHaveError(state.error.message) ? (
-        <S.ModalErrorText>{state.error.message}</S.ModalErrorText>
+        <S.ModalErrorText>유저가 없습니다.</S.ModalErrorText>
       ) : (
         <S.ModalSubTitle>본인인증시 사용했던 이메일을 입력해주세요</S.ModalSubTitle>
       )}
