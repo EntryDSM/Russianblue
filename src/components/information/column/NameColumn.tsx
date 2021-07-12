@@ -25,6 +25,7 @@ const NameColumn: FC<Props> = ({ title, width, inputName, setInput, userName, pa
           inputChangeHandler={nameChangeHandler}
           name={inputName}
           value={userName}
+          disable={inputName === 'userName' ? true : false}
         />
       );
     else if (inputName === 'parentName')
