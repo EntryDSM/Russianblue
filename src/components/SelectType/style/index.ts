@@ -57,9 +57,12 @@ export const CheckCircle = styled.div<{
   width: 21px;
   height: 21px;
   border: 1px solid black;
-  border-radius: 11px;
+  border-radius: 50%;
   cursor: pointer;
   margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${({ isBlock }) => css`
     border: 1px solid ${isBlock ? '#7E7E7E' : '#000000'};
   `}
@@ -70,9 +73,8 @@ export const CheckedCircle = styled.div<{
 }>`
   width: 13px;
   height: 13px;
-  border-radius: 7px;
+  border-radius: 50%;
   background-color: ${color.main};
-  margin: 4px;
   ${({ isBlock }) => css`
     background-color: ${isBlock ? '#7E7E7E' : color.main};
   `}
