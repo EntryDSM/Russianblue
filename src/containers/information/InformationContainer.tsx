@@ -39,7 +39,10 @@ const InformationContainer = () => {
   }, [educationalStatus]);
 
   useEffect(() => {
-    if (isFinalSubmitDone) history.push('/');
+    if (isFinalSubmitDone) {
+      alert('최종제출되었습니다. 접근하시려면 최종제출을 취소하고 접근해주세요.');
+      history.push('/');
+    }
   }, [isFinalSubmitDone]);
 
   return <Information {...state} {...setState} />;
