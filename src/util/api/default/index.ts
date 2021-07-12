@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useModal } from '../../../util/hooks/modal';
 
 export const getRequest = () => {
   const request = axios.create({
@@ -23,8 +24,12 @@ export const getRequestWithAccessToken = (token: string) => {
 
 export const useIsLogin = () => {
   const history = useHistory();
+  const setModalOn = useModal().setState.setModalOn;
   useEffect(() => {
     const ACCESS_TOKEN = localStorage.getItem('access_token');
-    if (!ACCESS_TOKEN) history.push('/');
+    if (!ACCESS_TOKEN) {
+      history.push('/');
+      setModalOn('signin');
+    }
   }, [history]);
 };
