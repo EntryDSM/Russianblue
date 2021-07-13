@@ -19,7 +19,6 @@ interface Props {
 const Main: FC<Props> = ({ status, process, isLogin, date, defaultMainButtonClickHandler }) => {
   const history = useHistory();
   const mainButtonClickHandler = () => {
-    console.log(isLogin);
     if (isLogin) {
       history.push(process.uri);
     } else {
