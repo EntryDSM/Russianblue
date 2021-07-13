@@ -8,6 +8,9 @@ export const getRequest = () => {
     timeout: 10000,
     baseURL: 'https://munchkin.entrydsm.hs.kr',
     withCredentials: true,
+    headers: {
+      withCredentials: true,
+    },
   });
   return request;
 };
@@ -18,6 +21,7 @@ export const getRequestWithAccessToken = (token: string) => {
     baseURL: 'https://munchkin.entrydsm.hs.kr',
     headers: {
       Authorization: `Bearer ${token}`,
+      withCredentials: true,
     },
     withCredentials: true,
   });
