@@ -10,6 +10,7 @@ interface Props {
   isReceiveMail: boolean;
   studyPlanLength: number;
   selfIntroduceLength: number;
+  applicationType: string;
 }
 
 const HeaderDropDown: FC<Props> = props => {

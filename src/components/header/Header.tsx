@@ -14,6 +14,7 @@ interface Props {
   studyPlanLength: number;
   selfIntroduceLength: number;
   setIsLogin: (value: boolean) => void;
+  applicationType: string;
   setAccessToken: (value: string) => void;
   error: error;
 }
