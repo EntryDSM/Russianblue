@@ -27,7 +27,15 @@ export const setSubmitTime = createAction(SUBMIT_TIME)<string>();
 export const setApplicationType = createAction(APPLICATION_TYPE)<string>();
 export const getUser = createAction(GET_USER)();
 export const getUserFailure = createAction(GET_USER_FAILURE)<error>();
-export const getUserSuccess = createAction(GET_USER_SUCCESS)<userResponse>();
+export const getUserSuccess = createAction(GET_USER_SUCCESS)<{
+  phoneNumber: string;
+  name: string;
+  isfinalSubmitDone: boolean;
+  isReceiveMail: boolean;
+  studyPlanLength: number;
+  selfIntroduceLength: number;
+  applicationType: string;
+}>();
 
 export type userActionType =
   | ReturnType<typeof setPhoneNumber>

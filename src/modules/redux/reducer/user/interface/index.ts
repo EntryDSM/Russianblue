@@ -7,6 +7,7 @@ interface IUserState {
   isReceiveMail: boolean;
   selfIntroduceLength: number;
   studyPlanLength: number;
+  applicationType: string;
   error: error;
 }
 
