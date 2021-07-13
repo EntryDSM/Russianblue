@@ -18,7 +18,7 @@ import SelectTypeState from './interface';
 const initState: SelectTypeState = {
   applicationType: '',
   socialType: '사회통합전형',
-  isDaejeon: undefined,
+  isDaejeon: null,
   educationalStatus: '',
   graduationMonth: 1,
   graduationYear: 2022,

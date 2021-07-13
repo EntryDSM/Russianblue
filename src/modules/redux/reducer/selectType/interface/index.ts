@@ -3,7 +3,7 @@ import { error } from '../../../../../models/error';
 interface SelectTypeState {
   applicationType: string;
   socialType: string;
-  isDaejeon: boolean | undefined;
+  isDaejeon: boolean | null;
   educationalStatus: string;
   graduationYear: number;
   graduationMonth: number;

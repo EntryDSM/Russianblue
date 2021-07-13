@@ -9,15 +9,18 @@ interface Props {
 
 const ChooseRegion: FC<Props> = ({ setArea, isDaejeon }) => {
   const [isCheck, setIsCheck] = useState({ daejeon: false, country: false });
+  const [region, setRegion] = useState(null);
   useEffect(() => {
-    if (isDaejeon) {
-      setIsCheck({ daejeon: true, country: false });
-    } else if (isDaejeon === null) {
-      setIsCheck({ daejeon: false, country: false });
-    } else {
-      setIsCheck({ daejeon: false, country: true });
-    }
+    if (isDaejeon) setRegion('daejeon');
+    else if (isDaejeon === null) setRegion(null);
+    else setRegion('country');
   }, [isDaejeon]);
+
+  useEffect(() => {
+    if (region === 'daejeon') setIsCheck({ daejeon: true, country: false });
+    else if (region === 'country') setIsCheck({ daejeon: false, country: true });
+    else setIsCheck({ daejeon: false, country: false });
+  }, [region]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
