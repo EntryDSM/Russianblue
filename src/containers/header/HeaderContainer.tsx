@@ -12,7 +12,6 @@ const HeaderContainer = () => {
   const history = useHistory();
 
   const refreshToken = () => {
-    console.log('refreshToken');
     signinState.setState.refreshToken(userState.setState.getUser);
   };
 
