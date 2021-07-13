@@ -7,6 +7,7 @@ export const getRequest = () => {
   const request = axios.create({
     timeout: 10000,
     baseURL: 'https://munchkin.entrydsm.hs.kr',
+    withCredentials: true,
   });
   return request;
 };
@@ -18,6 +19,7 @@ export const getRequestWithAccessToken = (token: string) => {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    withCredentials: true,
   });
   return request;
 };
