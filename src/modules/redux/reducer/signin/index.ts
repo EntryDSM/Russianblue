@@ -2,16 +2,22 @@ import {
   ERROR,
   ID,
   PASSWORD,
+  REFRESH_TOKEN_FAILURE,
   signinActionType,
   SIGNIN_FAILURE,
   SIGNIN_SUCCESS,
+  RESET,
 } from '../../action/signin';
 import ISignInState from './interface';
 
 const initState: ISignInState = {
   id: '',
   password: '',
-  error: null,
+  error: {
+    type: '',
+    status: 0,
+    message: '',
+  },
 };
 
 const SignInState = (state: ISignInState = initState, action: signinActionType) => {
@@ -43,6 +49,18 @@ const SignInState = (state: ISignInState = initState, action: signinActionType) 
     case SIGNIN_SUCCESS: {
       return {
         ...state,
+      };
+    }
+    case REFRESH_TOKEN_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case RESET: {
+      return {
+        ...state,
+        ...initState,
       };
     }
     default: {
