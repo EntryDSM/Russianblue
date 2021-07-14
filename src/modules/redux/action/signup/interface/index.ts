@@ -15,3 +15,5 @@ export const SEND_VERTIFY_CODE_SUCCESS = `${SEND_VERTIFY_CODE}_SUCCESS` as const
 
 export const CHECK_VERTIFY_CODE_FAILURE = `${CHECK_VERTIFY_CODE}_FAILURE` as const;
 export const CHECK_VERTIFY_CODE_SUCCESS = `${CHECK_VERTIFY_CODE}_SUCCESS` as const;
+
+export const RESET = 'signup/RESET';
