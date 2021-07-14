@@ -230,6 +230,7 @@ const informationReducer = (
         schoolName: action.payload.name,
         size: action.payload.size,
         page: action.payload.page,
+        content: action.payload.name === state.schoolName ? state.content : [],
       };
     case SEARCH_SCHOOL_SUCCESS:
       return {
