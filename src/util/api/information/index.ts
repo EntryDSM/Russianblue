@@ -31,9 +31,9 @@ export const informationStateToRequest = (
     sex: state.sex,
     birthday: makeBirthday(state.birthYear, state.birthMonth, state.birthDate),
     parent_name: state.parentName,
-    parent_tel: state.parentTel,
-    telephone_number: state.telephoneNumber,
-    home_tel: state.homeTel,
+    parent_tel: state.parentTel.replace(/\-/g, ''),
+    telephone_number: state.telephoneNumber.replace(/\-/g, ''),
+    home_tel: state.homeTel.replace(/\-/g, ''),
     address: state.address,
     detail_address: state.detailAddress,
     post_code: state.postCode,
@@ -58,7 +58,7 @@ export const graduateInformationStateToRequest = (
   return {
     student_number: makeStudentNumber(state.stdGrade, state.stdClass, state.stdNumber),
     school_code: state.schoolCode,
-    school_tel: state.schoolTel,
+    school_tel: state.schoolTel.replace(/\-/g, ''),
   };
 };
 
