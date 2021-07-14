@@ -8,6 +8,7 @@ interface Props {
   placeholder?: string;
   margin?: string;
   inputChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  keypressHandler?: (event: React.KeyboardEvent) => void;
 }
 
 const PasswordInput: FC<Props> = ({
@@ -17,6 +18,7 @@ const PasswordInput: FC<Props> = ({
   placeholder,
   margin,
   inputChangeHandler,
+  keypressHandler,
 }) => {
   const [isPasswordWatchAble, setWatchAble] = useState(false);
   const checkboxChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +34,7 @@ const PasswordInput: FC<Props> = ({
         placeholder={placeholder}
         type={getPasswordInputType(isPasswordWatchAble)}
         onChange={inputChangeHandler}
+        onKeyPress={keypressHandler}
       />
       <label>
         <input type='checkbox' onChange={checkboxChangeHandler} checked={isPasswordWatchAble} />
