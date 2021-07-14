@@ -3,7 +3,6 @@ import * as S from './style';
 import HeaderMenu from './menu';
 import { error } from '../../models/error';
 import { useHistory } from 'react-router-dom';
-import { refreshToken } from '../../util/api/signin';
 
 interface Props {
   isLogin: boolean;
