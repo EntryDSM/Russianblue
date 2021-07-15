@@ -11,8 +11,7 @@ interface Props {
   keypressHandler?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   type?: string;
   name?: string;
-  maxValue?: number;
-  minValue?: number;
+  maxLength?: number;
   value?: string;
 }
 
@@ -26,9 +25,8 @@ const Input: FC<Props> = ({
   keypressHandler,
   type,
   name,
-  maxValue,
-  minValue,
   value,
+  maxLength,
 }) => {
   return (
     <S.Input
@@ -42,8 +40,7 @@ const Input: FC<Props> = ({
       disabled={disable}
       type={type}
       name={name}
-      max={maxValue}
-      min={minValue}
+      maxLength={maxLength}
       value={value}
     />
   );

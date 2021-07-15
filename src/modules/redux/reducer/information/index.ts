@@ -52,6 +52,7 @@ const initState: InformationState = {
   stdClass: '',
   stdNumber: '',
   schoolName: '',
+  searchSchoolName: '',
   totalScore: '0',
   photoFileName: '',
   pictureUrl: '',
@@ -227,11 +228,13 @@ const informationReducer = (
     case SEARCH_SCHOOL:
       return {
         ...state,
-        schoolName: action.payload.name,
+        searchSchoolName: action.payload.name,
         size: action.payload.size,
         page: action.payload.page,
+        content: action.payload.name === state.searchSchoolName ? state.content : [],
       };
     case SEARCH_SCHOOL_SUCCESS:
+      console.log(action.payload.content);
       return {
         ...state,
         isSuccessGetSearchSchool: true,

@@ -20,6 +20,7 @@ interface InformationState {
   stdClass: string;
   stdNumber: string;
   schoolName: string;
+  searchSchoolName: string;
   totalScore: string;
   photoFileName: string;
   pictureUrl: string;

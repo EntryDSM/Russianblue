@@ -26,6 +26,23 @@ const PhoneNumberColumn: FC<Props> = ({
     setInput({ name: e.target.name, value: e.target.value });
   };
 
+  const phoneWithHyphen = number => {
+    if (number) {
+      if (number.substring(0, 2) === '02') {
+        if (number.length === 9) return number.replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
+        if (number.length === 12)
+          return number.replace(/-/g, '').replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+      } else {
+        if (number.length === 10) {
+          return number.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+        }
+        if (number.length === 13) {
+          return number.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        }
+      }
+    }
+  };
+
   const phoneNumberInput = useMemo(() => {
     let inputvalue = '';
     if (inputName === 'schoolTel') inputvalue = schoolTel;
@@ -38,7 +55,8 @@ const PhoneNumberColumn: FC<Props> = ({
         height={41}
         inputChangeHandler={phoneNumberChangeHandler}
         name={inputName}
-        value={inputvalue}
+        value={phoneWithHyphen(inputvalue)}
+        maxLength={13}
       />
     );
   }, [schoolTel, parentTel, telephoneNumber, homeTel]);

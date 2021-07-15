@@ -19,8 +19,6 @@ const TotalScoreColumn: FC<Props> = ({ setGedScore, totalScore }) => {
         height={42}
         inputChangeHandler={totalScoreChangeHandler}
         value={totalScore}
-        maxValue={60}
-        minValue={100}
         name='totalScore'
       />
     );
