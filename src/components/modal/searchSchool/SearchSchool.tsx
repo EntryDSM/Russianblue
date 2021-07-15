@@ -52,11 +52,6 @@ const SearchSchoolModal: FC<Props> = ({
   };
 
   useEffect(() => {
-<<<<<<< Updated upstream
-    if (!loading) {
-      if (content.length === 10 * (page + 1)) {
-        setPage(prevPage => prevPage + 1);
-=======
     if (content.length !== 0) {
       if (!loading) {
         setLoading(true);
@@ -64,7 +59,6 @@ const SearchSchoolModal: FC<Props> = ({
           setPage(prevPage => prevPage + 1);
           setLoading(false);
         }
->>>>>>> Stashed changes
       }
     }
   }, [inView]);
