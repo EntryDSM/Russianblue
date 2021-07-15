@@ -15,7 +15,6 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
     setState.setVertifyPhoneNumber(e.target.value);
   };
   const sendVertifyCodeButtonClickHandler = () => {
-    const { vertifyPhoneNumber } = state;
     setState.sendVertifyCode({ email: state.vertifyPhoneNumber });
   };
 
