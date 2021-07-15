@@ -8,6 +8,7 @@ interface Props {
   placeholder?: string;
   margin?: string;
   inputChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  keypressHandler?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   type?: string;
   name?: string;
   maxLength?: number;
@@ -21,6 +22,7 @@ const Input: FC<Props> = ({
   placeholder,
   margin,
   inputChangeHandler,
+  keypressHandler,
   type,
   name,
   value,
@@ -34,6 +36,7 @@ const Input: FC<Props> = ({
       placeholder={placeholder}
       margin={margin}
       onChange={inputChangeHandler}
+      onKeyPress={keypressHandler}
       disabled={disable}
       type={type}
       name={name}

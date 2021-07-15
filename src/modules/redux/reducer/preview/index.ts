@@ -2,6 +2,8 @@ import { previewActionType } from '../../action/preview';
 import {
   FINAL,
   FINAL_FAILURE,
+  FINAL_PDF_FAILURE,
+  FINAL_PDF_SUCCESS,
   FINAL_SUCCESS,
   GET_PREVIEW_FAILURE,
   GET_PREVIEW_SUCCESS,
@@ -12,6 +14,7 @@ const initState: PreviewState = {
   preview: '',
   error: null,
   isSuccessSaveFinal: undefined,
+  finalPdf: null,
 };
 
 const previewReducer = (
@@ -44,6 +47,18 @@ const previewReducer = (
         ...state,
         isSuccessSaveFinal: false,
       };
+    case FINAL_PDF_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case FINAL_PDF_SUCCESS: {
+      return {
+        ...state,
+        finalPdf: action.payload,
+      };
+    }
     default:
       return state;
   }

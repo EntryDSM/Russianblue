@@ -21,7 +21,7 @@ export const refreshTokenSaga = function* (action: any) {
     if (e.response?.data) {
       yield put({
         type: FAILURE,
-        payload: { ...e.response.data, type: SIGNIN },
+        payload: { ...e.response.data, type: REFRESH_TOKEN },
       });
     } else {
       yield put({

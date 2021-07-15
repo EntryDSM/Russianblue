@@ -17,7 +17,6 @@ const MainContent: FC<Props> = ({
   buttonText,
   getDescription,
   isButtonAble,
-  isHaveTerm,
   isLogin,
   date,
   buttonClickHandler,

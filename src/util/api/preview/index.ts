@@ -18,3 +18,8 @@ export const final = async (access_token: string) => {
     throw error;
   }
 };
+
+export const getFinalPdf = async (token: string) => {
+  const request = getRequestWithAccessToken(token);
+  return await request.get(uri.final);
+};

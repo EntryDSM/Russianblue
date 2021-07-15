@@ -15,7 +15,6 @@ interface Props {
 
 const SearchSchoolModal: FC<Props> = ({
   content,
-  totalPages,
   searchSchool,
   setSchoolCode,
   setSchoolName,
@@ -54,7 +53,7 @@ const SearchSchoolModal: FC<Props> = ({
 
   useEffect(() => {
     if (!loading) {
-      if (page + 1 <= totalPages) {
+      if (content.length === 10 * (page + 1)) {
         setPage(prevPage => prevPage + 1);
       }
     }

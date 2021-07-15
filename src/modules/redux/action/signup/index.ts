@@ -19,9 +19,9 @@ import {
   SEND_VERTIFY_CODE_FAILURE,
   SEND_VERTIFY_CODE,
   CHECK_VERTIFY_CODE,
+  RESET,
 } from './interface';
 import { createAction } from 'typesafe-actions';
-
 
 export const setName = createAction(NAME)<string>();
 export const setPassword = createAction(PASSWORD)<string>();
@@ -37,7 +37,7 @@ export const checkVertifyCodeSuccess = createAction(CHECK_VERTIFY_CODE_SUCCESS)<
 export const signupFailure = createAction(SIGNUP_FAILURE)<error>();
 export const checkVertifyCodeFailure = createAction(CHECK_VERTIFY_CODE_FAILURE)<error>();
 export const sendVertifyCodeFailure = createAction(SEND_VERTIFY_CODE_FAILURE)<error>();
-
+export const reset = createAction(RESET)();
 
 export {
   NAME,
@@ -54,6 +54,7 @@ export {
   CHECK_VERTIFY_CODE,
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
+  RESET,
 };
 
 export type signupActionType =
@@ -70,4 +71,5 @@ export type signupActionType =
   | ReturnType<typeof checkVertifyCodeFailure>
   | ReturnType<typeof signup>
   | ReturnType<typeof sendVertifyCode>
-  | ReturnType<typeof checkVertifyCode>;
+  | ReturnType<typeof checkVertifyCode>
+  | ReturnType<typeof reset>;

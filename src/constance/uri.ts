@@ -16,6 +16,7 @@ enum uri {
   gedScore = '/score/qualification-exam',
   grade = '/score/graduation',
   preview = '/pdf/preview',
+  final = '/pdf/final',
 }
 
 export default uri;

@@ -22,6 +22,7 @@ export interface processType {
   buttonText: string;
   isButtonAble: boolean;
   uri: string;
+  isOutsideUrl?: boolean;
 }
 
 export default IStatusState;
