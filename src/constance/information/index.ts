@@ -29,7 +29,6 @@ export type informationType = {
 };
 
 export interface informationInterface {
-  name: string | null;
   sex: string | null;
   birthday: string | null;
   parent_name: string | null;

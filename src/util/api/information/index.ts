@@ -27,13 +27,12 @@ export const informationStateToRequest = (
   state: reducerType['information'],
 ): informationInterface => {
   return {
-    name: state.userName,
     sex: state.sex,
     birthday: makeBirthday(state.birthYear, state.birthMonth, state.birthDate),
     parent_name: state.parentName,
-    parent_tel: state.parentTel.replace(/\-/g, ''),
-    telephone_number: state.telephoneNumber.replace(/\-/g, ''),
-    home_tel: state.homeTel.replace(/\-/g, ''),
+    parent_tel: state.parentTel ? state.parentTel.replace(/\-/g, '') : null,
+    telephone_number: state.telephoneNumber ? state.telephoneNumber.replace(/\-/g, '') : null,
+    home_tel: state.homeTel ? state.homeTel.replace(/\-/g, '') : null,
     address: state.address,
     detail_address: state.detailAddress,
     post_code: state.postCode,
@@ -58,7 +57,7 @@ export const graduateInformationStateToRequest = (
   return {
     student_number: makeStudentNumber(state.stdGrade, state.stdClass, state.stdNumber),
     school_code: state.schoolCode,
-    school_tel: state.schoolTel.replace(/\-/g, ''),
+    school_tel: state.schoolTel ? state.schoolTel.replace(/\-/g, '') : null,
   };
 };
 

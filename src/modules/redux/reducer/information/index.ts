@@ -234,7 +234,6 @@ const informationReducer = (
         content: action.payload.name === state.searchSchoolName ? state.content : [],
       };
     case SEARCH_SCHOOL_SUCCESS:
-      console.log(action.payload.content);
       return {
         ...state,
         isSuccessGetSearchSchool: true,
