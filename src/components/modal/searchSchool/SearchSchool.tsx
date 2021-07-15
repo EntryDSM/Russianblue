@@ -15,6 +15,7 @@ interface Props {
 
 const SearchSchoolModal: FC<Props> = ({
   content,
+  totalPages,
   searchSchool,
   setSchoolCode,
   setSchoolName,
