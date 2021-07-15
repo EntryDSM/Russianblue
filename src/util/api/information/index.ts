@@ -27,7 +27,6 @@ export const informationStateToRequest = (
   state: reducerType['information'],
 ): informationInterface => {
   return {
-    name: state.userName,
     sex: state.sex,
     birthday: makeBirthday(state.birthYear, state.birthMonth, state.birthDate),
     parent_name: state.parentName,
