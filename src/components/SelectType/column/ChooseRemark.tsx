@@ -13,6 +13,18 @@ const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark, applicationType
   const [isBlock, setIsBlock] = useState(false);
 
   useEffect(() => {
+    if (applicationType === 'SOCIAL') {
+      setIsCheck({ nationalMerit: true, specialAdmission: true });
+      setIsBlock(true);
+    } else {
+      setIsCheck({ nationalMerit: false, specialAdmission: false });
+      setIsBlock(false);
+    }
+  }, [applicationType]);
+
+  useEffect(() => {
+    console.log(1, applicationRemark);
+    console.log(2, applicationType);
     switch (applicationRemark) {
       case 'PRIVILEGED_ADMISSION':
         setIsCheck({ nationalMerit: false, specialAdmission: true });
@@ -23,18 +35,9 @@ const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark, applicationType
       default:
         if (applicationType !== 'SOCIAL')
           setIsCheck({ nationalMerit: false, specialAdmission: false });
+        break;
     }
   }, [applicationRemark, applicationType]);
-
-  useEffect(() => {
-    if (applicationType === 'SOCIAL') {
-      setIsCheck({ nationalMerit: true, specialAdmission: true });
-      setIsBlock(true);
-    } else {
-      setIsCheck({ nationalMerit: false, specialAdmission: false });
-      setIsBlock(false);
-    }
-  }, [applicationType]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
