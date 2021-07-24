@@ -24,6 +24,7 @@ const Header: FC<Props> = props => {
     props.setIsLogin(false);
     props.setAccessToken('');
     localStorage.removeItem('access_token');
+    history.push('/');
   };
   const logoClickHandler = () => {
     history.push('/');

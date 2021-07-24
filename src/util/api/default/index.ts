@@ -15,7 +15,7 @@ export const getRequest = () => {
   return request;
 };
 
-export const getRequestWithAccessToken = (token: string) => {
+export const getRequestWithAccessToken = (token: string, type: 'json' | 'blob' = 'json') => {
   const request = axios.create({
     timeout: 10000,
     baseURL: 'https://munchkin.entrydsm.hs.kr',
@@ -23,6 +23,7 @@ export const getRequestWithAccessToken = (token: string) => {
       Authorization: `Bearer ${token}`,
       withCredentials: true,
     },
+    responseType: type,
     withCredentials: true,
   });
   return request;

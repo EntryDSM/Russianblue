@@ -20,6 +20,14 @@ export const final = async (access_token: string) => {
 };
 
 export const getFinalPdf = async (token: string) => {
-  const request = getRequestWithAccessToken(token);
-  return await request.get(uri.final);
+  const request = getRequestWithAccessToken(token, 'blob');
+  const response = await request.get<string>(uri.final);
+  console.log(response);
+  const url = window.URL.createObjectURL(response.data);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `최종_제출_원서.pdf`;
+  a.click();
+  a.remove();
+  window.URL.revokeObjectURL(url);
 };
