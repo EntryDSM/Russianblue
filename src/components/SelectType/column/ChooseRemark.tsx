@@ -23,8 +23,6 @@ const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark, applicationType
   }, [applicationType]);
 
   useEffect(() => {
-    console.log(1, applicationRemark);
-    console.log(2, applicationType);
     switch (applicationRemark) {
       case 'PRIVILEGED_ADMISSION':
         setIsCheck({ nationalMerit: false, specialAdmission: true });
