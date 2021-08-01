@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import * as S from '../style';
 import ProgressContent from './progressContent';
 import {
+  APPLICATION_PERIOD,
   FIRST_ANNOUNCEMENT,
   INTERVIEW,
   mainProcessNumber,
@@ -27,7 +28,7 @@ const Progress: FC<Props> = ({ status, date }) => {
     <S.Progress>
       <ProgressContent
         progressName='원서 접수'
-        isNow={status === START_DATE}
+        isNow={status === APPLICATION_PERIOD}
         isPassed={mainProcessNumber[status] >= 2}
         leftDate={getLeftDate(date)}
       />

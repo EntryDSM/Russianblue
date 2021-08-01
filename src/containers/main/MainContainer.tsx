@@ -4,6 +4,7 @@ import { useProcess } from '../../util/hooks/main';
 import { useAuth } from '../../util/hooks/auth';
 import { useModal } from './../../util/hooks/modal';
 import {
+  APPLICATION_PERIOD,
   BEFORE_FIRST_ANNOUNCE,
   BEFORE_INTERVIEW,
   BEFORE_SECOND_ANNOUNCE,
@@ -36,7 +37,7 @@ const MainContainer: FC = () => {
   const dates = processState.state.date;
 
   const getNowProcessDate = (status: statusType): string => {
-    if (status === START_DATE) {
+    if (status === APPLICATION_PERIOD) {
       return dates.filter(date => date.type === END_DATE)[0].date;
     }
     if (status === NOT_APPLICATION_PERIOD)

@@ -10,6 +10,7 @@ export const SECOND_ANNOUNCEMENT = 'SECOND_ANNOUNCEMENT' as const;
 export const BEFORE_SECOND_ANNOUNCE = 'BEFORE_SECOND_ANNOUNCE' as const;
 export const NOT_APPLICATION_PERIOD = 'NOT_APPLICATION_PERIOD' as const;
 export const BEFORE_FIRST_ANNOUNCE = 'BEFORE_FIRST_ANNOUNCE' as const;
+export const APPLICATION_PERIOD = 'APPLICATION_PERIOD' as const;
 export const END = 'END' as const;
 
 export type statusType =
@@ -22,7 +23,8 @@ export type statusType =
   | typeof BEFORE_FIRST_ANNOUNCE
   | typeof BEFORE_SECOND_ANNOUNCE
   | typeof BEFORE_INTERVIEW
-  | typeof END;
+  | typeof END
+  | typeof APPLICATION_PERIOD;
 
 const mainConstance: Record<statusType, processType> = {
   [NOT_APPLICATION_PERIOD]: {
@@ -111,6 +113,14 @@ const mainConstance: Record<statusType, processType> = {
     isButtonAble: true,
     uri: 'https://dsmhs.djsch.kr/main.do',
     isOutsideUrl: true,
+  },
+  [APPLICATION_PERIOD]: {
+    title: <p>지금은 {<span>원서 작성</span>} 기간입니다.</p>,
+    getDescription: (date: string) => <p>원서 접수 기간은 {<span>{date}</span>}까지 입니다.</p>,
+    isHaveTerm: true,
+    buttonText: '원서 작성',
+    isButtonAble: true,
+    uri: '/select-type',
   },
 };
 
