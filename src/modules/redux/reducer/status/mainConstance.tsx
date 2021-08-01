@@ -10,6 +10,7 @@ export const SECOND_ANNOUNCEMENT = 'SECOND_ANNOUNCEMENT' as const;
 export const BEFORE_SECOND_ANNOUNCE = 'BEFORE_SECOND_ANNOUNCE' as const;
 export const NOT_APPLICATION_PERIOD = 'NOT_APPLICATION_PERIOD' as const;
 export const BEFORE_FIRST_ANNOUNCE = 'BEFORE_FIRST_ANNOUNCE' as const;
+export const END = 'END' as const;
 
 export type statusType =
   | typeof START_DATE
@@ -20,7 +21,8 @@ export type statusType =
   | typeof NOT_APPLICATION_PERIOD
   | typeof BEFORE_FIRST_ANNOUNCE
   | typeof BEFORE_SECOND_ANNOUNCE
-  | typeof BEFORE_INTERVIEW;
+  | typeof BEFORE_INTERVIEW
+  | typeof END;
 
 const mainConstance: Record<statusType, processType> = {
   [NOT_APPLICATION_PERIOD]: {
@@ -93,7 +95,16 @@ const mainConstance: Record<statusType, processType> = {
     isOutsideUrl: true,
   },
   [END_DATE]: {
-    title: '원서 접수가 끝났습니다.',
+    title: <p>원서 접수가 마감되었습니다.</p>,
+    getDescription: () => '',
+    isHaveTerm: true,
+    buttonText: '학교 보기',
+    isButtonAble: true,
+    uri: 'https://dsmhs.djsch.kr/main.do',
+    isOutsideUrl: true,
+  },
+  [END]: {
+    title: <p>2022년 지원이 끝났습니다.</p>,
     getDescription: () => <p>내년을 기약해 주세요.</p>,
     isHaveTerm: true,
     buttonText: '학교 보기',
@@ -106,11 +117,11 @@ const mainConstance: Record<statusType, processType> = {
 export const mainProcessNumber = {
   [NOT_APPLICATION_PERIOD]: 1,
   [START_DATE]: 2,
-  [BEFORE_FIRST_ANNOUNCE]: 3,
-  [FIRST_ANNOUNCEMENT]: 4,
-  [INTERVIEW]: 5,
-  [SECOND_ANNOUNCEMENT]: 6,
-  [END_DATE]: 7,
+  [END_DATE]: 3,
+  [BEFORE_FIRST_ANNOUNCE]: 4,
+  [FIRST_ANNOUNCEMENT]: 5,
+  [INTERVIEW]: 6,
+  [SECOND_ANNOUNCEMENT]: 7,
 };
 
 export default mainConstance;
