@@ -126,12 +126,11 @@ const mainConstance: Record<statusType, processType> = {
 
 export const mainProcessNumber = {
   [NOT_APPLICATION_PERIOD]: 1,
-  [START_DATE]: 2,
-  [END_DATE]: 3,
-  [BEFORE_FIRST_ANNOUNCE]: 4,
-  [FIRST_ANNOUNCEMENT]: 5,
-  [INTERVIEW]: 6,
-  [SECOND_ANNOUNCEMENT]: 7,
+  [APPLICATION_PERIOD]: 2,
+  [BEFORE_FIRST_ANNOUNCE]: 3,
+  [FIRST_ANNOUNCEMENT]: 4,
+  [INTERVIEW]: 5,
+  [SECOND_ANNOUNCEMENT]: 6,
 };
 
 export default mainConstance;
