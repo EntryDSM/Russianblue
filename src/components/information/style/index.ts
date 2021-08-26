@@ -48,6 +48,9 @@ export const InformationLine = styled.div<{
   ${({ width }) => css`
     width: ${width}px;
   `};
+  > input {
+    font-size: 16px;
+  }
 `;
 
 export const AddressLine = styled(InformationLine)`
