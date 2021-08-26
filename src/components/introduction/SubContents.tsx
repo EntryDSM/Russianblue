@@ -25,8 +25,8 @@ const SubContent: FC<Props> = ({
   });
 
   useEffect(() => {
-    const selfIntroductionLength = String(selfIntroduction).length;
-    const studyPlanLength = String(studyPlan).length;
+    const selfIntroductionLength = selfIntroduction ? String(selfIntroduction).length : 0;
+    const studyPlanLength = studyPlan ? String(studyPlan).length : 0;
     SetCountText({
       introductionText: selfIntroductionLength,
       studyPlanText: studyPlanLength,
