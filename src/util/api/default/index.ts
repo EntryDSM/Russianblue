@@ -15,7 +15,10 @@ export const getRequest = () => {
   return request;
 };
 
-export const getRequestWithAccessToken = (token: string, type: 'json' | 'blob' = 'json') => {
+export const getRequestWithAccessToken = (
+  token: string,
+  type: 'json' | 'blob' | 'text' | 'pdf' = 'json',
+) => {
   const request = axios.create({
     timeout: 10000,
     baseURL: 'https://munchkin.entrydsm.hs.kr',

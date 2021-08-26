@@ -3,7 +3,7 @@ import { getRequestWithAccessToken } from '../default';
 
 export const getPreview = async (access_token: string) => {
   try {
-    const request = getRequestWithAccessToken(access_token);
+    const request = getRequestWithAccessToken(access_token, 'pdf');
     return await request.get(uri.preview);
   } catch (error) {
     throw error;
@@ -22,7 +22,6 @@ export const final = async (access_token: string) => {
 export const getFinalPdf = async (token: string) => {
   const request = getRequestWithAccessToken(token, 'blob');
   const response = await request.get<string>(uri.final);
-  console.log(response);
   const url = window.URL.createObjectURL(response.data);
   const a = document.createElement('a');
   a.href = url;
