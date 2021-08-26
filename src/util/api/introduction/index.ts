@@ -37,8 +37,10 @@ export const saveBoth = async (
 
 export const getIntroduction = async (access_token: string) => {
   try {
-    const request = getRequestWithAccessToken(access_token);
-    return await request.get(uri.introduction);
+    const request = getRequestWithAccessToken(access_token, 'text');
+    const data = await request.get(uri.introduction);
+    console.log('test : ', data);
+    return data;
   } catch (error) {
     throw error;
   }
@@ -46,7 +48,7 @@ export const getIntroduction = async (access_token: string) => {
 
 export const getStudyPlan = async (access_token: string) => {
   try {
-    const request = getRequestWithAccessToken(access_token);
+    const request = getRequestWithAccessToken(access_token, 'text');
     return await request.get(uri.studyPlan);
   } catch (error) {
     throw error;
