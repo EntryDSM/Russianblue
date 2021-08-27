@@ -3,7 +3,7 @@ import { getRequestWithAccessToken } from '../default';
 
 export const getPreview = async (access_token: string) => {
   try {
-    const request = getRequestWithAccessToken(access_token, 'pdf');
+    const request = getRequestWithAccessToken(access_token, 'blob');
     return await request.get(uri.preview);
   } catch (error) {
     throw error;
