@@ -33,12 +33,14 @@ const ChooseType: FC<Props> = ({
         break;
       case 'SOCIAL':
         setIsCheck({ regular: false, meister: false, social: true });
+        setDisabled('normal');
         break;
       default:
         setIsCheck({ regular: false, meister: false, social: false });
         break;
     }
     if (applicationType === 'SOCIAL') {
+      if (applicationRemark === null) setSocialType('사회통합전형');
       if (applicationRemark !== null) {
         setDisabled('normal');
         switch (applicationRemark) {
@@ -72,15 +74,13 @@ const ChooseType: FC<Props> = ({
         setIsCheck({ regular: true, meister: false, social: false });
         setDisabled('disabled');
         setType('COMMON');
-        if (applicationRemark !== 'PRIVILEGED_ADMISSION' && applicationRemark !== 'NATIONAL_MERIT')
-          setRemark(null);
+        setRemark(null);
         break;
       case 'meister':
         setIsCheck({ regular: false, meister: true, social: false });
         setDisabled('disabled');
         setType('MEISTER');
-        if (applicationRemark !== 'PRIVILEGED_ADMISSION' && applicationRemark !== 'NATIONAL_MERIT')
-          setRemark(null);
+        setRemark(null);
         break;
       case 'social':
         setIsCheck({ regular: false, meister: false, social: true });
