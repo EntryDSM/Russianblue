@@ -17,7 +17,7 @@ export const getRequest = () => {
 
 export const getRequestWithAccessToken = (
   token: string,
-  type: 'json' | 'blob' | 'text' | 'pdf' = 'json',
+  type: 'json' | 'blob' | 'text' = 'json',
 ) => {
   const request = axios.create({
     timeout: 10000,
