@@ -26,7 +26,12 @@ const Preview: FC<Props> = ({ preview }) => {
           <AllPages pdf={preview} />
         </S.Pdf>
       </S.PdfBox>
-      <Pagination isNextPage setIsOpenSubmitModal={setIsOpenSubmitModal} />
+      <Pagination
+        prevPagePath={'/introduction'}
+        nextPagePath={'/'}
+        isNextPage
+        setIsOpenSubmitModal={setIsOpenSubmitModal}
+      />
       {isOpenPrecautionModal && (
         <PrecautionModal setIsOpenPrecautionMoal={setIsOpenPrecautionMoal} />
       )}
