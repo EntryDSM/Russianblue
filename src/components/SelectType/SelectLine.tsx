@@ -61,9 +61,6 @@ const SelectLine: FC<Props> = ({
         educationalStatus={educationalStatus}
       />
       <ChooseGraduationDate
-        applicationType={applicationType}
-        applicationRemark={applicationRemark}
-        isDaejeon={isDaejeon}
         graduatedAt={graduatedAt}
         educationalStatus={educationalStatus}
         graduationMonth={graduationMonth}
