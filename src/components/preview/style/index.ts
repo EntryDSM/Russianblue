@@ -21,9 +21,31 @@ export const Title = styled.p`
   letter-spacing: 1.05px;
 `;
 
-export const PreviewIframe = styled.iframe`
+export const PdfHeader = styled.div`
+  width: 1220px;
+  height: 52px;
+  background-color: #353b3e;
+  margin: 0 auto;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 13px 0px 13px 25px;
+`;
+
+export const PdfBox = styled.div`
   width: 1220px;
   height: 1024px;
+  background-color: #535759;
+  margin: 0 auto;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 60px 0px;
+`;
+
+export const Pdf = styled.div`
+  width: 690px;
+  margin: 0 auto;
 `;
 
 export const DownloadBtn = styled.div`
