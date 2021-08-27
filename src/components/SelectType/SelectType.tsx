@@ -53,7 +53,7 @@ const SelectType: FC<Props> = ({
       if (
         applicationType !== 'SOCIAL' ||
         (applicationType === 'SOCIAL' &&
-          applicationRemark !== '' &&
+          applicationRemark !== null &&
           applicationRemark !== 'NATIONAL_MERIT' &&
           applicationRemark !== 'PRIVILEGED_ADMISSION')
       ) {
@@ -67,6 +67,10 @@ const SelectType: FC<Props> = ({
             />
           );
         else return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
+      } else {
+        if (educationalStatus === 'QUALIFICATION_EXAM')
+          return <Pagination prevPagePath={'/'} isQualification />;
+        else return <Pagination prevPagePath={'/'} />;
       }
     } else {
       if (educationalStatus === 'QUALIFICATION_EXAM')
