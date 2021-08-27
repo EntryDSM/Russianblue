@@ -50,11 +50,24 @@ const SelectType: FC<Props> = ({
       graduationYear &&
       graduationMonth
     ) {
-      if (educationalStatus === 'QUALIFICATION_EXAM')
-        return (
-          <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage isQualification />
-        );
-      else return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
+      if (
+        applicationType !== 'SOCIAL' ||
+        (applicationType === 'SOCIAL' &&
+          applicationRemark !== '' &&
+          applicationRemark !== 'NATIONAL_MERIT' &&
+          applicationRemark !== 'PRIVILEGED_ADMISSION')
+      ) {
+        if (educationalStatus === 'QUALIFICATION_EXAM')
+          return (
+            <Pagination
+              prevPagePath={'/'}
+              nextPagePath={'/information'}
+              isNextPage
+              isQualification
+            />
+          );
+        else return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
+      }
     } else {
       if (educationalStatus === 'QUALIFICATION_EXAM')
         return <Pagination prevPagePath={'/'} isQualification />;
