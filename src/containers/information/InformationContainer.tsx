@@ -23,7 +23,6 @@ const InformationContainer = () => {
   useIsLogin();
   useEffect(() => {
     dispatch({ type: GET_SELECTTYPE });
-    dispatch({ type: GET_INFORMATION });
   }, []);
 
   useEffect(() => {
@@ -31,6 +30,7 @@ const InformationContainer = () => {
       mounted.current = true;
     } else {
       if (educationalStatus === 'QUALIFICATION_EXAM') {
+        dispatch({ type: GET_INFORMATION });
         dispatch({ type: GET_GED_SCORE });
       } else {
         dispatch({ type: GET_GRADUATE_INFORMATION });
