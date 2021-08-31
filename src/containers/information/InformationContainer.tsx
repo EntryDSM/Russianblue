@@ -27,7 +27,7 @@ const InformationContainer = () => {
 
   useEffect(() => {
     if (educationalStatus === 'GRADUATE') {
-      dispatch({ type: GET_INFORMATION });
+      dispatch({ type: GET_GRADUATE_INFORMATION });
     } else if (educationalStatus === 'QUALIFICATION_EXAM') {
       dispatch({ type: GET_INFORMATION });
       dispatch({ type: GET_GED_SCORE });
