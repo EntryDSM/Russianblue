@@ -18,9 +18,13 @@ const makeBirthday = (year: number, month: number, date: number) => {
 };
 
 const makeStudentNumber = (stdGrade: string, stdClass: string, stdNumber: string) => {
-  if (stdNumber.length === 1) {
-    return `${stdGrade}${stdClass}0${stdNumber}`;
-  } else return `${stdGrade}${stdClass}${stdNumber}`;
+  if (stdClass.length === 1) {
+    if (stdNumber.length === 1) return `${stdGrade}0${stdClass}0${stdNumber}`;
+    else return `${stdGrade}0${stdClass}${stdNumber}`;
+  } else {
+    if (stdNumber.length === 1) return `${stdGrade}${stdClass}0${stdNumber}`;
+    else return `${stdGrade}${stdClass}${stdNumber}`;
+  }
 };
 
 export const informationStateToRequest = (
