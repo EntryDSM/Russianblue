@@ -27,6 +27,7 @@ const VolunteerColumn: FC<Props> = ({ title, unit, border, name, setInput, value
           inputChangeHandler={inputChangeHandler}
           name={name}
           value={value}
+          type={'number'}
         />
         <p>{unit}</p>
       </div>
