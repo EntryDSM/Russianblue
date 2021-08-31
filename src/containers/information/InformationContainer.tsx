@@ -26,16 +26,16 @@ const InformationContainer = () => {
   }, []);
 
   useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-    } else {
-      if (educationalStatus === 'QUALIFICATION_EXAM') {
-        dispatch({ type: GET_INFORMATION });
-        dispatch({ type: GET_GED_SCORE });
-      } else {
-        dispatch({ type: GET_GRADUATE_INFORMATION });
-      }
+    if (educationalStatus === 'GRADUATE') {
+      dispatch({ type: GET_INFORMATION });
+    } else if (educationalStatus === 'QUALIFICATION_EXAM') {
+      dispatch({ type: GET_INFORMATION });
+      dispatch({ type: GET_GED_SCORE });
+    } else if (educationalStatus === 'PROSPECTIVE_GRADUATE') {
+      dispatch({ type: GET_GRADUATE_INFORMATION });
     }
+    console.log(educationalStatus);
+    console.log(mounted.current);
   }, [educationalStatus]);
 
   useEffect(() => {
