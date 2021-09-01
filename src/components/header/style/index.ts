@@ -21,6 +21,7 @@ export const HeaderIcon = styled.div`
   width: ${pxToRem(96)}rem;
   height: ${pxToRem(30)}rem;
   background-image: url(${logo});
+  cursor: pointer;
 `;
 
 export const HeaderMenu = styled.div`
