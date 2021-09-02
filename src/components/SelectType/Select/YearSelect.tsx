@@ -10,7 +10,9 @@ interface Props {
 
 const YearSelect: FC<Props> = ({ disabled, graduationYear, setGraduationYear }) => {
   const [active, setActive] = useState(false);
-  const YearArray = [...Array(10)].map((_, i) => i + 2016);
+  const date = new Date();
+  const year = date.getFullYear() - 8;
+  const YearArray = [...Array(10)].map((_, i) => i + year);
 
   useEffect(() => {
     if (disabled === 'block') {
@@ -48,7 +50,7 @@ const YearSelect: FC<Props> = ({ disabled, graduationYear, setGraduationYear }) 
         <S.SubSelect>
           <S.GrayLine width={80} />
           {YearArray.map((_, i) => {
-            return <p onClick={onGraduationYearClick}>{i + 2016}</p>;
+            return <p onClick={onGraduationYearClick}>{i + year}</p>;
           })}
         </S.SubSelect>
       )}
