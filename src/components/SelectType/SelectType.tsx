@@ -77,7 +77,14 @@ const SelectType: FC<Props> = ({
         return <Pagination prevPagePath={'/'} isQualification />;
       else return <Pagination prevPagePath={'/'} />;
     }
-  }, [applicationType, isDaejeon, educationalStatus, graduationYear, graduationMonth]);
+  }, [
+    applicationType,
+    isDaejeon,
+    educationalStatus,
+    graduationYear,
+    graduationMonth,
+    applicationRemark,
+  ]);
 
   return (
     <S.SelectType>
