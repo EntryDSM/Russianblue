@@ -53,9 +53,13 @@ const HeaderDropdownContent: FC<Props> = ({
         <div>
           <S.HeaderDropdownContentProcessText isComplete={isfinalSubmitDone}>
             {isfinalSubmitDone ? '완료' : '미완료'}
-            <S.HeaderDropdownContentProcessButton onClick={finalPdfDownloadButtonClickHandler}>
-              제출 서류
-            </S.HeaderDropdownContentProcessButton>
+            {isfinalSubmitDone ? (
+              <S.HeaderDropdownContentProcessButton onClick={finalPdfDownloadButtonClickHandler}>
+                제출 서류
+              </S.HeaderDropdownContentProcessButton>
+            ) : (
+              ''
+            )}
           </S.HeaderDropdownContentProcessText>
         </div>
       </S.HeaderDropdownColumn>

@@ -136,11 +136,11 @@ export const HeaderDropdownContentProcessSubText = styled.p`
 `;
 
 export const HeaderDropdownContentProcessButton = styled.button`
-  width: ${pxToRem(53)}rem;
-  height: ${pxToRem(19)}rem;
+  width: ${pxToRem(60)}rem;
+  height: ${pxToRem(25)}rem;
   border-radius: 2px;
   background-color: ${color.main};
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   color: #ffffff;
   border: none;
