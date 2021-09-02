@@ -1,6 +1,7 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import * as S from '../style';
 import Input from '../../default/input';
+import useInformation from '../../../util/hooks/information';
 
 interface Props {
   totalScore: string;
@@ -8,9 +9,16 @@ interface Props {
 }
 
 const TotalScoreColumn: FC<Props> = ({ setGedScore, totalScore }) => {
+  const { state } = useInformation();
+
   const totalScoreChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGedScore(e.target.value);
   };
+
+  useEffect(() => {
+    if (state.isSuccessSaveGedScore === false)
+      alert('검정고시 평균 점수는 60점과 100점 사이로 입력해주세요.');
+  }, [state.isSuccessSaveGedScore]);
 
   const totalScoreInput = useMemo(() => {
     return (

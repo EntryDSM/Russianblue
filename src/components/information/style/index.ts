@@ -7,7 +7,7 @@ export const Information = styled.div`
   padding-top: 125px;
   margin: 0 auto;
   > div:first-child {
-    margin-bottom: 70px;
+    margin-bottom: 60px;
   }
 `;
 
@@ -251,4 +251,9 @@ export const Picture = styled.img`
   position: absolute;
   top: 0;
   right: 0;
+`;
+
+export const InfoExplain = styled.p`
+  font-size: 13px;
+  color: ${color.disable};
 `;

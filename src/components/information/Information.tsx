@@ -130,22 +130,6 @@ const Information: FC<Props> = ({
   const [isClickAddressBtn, setIsClickAddressBtn] = useState(false);
   const educationalStatus = useSelectType().state.educationalStatus;
 
-  const toastPopUp = useMemo(() => {
-    // if (isSuccessSaveGedScore !== undefined)
-    //   return <ToastPopUp isSuccessSave={isSuccessSaveGedScore} />;
-    // else if (isSuccessSaveUserPicture !== undefined)
-    //   return <ToastPopUp isSuccessSave={isSuccessSaveUserPicture} />;
-    // else if (isSuccessSaveGraduateInformation !== undefined)
-    //   return <ToastPopUp isSuccessSave={isSuccessSaveGraduateInformation} />;
-    // else if (isSuccessSaveInformation !== undefined)
-    //   return <ToastPopUp isSuccessSave={isSuccessSaveInformation} />;
-  }, [
-    isSuccessSaveInformation,
-    isSuccessSaveUserPicture,
-    isSuccessSaveGraduateInformation,
-    isSuccessSaveGedScore,
-  ]);
-
   const searchSchoolModal = useMemo(() => {
     if (isClickSearchBtn)
       return (
@@ -206,6 +190,9 @@ const Information: FC<Props> = ({
         <S.School>{SCHOOL}</S.School>
         <S.Title>{INFORMATIONTITLE}</S.Title>
       </div>
+      <S.InfoExplain>
+        저장된 정보가 뜨지 않을 때 새로고침하시면 저장된 정보를 확인하실 수 있습니다.
+      </S.InfoExplain>
       <InformationForm
         userName={userName}
         sex={sex}
