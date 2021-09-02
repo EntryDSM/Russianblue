@@ -26,24 +26,13 @@ const PhoneNumberColumn: FC<Props> = ({
     setInput({ name: e.target.name, value: e.target.value });
   };
 
-  const phoneWithHyphen = number => {
-    if (number) {
-      if (number.substring(0, 2) === '02') {
-        if (number.length === 9) return number.replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
-        if (number.length === 12)
-          return number.replace(/-/g, '').replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
-      } else {
-        if (number.length === 10) {
-          return number.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-        }
-        if (number.length === 11) {
-          return number.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-        }
-        if (number.length === 13) {
-          return number.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-        }
-      }
-    }
+  const phoneWithHyphen = (number: string) => {
+    return number
+      ? number
+          .replace(/[^0-9]/g, '')
+          .replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/, '$1-$2-$3')
+          .replace('--', '-')
+      : '';
   };
 
   const phoneNumberInput = useMemo(() => {
