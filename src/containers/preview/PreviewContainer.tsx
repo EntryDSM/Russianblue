@@ -6,6 +6,7 @@ import { GET_PREVIEW } from '../../modules/redux/action/preview/interface';
 import { useIsLogin } from '../../util/api/default';
 import { useUser } from '../../util/hooks/user';
 import { useHistory } from 'react-router-dom';
+import { GET_SELECTTYPE } from '../../modules/redux/action/selectType/interface';
 
 const PreviewContainer = () => {
   const { state, setState } = usePreview();
@@ -16,6 +17,7 @@ const PreviewContainer = () => {
 
   useEffect(() => {
     dispatch({ type: GET_PREVIEW });
+    dispatch({ type: GET_SELECTTYPE });
   }, []);
 
   useEffect(() => {

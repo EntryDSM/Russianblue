@@ -5,6 +5,7 @@ import Pagination from '../default/Pagination';
 import PrecautionModal from '../modal/preview/PrecautionModal';
 import ConfirmSubmissionModal from '../modal/preview/ConfirmSubmissionModal';
 import AllPages from './AllPages';
+import { useSelectState } from '../../util/hooks/default';
 
 interface Props {
   preview: string;
@@ -13,6 +14,30 @@ interface Props {
 const Preview: FC<Props> = ({ preview }) => {
   const [isOpenPrecautionModal, setIsOpenPrecautionMoal] = useState(true);
   const [isOpenSubmitModal, setIsOpenSubmitModal] = useState(false);
+  const educationalStatus = useSelectState().selectType.educationalStatus;
+
+  const pagination = useMemo(() => {
+    console.log(1324, educationalStatus);
+    if (educationalStatus === 'QUALIFICATION_EXAM')
+      return (
+        <Pagination
+          prevPagePath={'/introduction'}
+          nextPagePath={'/'}
+          isNextPage
+          isQualification
+          setIsOpenSubmitModal={setIsOpenSubmitModal}
+        />
+      );
+    else
+      return (
+        <Pagination
+          prevPagePath={'/introduction'}
+          nextPagePath={'/'}
+          isNextPage
+          setIsOpenSubmitModal={setIsOpenSubmitModal}
+        />
+      );
+  }, [educationalStatus]);
 
   return (
     <S.Preview>
@@ -26,12 +51,7 @@ const Preview: FC<Props> = ({ preview }) => {
           <AllPages pdf={preview} />
         </S.Pdf>
       </S.PdfBox>
-      <Pagination
-        prevPagePath={'/introduction'}
-        nextPagePath={'/'}
-        isNextPage
-        setIsOpenSubmitModal={setIsOpenSubmitModal}
-      />
+      {pagination}
       {isOpenPrecautionModal && (
         <PrecautionModal setIsOpenPrecautionMoal={setIsOpenPrecautionMoal} />
       )}
