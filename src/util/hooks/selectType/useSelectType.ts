@@ -7,6 +7,7 @@ import {
   setRemark,
   setSocialType,
   setType,
+  setHeadCount,
 } from '../../../modules/redux/action/selectType';
 import { useSelectState } from '../default';
 
@@ -34,6 +35,9 @@ const useSelectType = () => {
     },
     setRemark: (payload: string) => {
       dispatch(setRemark(payload));
+    },
+    setHeadCount: (payload: string) => {
+      dispatch(setHeadCount(payload));
     },
   };
   return {

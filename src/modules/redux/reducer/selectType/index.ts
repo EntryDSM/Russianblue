@@ -7,6 +7,7 @@ import {
   GRADUATION_MONTH,
   GRADUATION_YEAR,
   REMARK,
+  HEADCOUNT,
   SELECTTYPE,
   SELECTTYPE_SUCCESS,
   SELECTTYPE_FAILURE,
@@ -24,6 +25,7 @@ const initState: SelectTypeState = {
   graduationYear: 2022,
   graduatedAt: '',
   applicationRemark: null,
+  headcount: null,
   error: null,
   isSuccessSaveSelectType: undefined,
   isSuccessGetSelectType: undefined,
@@ -76,6 +78,12 @@ const SelectTypeReducer = (
         applicationRemark: action.payload,
         isSuccessSaveSelectType: undefined,
       };
+    case HEADCOUNT:
+      return {
+        ...state,
+        headcount: action.payload,
+        isSuccessSaveSelectType: undefined,
+      };
     case SELECTTYPE:
       return {
         ...state,
@@ -101,6 +109,7 @@ const SelectTypeReducer = (
         applicationType: action.payload.application_type,
         educationalStatus: action.payload.educational_status,
         graduatedAt: action.payload.graduated_at,
+        headcount: action.payload.headcount,
       };
     case GET_SELECTTYPE_FAILURE:
       return {

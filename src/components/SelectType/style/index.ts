@@ -21,11 +21,13 @@ export const Title = styled.p`
   letter-spacing: 1.05px;
 `;
 
-export const SelectLine = styled.div`
+export const SelectLine = styled.div<{ isHeadCount: boolean }>`
   width: 1220px;
-  height: 440px;
   border-top: 3px solid ${color.main};
   border-bottom: 3px solid ${color.main};
+  ${({ isHeadCount }) => css`
+    height: ${isHeadCount ? '528px' : '440px'};
+  `}
 `;
 
 export const Line = styled.div`

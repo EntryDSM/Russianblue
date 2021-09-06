@@ -13,6 +13,7 @@ export const selectTypeStateToRequest = (state: reducerType['selectType']): sele
       state.graduationMonth < 10
         ? `${state.graduationYear}0${state.graduationMonth}`
         : `${state.graduationYear}${state.graduationMonth}`,
+    headcount: state.headcount,
   };
 };
 

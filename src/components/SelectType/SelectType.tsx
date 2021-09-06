@@ -22,6 +22,7 @@ interface Props {
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
+  setHeadCount: (payload: string) => void;
 }
 
 const SelectType: FC<Props> = ({
@@ -41,6 +42,7 @@ const SelectType: FC<Props> = ({
   setGraduationMonth,
   setGraduationYear,
   setRemark,
+  setHeadCount,
 }) => {
   const pagination = useMemo(() => {
     if (
@@ -108,6 +110,7 @@ const SelectType: FC<Props> = ({
         setGraduationMonth={setGraduationMonth}
         setGraduationYear={setGraduationYear}
         setRemark={setRemark}
+        setHeadCount={setHeadCount}
       />
       {pagination}
       <ToastPopUp isSuccessSave={isSuccessSaveSelectType} />
