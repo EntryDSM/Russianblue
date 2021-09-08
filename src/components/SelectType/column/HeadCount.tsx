@@ -1,12 +1,13 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as S from '../style';
 import { HEADCOUNT } from '../../../constance/SelectType';
 
 interface Props {
+  headcount: string;
   setHeadCount: (payload: string) => void;
 }
 
-const HeadCount: FC<Props> = ({ setHeadCount }) => {
+const HeadCount: FC<Props> = ({ headcount, setHeadCount }) => {
   const [isCheck, setIsCheck] = useState({ inOfHeadCount: false, outOfHeadCount: false });
 
   const onCheckBtnClick = e => {
@@ -22,7 +23,12 @@ const HeadCount: FC<Props> = ({ setHeadCount }) => {
         break;
     }
   };
-  //IN_OF_HEADCOUNT, OUT_OF_HEADCOUNT
+
+  useEffect(() => {
+    if (headcount === 'IN_OF_HEADCOUNT') setIsCheck({ inOfHeadCount: true, outOfHeadCount: false });
+    else if (headcount === 'OUT_OF_HEADCOUNT')
+      setIsCheck({ inOfHeadCount: false, outOfHeadCount: true });
+  }, [headcount]);
 
   return (
     <S.Line>

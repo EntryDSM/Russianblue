@@ -17,6 +17,7 @@ interface Props {
   graduatedAt: string;
   graduationMonth: number;
   graduationYear: number;
+  headcount: string;
   applicationRemark: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
@@ -37,6 +38,7 @@ const SelectLine: FC<Props> = ({
   graduationMonth,
   graduationYear,
   applicationRemark,
+  headcount,
   setType,
   setSocialType,
   setArea,
@@ -52,7 +54,7 @@ const SelectLine: FC<Props> = ({
   const showHeadCount = useMemo(() => {
     if (applicationRemark === 'PRIVILEGED_ADMISSION') {
       setIsHeadCount(true);
-      return <HeadCount setHeadCount={setHeadCount} />;
+      return <HeadCount headcount={headcount} setHeadCount={setHeadCount} />;
     } else {
       setIsHeadCount(false);
       setHeadCount(null);

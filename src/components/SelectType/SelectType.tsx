@@ -15,6 +15,7 @@ interface Props {
   graduationYear: number;
   applicationRemark: string;
   isSuccessSaveSelectType: boolean;
+  headcount: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: boolean) => void;
@@ -35,6 +36,7 @@ const SelectType: FC<Props> = ({
   graduationYear,
   applicationRemark,
   isSuccessSaveSelectType,
+  headcount,
   setType,
   setSocialType,
   setArea,
@@ -102,6 +104,7 @@ const SelectType: FC<Props> = ({
         graduationYear={graduationYear}
         applicationRemark={applicationRemark}
         socialType={socialType}
+        headcount={headcount}
         graduatedAt={graduatedAt}
         setType={setType}
         setSocialType={setSocialType}
