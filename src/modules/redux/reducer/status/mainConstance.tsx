@@ -7,9 +7,9 @@ export const FIRST_ANNOUNCEMENT = 'FIRST_ANNOUNCEMENT' as const;
 export const BEFORE_INTERVIEW = 'BEFORE_INTERVIEW' as const;
 export const INTERVIEW = 'INTERVIEW' as const;
 export const SECOND_ANNOUNCEMENT = 'SECOND_ANNOUNCEMENT' as const;
-export const BEFORE_SECOND_ANNOUNCE = 'BEFORE_SECOND_ANNOUNCE' as const;
+export const BEFORE_SECOND_ANNOUNCE = 'BEFORE_SECOND_ANNOUNCEMENT' as const;
 export const NOT_APPLICATION_PERIOD = 'NOT_APPLICATION_PERIOD' as const;
-export const BEFORE_FIRST_ANNOUNCE = 'BEFORE_FIRST_ANNOUNCE' as const;
+export const BEFORE_FIRST_ANNOUNCE = 'BEFORE_FIRST_ANNOUNCEMENT' as const;
 export const APPLICATION_PERIOD = 'APPLICATION_PERIOD' as const;
 export const END = 'END' as const;
 
