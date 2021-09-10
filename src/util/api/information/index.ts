@@ -20,10 +20,11 @@ const makeBirthday = (year: number, month: number, date: number) => {
 const makeStudentNumber = (stdGrade: string, stdClass: string, stdNumber: string) => {
   if (stdClass.length === 1) {
     if (stdNumber.length === 1) return `${stdGrade}0${stdClass}0${stdNumber}`;
-    else return `${stdGrade}0${stdClass}${stdNumber}`;
+    else return `${stdGrade.substring(0, 1)}0${stdClass}${stdNumber.substring(0, 2)}`;
   } else {
-    if (stdNumber.length === 1) return `${stdGrade}${stdClass}0${stdNumber}`;
-    else return `${stdGrade}${stdClass}${stdNumber}`;
+    if (stdNumber.length === 1) return `${stdGrade}${stdClass.substring(0, 2)}0${stdNumber}`;
+    else
+      return `${stdGrade.substring(0, 1)}${stdClass.substring(0, 2)}${stdNumber.substring(0, 2)}`;
   }
 };
 
