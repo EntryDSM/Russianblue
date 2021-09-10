@@ -8,6 +8,7 @@ interface SelectTypeState {
   graduationYear: number;
   graduationMonth: number;
   applicationRemark: string | null;
+  headcount: string | null;
   error: error;
   graduatedAt: string;
   isSuccessSaveSelectType: boolean | undefined;

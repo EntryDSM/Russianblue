@@ -8,6 +8,7 @@ import {
   GRADUATION_MONTH,
   GRADUATION_YEAR,
   REMARK,
+  HEADCOUNT,
   SELECTTYPE,
   SELECTTYPE_FAILURE,
   SELECTTYPE_SUCCESS,
@@ -24,6 +25,7 @@ export const setGraduation = createAction(GRADUATION)<string>();
 export const setGraduationYear = createAction(GRADUATION_YEAR)<number>();
 export const setGraduationMonth = createAction(GRADUATION_MONTH)<number>();
 export const setRemark = createAction(REMARK)<string>();
+export const setHeadCount = createAction(HEADCOUNT)<string>();
 export const selectType = createAction(SELECTTYPE)<selectTypeSaveType>();
 export const selectTypeSuccess = createAction(SELECTTYPE_SUCCESS)<boolean>();
 export const selectTypeFailure = createAction(SELECTTYPE_FAILURE)<error>();
@@ -39,6 +41,7 @@ export type selectTypeActionType =
   | ReturnType<typeof setGraduationYear>
   | ReturnType<typeof setGraduationMonth>
   | ReturnType<typeof setRemark>
+  | ReturnType<typeof setHeadCount>
   | ReturnType<typeof selectType>
   | ReturnType<typeof selectTypeSuccess>
   | ReturnType<typeof selectTypeFailure>

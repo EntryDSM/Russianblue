@@ -16,6 +16,8 @@ const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark, applicationType
     if (applicationType === 'SOCIAL') {
       setIsCheck({ nationalMerit: true, specialAdmission: true });
       setIsBlock(true);
+      if (applicationRemark === 'PRIVILEGED_ADMISSION' || applicationRemark === 'NATIONAL_MERIT')
+        setRemark(null);
     } else {
       setIsCheck({ nationalMerit: false, specialAdmission: false });
       setIsBlock(false);

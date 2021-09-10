@@ -12,13 +12,23 @@ import {
   GRADUATION_YEAR,
   GRADUATION_MONTH,
   REMARK,
+  HEADCOUNT,
   GET_SELECTTYPE,
   SELECTTYPE,
 } from '../../action/selectType/interface';
 import { call, debounce, put, select, takeLatest } from 'redux-saga/effects';
 import { reducerType } from '../../reducer';
 
-const actionArray = [TYPE, SOCIALTYPE, AREA, GRADUATION, GRADUATION_YEAR, GRADUATION_MONTH, REMARK];
+const actionArray = [
+  TYPE,
+  SOCIALTYPE,
+  AREA,
+  GRADUATION,
+  GRADUATION_YEAR,
+  GRADUATION_MONTH,
+  REMARK,
+  HEADCOUNT,
+];
 
 const getStateFunc = (state: reducerType): reducerType['selectType'] => state.selectType;
 export const getSelectTypeRequestSaga = createRequestSaga(GET_SELECTTYPE, getSelectType);
