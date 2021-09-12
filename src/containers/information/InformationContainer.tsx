@@ -21,8 +21,10 @@ const InformationContainer = () => {
   const history = useHistory();
   const mounted = useRef(false);
   useIsLogin();
+
   useEffect(() => {
     dispatch({ type: GET_SELECTTYPE });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
   useEffect(() => {

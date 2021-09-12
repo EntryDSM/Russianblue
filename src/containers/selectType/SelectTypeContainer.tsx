@@ -15,6 +15,7 @@ const SelectTypeContainer = () => {
   useIsLogin();
   useEffect(() => {
     dispatch({ type: GET_SELECTTYPE });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
   useEffect(() => {
     if (isFinalSubmitDone) {

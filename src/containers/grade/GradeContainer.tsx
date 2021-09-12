@@ -20,6 +20,7 @@ const GradeContainer = () => {
   useEffect(() => {
     dispatch({ type: GET_GRADE });
     dispatch({ type: GET_SELECTTYPE });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
   useEffect(() => {

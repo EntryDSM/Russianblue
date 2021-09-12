@@ -18,6 +18,7 @@ const PreviewContainer = () => {
   useEffect(() => {
     dispatch({ type: GET_PREVIEW });
     dispatch({ type: GET_SELECTTYPE });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
   useEffect(() => {

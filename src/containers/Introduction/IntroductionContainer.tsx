@@ -20,6 +20,7 @@ const IntroductionContainer: FC = () => {
   useEffect(() => {
     dispatch({ type: GET_SELF_INTRODUCTION });
     dispatch({ type: GET_STUDY_PLAN });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, []);
 
   useEffect(() => {
