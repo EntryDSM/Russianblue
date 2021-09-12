@@ -40,7 +40,7 @@ export const HeaderDropDown = styled.label`
   }
   > div {
     width: ${pxToRem(337)}rem;
-    transform: translate(-230px, 0px);
+    transform: translate(-133px, 0px);
     cursor: default;
   }
   > input:checked ~ div {

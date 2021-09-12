@@ -32,7 +32,7 @@ const HeadCount: FC<Props> = ({ headcount, setHeadCount }) => {
 
   return (
     <S.Line>
-      <S.LineTitle>정원 내・외</S.LineTitle>
+      <S.LineTitle>정원 내외</S.LineTitle>
       {HEADCOUNT.map(data => {
         return (
           <S.SelectBox margin={100} key={data.id}>
