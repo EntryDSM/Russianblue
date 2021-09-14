@@ -9,12 +9,10 @@ export const GRADE = [
   { grade: 'X', id: 'X' },
 ];
 export const GRADEANDSEMESTER = [
-  { id: 'freshmanFirst', grade: 1, semester: 1 },
-  { id: 'freshmanSecond', grade: 1, semester: 2 },
-  { id: 'sophomoreFirst', grade: 2, semester: 1 },
-  { id: 'sophomoreSecond', grade: 2, semester: 2 },
-  { id: 'seniorFirst', grade: 3, semester: 1 },
   { id: 'seniorSecond', grade: 3, semester: 2 },
+  { id: 'seniorFirst', grade: 3, semester: 1 },
+  { id: 'previousSemester', grade: 2, semester: 2 },
+  { id: 'morePreviousSemester', grade: 2, semester: 1 },
 ];
 export const SUBJECT = ['korean', 'social', 'history', 'math', 'science', 'technical', 'english'];
 
@@ -36,14 +34,6 @@ export type GradeType = {
   science: string;
   technical: string;
   english: string;
-  isCheck: {
-    freshmanFirst: boolean;
-    freshmanSecond: boolean;
-    sophomoreFirst: boolean;
-    sophomoreSecond: boolean;
-    seniorFirst: boolean;
-    seniorSecond: boolean;
-  };
 };
 export type SemesterType = {
   freshmanFirst: boolean;

@@ -33,14 +33,12 @@ const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject, isGraduated }
   const gradeClickHandler = e => {
     const dataId = e.target.dataset.id;
     const dataGrade = e.target.innerText;
-    if (grade.isCheck[dataId] === false) {
-      setGrade({
-        grade: {
-          ...grade,
-          [subject]: gradeChange(subject, dataId, dataGrade),
-        },
-      });
-    }
+    setGrade({
+      grade: {
+        ...grade,
+        [subject]: gradeChange(subject, dataId, dataGrade),
+      },
+    });
     setIsClick({ ...isClick, [dataId]: !isClick[dataId] });
   };
 
