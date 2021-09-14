@@ -18,22 +18,26 @@ const makeBirthday = (year: number, month: number, date: number) => {
 };
 
 const makeStudentNumber = (stdGrade: string, stdClass: string, stdNumber: string) => {
-  if (stdNumber.length === 1) {
-    return `${stdGrade}${stdClass}0${stdNumber}`;
-  } else return `${stdGrade}${stdClass}${stdNumber}`;
+  if (stdClass.length === 1) {
+    if (stdNumber.length === 1) return `${stdGrade}0${stdClass}0${stdNumber}`;
+    else return `${stdGrade.substring(0, 1)}0${stdClass}${stdNumber.substring(0, 2)}`;
+  } else {
+    if (stdNumber.length === 1) return `${stdGrade}${stdClass.substring(0, 2)}0${stdNumber}`;
+    else
+      return `${stdGrade.substring(0, 1)}${stdClass.substring(0, 2)}${stdNumber.substring(0, 2)}`;
+  }
 };
 
 export const informationStateToRequest = (
   state: reducerType['information'],
 ): informationInterface => {
   return {
-    name: state.userName,
     sex: state.sex,
     birthday: makeBirthday(state.birthYear, state.birthMonth, state.birthDate),
     parent_name: state.parentName,
-    parent_tel: state.parentTel,
-    telephone_number: state.telephoneNumber,
-    home_tel: state.homeTel,
+    parent_tel: state.parentTel ? state.parentTel.replace(/\-/g, '') : null,
+    telephone_number: state.telephoneNumber ? state.telephoneNumber.replace(/\-/g, '') : null,
+    home_tel: state.homeTel ? state.homeTel.replace(/\-/g, '') : null,
     address: state.address,
     detail_address: state.detailAddress,
     post_code: state.postCode,
@@ -58,7 +62,7 @@ export const graduateInformationStateToRequest = (
   return {
     student_number: makeStudentNumber(state.stdGrade, state.stdClass, state.stdNumber),
     school_code: state.schoolCode,
-    school_tel: state.schoolTel,
+    school_tel: state.schoolTel ? state.schoolTel.replace(/\-/g, '') : null,
   };
 };
 

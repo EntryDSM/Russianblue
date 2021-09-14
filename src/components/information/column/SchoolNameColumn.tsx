@@ -4,15 +4,10 @@ import Input from '../../default/input';
 
 interface Props {
   schoolName: string;
-  setInput: (payload: { name: string; value: string }) => void;
   setIsClickSearchBtn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SchoolNameColumn: FC<Props> = ({ setInput, setIsClickSearchBtn, schoolName }) => {
-  const schoolNameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput({ name: e.target.name, value: e.target.value });
-  };
-
+const SchoolNameColumn: FC<Props> = ({ setIsClickSearchBtn, schoolName }) => {
   const searchBtnClickHandler = () => {
     setIsClickSearchBtn(true);
   };
@@ -25,7 +20,7 @@ const SchoolNameColumn: FC<Props> = ({ setInput, setIsClickSearchBtn, schoolName
       <Input
         width={166}
         height={42}
-        inputChangeHandler={schoolNameChangeHandler}
+        inputChangeHandler={() => {}}
         name={'schoolName'}
         disable
         value={schoolName}

@@ -3,12 +3,12 @@ import * as S from '../style';
 
 interface Props {
   onClick: () => void;
-  isButtonAble: boolean;
+  isAble?: boolean;
 }
 
-const MainButton: FC<Props> = ({ children, onClick, isButtonAble }) => {
+const MainButton: FC<Props> = ({ children, onClick, isAble }) => {
   return (
-    <S.MainButton onClick={onClick} disabled={isButtonAble}>
+    <S.MainButton onClick={onClick} isAble={isAble}>
       <p>{children}</p>
       <div />
     </S.MainButton>

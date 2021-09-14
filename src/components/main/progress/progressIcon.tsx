@@ -7,7 +7,7 @@ interface Props {
 
 const ProgressIcon: FC<Props> = ({ isPassed }) => {
   return (
-    <S.ProgressIcon isPassed={isPassed}>
+    <S.ProgressIcon isPassed={isPassed} className='Icon'>
       <div className='background' />
       <div className='iconWrapper'>
         <div className='icon'>

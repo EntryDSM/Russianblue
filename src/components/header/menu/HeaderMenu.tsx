@@ -12,6 +12,7 @@ interface Props {
   studyPlanLength: number;
   selfIntroduceLength: number;
   logout: () => void;
+  applicationType: string;
 }
 
 const HeaderMenu: FC<Props> = state => {

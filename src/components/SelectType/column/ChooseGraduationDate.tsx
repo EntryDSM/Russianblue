@@ -9,9 +9,6 @@ interface Props {
   educationalStatus: string;
   graduationMonth: number;
   graduationYear: number;
-  applicationRemark: string;
-  applicationType: string;
-  isDaejeon: boolean;
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
 }
@@ -24,9 +21,6 @@ const ChooseGraduationDate: FC<Props> = ({
   graduationMonth,
   graduationYear,
   graduatedAt,
-  applicationRemark,
-  applicationType,
-  isDaejeon,
 }) => {
   useEffect(() => {
     if (graduatedAt) {

@@ -5,6 +5,7 @@ export const GRADUATION = 'SELECTTYPE/GRADUATION' as const;
 export const GRADUATION_YEAR = 'SELECTTYPE/GRADUATION_YEAR' as const;
 export const GRADUATION_MONTH = 'SELECTTYPE/GRADUATION_MONTH' as const;
 export const REMARK = 'SELECTTYPE/REMARK' as const;
+export const HEADCOUNT = 'SELECTTYPE/HEADCOUNT' as const;
 
 export const SELECTTYPE = 'SELECTTYPE/SELECTTYPE' as const;
 export const SELECTTYPE_SUCCESS = 'SELECTTYPE/SELECTTYPE_SUCCESS' as const;

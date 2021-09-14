@@ -32,9 +32,6 @@ input[type=number] {
     }
     border: solid 1px rgba(121, 194, 202, 0.5);
     border-radius: 5px;
-    &[type=password] {
-    font-family: sans-serif;
-    }
     &:focus {
     outline: none;
     }
@@ -97,7 +94,10 @@ input[type=number] {
     ::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background-color: #ff8888;
-}
+    }
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
 `;
 
 export default global;

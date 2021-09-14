@@ -105,8 +105,8 @@ const InformationForm: FC<Props> = ({
         picture: {
           width: 317,
           height: 363,
-          paddingTop: 119,
-          paddingSide: 91,
+          paddingTop: 115,
+          paddingSide: 84,
           top: 18,
         },
       };
@@ -124,11 +124,7 @@ const InformationForm: FC<Props> = ({
             stdClass={stdClass}
             stdNumber={stdNumber}
           />
-          <SchoolNameColumn
-            schoolName={schoolName}
-            setIsClickSearchBtn={setIsClickSearchBtn}
-            setInput={setInput}
-          />
+          <SchoolNameColumn schoolName={schoolName} setIsClickSearchBtn={setIsClickSearchBtn} />
         </>
       );
   }, [setInput, graduation, schoolName, totalScore]);

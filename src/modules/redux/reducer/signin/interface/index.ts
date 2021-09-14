@@ -1,7 +1,9 @@
+import { error } from '../../../../../models/error';
+
 interface ISignInState {
   id: string;
   password: string;
-  error: number;
+  error: error;
 }
 
 export default ISignInState;

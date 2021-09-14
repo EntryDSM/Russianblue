@@ -12,6 +12,7 @@ import useSelectType from '../../../util/hooks/selectType';
 import useInformation from '../../../util/hooks/information';
 import { useDispatch } from 'react-redux';
 import {
+  GED_SCORE,
   GRADUATE_INFORMATION,
   INFORMATION,
 } from '../../../modules/redux/action/information/interface';

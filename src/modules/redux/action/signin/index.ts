@@ -10,18 +10,20 @@ import {
   REFRESH_TOKEN,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
+  RESET,
 } from './interface';
 import { createAction } from 'typesafe-actions';
 
 export const setId = createAction(ID)<string>();
 export const setPassword = createAction(PASSWORD)<string>();
-export const setError = createAction(ERROR)<number>();
+export const setError = createAction(ERROR)<error>();
 export const signinFailure = createAction(SIGNIN_FAILURE)<error>();
 export const signinSuccess = createAction(SIGNIN_SUCCESS)<string>();
 export const signin = createAction(SIGNIN)<signinRequest>();
 export const refreshToken = createAction(REFRESH_TOKEN)<{ callback: () => void }>();
 export const refreshTokenFailure = createAction(REFRESH_TOKEN_FAILURE)<error>();
 export const refreshTokenSuccess = createAction(REFRESH_TOKEN_SUCCESS)();
+export const reset = createAction(RESET)();
 
 export type signinActionType =
   | ReturnType<typeof setId>
@@ -31,7 +33,8 @@ export type signinActionType =
   | ReturnType<typeof signinSuccess>
   | ReturnType<typeof refreshToken>
   | ReturnType<typeof refreshTokenFailure>
-  | ReturnType<typeof refreshTokenSuccess>;
+  | ReturnType<typeof refreshTokenSuccess>
+  | ReturnType<typeof reset>;
 
 export {
   ID,
@@ -43,4 +46,5 @@ export {
   REFRESH_TOKEN,
   REFRESH_TOKEN_FAILURE,
   REFRESH_TOKEN_SUCCESS,
+  RESET,
 };

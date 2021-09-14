@@ -44,7 +44,7 @@ const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisable
         break;
       case '다문화가정':
         setSocialType('다문화가정');
-        setRemark('MULTICULTURA');
+        setRemark('MULTICULTURAL');
         break;
     }
   };

@@ -22,6 +22,7 @@ export const Title = styled.p`
 `;
 
 export const TableName = styled.p`
+  margin-bottom: 15px;
   font-size: 20px;
   letter-spacing: -0.4px;
   font-weight: 400;
@@ -191,11 +192,12 @@ export const GradeBtn = styled.div<{
   width: 22px;
   height: 22px;
   border-radius: 4px;
-  text-align: center;
-  font-size: 17px;
+  font-size: 15px;
   margin-left: 4px;
   box-sizing: border-box;
-  padding: 2px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   ${({ isClick }) => css`
     border: 1px solid ${isClick ? color.main : color.disable};

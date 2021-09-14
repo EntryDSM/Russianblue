@@ -21,7 +21,7 @@ const SearchSchoolModal: FC<Props> = ({
   setSchoolName,
   setIsClickSearchBtn,
 }) => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState<number>(0);
   const [searchText, setSearchText] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const { ref, inView } = useInView();
@@ -36,6 +36,7 @@ const SearchSchoolModal: FC<Props> = ({
 
   const searchBtnClickHandler = () => {
     searchSchool({ name: searchText, size: 10, page: 0 });
+    setPage(0);
   };
 
   const schoolNameClickHandler = e => {
@@ -47,13 +48,18 @@ const SearchSchoolModal: FC<Props> = ({
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       searchSchool({ name: searchText, size: 10, page: 0 });
+      setPage(0);
     }
   };
 
   useEffect(() => {
-    if (!loading) {
-      if (page + 1 <= totalPages) {
-        setPage(prevPage => prevPage + 1);
+    if (content.length !== 0) {
+      if (!loading) {
+        setLoading(true);
+        if (page + 1 < totalPages) {
+          setPage(prevPage => prevPage + 1);
+          setLoading(false);
+        }
       }
     }
   }, [inView]);

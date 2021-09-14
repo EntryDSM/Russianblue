@@ -21,7 +21,7 @@ export const Title = styled.p`
 `;
 
 export const SubTitle = styled.p`
-  width: 115px;
+  width: 130px;
   height: 36px;
   font-size: 25px;
   margin: 80px 0px 2px 0px;
@@ -53,7 +53,7 @@ export const Textarea = styled.textarea`
   font-family: sans-serif;
   font-weight: 300;
   line-height: 1.5;
-  margin: 18px 0px 6px 20px;
+  margin: 18px 10px 6px 10px;
   overflow-y: auto;
   border: none;
   ::-webkit-scrollbar {
@@ -68,10 +68,17 @@ export const Textarea = styled.textarea`
   ::-webkit-scrollbar-track {
     border-radius: 4px;
   }
+  :focus {
+    & + div {
+      opacity: 1;
+    }
+  }
 `;
 export const CountText = styled.div`
   width: 100%;
   height: 45px;
+  opacity: 0;
+  transition: opacity 0.1s, visibility 0.1s, transform 0.1s;
   background-color: rgba(255, 155, 159, 0.7);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;

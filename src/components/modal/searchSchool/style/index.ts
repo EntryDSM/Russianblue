@@ -17,7 +17,7 @@ export const ModalSearchSchoolWrapper = styled.div`
 
 export const ModalSearchSchool = styled.div`
   width: 438px;
-  height: 629px;
+  height: 640px;
   background-color: white;
   position: absolute;
   top: 8%;

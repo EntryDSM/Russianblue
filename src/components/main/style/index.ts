@@ -61,17 +61,17 @@ export const MainDescription = styled.p`
     font-size: ${pxToRem(30)}rem;
     > span {
       color: ${color.main};
-      font-weight: 600;
+      font-weight: 500;
       font-size: ${pxToRem(34)}rem;
     }
   }
 `;
 
-export const MainButton = styled.button<{ disabled: boolean }>`
+export const MainButton = styled.button<{ isAble: boolean }>`
   width: ${pxToRem(360) * (4 / 5)}rem;
   height: ${pxToRem(100) * (4 / 5)}rem;
   border-radius: ${pxToRem(18)}rem;
-  background-color: ${color.main};
+  background-color: ${props => (props.isAble ? color.main : color.fail)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +80,7 @@ export const MainButton = styled.button<{ disabled: boolean }>`
   flex-shrink: 0;
   transition: all 0.3s;
   outline: none;
-  cursor: ${props => (props.disabled ? 'pointer' : 'disable')};
+  cursor: ${props => (props.isAble ? 'pointer' : 'not-allowed')};
   > div {
     width: ${pxToRem(17)}rem;
     height: ${pxToRem(3)}rem;
@@ -104,12 +104,25 @@ export const MainButton = styled.button<{ disabled: boolean }>`
   }
 `;
 
-export const Progress = styled.div``;
+export const Progress = styled.div`
+  div:nth-child(1) > .Icon > .background {
+    transition-delay: 200ms;
+  }
+  div:nth-child(3) > .Icon > .background {
+    transition-delay: 400ms;
+  }
+  div:nth-child(5) > .Icon > .background {
+    transition-delay: 600ms;
+  }
+  div:nth-child(7) > .Icon > .background {
+    transition-delay: 800ms;
+  }
+`;
 
 export const ProgressText = styled.p<{ isNow: boolean; isPassed: boolean }>`
   color: ${({ isNow, isPassed }) => (isNow ? color.main : isPassed ? 'black' : color.fail)};
   font-size: ${pxToRem(25)}rem;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 export const ProgressSubText = styled.p`
@@ -133,10 +146,13 @@ export const ProgressIcon = styled.div<{ isPassed: boolean }>`
   background-color: white;
   overflow: hidden;
   position: relative;
+  transition: all 1s;
   > .background {
     width: 100%;
-    height: ${props => (props.isPassed ? '100%' : '0%')};
+    height: 100%;
+    opacity: ${({ isPassed }) => (isPassed ? '1' : '0')};
     transition: all 0.5s;
+    transition-timing-function: linear;
     position: absolute;
     background-color: ${color.main};
   }
@@ -146,6 +162,7 @@ export const ProgressIcon = styled.div<{ isPassed: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.5s;
     ${props =>
       props.isPassed
         ? css`

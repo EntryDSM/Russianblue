@@ -17,6 +17,7 @@ const InitState: IUserState = {
   isReceiveMail: false,
   studyPlanLength: 0,
   selfIntroduceLength: 0,
+  applicationType: '',
   error: {
     status: 0,
     message: '',
@@ -62,12 +63,13 @@ const userReducer = (state: IUserState = InitState, action: userActionType): IUs
     case GET_USER_SUCCESS: {
       return {
         ...state,
-        phoneNumber: action.payload.email,
+        phoneNumber: action.payload.phoneNumber,
         name: action.payload.name,
-        isfinalSubmitDone: action.payload.is_submit,
-        isReceiveMail: action.payload.is_printed_arrived,
-        studyPlanLength: action.payload.study_plan,
-        selfIntroduceLength: action.payload.self_introduce,
+        isfinalSubmitDone: action.payload.isfinalSubmitDone,
+        isReceiveMail: action.payload.isReceiveMail,
+        studyPlanLength: action.payload.studyPlanLength,
+        selfIntroduceLength: action.payload.selfIntroduceLength,
+        applicationType: action.payload.applicationType,
       };
     }
     default: {

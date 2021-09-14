@@ -21,6 +21,7 @@ export const HeaderIcon = styled.div`
   width: ${pxToRem(96)}rem;
   height: ${pxToRem(30)}rem;
   background-image: url(${logo});
+  cursor: pointer;
 `;
 
 export const HeaderMenu = styled.div`
@@ -39,7 +40,7 @@ export const HeaderDropDown = styled.label`
   }
   > div {
     width: ${pxToRem(337)}rem;
-    transform: translate(-230px, 0px);
+    transform: translate(-133px, 0px);
     cursor: default;
   }
   > input:checked ~ div {
@@ -135,12 +136,12 @@ export const HeaderDropdownContentProcessSubText = styled.p`
 `;
 
 export const HeaderDropdownContentProcessButton = styled.button`
-  width: ${pxToRem(53)}rem;
-  height: ${pxToRem(19)}rem;
+  width: ${pxToRem(60)}rem;
+  height: ${pxToRem(25)}rem;
   border-radius: 2px;
   background-color: ${color.main};
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 500;
   color: #ffffff;
   border: none;
   margin-left: ${pxToRem(72)}rem;

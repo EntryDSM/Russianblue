@@ -52,6 +52,7 @@ const initState: InformationState = {
   stdClass: '',
   stdNumber: '',
   schoolName: '',
+  searchSchoolName: '',
   totalScore: '0',
   photoFileName: '',
   pictureUrl: '',
@@ -196,8 +197,8 @@ const informationReducer = (
         postCode: action.payload.post_code,
         photoFileName: action.payload.photo_file_name,
         stdGrade: action.payload.student_number ? action.payload.student_number.slice(0, 1) : '',
-        stdClass: action.payload.student_number ? action.payload.student_number.slice(1, 2) : '',
-        stdNumber: action.payload.student_number ? action.payload.student_number.slice(2) : '',
+        stdClass: action.payload.student_number ? action.payload.student_number.slice(1, 3) : '',
+        stdNumber: action.payload.student_number ? action.payload.student_number.slice(3) : '',
         schoolName: action.payload.school_name,
         schoolCode: action.payload.school_code,
         schoolTel: action.payload.school_tel,
@@ -227,9 +228,10 @@ const informationReducer = (
     case SEARCH_SCHOOL:
       return {
         ...state,
-        schoolName: action.payload.name,
+        searchSchoolName: action.payload.name,
         size: action.payload.size,
         page: action.payload.page,
+        content: action.payload.name === state.searchSchoolName ? state.content : [],
       };
     case SEARCH_SCHOOL_SUCCESS:
       return {

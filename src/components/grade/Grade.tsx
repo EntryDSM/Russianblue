@@ -47,7 +47,6 @@ const Grade: FC<Props> = ({
   }, [graduated]);
 
   const pagination = useMemo(() => {
-    console.log(volunteerTime, absence, leave, lateness, truancy, grade);
     if (
       volunteerTime &&
       grade.korean !== 'XXXXXX' &&
@@ -58,9 +57,9 @@ const Grade: FC<Props> = ({
       grade.social !== 'XXXXXX' &&
       grade.technical !== 'XXXXXX'
     ) {
-      return <Pagination prevPagePath={'/'} nextPagePath={'/introduction'} isNextPage />;
+      return <Pagination prevPagePath={'/information'} nextPagePath={'/introduction'} isNextPage />;
     } else {
-      return <Pagination prevPagePath={'/'} />;
+      return <Pagination prevPagePath={'/information'} />;
     }
   }, [volunteerTime, absence, leave, lateness, truancy, grade]);
 

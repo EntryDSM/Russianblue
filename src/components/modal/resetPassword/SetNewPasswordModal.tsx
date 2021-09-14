@@ -41,7 +41,7 @@ const SetNewPasswordModal: FC<Props> = ({ goNext, goPrev }) => {
         margin='0px 0px 15px 0px'
         placeholder='새로운 비밀번호'
       />
-      <S.ModalSubTitle>영문(대소문자 구분), 숫자 포함 8자리 이상</S.ModalSubTitle>
+      <S.ModalSubTitle>영문(대소문자 구분), 숫자 포함 8자리 이상 특수문자 필수</S.ModalSubTitle>
       <S.ModalMoveButtonWrapper>
         <MoveButton text='이전' type='prev' buttonClickHandler={goPrev} />
         <MoveButton text='다음' type='next' buttonClickHandler={goNext} disable={!isNextAble} />

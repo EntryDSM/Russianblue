@@ -30,7 +30,7 @@ const PhoneNumberColumn: FC<Props> = ({
   };
   const description = useMemo(() => {
     if (isSendVertifyCode) {
-      return '해당 전화번호로 인증번호를 보냈습니다.';
+      return '해당 이메일로 인증번호를 보냈습니다.';
     }
     if (error.type === SEND_VERTIFY_CODE && error.status === 400) {
       return '이메일을 확인해 주세요.';

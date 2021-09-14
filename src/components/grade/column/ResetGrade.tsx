@@ -51,13 +51,10 @@ const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
   const gradeBtn = useMemo(() => {
     return GRADE.map(grade => {
       return (
-        <S.GradeBtn
-          key={grade.id}
-          data-id={grade.id}
-          onClick={gradeBtnClickHandler}
-          isClick={isClick[grade.id]}
-        >
-          {grade.grade}
+        <S.GradeBtn key={grade.id} isClick={isClick[grade.id]} onClick={gradeBtnClickHandler}>
+          <div onClick={gradeBtnClickHandler} data-id={grade.id}>
+            {grade.grade}
+          </div>
         </S.GradeBtn>
       );
     });

@@ -4,15 +4,13 @@ import {
   resetPasswordActionType,
   VERTIFY_CODE,
   VERTIFY_PHONE_NUMBER,
-} from '../../action/resetPassword';
-import {
   CHECK_VERTIFY_CODE_FAILURE,
   CHECK_VERTIFY_CODE_SUCCESS,
   RESET_PASSWORD_ERROR,
   RESET_STATE,
   SEND_RESET_PASSWORD_VERTIFY_CODE_FAILURE,
   SEND_RESET_PASSWORD_VERTIFY_CODE_SUCCESS,
-} from '../../action/resetPassword/interface';
+} from '../../action/resetPassword';
 
 const initState: IResetPasswordState = {
   vertifyCode: '',

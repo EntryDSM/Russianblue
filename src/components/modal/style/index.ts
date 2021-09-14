@@ -177,7 +177,7 @@ export const ModalTimer = styled.div<{ top?: number; bottom?: number; left?: num
   justify-content: center;
   > p {
     color: ${color.main};
-    font-weight: 800;
+    font-weight: 600;
     font-size: ${pxToRem(19)}rem;
   }
 `;
@@ -214,7 +214,7 @@ export const ModalNotice = styled.div`
 
 export const ModalNoticeTitle = styled.div`
   font-size: ${pxToRem(30)}rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: ${pxToRem(12)}rem;
 `;
 
