@@ -15,6 +15,12 @@ const GradeColumn: FC<Props> = ({ setInput, stdGrade, stdClass, stdNumber }) => 
     setInput({ name: e.target.name, value: e.target.value });
   };
 
+  const numberMaxLength = number => {
+    if (number ? number.length > 2 : false) {
+      return number.slice(0, 2);
+    } else return number;
+  };
+
   const showGrade = useMemo(() => {
     return GRADE.map(grades => {
       return (
@@ -23,12 +29,12 @@ const GradeColumn: FC<Props> = ({ setInput, stdGrade, stdClass, stdNumber }) => 
             width={63}
             height={42}
             inputChangeHandler={gradeChangeHandler}
-            defaultValue={
+            value={
               grades.name === 'stdGrade'
-                ? stdGrade
+                ? numberMaxLength(stdGrade)
                 : grades.name === 'stdClass'
-                ? stdClass
-                : stdNumber
+                ? numberMaxLength(stdClass)
+                : numberMaxLength(stdNumber)
             }
             name={grades.name}
           />

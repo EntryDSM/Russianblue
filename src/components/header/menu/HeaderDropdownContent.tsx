@@ -9,17 +9,31 @@ interface Props {
   isReceiveMail: boolean;
   studyPlanLength: number;
   selfIntroduceLength: number;
+  applicationType: string;
+  finalPdfDownloadButtonClickHandler: () => void;
 }
 
 const HeaderDropdownContent: FC<Props> = ({
   name,
-  isLogin,
   phoneNumber,
   isfinalSubmitDone,
   isReceiveMail,
   studyPlanLength,
   selfIntroduceLength,
+  applicationType,
+  finalPdfDownloadButtonClickHandler,
 }) => {
+  const getApplicationTypeText = (applicationType: string) => {
+    switch (applicationType) {
+      case 'COMMON':
+        return '일반 전형';
+      case 'MEISTER':
+        return '마이스터 전형';
+      case 'SOCIAL':
+        return '사회통합 전형';
+    }
+  };
+
   const contentClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -39,11 +53,14 @@ const HeaderDropdownContent: FC<Props> = ({
         <div>
           <S.HeaderDropdownContentProcessText isComplete={isfinalSubmitDone}>
             {isfinalSubmitDone ? '완료' : '미완료'}
-            <S.HeaderDropdownContentProcessButton>제출 서류</S.HeaderDropdownContentProcessButton>
+            {isfinalSubmitDone ? (
+              <S.HeaderDropdownContentProcessButton onClick={finalPdfDownloadButtonClickHandler}>
+                제출 서류
+              </S.HeaderDropdownContentProcessButton>
+            ) : (
+              ''
+            )}
           </S.HeaderDropdownContentProcessText>
-          <S.HeaderDropdownContentProcessSubText>
-            2021년 12월 20일 - 20시 21분 제출 완료
-          </S.HeaderDropdownContentProcessSubText>
         </div>
       </S.HeaderDropdownColumn>
       <S.HeaderDropdownColumn>
@@ -54,7 +71,9 @@ const HeaderDropdownContent: FC<Props> = ({
       </S.HeaderDropdownColumn>
       <S.HeaderDropdownColumn>
         <S.HeaderDropdownContentTitle>전형 구분</S.HeaderDropdownContentTitle>
-        <S.HeaderDropdownContentProcessText isComplete={false}></S.HeaderDropdownContentProcessText>
+        <S.HeaderDropdownContentProcessText isComplete={false}>
+          {getApplicationTypeText(applicationType)}
+        </S.HeaderDropdownContentProcessText>
       </S.HeaderDropdownColumn>
       <S.HeaderDropdownColumn>
         <S.HeaderDropdownContentTitle>자기소개서</S.HeaderDropdownContentTitle>

@@ -19,77 +19,25 @@ import {
   SEND_VERTIFY_CODE_FAILURE,
   SEND_VERTIFY_CODE,
   CHECK_VERTIFY_CODE,
+  RESET,
 } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setName = (payload: string) => ({
-  type: NAME,
-  payload,
-});
-
-export const setPassword = (payload: string) => ({
-  type: PASSWORD,
-  payload,
-});
-
-export const setPhoneNumber = (payload: string) => ({
-  type: PHONE_NUMBER,
-  payload,
-});
-
-export const setPhoneCode = (payload: string) => ({
-  type: PHONE_CODE,
-  payload,
-});
-
-export const setRuleCheck = (payload: boolean) => ({
-  type: RULE_CHECK,
-  payload,
-});
-
-export const sendVertifyCode = (payload: signupVertifyCodeRequest) => ({
-  type: SEND_VERTIFY_CODE,
-  payload,
-});
-
-export const signup = (payload: signupRequest) => ({
-  type: SIGNUP,
-  payload,
-});
-
-export const checkVertifyCode = (payload: checkVertifyRequest) => ({
-  type: CHECK_VERTIFY_CODE,
-  payload,
-});
-
-export const signupSuccess = (payload: boolean) => ({
-  type: SIGNUP_SUCCESS,
-  payload,
-});
-
-export const sendVertifyCodeSuccess = (payload: boolean) => ({
-  type: SEND_VERTIFY_CODE_SUCCESS,
-  payload,
-});
-
-export const checkVertifyCodeSuccess = (payload: boolean) => ({
-  type: CHECK_VERTIFY_CODE_SUCCESS,
-  payload,
-});
-
-export const signupFailure = (payload: error) => ({
-  type: SIGNUP_FAILURE,
-  payload,
-});
-
-export const checkVertifyCodeFailure = (payload: error) => ({
-  type: CHECK_VERTIFY_CODE_FAILURE,
-  payload,
-});
-
-export const sendVertifyCodeFailure = (payload: error) => ({
-  type: SEND_VERTIFY_CODE_FAILURE,
-  payload,
-});
+export const setName = createAction(NAME)<string>();
+export const setPassword = createAction(PASSWORD)<string>();
+export const setPhoneNumber = createAction(PHONE_NUMBER)<string>();
+export const setPhoneCode = createAction(PHONE_CODE)<string>();
+export const setRuleCheck = createAction(RULE_CHECK)<boolean>();
+export const sendVertifyCode = createAction(SEND_VERTIFY_CODE)<signupVertifyCodeRequest>();
+export const signup = createAction(SIGNUP)<signupRequest>();
+export const checkVertifyCode = createAction(CHECK_VERTIFY_CODE)<checkVertifyRequest>();
+export const signupSuccess = createAction(SIGNUP_SUCCESS)<boolean>();
+export const sendVertifyCodeSuccess = createAction(SEND_VERTIFY_CODE_SUCCESS)<boolean>();
+export const checkVertifyCodeSuccess = createAction(CHECK_VERTIFY_CODE_SUCCESS)<boolean>();
+export const signupFailure = createAction(SIGNUP_FAILURE)<error>();
+export const checkVertifyCodeFailure = createAction(CHECK_VERTIFY_CODE_FAILURE)<error>();
+export const sendVertifyCodeFailure = createAction(SEND_VERTIFY_CODE_FAILURE)<error>();
+export const reset = createAction(RESET)();
 
 export {
   NAME,
@@ -106,6 +54,7 @@ export {
   CHECK_VERTIFY_CODE,
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
+  RESET,
 };
 
 export type signupActionType =
@@ -122,4 +71,5 @@ export type signupActionType =
   | ReturnType<typeof checkVertifyCodeFailure>
   | ReturnType<typeof signup>
   | ReturnType<typeof sendVertifyCode>
-  | ReturnType<typeof checkVertifyCode>;
+  | ReturnType<typeof checkVertifyCode>
+  | ReturnType<typeof reset>;

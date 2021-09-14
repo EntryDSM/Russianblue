@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import { XBtn, search } from '../../../assets/modal';
-import { schoolArrayType, searchSchoolQueryType } from 'src/constance/information';
+import { schoolArrayType, searchSchoolQueryType } from '../../../constance/information';
+import { useInView } from 'react-intersection-observer';
 
 interface Props {
   content: Array<schoolArrayType>;
@@ -20,8 +21,10 @@ const SearchSchoolModal: FC<Props> = ({
   setSchoolName,
   setIsClickSearchBtn,
 }) => {
-  const [page, setPage] = useState(0);
-  const [searchText, setSearchText] = useState('');
+  const [page, setPage] = useState<number>(0);
+  const [searchText, setSearchText] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const { ref, inView } = useInView();
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -33,6 +36,7 @@ const SearchSchoolModal: FC<Props> = ({
 
   const searchBtnClickHandler = () => {
     searchSchool({ name: searchText, size: 10, page: 0 });
+    setPage(0);
   };
 
   const schoolNameClickHandler = e => {
@@ -44,33 +48,27 @@ const SearchSchoolModal: FC<Props> = ({
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       searchSchool({ name: searchText, size: 10, page: 0 });
-    }
-  };
-
-  const _infiniteScroll = () => {
-    let scrollHeight = document.querySelector('.contentBox').scrollHeight;
-    let scrollTop = document.querySelector('.contentBox').scrollTop;
-    let clientHeight = document.querySelector('.contentBox').clientHeight;
-
-    if (scrollTop > 0 && scrollTop + clientHeight >= scrollHeight) {
-      if (page + 1 <= totalPages) {
-        setPage(prevPage => prevPage + 1);
-      } else return;
+      setPage(0);
     }
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', _infiniteScroll, true);
-    return () => {
-      window.removeEventListener('scroll', _infiniteScroll, true);
-    };
-  }, []);
+    if (content.length !== 0) {
+      if (!loading) {
+        setLoading(true);
+        if (page + 1 < totalPages) {
+          setPage(prevPage => prevPage + 1);
+          setLoading(false);
+        }
+      }
+    }
+  }, [inView]);
 
   useEffect(() => {
     if (page !== 0) {
       searchSchool({ name: searchText, size: 10, page: page });
     }
-  }, [page, content]);
+  }, [page]);
 
   const showSchool = useMemo(() => {
     if (content) {
@@ -102,6 +100,7 @@ const SearchSchoolModal: FC<Props> = ({
         </S.ModalSearchSChoolInputDiv>
         <S.ModalSearchSchoolContentBox className='contentBox'>
           {showSchool}
+          {!loading && <div ref={ref} />}
         </S.ModalSearchSchoolContentBox>
       </S.ModalSearchSchool>
     </S.ModalSearchSchoolWrapper>

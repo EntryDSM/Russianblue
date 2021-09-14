@@ -10,17 +10,6 @@ interface Props {
   setRemark: (payload: string) => void;
   applicationRemark: string;
   applicationType: string;
-  isDaejeon: boolean;
-  educationalStatus: string;
-  graduationYear: number;
-  graduationMonth: number;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
 const ChooseType: FC<Props> = ({
@@ -30,11 +19,6 @@ const ChooseType: FC<Props> = ({
   setRemark,
   applicationRemark,
   applicationType,
-  educationalStatus,
-  isDaejeon,
-  graduationYear,
-  graduationMonth,
-  autoSaveSelectType,
 }) => {
   const [isCheck, setIsCheck] = useState({ regular: false, meister: false, social: false });
   const [disabled, setDisabled] = useState('disabled');
@@ -49,12 +33,14 @@ const ChooseType: FC<Props> = ({
         break;
       case 'SOCIAL':
         setIsCheck({ regular: false, meister: false, social: true });
+        setDisabled('normal');
         break;
       default:
         setIsCheck({ regular: false, meister: false, social: false });
         break;
     }
     if (applicationType === 'SOCIAL') {
+      if (applicationRemark === null) setSocialType('사회통합전형');
       if (applicationRemark !== null) {
         setDisabled('normal');
         switch (applicationRemark) {
@@ -81,20 +67,6 @@ const ChooseType: FC<Props> = ({
     }
   }, [applicationType]);
 
-  useEffect(() => {
-    let graduatedDate = '';
-    if (String(graduationMonth).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedDate = String(graduationYear) + String(graduationMonth);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
-  }, [applicationType]);
-
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
     switch (dataId) {
@@ -102,15 +74,13 @@ const ChooseType: FC<Props> = ({
         setIsCheck({ regular: true, meister: false, social: false });
         setDisabled('disabled');
         setType('COMMON');
-        if (applicationRemark !== 'PRIVILEGED_ADMISSION' && applicationRemark !== 'NATIONAL_MERIT')
-          setRemark(null);
+        setRemark(null);
         break;
       case 'meister':
         setIsCheck({ regular: false, meister: true, social: false });
         setDisabled('disabled');
         setType('MEISTER');
-        if (applicationRemark !== 'PRIVILEGED_ADMISSION' && applicationRemark !== 'NATIONAL_MERIT')
-          setRemark(null);
+        setRemark(null);
         break;
       case 'social':
         setIsCheck({ regular: false, meister: false, social: true });
@@ -131,7 +101,9 @@ const ChooseType: FC<Props> = ({
             <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
               {isCheck[data.id] && <S.CheckedCircle />}
             </S.CheckCircle>
-            <p>{data.content}</p>
+            <p onClick={onCheckBtnClick} data-id={data.id}>
+              {data.content}
+            </p>
           </S.SelectBox>
         );
       })}
@@ -145,13 +117,6 @@ const ChooseType: FC<Props> = ({
           setSocialType={setSocialType}
           disabled={disabled}
           setDisabled={setDisabled}
-          graduationMonth={graduationMonth}
-          applicationType={applicationType}
-          isDaejeon={isDaejeon}
-          educationalStatus={educationalStatus}
-          graduationYear={graduationYear}
-          applicationRemark={applicationRemark}
-          autoSaveSelectType={autoSaveSelectType}
         />
       </S.SelectBox>
     </S.Line>

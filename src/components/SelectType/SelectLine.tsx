@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import * as S from './style';
 import {
   ChooseType,
@@ -6,6 +6,7 @@ import {
   ChooseGraduation,
   ChooseGraduationDate,
   ChooseRemark,
+  HeadCount,
 } from './column';
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
   graduatedAt: string;
   graduationMonth: number;
   graduationYear: number;
+  headcount: string;
   applicationRemark: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
@@ -24,13 +26,7 @@ interface Props {
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
+  setHeadCount: (payload: string) => void;
 }
 
 const SelectLine: FC<Props> = ({
@@ -42,6 +38,7 @@ const SelectLine: FC<Props> = ({
   graduationMonth,
   graduationYear,
   applicationRemark,
+  headcount,
   setType,
   setSocialType,
   setArea,
@@ -49,50 +46,38 @@ const SelectLine: FC<Props> = ({
   setGraduationMonth,
   setGraduationYear,
   setRemark,
-  autoSaveSelectType,
+  setHeadCount,
 }) => {
   const [isProspective, setIsProspective] = useState(false);
+  const [isHeadCount, setIsHeadCount] = useState<boolean>(false);
+
+  const showHeadCount = useMemo(() => {
+    if (applicationRemark === 'PRIVILEGED_ADMISSION') {
+      setIsHeadCount(true);
+      return <HeadCount headcount={headcount} setHeadCount={setHeadCount} />;
+    } else {
+      setIsHeadCount(false);
+      setHeadCount(null);
+    }
+  }, [applicationRemark]);
+
   return (
-    <S.SelectLine>
+    <S.SelectLine isHeadCount={isHeadCount}>
       <ChooseType
-        autoSaveSelectType={autoSaveSelectType}
         socialType={socialType}
         setType={setType}
         setSocialType={setSocialType}
         applicationType={applicationType}
         applicationRemark={applicationRemark}
-        isDaejeon={isDaejeon}
-        educationalStatus={educationalStatus}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
         setRemark={setRemark}
       />
-      <ChooseRegion
-        autoSaveSelectType={autoSaveSelectType}
-        setArea={setArea}
-        isDaejeon={isDaejeon}
-        applicationType={applicationType}
-        applicationRemark={applicationRemark}
-        educationalStatus={educationalStatus}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
-      />
+      <ChooseRegion setArea={setArea} isDaejeon={isDaejeon} />
       <ChooseGraduation
-        autoSaveSelectType={autoSaveSelectType}
         setGraduation={setGraduation}
         setIsProspective={setIsProspective}
         educationalStatus={educationalStatus}
-        applicationType={applicationType}
-        applicationRemark={applicationRemark}
-        isDaejeon={isDaejeon}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
       />
       <ChooseGraduationDate
-        autoSaveSelectType={autoSaveSelectType}
-        applicationType={applicationType}
-        applicationRemark={applicationRemark}
-        isDaejeon={isDaejeon}
         graduatedAt={graduatedAt}
         educationalStatus={educationalStatus}
         graduationMonth={graduationMonth}
@@ -102,15 +87,11 @@ const SelectLine: FC<Props> = ({
         isProspective={isProspective}
       />
       <ChooseRemark
-        autoSaveSelectType={autoSaveSelectType}
         setRemark={setRemark}
         applicationRemark={applicationRemark}
         applicationType={applicationType}
-        isDaejeon={isDaejeon}
-        educationalStatus={educationalStatus}
-        graduationYear={graduationYear}
-        graduationMonth={graduationMonth}
       />
+      {showHeadCount}
     </S.SelectLine>
   );
 };

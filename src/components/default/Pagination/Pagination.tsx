@@ -8,9 +8,16 @@ interface Props {
   prevPagePath?: string;
   nextPagePath?: string;
   isNextPage?: boolean;
+  setIsOpenSubmitModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Pagination: FC<Props> = ({ isNextPage, isQualification, prevPagePath, nextPagePath }) => {
+const Pagination: FC<Props> = ({
+  isNextPage,
+  isQualification,
+  prevPagePath,
+  nextPagePath,
+  setIsOpenSubmitModal,
+}) => {
   const pathname = useLocation().pathname.slice(1);
   const [nowPage, setNowPage] = useState({
     'select-type': false,
@@ -39,9 +46,16 @@ const Pagination: FC<Props> = ({ isNextPage, isQualification, prevPagePath, next
   }, [isQualification, nowPage]);
 
   const goToNextPage = useMemo(() => {
-    if (isNextPage) return <PageBtn content='다음' nextPagePath={nextPagePath} />;
+    if (isNextPage)
+      return (
+        <PageBtn
+          content='다음'
+          nextPagePath={nextPagePath}
+          setIsOpenSubmitModal={setIsOpenSubmitModal}
+        />
+      );
     else return <PageBtn content='다음' disabled />;
-  }, [isNextPage]);
+  }, [isNextPage, nextPagePath]);
 
   return (
     <S.Page>

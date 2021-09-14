@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import * as S from './style';
 import { SCHOOL, SELECTTYPE } from '../../constance/SelectType';
 import Pagination from '../default/Pagination';
 import SelectLine from './SelectLine';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   applicationType: string;
@@ -13,6 +14,8 @@ interface Props {
   graduationMonth: number;
   graduationYear: number;
   applicationRemark: string;
+  isSuccessSaveSelectType: boolean;
+  headcount: string;
   setType: (payload: string) => void;
   setSocialType: (payload: string) => void;
   setArea: (payload: boolean) => void;
@@ -20,20 +23,7 @@ interface Props {
   setGraduationYear: (payload: number) => void;
   setGraduationMonth: (payload: number) => void;
   setRemark: (payload: string) => void;
-  selectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
+  setHeadCount: (payload: string) => void;
 }
 
 const SelectType: FC<Props> = ({
@@ -45,14 +35,16 @@ const SelectType: FC<Props> = ({
   graduationMonth,
   graduationYear,
   applicationRemark,
+  isSuccessSaveSelectType,
+  headcount,
   setType,
   setSocialType,
   setArea,
-  autoSaveSelectType,
   setGraduation,
   setGraduationMonth,
   setGraduationYear,
   setRemark,
+  setHeadCount,
 }) => {
   const pagination = useMemo(() => {
     if (
@@ -62,17 +54,41 @@ const SelectType: FC<Props> = ({
       graduationYear &&
       graduationMonth
     ) {
-      if (educationalStatus === 'QUALIFICATION_EXAM')
-        return (
-          <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage isQualification />
-        );
-      else return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
+      if (
+        applicationType !== 'SOCIAL' ||
+        (applicationType === 'SOCIAL' &&
+          applicationRemark !== null &&
+          applicationRemark !== 'NATIONAL_MERIT' &&
+          applicationRemark !== 'PRIVILEGED_ADMISSION')
+      ) {
+        if (educationalStatus === 'QUALIFICATION_EXAM')
+          return (
+            <Pagination
+              prevPagePath={'/'}
+              nextPagePath={'/information'}
+              isNextPage
+              isQualification
+            />
+          );
+        else return <Pagination prevPagePath={'/'} nextPagePath={'/information'} isNextPage />;
+      } else {
+        if (educationalStatus === 'QUALIFICATION_EXAM')
+          return <Pagination prevPagePath={'/'} isQualification />;
+        else return <Pagination prevPagePath={'/'} />;
+      }
     } else {
       if (educationalStatus === 'QUALIFICATION_EXAM')
         return <Pagination prevPagePath={'/'} isQualification />;
       else return <Pagination prevPagePath={'/'} />;
     }
-  }, [applicationType, isDaejeon, educationalStatus, graduationYear, graduationMonth]);
+  }, [
+    applicationType,
+    isDaejeon,
+    educationalStatus,
+    graduationYear,
+    graduationMonth,
+    applicationRemark,
+  ]);
 
   return (
     <S.SelectType>
@@ -88,6 +104,7 @@ const SelectType: FC<Props> = ({
         graduationYear={graduationYear}
         applicationRemark={applicationRemark}
         socialType={socialType}
+        headcount={headcount}
         graduatedAt={graduatedAt}
         setType={setType}
         setSocialType={setSocialType}
@@ -96,9 +113,10 @@ const SelectType: FC<Props> = ({
         setGraduationMonth={setGraduationMonth}
         setGraduationYear={setGraduationYear}
         setRemark={setRemark}
-        autoSaveSelectType={autoSaveSelectType}
+        setHeadCount={setHeadCount}
       />
       {pagination}
+      <ToastPopUp isSuccessSave={isSuccessSaveSelectType} />
     </S.SelectType>
   );
 };

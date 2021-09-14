@@ -1,14 +1,10 @@
 import { ACCESS_TOKEN, IS_LOGIN } from './inteface';
+import { createAction } from 'typesafe-actions'
 
-export const setAccessToken = (payload: string) => ({
-  type: ACCESS_TOKEN,
-  payload,
-});
 
-export const setIsLogin = (payload: boolean) => ({
-  type: IS_LOGIN,
-  payload,
-});
+export const setAccessToken = createAction(ACCESS_TOKEN)<string>();
+export const setIsLogin = createAction(IS_LOGIN)<boolean>();
+
 
 export { ACCESS_TOKEN, IS_LOGIN };
 

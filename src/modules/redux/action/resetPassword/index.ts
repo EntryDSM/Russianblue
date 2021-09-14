@@ -20,79 +20,32 @@ import {
   SEND_RESET_PASSWORD_VERTIFY_CODE,
   RESET_STATE,
 } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setNewPassword = (payload: string) => ({
-  type: NEW_PASSWORD,
-  payload,
-});
-
-export const setVertifyCode = (payload: string) => ({
-  type: VERTIFY_CODE,
-  payload,
-});
-
-export const setVertifyPhoneNumber = (payload: string) => ({
-  type: VERTIFY_PHONE_NUMBER,
-  payload,
-});
-
-export const setResetPasswordError = (payload: error) => ({
-  type: RESET_PASSWORD_ERROR,
-  payload,
-});
-
-export const sendResetPasswordVertifyCodeSuccess = () => ({
-  type: SEND_RESET_PASSWORD_VERTIFY_CODE_SUCCESS,
-});
-
-export const sendResetPasswordVertifyCodeFailure = (payload: error) => ({
-  type: SEND_RESET_PASSWORD_VERTIFY_CODE_FAILURE,
-  payload,
-});
-
-export const checkVertifyCodeSuccess = (payload: boolean) => ({
-  type: CHECK_VERTIFY_CODE_SUCCESS,
-  payload,
-});
-
-export const checkVertifyCodeFailure = (payload: error) => ({
-  type: CHECK_VERTIFY_CODE_FAILURE,
-  payload,
-});
-
-export const resetPasswordSuccess = (payload: boolean) => ({
-  type: RESET_PASSWORD_SUCCESS,
-  payload,
-});
-
-export const resetPasswordFailure = (payload: error) => ({
-  type: RESET_PASSWORD_FAILURE,
-  payload,
-});
-
-export const resetPassword = (payload: resetPasswordRequest) => ({
-  type: RESET_PASSWORD,
-  payload,
-});
-
-export const checkVertifyCode = (payload: checkVertifyCodeRequest) => ({
-  type: CHECK_VERTIFY_CODE,
-  payload,
-});
-
-export const sendResetPasswordVertifyCode = (payload: resetPasswordVertifyCodeRequest) => ({
-  type: SEND_RESET_PASSWORD_VERTIFY_CODE,
-  payload,
-});
-
-export const resetState = () => ({
-  type: RESET_STATE,
-});
+export const setNewPassword = createAction(NEW_PASSWORD)<string>();
+export const setVertifyCode = createAction(VERTIFY_CODE)<string>();
+export const setVertifyPhoneNumber = createAction(VERTIFY_PHONE_NUMBER)<string>();
+export const setResetPasswordError = createAction(RESET_PASSWORD_ERROR)<error>();
+export const sendResetPasswordVertifyCodeSuccess = createAction(
+  SEND_RESET_PASSWORD_VERTIFY_CODE_SUCCESS,
+)();
+export const sendResetPasswordVertifyCodeFailure = createAction(
+  SEND_RESET_PASSWORD_VERTIFY_CODE_FAILURE,
+)<error>();
+export const checkVertifyCodeSuccess = createAction(CHECK_VERTIFY_CODE_SUCCESS)<boolean>();
+export const checkVertifyCodeFailure = createAction(CHECK_VERTIFY_CODE_FAILURE)<error>();
+export const resetPasswordSuccess = createAction(RESET_PASSWORD_SUCCESS)<boolean>();
+export const resetPasswordFailure = createAction(RESET_PASSWORD_FAILURE)<error>();
+export const resetPassword = createAction(RESET_PASSWORD)<resetPasswordRequest>();
+export const checkVertifyCode = createAction(CHECK_VERTIFY_CODE)<checkVertifyCodeRequest>();
+export const sendResetPasswordVertifyCode = createAction(
+  SEND_RESET_PASSWORD_VERTIFY_CODE,
+)<resetPasswordVertifyCodeRequest>();
+export const resetState = createAction(RESET_STATE)();
 
 export {
   NEW_PASSWORD,
   RESET_PASSWORD_ERROR,
-  SEND_RESET_PASSWORD_VERTIFY_CODE,
   SEND_RESET_PASSWORD_VERTIFY_CODE_FAILURE,
   SEND_RESET_PASSWORD_VERTIFY_CODE_SUCCESS,
   VERTIFY_CODE,
@@ -102,6 +55,8 @@ export {
   RESET_PASSWORD_FAILURE,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD,
+  CHECK_VERTIFY_CODE,
+  SEND_RESET_PASSWORD_VERTIFY_CODE,
   RESET_STATE,
 };
 export type resetPasswordActionType =

@@ -10,51 +10,20 @@ import {
   REFRESH_TOKEN,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILURE,
+  RESET,
 } from './interface';
+import { createAction } from 'typesafe-actions';
 
-export const setId = (payload: string) => ({
-  type: ID,
-  payload,
-});
-
-export const setPassword = (payload: string) => ({
-  type: PASSWORD,
-  payload,
-});
-
-export const setError = (payload: number) => ({
-  type: ERROR,
-  payload,
-});
-
-export const signinFailure = (payload: error) => ({
-  type: SIGNIN_FAILURE,
-  payload,
-});
-
-export const signinSuccess = (payload: string) => ({
-  type: SIGNIN_SUCCESS,
-  payload,
-});
-
-export const signin = (payload: signinRequest) => ({
-  type: SIGNIN,
-  payload,
-});
-
-export const refreshToken = (payload: { callback: () => void }) => ({
-  type: REFRESH_TOKEN,
-  payload,
-});
-
-export const refreshTokenFailure = (payload: error) => ({
-  type: REFRESH_TOKEN_FAILURE,
-  payload,
-});
-
-export const refreshTokenSuccess = () => ({
-  type: REFRESH_TOKEN_SUCCESS,
-});
+export const setId = createAction(ID)<string>();
+export const setPassword = createAction(PASSWORD)<string>();
+export const setError = createAction(ERROR)<error>();
+export const signinFailure = createAction(SIGNIN_FAILURE)<error>();
+export const signinSuccess = createAction(SIGNIN_SUCCESS)<string>();
+export const signin = createAction(SIGNIN)<signinRequest>();
+export const refreshToken = createAction(REFRESH_TOKEN)<{ callback: () => void }>();
+export const refreshTokenFailure = createAction(REFRESH_TOKEN_FAILURE)<error>();
+export const refreshTokenSuccess = createAction(REFRESH_TOKEN_SUCCESS)();
+export const reset = createAction(RESET)();
 
 export type signinActionType =
   | ReturnType<typeof setId>
@@ -64,7 +33,8 @@ export type signinActionType =
   | ReturnType<typeof signinSuccess>
   | ReturnType<typeof refreshToken>
   | ReturnType<typeof refreshTokenFailure>
-  | ReturnType<typeof refreshTokenSuccess>;
+  | ReturnType<typeof refreshTokenSuccess>
+  | ReturnType<typeof reset>;
 
 export {
   ID,
@@ -76,4 +46,5 @@ export {
   REFRESH_TOKEN,
   REFRESH_TOKEN_FAILURE,
   REFRESH_TOKEN_SUCCESS,
+  RESET,
 };

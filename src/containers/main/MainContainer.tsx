@@ -4,9 +4,11 @@ import { useProcess } from '../../util/hooks/main';
 import { useAuth } from '../../util/hooks/auth';
 import { useModal } from './../../util/hooks/modal';
 import {
+  APPLICATION_PERIOD,
   BEFORE_FIRST_ANNOUNCE,
   BEFORE_INTERVIEW,
   BEFORE_SECOND_ANNOUNCE,
+  END_DATE,
   FIRST_ANNOUNCEMENT,
   INTERVIEW,
   NOT_APPLICATION_PERIOD,
@@ -22,6 +24,7 @@ const MainContainer: FC = () => {
   const authState = useAuth();
   const modalState = useModal();
   const getNowProcess = (status: string) => {
+    console.log(processState.state.processes);
     if (!processState.state.processes[status]) return MainDummyData;
     return processState.state.processes[status];
   };
@@ -34,6 +37,9 @@ const MainContainer: FC = () => {
   const dates = processState.state.date;
 
   const getNowProcessDate = (status: statusType): string => {
+    if (status === APPLICATION_PERIOD) {
+      return dates.filter(date => date.type === END_DATE)[0].date;
+    }
     if (status === NOT_APPLICATION_PERIOD)
       return dates.filter(date => date.type === START_DATE)[0].date;
     if (status === BEFORE_FIRST_ANNOUNCE) {

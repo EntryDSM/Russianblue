@@ -20,6 +20,7 @@ interface InformationState {
   stdClass: string;
   stdNumber: string;
   schoolName: string;
+  searchSchoolName: string;
   totalScore: string;
   photoFileName: string;
   pictureUrl: string;
@@ -32,6 +33,7 @@ interface InformationState {
   isSuccessSaveUserPicture: boolean | undefined;
   isSuccessSaveInformation: boolean | undefined;
   isSuccessSaveGraduateInformation: boolean | undefined;
+  isSuccessSaveGedScore: boolean | undefined;
   isSuccessGetSearchSchool: boolean | undefined;
 }
 

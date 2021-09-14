@@ -21,11 +21,13 @@ export const Title = styled.p`
   letter-spacing: 1.05px;
 `;
 
-export const SelectLine = styled.div`
+export const SelectLine = styled.div<{ isHeadCount: boolean }>`
   width: 1220px;
-  height: 440px;
   border-top: 3px solid ${color.main};
   border-bottom: 3px solid ${color.main};
+  ${({ isHeadCount }) => css`
+    height: ${isHeadCount ? '528px' : '440px'};
+  `}
 `;
 
 export const Line = styled.div`
@@ -40,7 +42,7 @@ export const Line = styled.div`
 `;
 
 export const LineTitle = styled.p`
-  width: 92px;
+  width: 103px;
   font-size: 21px;
   text-align: center;
   margin-right: 97px;
@@ -51,24 +53,36 @@ export const LineTitle = styled.p`
   }
 `;
 
-export const CheckCircle = styled.div`
+export const CheckCircle = styled.div<{
+  isBlock?: boolean;
+}>`
   width: 21px;
   height: 21px;
   border: 1px solid black;
-  border-radius: 11px;
+  border-radius: 50%;
   cursor: pointer;
   margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({ isBlock }) => css`
+    border: 1px solid ${isBlock ? '#7E7E7E' : '#000000'};
+  `}
 `;
 
-export const CheckedCircle = styled.div`
+export const CheckedCircle = styled.div<{
+  isBlock?: boolean;
+}>`
   width: 13px;
   height: 13px;
-  border-radius: 7px;
+  border-radius: 50%;
   background-color: ${color.main};
-  margin: 4px;
+  ${({ isBlock }) => css`
+    background-color: ${isBlock ? '#7E7E7E' : color.main};
+  `}
 `;
 
-export const SelectBox = styled.div<{ margin?: number }>`
+export const SelectBox = styled.div<{ margin?: number; isBlock?: boolean }>`
   height: 21px;
   display: flex;
   align-items: center;
@@ -76,8 +90,12 @@ export const SelectBox = styled.div<{ margin?: number }>`
     margin-right: ${margin}px;
   `}
   > p {
-    height: 18px;
     font-size: 18px;
+    cursor: pointer;
+    height: 28px;
+    ${({ isBlock }) => css`
+      color: ${isBlock ? '#595959' : '000000'};
+    `}
   }
 `;
 
@@ -110,7 +128,7 @@ export const Select = styled.div<{
   height: 42px;
   border-radius: 5px;
   box-sizing: border-box;
-  padding: 10px 16px;
+  padding: 6px 16px;
   position: relative;
   cursor: pointer;
 `;
@@ -129,6 +147,7 @@ export const SelectContent = styled.div<{
   }
   > img {
     width: 13px;
+    margin-top: 2px;
   }
 `;
 

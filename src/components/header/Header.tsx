@@ -3,7 +3,6 @@ import * as S from './style';
 import HeaderMenu from './menu';
 import { error } from '../../models/error';
 import { useHistory } from 'react-router-dom';
-import { refreshToken } from '../../util/api/signin';
 
 interface Props {
   isLogin: boolean;
@@ -14,6 +13,7 @@ interface Props {
   studyPlanLength: number;
   selfIntroduceLength: number;
   setIsLogin: (value: boolean) => void;
+  applicationType: string;
   setAccessToken: (value: string) => void;
   error: error;
 }
@@ -24,6 +24,7 @@ const Header: FC<Props> = props => {
     props.setIsLogin(false);
     props.setAccessToken('');
     localStorage.removeItem('access_token');
+    history.push('/');
   };
   const logoClickHandler = () => {
     history.push('/');

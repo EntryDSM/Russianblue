@@ -16,77 +16,23 @@ import {
   SAVE_BOTH_FAILURE,
 } from './interface';
 import { error } from '../../../../models/error';
+import { createAction } from 'typesafe-actions';
 
-export const setSelfIntroduction = (payload: string) => ({
-  type: SELF_INTRODUCTION,
-  payload,
-});
-
-export const setStudyPlan = (payload: string) => ({
-  type: STUDY_PLAN,
-  payload,
-});
-
-export const saveBoth = (payload: { selfIntroduction: string; studyPlan: string }) => ({
-  type: SAVE_BOTH,
-  payload,
-});
-
-export const saveBothSuccess = (payload: boolean) => ({
-  type: SAVE_BOTH_SUCCESS,
-  payload,
-});
-
-export const saveBothFailure = (payload: error) => ({
-  type: SAVE_BOTH_FAILURE,
-  payload,
-});
-
-export const selfIntroductionSuccess = () => ({
-  type: SELF_INTRODUCTION_SUCCESS,
-});
-
-export const selfIntroductionFailure = (payload: error) => ({
-  type: SELF_INTRODUCTION_FAILURE,
-  payload,
-});
-
-export const getSelfIntroductionSuccess = (payload: string) => ({
-  type: GET_SELF_INTRODUCTION_SUCCESS,
-  payload,
-});
-
-export const getSelfIntroductionFailure = (payload: error) => ({
-  type: GET_SELF_INTRODUCTION_FAILURE,
-  payload,
-});
-
-export const studyPlanSuccess = () => ({
-  type: STUDY_PLAN_SUCCESS,
-});
-
-export const studyPlanFailure = (payload: error) => ({
-  type: STUDY_PLAN_FAILURE,
-  payload,
-});
-
-export const getStudyPlanSuccess = (payload: string) => ({
-  type: GET_STUDY_PLAN_SUCCESS,
-  payload,
-});
-
-export const getStudyPlanFailure = (payload: error) => ({
-  type: GET_STUDY_PLAN_FAILURE,
-  payload,
-});
-
-export const getSelfIntroduction = () => ({
-  type: GET_SELF_INTRODUCTION,
-});
-
-export const getStudyPlan = () => ({
-  type: GET_STUDY_PLAN,
-});
+export const setSelfIntroduction = createAction(SELF_INTRODUCTION)<string>();
+export const setStudyPlan = createAction(STUDY_PLAN)<string>();
+export const saveBoth = createAction(SAVE_BOTH)<{ selfIntroduction: string; studyPlan: string }>();
+export const saveBothSuccess = createAction(SAVE_BOTH_SUCCESS)<boolean>();
+export const saveBothFailure = createAction(SAVE_BOTH_FAILURE)<error>();
+export const selfIntroductionSuccess = createAction(SELF_INTRODUCTION_SUCCESS)();
+export const selfIntroductionFailure = createAction(SELF_INTRODUCTION_FAILURE)<error>();
+export const getSelfIntroductionSuccess = createAction(GET_SELF_INTRODUCTION_SUCCESS)<string>();
+export const getSelfIntroductionFailure = createAction(GET_SELF_INTRODUCTION_FAILURE)<error>();
+export const studyPlanSuccess = createAction(STUDY_PLAN_SUCCESS)();
+export const studyPlanFailure = createAction(STUDY_PLAN_FAILURE)<error>();
+export const getStudyPlanSuccess = createAction(GET_STUDY_PLAN_SUCCESS)<string>();
+export const getStudyPlanFailure = createAction(GET_STUDY_PLAN_FAILURE)<error>();
+export const getSelfIntroduction = createAction(GET_SELF_INTRODUCTION)();
+export const getStudyPlan = createAction(GET_STUDY_PLAN)();
 
 export type introductionActionType =
   | ReturnType<typeof setSelfIntroduction>

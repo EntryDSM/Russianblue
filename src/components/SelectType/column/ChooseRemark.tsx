@@ -6,30 +6,23 @@ interface Props {
   setRemark: (payload: string) => void;
   applicationRemark: string;
   applicationType: string;
-  isDaejeon: boolean;
-  educationalStatus: string;
-  graduationYear: number;
-  graduationMonth: number;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
-const ChooseRemark: FC<Props> = ({
-  setRemark,
-  applicationRemark,
-  educationalStatus,
-  applicationType,
-  isDaejeon,
-  graduationYear,
-  graduationMonth,
-  autoSaveSelectType,
-}) => {
+const ChooseRemark: FC<Props> = ({ setRemark, applicationRemark, applicationType }) => {
   const [isCheck, setIsCheck] = useState({ nationalMerit: false, specialAdmission: false });
+  const [isBlock, setIsBlock] = useState(false);
+
+  useEffect(() => {
+    if (applicationType === 'SOCIAL') {
+      setIsCheck({ nationalMerit: true, specialAdmission: true });
+      setIsBlock(true);
+      if (applicationRemark === 'PRIVILEGED_ADMISSION' || applicationRemark === 'NATIONAL_MERIT')
+        setRemark(null);
+    } else {
+      setIsCheck({ nationalMerit: false, specialAdmission: false });
+      setIsBlock(false);
+    }
+  }, [applicationType]);
 
   useEffect(() => {
     switch (applicationRemark) {
@@ -40,39 +33,29 @@ const ChooseRemark: FC<Props> = ({
         setIsCheck({ nationalMerit: true, specialAdmission: false });
         break;
       default:
-        setIsCheck({ nationalMerit: false, specialAdmission: false });
+        if (applicationType !== 'SOCIAL')
+          setIsCheck({ nationalMerit: false, specialAdmission: false });
+        break;
     }
-  }, [applicationRemark]);
-
-  useEffect(() => {
-    let graduatedDate = '';
-    if (String(graduationMonth).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedDate = String(graduationYear) + String(graduationMonth);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
-  }, [applicationRemark]);
+  }, [applicationRemark, applicationType]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
-    switch (dataId) {
-      case 'nationalMerit':
-        setIsCheck({ nationalMerit: !isCheck.nationalMerit, specialAdmission: false });
-        if (!isCheck.nationalMerit) {
-          setRemark('NATIONAL_MERIT');
-        } else setRemark(null);
-        break;
-      case 'specialAdmission':
-        setIsCheck({ nationalMerit: false, specialAdmission: !isCheck.specialAdmission });
-        if (!isCheck.specialAdmission) {
-          setRemark('PRIVILEGED_ADMISSION');
-        } else setRemark(null);
-        break;
+    if (applicationType !== 'SOCIAL') {
+      switch (dataId) {
+        case 'nationalMerit':
+          setIsCheck({ nationalMerit: !isCheck.nationalMerit, specialAdmission: false });
+          if (!isCheck.nationalMerit) {
+            setRemark('NATIONAL_MERIT');
+          } else setRemark(null);
+          break;
+        case 'specialAdmission':
+          setIsCheck({ nationalMerit: false, specialAdmission: !isCheck.specialAdmission });
+          if (!isCheck.specialAdmission) {
+            setRemark('PRIVILEGED_ADMISSION');
+          } else setRemark(null);
+          break;
+      }
     }
   };
   return (
@@ -83,11 +66,15 @@ const ChooseRemark: FC<Props> = ({
       </S.LineTitle>
       {REMARKS.map(data => {
         return (
-          <S.SelectBox margin={65} key={data.id}>
-            <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
-              {isCheck[data.id] && <S.CheckedCircle data-id={data.id} onClick={onCheckBtnClick} />}
+          <S.SelectBox margin={65} key={data.id} isBlock={isBlock}>
+            <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id} isBlock={isBlock}>
+              {isCheck[data.id] && (
+                <S.CheckedCircle data-id={data.id} isBlock={isBlock} onClick={onCheckBtnClick} />
+              )}
             </S.CheckCircle>
-            <p>{data.content}</p>
+            <p onClick={onCheckBtnClick} data-id={data.id}>
+              {data.content}
+            </p>
           </S.SelectBox>
         );
       })}

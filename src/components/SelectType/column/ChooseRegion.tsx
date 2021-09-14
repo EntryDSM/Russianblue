@@ -5,54 +5,22 @@ import { AREA } from '../../../constance/SelectType';
 interface Props {
   setArea: (payload: boolean) => void;
   isDaejeon: boolean;
-  applicationRemark: string;
-  applicationType: string;
-  educationalStatus: string;
-  graduationYear: number;
-  graduationMonth: number;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
-const ChooseRegion: FC<Props> = ({
-  setArea,
-  isDaejeon,
-  educationalStatus,
-  applicationRemark,
-  applicationType,
-  graduationYear,
-  graduationMonth,
-  autoSaveSelectType,
-}) => {
+const ChooseRegion: FC<Props> = ({ setArea, isDaejeon }) => {
   const [isCheck, setIsCheck] = useState({ daejeon: false, country: false });
+  const [region, setRegion] = useState(null);
   useEffect(() => {
-    if (isDaejeon) {
-      setIsCheck({ daejeon: true, country: false });
-    } else if (isDaejeon === undefined) {
-      setIsCheck({ daejeon: false, country: false });
-    } else {
-      setIsCheck({ daejeon: false, country: true });
-    }
+    if (isDaejeon) setRegion('daejeon');
+    else if (isDaejeon === null) setRegion(null);
+    else setRegion('country');
   }, [isDaejeon]);
 
   useEffect(() => {
-    let graduatedDate = '';
-    if (String(graduationMonth).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedDate = String(graduationYear) + String(graduationMonth);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
-  }, [isDaejeon]);
+    if (region === 'daejeon') setIsCheck({ daejeon: true, country: false });
+    else if (region === 'country') setIsCheck({ daejeon: false, country: true });
+    else setIsCheck({ daejeon: false, country: false });
+  }, [region]);
 
   const onCheckBtnClick = e => {
     let dataId = e.target.dataset.id;
@@ -79,7 +47,9 @@ const ChooseRegion: FC<Props> = ({
             <S.CheckCircle onClick={onCheckBtnClick} data-id={data.id}>
               {isCheck[data.id] && <S.CheckedCircle />}
             </S.CheckCircle>
-            <p>{data.content}</p>
+            <p data-id={data.id} onClick={onCheckBtnClick}>
+              {data.content}
+            </p>
           </S.SelectBox>
         );
       })}

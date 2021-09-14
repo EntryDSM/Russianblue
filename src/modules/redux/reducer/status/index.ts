@@ -1,6 +1,11 @@
 import IStatusState from './interface';
 import { IS_END, IS_START, PROCESS, STATUS, statusActionType } from '../../action/status';
-import mainConstance, { NOT_APPLICATION_PERIOD, statusType } from './mainConstance';
+import mainConstance, {
+  INTERVIEW,
+  NOT_APPLICATION_PERIOD,
+  START_DATE,
+  statusType,
+} from './mainConstance';
 import { STATUS_FAILURE, STATUS_SUCCESS } from '../../action/status/interface';
 
 const InitState: IStatusState = {

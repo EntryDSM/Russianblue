@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import {
-  selectType,
   setArea,
   setGraduation,
   setGraduationMonth,
@@ -8,7 +7,7 @@ import {
   setRemark,
   setSocialType,
   setType,
-  autoSaveSelectType,
+  setHeadCount,
 } from '../../../modules/redux/action/selectType';
 import { useSelectState } from '../default';
 
@@ -37,23 +36,8 @@ const useSelectType = () => {
     setRemark: (payload: string) => {
       dispatch(setRemark(payload));
     },
-    selectType: (payload: {
-      educationalStatus: string;
-      applicationType: string;
-      isDaejeon: boolean;
-      applicationRemark: string;
-      graduatedAt: string;
-    }) => {
-      dispatch(selectType(payload));
-    },
-    autoSaveSelectType: (payload: {
-      educationalStatus: string;
-      applicationType: string;
-      isDaejeon: boolean;
-      applicationRemark: string;
-      graduatedAt: string;
-    }) => {
-      dispatch(autoSaveSelectType(payload));
+    setHeadCount: (payload: string) => {
+      dispatch(setHeadCount(payload));
     },
   };
   return {

@@ -38,7 +38,7 @@ const AddressColumn: FC<Props> = ({
             inputChangeHandler={() => {}}
             name={'postCode'}
             placeholder={'우편번호'}
-            defaultValue={postCode}
+            value={postCode}
             disable
           />
           <Input
@@ -47,7 +47,7 @@ const AddressColumn: FC<Props> = ({
             inputChangeHandler={() => {}}
             name={'address'}
             placeholder={'기본주소'}
-            defaultValue={address}
+            value={address}
             disable
           />
           <S.SearchBtn onClick={searchBtnClickHandler}>검색</S.SearchBtn>
@@ -58,7 +58,7 @@ const AddressColumn: FC<Props> = ({
             height={42}
             inputChangeHandler={addressChangeHandler}
             placeholder={'상세주소'}
-            defaultValue={detailAddress}
+            value={detailAddress}
             name={'detailAddress'}
           />
         </div>

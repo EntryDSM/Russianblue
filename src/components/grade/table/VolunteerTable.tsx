@@ -36,8 +36,7 @@ const VolunteerTable: FC<Props> = ({
             border
             name={'volunteerTime'}
             setInput={setInput}
-            defaultValue={String(volunteerTime)}
-            key={volunteerTime}
+            value={String(volunteerTime)}
           />
           <S.TableTd />
         </div>
@@ -48,14 +47,14 @@ const VolunteerTable: FC<Props> = ({
             border
             name={'absence'}
             setInput={setInput}
-            defaultValue={String(absence)}
+            value={String(absence)}
           />
           <VolunteerColumn
             title={'전체 무단 조퇴 일수'}
             unit={'일'}
             name={'leave'}
             setInput={setInput}
-            defaultValue={String(leave)}
+            value={String(leave)}
           />
         </div>
         <div>
@@ -65,14 +64,14 @@ const VolunteerTable: FC<Props> = ({
             border
             name={'lateness'}
             setInput={setInput}
-            defaultValue={String(lateness)}
+            value={String(lateness)}
           />
           <VolunteerColumn
             title={'전체 무단 결과 일수'}
             unit={'일'}
             name={'truancy'}
             setInput={setInput}
-            defaultValue={String(truancy)}
+            value={String(truancy)}
           />
         </div>
       </div>

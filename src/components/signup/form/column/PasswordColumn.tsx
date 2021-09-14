@@ -2,17 +2,19 @@ import React, { FC, useEffect, useState } from 'react';
 import SignUpColumn from './SignUpColumn';
 import { PasswordInput } from '../../../default/input';
 import Timer from '../../../modal/default/timer';
+import { error } from '../../../../models/error';
 
 interface Props {
   disable: boolean;
   setPassword: (payload: string) => void;
   isCheckVertifyCode: boolean;
+  error: error;
 }
 
 type TimeOut = ReturnType<typeof setTimeout>;
 const MAX_TIME = 180;
 
-const PasswordColumn: FC<Props> = ({ disable, setPassword, isCheckVertifyCode }) => {
+const PasswordColumn: FC<Props> = ({ disable, setPassword, isCheckVertifyCode, error }) => {
   const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
@@ -44,7 +46,11 @@ const PasswordColumn: FC<Props> = ({ disable, setPassword, isCheckVertifyCode })
   return (
     <SignUpColumn
       text='비밀번호'
-      description='영문(대소문자 구분),숫자 포함 8자리 이상 특수기호 가능'
+      description={
+        error.type === 'signup/SIGNUP'
+          ? '영문(대소문자 구분),숫자 포함 8자리 이상 특수기호에 맞춰주세요.'
+          : '영문(대소문자 구분),숫자 포함 8자리 이상 특수기호 필수'
+      }
     >
       <PasswordInput width={400} disable={disable} inputChangeHandler={passwordChangeHandler} />
       {isCheckVertifyCode ? <Timer time={time} marginBottom={0} marginLeft={25} /> : ''}

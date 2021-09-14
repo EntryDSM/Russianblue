@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import * as S from './style';
 import Pagination from '../default/Pagination';
 import InformationForm from './InformationForm';
@@ -12,6 +12,7 @@ import {
 import SearchSchoolModal from '../modal/searchSchool';
 import AddressModal from '../modal/address';
 import useSelectType from '../../util/hooks/selectType';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   userName: string;
@@ -40,6 +41,10 @@ interface Props {
   size: number;
   totalPages: number;
   content: Array<schoolArrayType>;
+  isSuccessSaveInformation: boolean;
+  isSuccessSaveUserPicture: boolean;
+  isSuccessSaveGraduateInformation: boolean;
+  isSuccessSaveGedScore: boolean;
   setInput: (payload: { name: string; value: string }) => void;
   setSex: (payload: string) => void;
   setBirthYear: (payload: number) => void;
@@ -76,9 +81,12 @@ const Information: FC<Props> = ({
   totalScore,
   photoFileName,
   pictureUrl,
-  userPicture,
   totalPages,
   content,
+  isSuccessSaveInformation,
+  isSuccessSaveUserPicture,
+  isSuccessSaveGraduateInformation,
+  isSuccessSaveGedScore,
   setInput,
   setSex,
   setBirthYear,
@@ -113,6 +121,10 @@ const Information: FC<Props> = ({
     stdNumber,
     pictureUrl,
     totalScore,
+    isSuccessSaveInformation,
+    isSuccessSaveUserPicture,
+    isSuccessSaveGraduateInformation,
+    isSuccessSaveGedScore,
   ];
   const [isClickSearchBtn, setIsClickSearchBtn] = useState(false);
   const [isClickAddressBtn, setIsClickAddressBtn] = useState(false);
@@ -131,7 +143,7 @@ const Information: FC<Props> = ({
         />
       );
     else return;
-  }, [isClickSearchBtn, content]);
+  }, [isClickSearchBtn, content, totalPages]);
 
   const addressModal = useMemo(() => {
     if (isClickAddressBtn)
@@ -178,6 +190,9 @@ const Information: FC<Props> = ({
         <S.School>{SCHOOL}</S.School>
         <S.Title>{INFORMATIONTITLE}</S.Title>
       </div>
+      <S.InfoExplain>
+        저장된 정보가 뜨지 않을 때 새로고침하시면 저장된 정보를 확인하실 수 있습니다.
+      </S.InfoExplain>
       <InformationForm
         userName={userName}
         sex={sex}
@@ -214,6 +229,26 @@ const Information: FC<Props> = ({
       {searchSchoolModal}
       {addressModal}
       {pagination}
+      {isSuccessSaveInformation !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveInformation} />
+      ) : (
+        ''
+      )}
+      {isSuccessSaveGedScore !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveGedScore} />
+      ) : (
+        ''
+      )}
+      {isSuccessSaveUserPicture !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveUserPicture} />
+      ) : (
+        ''
+      )}
+      {isSuccessSaveGraduateInformation !== undefined ? (
+        <ToastPopUp isSuccessSave={isSuccessSaveGraduateInformation} />
+      ) : (
+        ''
+      )}
     </S.Information>
   );
 };

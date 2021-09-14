@@ -47,6 +47,7 @@ export const SignUpRule = styled.div`
   width: 100%;
   height: calc(100% - 26px);
   background-color: white;
+  overflow: scroll;
   > pre {
     margin: 10px 0px;
     font-size: 16px;
@@ -174,6 +175,7 @@ export const SignUpSubmitButton = styled.div<{ disable: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   ${({ disable }) =>
     disable
       ? css`

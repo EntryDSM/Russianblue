@@ -12,20 +12,29 @@ import useSelectType from '../../../util/hooks/selectType';
 import useInformation from '../../../util/hooks/information';
 import { useDispatch } from 'react-redux';
 import {
+  GED_SCORE,
   GRADUATE_INFORMATION,
   INFORMATION,
 } from '../../../modules/redux/action/information/interface';
 import { useGrade } from '../../../util/hooks/grade';
 import { SAVE_GRADE } from '../../../modules/redux/action/grade/interface';
+import { SELECTTYPE } from '../../../constance/SelectType';
 
 interface Props {
   prevPagePath?: string;
   nextPagePath?: string;
   content: String;
   disabled?: boolean;
+  setIsOpenSubmitModal?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) => {
+const PageBtn: FC<Props> = ({
+  content,
+  disabled,
+  prevPagePath,
+  nextPagePath,
+  setIsOpenSubmitModal,
+}) => {
   const history = useHistory();
   const pathname = useLocation().pathname.slice(1);
   const [prevNextBtn, setPrevNextBtn] = useState({
@@ -39,35 +48,11 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
   const studyPlan = introState.studyPlan;
 
   const selectTypeState = useSelectType().state;
-  const selectTypeSetState = useSelectType().setState;
-  const educationalStatus = selectTypeState.educationalStatus;
-  const applicationType = selectTypeState.applicationType;
-  const isDaejeon = selectTypeState.isDaejeon;
-  const applicationRemark = selectTypeState.applicationRemark;
-  const graduationYear = String(selectTypeState.graduationYear);
-  const graduationMonth = String(selectTypeState.graduationMonth);
-  let graduated_YM = '';
-  if (graduationMonth.length === 1) {
-    graduated_YM = graduationYear + '0' + graduationMonth;
-  } else {
-    graduated_YM = graduationYear + graduationMonth;
-  }
-
   const informationState = useInformation().state;
   const gradeState = useGrade().state;
   const dispatch = useDispatch();
 
-  const change = [
-    selfIntroduction,
-    studyPlan,
-    educationalStatus,
-    applicationRemark,
-    applicationType,
-    isDaejeon,
-    graduationMonth,
-    graduationYear,
-    informationState,
-  ];
+  const change = [selfIntroduction, studyPlan, informationState];
 
   useEffect(() => {
     let isSuccessAction = undefined;
@@ -85,10 +70,9 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
           isSuccessAction =
             informationState.isSuccessSaveInformation &&
             informationState.isSuccessSaveGraduateInformation;
+        break;
       case 'grade':
         isSuccessAction = gradeState.isSuccessSaveGrade;
-        break;
-      case 'preview':
         break;
     }
     if (isSuccessAction) {
@@ -96,7 +80,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         history.push(nextPagePath);
       }
     } else if (isSuccessAction === false) {
-      alert('실패');
+      console.log('실패');
     } else if (isSuccessAction === undefined) {
       console.log('요청이 안갔습니다');
     }
@@ -121,13 +105,7 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         introSetState.saveBoth({ selfIntroduction, studyPlan });
         break;
       case 'select-type':
-        selectTypeSetState.selectType({
-          educationalStatus: educationalStatus,
-          applicationType: applicationType,
-          isDaejeon: isDaejeon,
-          applicationRemark: applicationRemark,
-          graduatedAt: graduated_YM,
-        });
+        dispatch({ type: SELECTTYPE });
         break;
       case 'information':
         dispatch({ type: INFORMATION });
@@ -136,6 +114,9 @@ const PageBtn: FC<Props> = ({ content, disabled, prevPagePath, nextPagePath }) =
         break;
       case 'grade':
         dispatch({ type: SAVE_GRADE });
+        break;
+      case 'preview':
+        setIsOpenSubmitModal(true);
         break;
       default:
     }

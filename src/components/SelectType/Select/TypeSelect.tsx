@@ -9,35 +9,9 @@ interface Props {
   setDisabled: Dispatch<React.SetStateAction<string>>;
   setSocialType: (payload: string) => void;
   setRemark: (payload: string) => void;
-  applicationRemark: string;
-  applicationType: string;
-  isDaejeon: boolean;
-  educationalStatus: string;
-  graduationYear: number;
-  graduationMonth: number;
-  autoSaveSelectType: (payload: {
-    educationalStatus: string;
-    applicationType: string;
-    isDaejeon: boolean;
-    applicationRemark: string;
-    graduatedAt: string;
-  }) => void;
 }
 
-const TypeSelect: FC<Props> = ({
-  socialType,
-  setSocialType,
-  disabled,
-  setDisabled,
-  setRemark,
-  applicationRemark,
-  applicationType,
-  educationalStatus,
-  isDaejeon,
-  graduationYear,
-  graduationMonth,
-  autoSaveSelectType,
-}) => {
+const TypeSelect: FC<Props> = ({ socialType, setSocialType, disabled, setDisabled, setRemark }) => {
   const onSelectClick = () => {
     if (disabled === 'normal') {
       setDisabled('enabled');
@@ -45,20 +19,6 @@ const TypeSelect: FC<Props> = ({
       setDisabled('normal');
     }
   };
-
-  useEffect(() => {
-    let graduatedDate = '';
-    if (String(graduationMonth).length === 1) {
-      graduatedDate = String(graduationYear) + '0' + String(graduationMonth);
-    } else graduatedDate = String(graduationYear) + String(graduationMonth);
-    autoSaveSelectType({
-      educationalStatus: educationalStatus,
-      applicationType: applicationType,
-      isDaejeon: isDaejeon,
-      applicationRemark: applicationRemark,
-      graduatedAt: graduatedDate,
-    });
-  }, [applicationRemark]);
 
   const onSocialTypeClick = e => {
     switch (e.target.innerText) {
@@ -84,7 +44,7 @@ const TypeSelect: FC<Props> = ({
         break;
       case '다문화가정':
         setSocialType('다문화가정');
-        setRemark('MULTICULTURA');
+        setRemark('MULTICULTURAL');
         break;
     }
   };

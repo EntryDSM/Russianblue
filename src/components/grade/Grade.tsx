@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import { SCHOOL, ENTERGRADE, GradeType } from '../../constance/grade';
 import Pagination from '../default/Pagination';
 import { ResetGrade } from './column';
 import { VolunteerTable, GradeTable } from './table';
 import { useSelectState } from '../../util/hooks/default';
+import ToastPopUp from '../default/toastPopUp/ToastPopUp';
 
 interface Props {
   volunteerTime: number;
@@ -13,6 +14,7 @@ interface Props {
   lateness: number;
   truancy: number;
   grade: GradeType;
+  isSuccessSaveGrade: boolean;
   setInput: (payload: { name: string; value: number }) => void;
   setGrade: (payload: { grade: GradeType }) => void;
 }
@@ -26,6 +28,7 @@ const Grade: FC<Props> = ({
   leave,
   lateness,
   truancy,
+  isSuccessSaveGrade,
 }) => {
   const graduated = useSelectState().selectType.educationalStatus;
   const [isResetZeroClick, setIsResetZeroClick] = useState({
@@ -36,12 +39,29 @@ const Grade: FC<Props> = ({
     seniorFirst: false,
     seniorSecond: false,
   });
-  const [isGraduated, setIsGraduated] = useState(false);
+  const [isGraduated, setIsGraduated] = useState<boolean>(false);
 
   useEffect(() => {
     if (graduated === 'PROSPECTIVE_GRADUATE') setIsGraduated(true);
     else if (graduated === 'GRADUATE') setIsGraduated(false);
   }, [graduated]);
+
+  const pagination = useMemo(() => {
+    if (
+      volunteerTime &&
+      grade.korean !== 'XXXXXX' &&
+      grade.english !== 'XXXXXX' &&
+      grade.history !== 'XXXXXX' &&
+      grade.math !== 'XXXXXX' &&
+      grade.science !== 'XXXXXX' &&
+      grade.social !== 'XXXXXX' &&
+      grade.technical !== 'XXXXXX'
+    ) {
+      return <Pagination prevPagePath={'/information'} nextPagePath={'/introduction'} isNextPage />;
+    } else {
+      return <Pagination prevPagePath={'/information'} />;
+    }
+  }, [volunteerTime, absence, leave, lateness, truancy, grade]);
 
   return (
     <S.Grade>
@@ -66,7 +86,8 @@ const Grade: FC<Props> = ({
         grade={grade}
         isGraduated={isGraduated}
       />
-      <Pagination />
+      {pagination}
+      <ToastPopUp isSuccessSave={isSuccessSaveGrade} />
     </S.Grade>
   );
 };
