@@ -24,8 +24,8 @@ const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
     const gradeId = e.target.dataset.id;
     const score =
       graduated === 'PROSPECTIVE_GRADUATE'
-        ? gradeId.toUpperCase().repeat(5) + 'X'
-        : gradeId.toUpperCase().repeat(6);
+        ? 'XX' + gradeId.toUpperCase().repeat(3) + 'X'
+        : 'XX' + gradeId.toUpperCase().repeat(4);
     setIsClick({ ...isCheckInit, [gradeId]: true });
     setIsResetZeroClick({
       freshmanFirst: false,
