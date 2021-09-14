@@ -5,7 +5,6 @@ import { useSelectState } from '../../../util/hooks/default';
 
 interface Props {
   grade: GradeType;
-  setIsResetZeroClick: React.Dispatch<React.SetStateAction<SemesterType>>;
   setGrade: (payload: { grade: GradeType }) => void;
 }
 
@@ -17,7 +16,7 @@ const isCheckInit = {
   e: false,
 };
 
-const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
+const ResetGrade: FC<Props> = ({ grade, setGrade }) => {
   const [isClick, setIsClick] = useState(isCheckInit);
   const graduated = useSelectState().selectType.educationalStatus;
   const gradeBtnClickHandler = e => {
@@ -27,14 +26,6 @@ const ResetGrade: FC<Props> = ({ setIsResetZeroClick, grade, setGrade }) => {
         ? 'XX' + gradeId.toUpperCase().repeat(3) + 'X'
         : 'XX' + gradeId.toUpperCase().repeat(4);
     setIsClick({ ...isCheckInit, [gradeId]: true });
-    setIsResetZeroClick({
-      freshmanFirst: false,
-      freshmanSecond: false,
-      sophomoreFirst: false,
-      sophomoreSecond: false,
-      seniorFirst: false,
-      seniorSecond: false,
-    });
     setGrade({
       grade: {
         ...grade,

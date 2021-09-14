@@ -31,14 +31,6 @@ const Grade: FC<Props> = ({
   isSuccessSaveGrade,
 }) => {
   const graduated = useSelectState().selectType.educationalStatus;
-  const [isResetZeroClick, setIsResetZeroClick] = useState({
-    freshmanFirst: false,
-    freshmanSecond: false,
-    sophomoreFirst: false,
-    sophomoreSecond: false,
-    seniorFirst: false,
-    seniorSecond: false,
-  });
   const [isGraduated, setIsGraduated] = useState<boolean>(false);
 
   useEffect(() => {
@@ -78,14 +70,8 @@ const Grade: FC<Props> = ({
         lateness={lateness}
         truancy={truancy}
       />
-      <ResetGrade setIsResetZeroClick={setIsResetZeroClick} grade={grade} setGrade={setGrade} />
-      <GradeTable
-        isResetZeroClick={isResetZeroClick}
-        setIsResetZeroClick={setIsResetZeroClick}
-        setGrade={setGrade}
-        grade={grade}
-        isGraduated={isGraduated}
-      />
+      <ResetGrade grade={grade} setGrade={setGrade} />
+      <GradeTable setGrade={setGrade} grade={grade} isGraduated={isGraduated} />
       {pagination}
       <ToastPopUp isSuccessSave={isSuccessSaveGrade} />
     </S.Grade>

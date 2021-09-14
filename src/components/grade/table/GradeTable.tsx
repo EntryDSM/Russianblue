@@ -6,8 +6,6 @@ import { GradeType, SemesterType, SUBJECTANDTITLE } from '../../../constance/gra
 interface Props {
   isGraduated: boolean;
   grade: GradeType;
-  isResetZeroClick: SemesterType;
-  setIsResetZeroClick: React.Dispatch<React.SetStateAction<SemesterType>>;
   setGrade: (payload: { grade: GradeType }) => void;
 }
 

@@ -13,12 +13,10 @@ interface Props {
 
 const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject, isGraduated }) => {
   const [isClick, setIsClick] = useState({
-    freshmanFirst: false,
-    freshmanSecond: false,
-    sophomoreFirst: false,
-    sophomoreSecond: false,
     seniorFirst: false,
     seniorSecond: false,
+    previousSemester: false,
+    morePreviousSemester: false,
   });
 
   const gradeChange = (subject: string, dataId: string, dataGrade: string) => {
