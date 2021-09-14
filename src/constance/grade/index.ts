@@ -26,6 +26,13 @@ export const SUBJECTANDTITLE = [
   { title: '영어', subject: 'english' },
 ];
 
+export const SEMESTERTABLEDATA = [
+  { title: '2학기', id: 'secondSemester' },
+  { title: '1학기', id: 'firstSemester' },
+  { title: '직전 학기', id: 'previousSemester' },
+  { title: '직전전 학기', id: 'morePreviousSemester' },
+];
+
 export type GradeType = {
   korean: string;
   social: string;
@@ -35,11 +42,10 @@ export type GradeType = {
   technical: string;
   english: string;
 };
+
 export type SemesterType = {
-  freshmanFirst: boolean;
-  freshmanSecond: boolean;
-  sophomoreFirst: boolean;
-  sophomoreSecond: boolean;
+  previousSemester: boolean;
+  morePreviousSemester: boolean;
   seniorFirst: boolean;
   seniorSecond: boolean;
 };
