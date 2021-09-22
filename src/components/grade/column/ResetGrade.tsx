@@ -19,12 +19,15 @@ const isCheckInit = {
 const ResetGrade: FC<Props> = ({ grade, setGrade }) => {
   const [isClick, setIsClick] = useState(isCheckInit);
   const graduated = useSelectState().selectType.educationalStatus;
+
+  const setScore = (gradeId: string) => {
+    if (graduated === 'PROSPECTIVE_GRADUATE') return 'XX' + gradeId.toUpperCase().repeat(3) + 'X';
+    else return 'XX' + gradeId.toUpperCase().repeat(4);
+  };
+
   const gradeBtnClickHandler = e => {
     const gradeId = e.target.dataset.id;
-    const score =
-      graduated === 'PROSPECTIVE_GRADUATE'
-        ? 'XX' + gradeId.toUpperCase().repeat(3) + 'X'
-        : 'XX' + gradeId.toUpperCase().repeat(4);
+    const score = setScore(gradeId);
     setIsClick({ ...isCheckInit, [gradeId]: true });
     setGrade({
       grade: {
