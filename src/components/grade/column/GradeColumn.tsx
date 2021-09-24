@@ -19,7 +19,7 @@ const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject, isGraduated }
     morePreviousSemester: false,
   });
 
-  const gradeChange = (subject: string, dataId: string, dataGrade: string) => {
+  const gradeChooseAndChange = (subject: string, dataId: string, dataGrade: string) => {
     let temp = [];
     for (let i = 0; i < grade[subject].length; i++) {
       temp.push(grade[subject][i]);
@@ -34,7 +34,7 @@ const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject, isGraduated }
     setGrade({
       grade: {
         ...grade,
-        [subject]: gradeChange(subject, dataId, dataGrade),
+        [subject]: gradeChooseAndChange(subject, dataId, dataGrade),
       },
     });
     setIsClick({ ...isClick, [dataId]: !isClick[dataId] });
