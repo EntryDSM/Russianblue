@@ -9,12 +9,10 @@ export const GRADE = [
   { grade: 'X', id: 'X' },
 ];
 export const GRADEANDSEMESTER = [
-  { id: 'freshmanFirst', grade: 1, semester: 1 },
-  { id: 'freshmanSecond', grade: 1, semester: 2 },
-  { id: 'sophomoreFirst', grade: 2, semester: 1 },
-  { id: 'sophomoreSecond', grade: 2, semester: 2 },
-  { id: 'seniorFirst', grade: 3, semester: 1 },
   { id: 'seniorSecond', grade: 3, semester: 2 },
+  { id: 'seniorFirst', grade: 3, semester: 1 },
+  { id: 'previousSemester', grade: 2, semester: 2 },
+  { id: 'morePreviousSemester', grade: 2, semester: 1 },
 ];
 export const SUBJECT = ['korean', 'social', 'history', 'math', 'science', 'technical', 'english'];
 
@@ -28,6 +26,13 @@ export const SUBJECTANDTITLE = [
   { title: '영어', subject: 'english' },
 ];
 
+export const SEMESTERTABLEDATA = [
+  { title: '2학기', id: 'secondSemester' },
+  { title: '1학기', id: 'firstSemester' },
+  { title: '직전 학기', id: 'previousSemester' },
+  { title: '직전전 학기', id: 'morePreviousSemester' },
+];
+
 export type GradeType = {
   korean: string;
   social: string;
@@ -36,20 +41,11 @@ export type GradeType = {
   science: string;
   technical: string;
   english: string;
-  isCheck: {
-    freshmanFirst: boolean;
-    freshmanSecond: boolean;
-    sophomoreFirst: boolean;
-    sophomoreSecond: boolean;
-    seniorFirst: boolean;
-    seniorSecond: boolean;
-  };
 };
+
 export type SemesterType = {
-  freshmanFirst: boolean;
-  freshmanSecond: boolean;
-  sophomoreFirst: boolean;
-  sophomoreSecond: boolean;
+  previousSemester: boolean;
+  morePreviousSemester: boolean;
   seniorFirst: boolean;
   seniorSecond: boolean;
 };

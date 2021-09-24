@@ -41,7 +41,7 @@ export const VolunteerTable = styled.div`
 `;
 
 export const GradeTable = styled(VolunteerTable)`
-  height: 745px;
+  height: 670px;
   margin-bottom: 0px;
   display: block;
   > div:nth-child(2) > div {
@@ -102,7 +102,7 @@ export const GradeColumn = styled.div`
 export const GradeTableTd = styled(TableTd)<{
   disabled?: boolean;
 }>`
-  width: 178.5px;
+  width: 267.75px;
   height: 75px;
   justify-content: center;
   > p:last-child {

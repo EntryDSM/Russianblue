@@ -13,15 +13,13 @@ interface Props {
 
 const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject, isGraduated }) => {
   const [isClick, setIsClick] = useState({
-    freshmanFirst: false,
-    freshmanSecond: false,
-    sophomoreFirst: false,
-    sophomoreSecond: false,
     seniorFirst: false,
     seniorSecond: false,
+    previousSemester: false,
+    morePreviousSemester: false,
   });
 
-  const gradeChange = (subject: string, dataId: string, dataGrade: string) => {
+  const gradeChooseAndChange = (subject: string, dataId: string, dataGrade: string) => {
     let temp = [];
     for (let i = 0; i < grade[subject].length; i++) {
       temp.push(grade[subject][i]);
@@ -33,14 +31,12 @@ const GradeColumn: FC<Props> = ({ title, setGrade, grade, subject, isGraduated }
   const gradeClickHandler = e => {
     const dataId = e.target.dataset.id;
     const dataGrade = e.target.innerText;
-    if (grade.isCheck[dataId] === false) {
-      setGrade({
-        grade: {
-          ...grade,
-          [subject]: gradeChange(subject, dataId, dataGrade),
-        },
-      });
-    }
+    setGrade({
+      grade: {
+        ...grade,
+        [subject]: gradeChooseAndChange(subject, dataId, dataGrade),
+      },
+    });
     setIsClick({ ...isClick, [dataId]: !isClick[dataId] });
   };
 

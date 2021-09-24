@@ -12,23 +12,13 @@ interface GradeState {
     science: string;
     technical: string;
     english: string;
-    isCheck: {
-      freshmanFirst: boolean;
-      freshmanSecond: boolean;
-      sophomoreFirst: boolean;
-      sophomoreSecond: boolean;
-      seniorFirst: boolean;
-      seniorSecond: boolean;
-    };
   };
   isSuccessSaveGrade: boolean;
 }
 
 export enum Grade {
-  freshmanFirst = 0,
-  freshmanSecond = 1,
-  sophomoreFirst = 2,
-  sophomoreSecond = 3,
+  morePreviousSemester = 2,
+  previousSemester = 3,
   seniorFirst = 4,
   seniorSecond = 5,
 }
