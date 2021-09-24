@@ -24,14 +24,6 @@ const initState: GradeState = {
     science: 'XXXXXX',
     technical: 'XXXXXX',
     english: 'XXXXXX',
-    isCheck: {
-      freshmanFirst: false,
-      freshmanSecond: false,
-      sophomoreFirst: false,
-      sophomoreSecond: false,
-      seniorFirst: false,
-      seniorSecond: false,
-    },
   },
   isSuccessSaveGrade: undefined,
 };
@@ -81,7 +73,6 @@ const gradeReducer = (state: GradeState = initState, action: gradeActionType): G
           science: action.payload.science_grade,
           technical: action.payload.tech_and_home_grade,
           english: action.payload.english_grade,
-          isCheck: { ...state.grade.isCheck },
         },
       };
     default:

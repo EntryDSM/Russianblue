@@ -1,33 +1,18 @@
 import React, { FC } from 'react';
 import * as S from '../style';
-import { GradeColumn, CheckColumn, GradeTr } from '../column';
+import { GradeColumn, GradeTr } from '../column';
 import { GradeType, SemesterType, SUBJECTANDTITLE } from '../../../constance/grade';
 
 interface Props {
   isGraduated: boolean;
   grade: GradeType;
-  isResetZeroClick: SemesterType;
-  setIsResetZeroClick: React.Dispatch<React.SetStateAction<SemesterType>>;
   setGrade: (payload: { grade: GradeType }) => void;
 }
 
-const GradeTable: FC<Props> = ({
-  isResetZeroClick,
-  setIsResetZeroClick,
-  setGrade,
-  grade,
-  isGraduated,
-}) => {
+const GradeTable: FC<Props> = ({ setGrade, grade, isGraduated }) => {
   return (
     <S.GradeTable>
       <GradeTr />
-      <CheckColumn
-        isResetZeroClick={isResetZeroClick}
-        setIsResetZeroClick={setIsResetZeroClick}
-        grade={grade}
-        setGrade={setGrade}
-        isGraduated={isGraduated}
-      />
       {SUBJECTANDTITLE.map(data => {
         return (
           <GradeColumn
