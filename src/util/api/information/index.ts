@@ -17,14 +17,13 @@ const makeBirthday = (year: number, month: number, date: number) => {
   }
 };
 
-const makeStudentNumber = (stdGrade: string, stdClass: string, stdNumber: string) => {
+const makeStudentNumber = (stdClass: string, stdNumber: string) => {
   if (stdClass.length === 1) {
-    if (stdNumber.length === 1) return `${stdGrade}0${stdClass}0${stdNumber}`;
-    else return `${stdGrade.substring(0, 1)}0${stdClass}${stdNumber.substring(0, 2)}`;
+    if (stdNumber.length === 1) return `30${stdClass}0${stdNumber}`;
+    else return `30${stdClass}${stdNumber.substring(0, 2)}`;
   } else {
-    if (stdNumber.length === 1) return `${stdGrade}${stdClass.substring(0, 2)}0${stdNumber}`;
-    else
-      return `${stdGrade.substring(0, 1)}${stdClass.substring(0, 2)}${stdNumber.substring(0, 2)}`;
+    if (stdNumber.length === 1) return `3${stdClass.substring(0, 2)}0${stdNumber}`;
+    else return `3${stdClass.substring(0, 2)}${stdNumber.substring(0, 2)}`;
   }
 };
 
@@ -60,7 +59,7 @@ export const graduateInformationStateToRequest = (
   state: reducerType['information'],
 ): graduateInformationInterFace => {
   return {
-    student_number: makeStudentNumber(state.stdGrade, state.stdClass, state.stdNumber),
+    student_number: makeStudentNumber(state.stdClass, state.stdNumber),
     school_code: state.schoolCode,
     school_tel: state.schoolTel ? state.schoolTel.replace(/\-/g, '') : null,
   };
