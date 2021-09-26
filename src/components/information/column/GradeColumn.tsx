@@ -4,13 +4,12 @@ import Input from '../../default/input';
 import { GRADE } from '../../../constance/information';
 
 interface Props {
-  stdGrade: string;
   stdNumber: string;
   stdClass: string;
   setInput: (payload: { name: string; value: string }) => void;
 }
 
-const GradeColumn: FC<Props> = ({ setInput, stdGrade, stdClass, stdNumber }) => {
+const GradeColumn: FC<Props> = ({ setInput, stdClass, stdNumber }) => {
   const gradeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ name: e.target.name, value: e.target.value });
   };
@@ -31,18 +30,19 @@ const GradeColumn: FC<Props> = ({ setInput, stdGrade, stdClass, stdNumber }) => 
             inputChangeHandler={gradeChangeHandler}
             value={
               grades.name === 'stdGrade'
-                ? numberMaxLength(stdGrade)
+                ? '3'
                 : grades.name === 'stdClass'
                 ? numberMaxLength(stdClass)
                 : numberMaxLength(stdNumber)
             }
             name={grades.name}
+            disable={grades.name === 'stdGrade' ? true : false}
           />
           <S.Unit>{grades.content}</S.Unit>
         </>
       );
     });
-  }, [setInput, stdNumber, stdClass, stdGrade]);
+  }, [setInput, stdNumber, stdClass]);
 
   return (
     <S.InformationLine width={860}>

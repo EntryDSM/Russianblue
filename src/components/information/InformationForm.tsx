@@ -118,12 +118,7 @@ const InformationForm: FC<Props> = ({
     else
       return (
         <>
-          <GradeColumn
-            setInput={setInput}
-            stdGrade={stdGrade}
-            stdClass={stdClass}
-            stdNumber={stdNumber}
-          />
+          <GradeColumn setInput={setInput} stdClass={stdClass} stdNumber={stdNumber} />
           <SchoolNameColumn schoolName={schoolName} setIsClickSearchBtn={setIsClickSearchBtn} />
         </>
       );
