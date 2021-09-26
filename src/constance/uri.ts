@@ -2,6 +2,7 @@ enum uri {
   signin = '/user/auth',
   signup = '/user',
   status = '/user/status',
+  finalSubmission = '/application',
   sendVertify = '/user/email/verify',
   sendPasswordVertify = '/user/password/email/verify',
   resetPassword = '/user/password',
