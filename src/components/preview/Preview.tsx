@@ -17,12 +17,10 @@ const Preview: FC<Props> = ({ preview }) => {
   const educationalStatus = useSelectState().selectType.educationalStatus;
 
   const pagination = useMemo(() => {
-    console.log(1324, educationalStatus);
     if (educationalStatus === 'QUALIFICATION_EXAM')
       return (
         <Pagination
           prevPagePath={'/introduction'}
-          nextPagePath={'/'}
           isNextPage
           isQualification
           setIsOpenSubmitModal={setIsOpenSubmitModal}
@@ -32,7 +30,6 @@ const Preview: FC<Props> = ({ preview }) => {
       return (
         <Pagination
           prevPagePath={'/introduction'}
-          nextPagePath={'/'}
           isNextPage
           setIsOpenSubmitModal={setIsOpenSubmitModal}
         />
