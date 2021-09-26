@@ -13,7 +13,7 @@ export const getPreview = async (access_token: string) => {
 export const final = async (access_token: string) => {
   try {
     const request = getRequestWithAccessToken(access_token);
-    await request.patch(uri.finalSubmission);
+    await request.post(uri.finalSubmission);
   } catch (error) {
     throw error;
   }
