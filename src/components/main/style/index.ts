@@ -41,7 +41,8 @@ export const MainContentWrapper = styled.div`
     margin-bottom: ${pxToRem(63)}rem;
   }
   > .subDescription {
-    margin-bottom: ${pxToRem(200)}rem;
+    margin-bottom: ${pxToRem(160)}rem;
+    margin-top: 20px;
   }
 `;
 

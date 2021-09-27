@@ -24,7 +24,6 @@ const MainContainer: FC = () => {
   const authState = useAuth();
   const modalState = useModal();
   const getNowProcess = (status: string) => {
-    console.log(processState.state.processes);
     if (!processState.state.processes[status]) return MainDummyData;
     return processState.state.processes[status];
   };
@@ -54,6 +53,13 @@ const MainContainer: FC = () => {
     return result ? result.date : '';
   };
 
+  const getNextProcessDate = (status: statusType): string => {
+    if (status === START_DATE) {
+      return dates.find(date => date.type === END_DATE).date;
+    }
+    return null;
+  };
+
   useEffect(() => {
     processState.setState.getStatus();
   }, []);
@@ -63,6 +69,7 @@ const MainContainer: FC = () => {
       <Main
         status={status}
         date={getNowProcessDate(status)}
+        nextDate={getNextProcessDate(status)}
         process={getNowProcess(processState.state.status)}
         defaultMainButtonClickHandler={defaultMainButtonClickHandler}
         {...authState.state}
