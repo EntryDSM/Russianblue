@@ -42,7 +42,7 @@ const VolunteerTable: FC<Props> = ({
         </div>
         <div>
           <VolunteerColumn
-            title={'전체 무단(미인정) 결석 일수'}
+            title={'전체 미인정 결석 일수'}
             unit={'일'}
             border
             name={'absence'}
@@ -50,7 +50,7 @@ const VolunteerTable: FC<Props> = ({
             value={String(absence)}
           />
           <VolunteerColumn
-            title={'전체 무단 조퇴 일수'}
+            title={'전체 미인정 조퇴 일수'}
             unit={'일'}
             name={'leave'}
             setInput={setInput}
@@ -59,7 +59,7 @@ const VolunteerTable: FC<Props> = ({
         </div>
         <div>
           <VolunteerColumn
-            title={'전체 무단 지각 일수'}
+            title={'전체 미인정 지각 일수'}
             unit={'일'}
             border
             name={'lateness'}
@@ -67,7 +67,7 @@ const VolunteerTable: FC<Props> = ({
             value={String(lateness)}
           />
           <VolunteerColumn
-            title={'전체 무단 결과 일수'}
+            title={'전체 미인정 결과 일수'}
             unit={'일'}
             name={'truancy'}
             setInput={setInput}
