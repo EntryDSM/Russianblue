@@ -16,12 +16,6 @@ const PrecautionModal: FC<Props> = ({ setIsOpenPrecautionMoal }) => {
         <S.ModalTitle>주의사항</S.ModalTitle>
         <S.ModalExplainBox>
           <S.ModalExplain>
-            미리보기 단계에서는 <span>내신 성적</span>이 표기되지 않습니다.
-          </S.ModalExplain>
-          <S.ModalExplain>(출력 시에는 정상적으로 표기됩니다.)</S.ModalExplain>
-        </S.ModalExplainBox>
-        <S.ModalExplainBox>
-          <S.ModalExplain>
             수험번호는 표기되지 않으며 <span>접수 번호</span>를
           </S.ModalExplain>
           <S.ModalExplain>확인하시기 바랍니다.</S.ModalExplain>

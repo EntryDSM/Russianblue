@@ -51,13 +51,13 @@ export const AccessBtn = styled.button`
 
 export const PrecautionModalMain = styled.div`
   width: 490px;
-  height: 590px;
+  height: 490px;
   background-color: white;
   position: absolute;
   top: 50%;
   margin-top: -320px;
   box-sizing: border-box;
-  padding: 120px 0px;
+  padding: 90px 0px;
   border-radius: 3px;
 `;
 
