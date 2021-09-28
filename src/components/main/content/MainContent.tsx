@@ -45,7 +45,7 @@ const MainContent: FC<Props> = ({
       {nextDate && (
         <S.MainDescription className='subDescription'>
           <p>
-            마감일은 <span>{getStringDate(date)}</span> 입니다.
+            마감일은 <span>{getStringDate(nextDate)}</span> 입니다.
           </p>
         </S.MainDescription>
       )}

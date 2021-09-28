@@ -53,7 +53,7 @@ export const MainSubTitle = styled.h3`
 
 export const MainTitle = styled.h1`
   font-size: ${pxToRem(35)}rem;
-  margin-bottom: ${pxToRem(130)}rem;
+  margin-bottom: ${pxToRem(100)}rem;
   font-weight: 400;
 `;
 
@@ -76,6 +76,7 @@ export const MainButton = styled.button<{ isAble: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
   border: none;
   box-sizing: content-box;
   flex-shrink: 0;
