@@ -66,7 +66,7 @@ const statusReducer = (state: IStatusState = InitState, action: statusActionType
       return {
         ...state,
         date: action.payload.schedules,
-        status: START_DATE,
+        status: action.payload.current_status as statusType,
       };
     }
     case STATUS_FAILURE: {
