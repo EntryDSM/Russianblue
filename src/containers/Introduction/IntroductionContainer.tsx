@@ -5,7 +5,7 @@ import {
   GET_STUDY_PLAN,
 } from '../../modules/redux/action/Introduction/interface';
 import useIntroduction from '../../util/hooks/Introduction';
-import { useIsLogin } from '../../util/api/default';
+import { useIsApplicationDate, useIsLogin } from '../../util/api/default';
 import { useUser } from '../../util/hooks/user';
 import { useHistory } from 'react-router-dom';
 
@@ -16,6 +16,7 @@ const IntroductionContainer: FC = () => {
   const isFinalSubmitDone = useUser().state.isfinalSubmitDone;
   const dispatch = useDispatch();
   const history = useHistory();
+  useIsApplicationDate();
 
   useEffect(() => {
     dispatch({ type: GET_SELF_INTRODUCTION });

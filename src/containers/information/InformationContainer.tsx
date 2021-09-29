@@ -9,7 +9,7 @@ import {
   GET_GRADUATE_INFORMATION,
   GET_INFORMATION,
 } from '../../modules/redux/action/information/interface';
-import { useIsLogin } from '../../util/api/default';
+import { useIsApplicationDate, useIsLogin } from '../../util/api/default';
 import { useUser } from '../../util/hooks/user';
 import { useHistory } from 'react-router-dom';
 
@@ -21,6 +21,7 @@ const InformationContainer = () => {
   const history = useHistory();
   const mounted = useRef(false);
   useIsLogin();
+  useIsApplicationDate();
 
   useEffect(() => {
     dispatch({ type: GET_SELECTTYPE });

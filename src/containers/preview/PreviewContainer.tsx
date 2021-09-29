@@ -3,7 +3,7 @@ import { usePreview } from '../../util/hooks/preview';
 import Preview from '../../components/preview';
 import { useDispatch } from 'react-redux';
 import { GET_PREVIEW } from '../../modules/redux/action/preview/interface';
-import { useIsLogin } from '../../util/api/default';
+import { useIsApplicationDate, useIsLogin } from '../../util/api/default';
 import { useUser } from '../../util/hooks/user';
 import { useHistory } from 'react-router-dom';
 import { GET_SELECTTYPE } from '../../modules/redux/action/selectType/interface';
@@ -14,6 +14,7 @@ const PreviewContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   useIsLogin();
+  useIsApplicationDate();
 
   useEffect(() => {
     dispatch({ type: GET_PREVIEW });

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { GET_SELECTTYPE } from '../../modules/redux/action/selectType/interface';
 import SelectType from '../../components/SelectType';
 import useSelectType from '../../util/hooks/selectType';
-import { useIsLogin } from '../../util/api/default';
+import { useIsApplicationDate, useIsLogin } from '../../util/api/default';
 import { useHistory } from 'react-router-dom';
 import { useUser } from '../../util/hooks/user';
 
@@ -13,6 +13,7 @@ const SelectTypeContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   useIsLogin();
+  useIsApplicationDate();
   useEffect(() => {
     dispatch({ type: GET_SELECTTYPE });
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
