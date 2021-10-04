@@ -12,6 +12,7 @@ import useSelectType from '../../../util/hooks/selectType';
 import useInformation from '../../../util/hooks/information';
 import { useDispatch } from 'react-redux';
 import {
+  GED_SCORE,
   GRADUATE_INFORMATION,
   INFORMATION,
 } from '../../../modules/redux/action/information/interface';
@@ -48,6 +49,7 @@ const PageBtn: FC<Props> = ({
 
   const selectTypeState = useSelectType().state;
   const informationState = useInformation().state;
+  const informationSetState = useInformation().setState;
   const gradeState = useGrade().state;
   const dispatch = useDispatch();
 
@@ -64,7 +66,8 @@ const PageBtn: FC<Props> = ({
         break;
       case 'information':
         if (selectTypeState.educationalStatus === 'QUALIFICATION_EXAM')
-          isSuccessAction = informationState.isSuccessSaveInformation;
+          isSuccessAction =
+            informationState.isSuccessSaveInformation && informationState.isSuccessSaveGedScore;
         else
           isSuccessAction =
             informationState.isSuccessSaveInformation &&
@@ -90,6 +93,7 @@ const PageBtn: FC<Props> = ({
     selectTypeState.isSuccessSaveSelectType,
     informationState.isSuccessSaveInformation,
     informationState.isSuccessSaveGraduateInformation,
+    informationState.isSuccessSaveGedScore,
     gradeState.isSuccessSaveGrade,
   ]);
 
@@ -108,6 +112,9 @@ const PageBtn: FC<Props> = ({
         break;
       case 'information':
         dispatch({ type: INFORMATION });
+        if (selectTypeState.educationalStatus === 'QUALIFICATION_EXAM') {
+          informationSetState.setGedScore(informationState.totalScore);
+        }
         if (selectTypeState.educationalStatus !== 'QUALIFICATION_EXAM')
           dispatch({ type: GRADUATE_INFORMATION });
         break;

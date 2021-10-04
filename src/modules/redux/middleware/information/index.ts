@@ -43,7 +43,6 @@ export const graduateInformationGetSaga = createRequestSaga(
 );
 export const userPhotoSaveSaga = createRequestSaga(USER_PICTURE, userPhoto);
 export const searchSchoolGetSaga = createRequestSaga(SEARCH_SCHOOL, getSearchSchool);
-export const gedScoreSaveSaga = createRequestSaga(GED_SCORE, gedScore);
 export const gedScoreGetSaga = createRequestSaga(GET_GED_SCORE, getGedScore);
 
 const informationSaveSaga = function* () {
@@ -114,6 +113,35 @@ const proxySaga = function* () {
   }
 };
 
+const gedScoreSaveSaga = function* () {
+  const SUCCESS = 'INFORMATION/GED_SCORE_SUCCESS';
+  const FAILURE = 'INFORMATION/GED_SCORE_FAILURE';
+  const state = yield select(getStateFunc);
+  const accessToken = localStorage.getItem('access_token');
+  try {
+    const response = yield call(gedScore, accessToken, state.totalScore);
+    yield put({
+      type: SUCCESS,
+      payload: response ? response.data : null,
+    });
+  } catch (error) {
+    if (error.response?.data) {
+      yield put({
+        type: FAILURE,
+        payload: { ...error.response.data, type: 'INFORMATION/GED_SCORE' },
+      });
+    } else {
+      yield put({
+        type: FAILURE,
+        payload: {
+          message: 'Network Error',
+          status: 500,
+        },
+      });
+    }
+  }
+};
+
 function* informationSaga() {
   yield takeLatest(INFORMATION, informationSaveSaga);
   yield takeLatest(GET_INFORMATION, informationGetSaga);
@@ -122,7 +150,7 @@ function* informationSaga() {
   yield takeLatest(USER_PICTURE, userPhotoSaveSaga);
   yield takeLatest(SEARCH_SCHOOL, searchSchoolGetSaga);
   yield takeLatest(GET_GED_SCORE, gedScoreGetSaga);
-  yield debounce(3000, GED_SCORE, gedScoreSaveSaga);
+  yield debounce(2000, GED_SCORE, gedScoreSaveSaga);
   yield debounce(3000, actionArray, proxySaga);
 }
 
