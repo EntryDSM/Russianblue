@@ -55,22 +55,16 @@ export const useIsApplicationDate = () => {
     year: nowDate.getFullYear(),
     month: nowDate.getMonth() + 1,
     date: nowDate.getDate(),
-    hours: nowDate.getHours(),
-    minutes: nowDate.getMinutes(),
   };
   const startDates = {
     year: Number(startDate.slice(0, 4)),
     month: Number(startDate.slice(5, 7)),
     date: Number(startDate.slice(8, 10)),
-    hours: Number(startDate.slice(11, 13)),
-    miniutes: Number(startDate.slice(14)),
   };
   const endDates = {
     year: Number(endDate.slice(0, 4)),
     month: Number(endDate.slice(5, 7)),
     date: Number(endDate.slice(8, 10)),
-    hours: Number(endDate.slice(11, 13)),
-    miniutes: Number(endDate.slice(14)),
   };
   if (dates.year < startDates.year || dates.year > endDates.year) {
     history.push('/');
@@ -78,14 +72,10 @@ export const useIsApplicationDate = () => {
   } else if (dates.month < startDates.month || dates.month > endDates.month) {
     history.push('/');
     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
+    console.log(2);
   } else if (dates.date < startDates.date || dates.date > endDates.date) {
     history.push('/');
     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-  } else if (dates.hours < startDates.hours || dates.hours > endDates.hours) {
-    history.push('/');
-    alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-  } else if (dates.minutes < startDates.miniutes || dates.minutes > endDates.miniutes) {
-    history.push('/');
-    alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
+    console.log(3);
   }
 };
