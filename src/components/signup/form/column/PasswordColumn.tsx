@@ -48,8 +48,8 @@ const PasswordColumn: FC<Props> = ({ disable, setPassword, isCheckVertifyCode, e
       text='비밀번호'
       description={
         error.type === 'signup/SIGNUP'
-          ? '영문(대소문자 구분),숫자 포함 8자리 이상 특수기호에 맞춰주세요.'
-          : '영문(대소문자 구분),숫자 포함 8자리 이상 특수기호(~!@#*_) 포함 8자리 이상'
+          ? '영문(대소문자 구분),숫자 포함 8자리 이상 특수기호(~!@#*_)에 맞춰주세요.'
+          : '영문(대소문자 구분), 숫자, 특수기호(~!@#*_) 포함 8자리 이상'
       }
     >
       <PasswordInput width={400} disable={disable} inputChangeHandler={passwordChangeHandler} />
