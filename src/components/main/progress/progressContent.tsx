@@ -16,7 +16,13 @@ const ProgressContent: FC<Props> = ({ isNow, progressName, isPassed, leftDate })
         <S.ProgressText isNow={isNow} isPassed={isPassed}>
           {progressName}
         </S.ProgressText>
-        {isNow ? <S.ProgressSubText>{leftDate}일 남았습니다.</S.ProgressSubText> : ''}
+        {isNow ? (
+          <S.ProgressSubText>
+            {leftDate === 0 ? '마감일입니다.' : `${leftDate}일 남았습니다.`}
+          </S.ProgressSubText>
+        ) : (
+          ''
+        )}
       </S.ProgressTextWrapper>
       <ProgressIcon isPassed={isPassed} />
     </S.ProgressContent>
