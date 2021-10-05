@@ -72,10 +72,8 @@ export const useIsApplicationDate = () => {
   } else if (dates.month < startDates.month || dates.month > endDates.month) {
     history.push('/');
     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-    console.log(2);
   } else if (dates.date < startDates.date || dates.date > endDates.date) {
     history.push('/');
     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-    console.log(3);
   }
 };

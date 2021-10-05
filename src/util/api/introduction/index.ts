@@ -39,7 +39,6 @@ export const getIntroduction = async (access_token: string) => {
   try {
     const request = getRequestWithAccessToken(access_token, 'text');
     const data = await request.get(uri.introduction);
-    console.log('test : ', data);
     return data;
   } catch (error) {
     throw error;

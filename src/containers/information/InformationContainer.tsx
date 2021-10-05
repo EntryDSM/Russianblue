@@ -37,8 +37,6 @@ const InformationContainer = () => {
     } else if (educationalStatus === 'PROSPECTIVE_GRADUATE') {
       dispatch({ type: GET_GRADUATE_INFORMATION });
     }
-    console.log(educationalStatus);
-    console.log(mounted.current);
   }, [educationalStatus]);
 
   useEffect(() => {
