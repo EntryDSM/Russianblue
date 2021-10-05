@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import * as S from '../style';
-import { IMG_EXPLAIN, IMG_FORMATS } from '../../../constance/information';
+import { IMG_EXPLAIN, IMG_FORMATS, IMG_SIZE } from '../../../constance/information';
 import { imgIcon } from '../../../assets/Information';
 
 interface Props {
@@ -44,6 +44,10 @@ const PictureBtn: FC<Props> = ({
           <img src={imgIcon} />
           <p>{IMG_EXPLAIN}</p>
           <p>{IMG_FORMATS}</p>
+          <p>
+            <span>*</span>
+            {IMG_SIZE}
+          </p>
         </>
       );
   }, [pictureUrl, photoFileName]);

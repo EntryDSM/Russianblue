@@ -91,7 +91,7 @@ const InformationForm: FC<Props> = ({
         picture: {
           width: 270,
           height: 295,
-          paddingTop: 85,
+          paddingTop: 80,
           paddingSide: 68,
           top: 10,
         },
@@ -105,7 +105,7 @@ const InformationForm: FC<Props> = ({
         picture: {
           width: 317,
           height: 363,
-          paddingTop: 115,
+          paddingTop: 110,
           paddingSide: 84,
           top: 18,
         },

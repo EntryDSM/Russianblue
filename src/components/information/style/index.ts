@@ -237,11 +237,21 @@ export const PictureBtn = styled.label<{
     text-align: center;
     font-size: 12px;
   }
-  > p:last-child {
+  > p:nth-child(3) {
     width: 145px;
     text-align: center;
     font-size: 12px;
     font-weight: 300;
+  }
+  > p:last-child {
+    width: 145px;
+    text-align: center;
+    font-size: 12px;
+    > * {
+      font-size: 12px;
+      font-weight: bold;
+      color: ${color.main};
+    }
   }
 `;
 
