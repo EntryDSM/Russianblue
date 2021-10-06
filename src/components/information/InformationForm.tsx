@@ -35,6 +35,7 @@ interface Props {
   pictureUrl: string;
   totalScore: string;
   photoFileName: string;
+  isSuccessSaveUserPicture: boolean;
   setInput: (payload: { name: string; value: string }) => void;
   setSex: (payload: string) => void;
   setBirthYear: (payload: number) => void;
@@ -68,6 +69,7 @@ const InformationForm: FC<Props> = ({
   pictureUrl,
   totalScore,
   photoFileName,
+  isSuccessSaveUserPicture,
   setInput,
   setSex,
   setBirthYear,
@@ -148,6 +150,7 @@ const InformationForm: FC<Props> = ({
       <PictureBtn
         {...styleInfo.picture}
         pictureUrl={pictureUrl}
+        isSuccessSaveUserPicture={isSuccessSaveUserPicture}
         photoFileName={photoFileName}
         setImageUrl={setImageUrl}
         setUserPicture={setUserPicture}

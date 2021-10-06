@@ -215,6 +215,7 @@ const Information: FC<Props> = ({
         stdNumber={stdNumber}
         pictureUrl={pictureUrl}
         totalScore={totalScore}
+        isSuccessSaveUserPicture={isSuccessSaveUserPicture}
         setInput={setInput}
         setSex={setSex}
         setBirthYear={setBirthYear}
