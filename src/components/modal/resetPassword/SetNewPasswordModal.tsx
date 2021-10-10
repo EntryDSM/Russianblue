@@ -13,16 +13,25 @@ interface Props {
 const SetNewPasswordModal: FC<Props> = ({ goNext, goPrev }) => {
   const { state, setState } = useResetPassword();
   const [isNextAble, setIsNextAble] = useState(false);
+  const [passwordCheck, setPasswordCheck] = useState<string>('');
   const newPasswordInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState.setNewPassword(e.target.value);
+  };
+  const newPasswordCheckInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordCheck(e.target.value);
   };
   useEffect(() => {
     if (!isPassword(state.newPassword)) {
       setIsNextAble(false);
       return;
     }
+    if (state.newPassword !== passwordCheck) {
+      setIsNextAble(false);
+      return;
+    }
+
     setIsNextAble(true);
-  }, [state.newPassword]);
+  }, [state.newPassword, passwordCheck]);
 
   useEffect(() => {
     return () => {
@@ -40,6 +49,13 @@ const SetNewPasswordModal: FC<Props> = ({ goNext, goPrev }) => {
         height={48}
         margin='0px 0px 15px 0px'
         placeholder='새로운 비밀번호'
+      />
+      <PasswordInput
+        inputChangeHandler={newPasswordCheckInputChangeHandler}
+        width={280}
+        height={48}
+        margin='0px 0px 15px 0px'
+        placeholder='새로운 비밀번호 확인'
       />
       <S.ModalSubTitle>영문(대소문자 구분), 숫자 포함 8자리 이상 특수문자 필수</S.ModalSubTitle>
       <S.ModalMoveButtonWrapper>
