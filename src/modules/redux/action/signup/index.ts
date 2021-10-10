@@ -20,11 +20,13 @@ import {
   SEND_VERTIFY_CODE,
   CHECK_VERTIFY_CODE,
   RESET,
+  PASSWORD_CHECK,
 } from './interface';
 import { createAction } from 'typesafe-actions';
 
 export const setName = createAction(NAME)<string>();
 export const setPassword = createAction(PASSWORD)<string>();
+export const setPasswordCheck = createAction(PASSWORD_CHECK)<string>();
 export const setPhoneNumber = createAction(PHONE_NUMBER)<string>();
 export const setPhoneCode = createAction(PHONE_CODE)<string>();
 export const setRuleCheck = createAction(RULE_CHECK)<boolean>();
@@ -55,11 +57,13 @@ export {
   SIGNUP_FAILURE,
   SIGNUP_SUCCESS,
   RESET,
+  PASSWORD_CHECK,
 };
 
 export type signupActionType =
   | ReturnType<typeof setName>
   | ReturnType<typeof setPassword>
+  | ReturnType<typeof setPasswordCheck>
   | ReturnType<typeof setPhoneNumber>
   | ReturnType<typeof setPhoneCode>
   | ReturnType<typeof setRuleCheck>

@@ -12,11 +12,13 @@ import {
   SEND_VERTIFY_CODE,
   SIGNUP_FAILURE,
   RESET,
+  PASSWORD_CHECK,
 } from '../../action/signup';
 import ISignUpState from './interface';
 
 const initState: ISignUpState = {
   password: '',
+  passwordCheck: '',
   name: '',
   phoneCode: '',
   phoneNumber: '',
@@ -42,6 +44,12 @@ const SignUpReducer = (state: ISignUpState = initState, action: signupActionType
       return {
         ...state,
         password: action.payload,
+      };
+    }
+    case PASSWORD_CHECK: {
+      return {
+        ...state,
+        passwordCheck: action.payload,
       };
     }
     case PHONE_CODE: {

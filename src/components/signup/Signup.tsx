@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { FC, useMemo } from 'react';
 import { error } from '../../models/error';
 import { isOneOfTextEmpty } from '../../util/util';
 import SignUpForm from './form';
@@ -11,6 +10,7 @@ interface Props {
   phoneNumber: string;
   phoneCode: string;
   password: string;
+  passwordCheck: string;
   ruleCheck: boolean;
   isCheckVertifyCode: boolean;
   isSendVertifyCode: boolean;
@@ -19,6 +19,7 @@ interface Props {
   setName: (payload: string) => void;
   setPhoneNumber: (payload: string) => void;
   setRuleCheck: (payload: boolean) => void;
+  setPasswordCheck: (payload: string) => void;
   sendVertifyCode: (payload: string) => void;
   checkVertifyCode: (payload: { phoneNumber: string; code: string }) => void;
   signup: (payload: { phoneNumber: string; password: string; name: string }) => void;
@@ -26,12 +27,17 @@ interface Props {
 }
 
 const SignUp: FC<Props> = props => {
-  const history = useHistory();
-  const { name, phoneNumber, phoneCode, password, signup } = props;
+  const { name, phoneNumber, phoneCode, password, signup, passwordCheck } = props;
 
   const signupButtonClickHandler = () => {
     signup({ phoneNumber, password, name });
   };
+
+  const isSamePasswordAndPasswordCheck = useMemo(() => passwordCheck === password, [
+    password,
+    passwordCheck,
+  ]);
+
   return (
     <S.SignUp>
       <div>
@@ -43,7 +49,10 @@ const SignUp: FC<Props> = props => {
         <SignUpForm {...props} />
         <S.SignUpSubmitButtonWrapper>
           <S.SignUpSubmitButton
-            disable={isOneOfTextEmpty(name, phoneNumber, phoneCode, password)}
+            disable={
+              isOneOfTextEmpty(name, phoneNumber, phoneCode, password) ||
+              !isSamePasswordAndPasswordCheck
+            }
             onClick={signupButtonClickHandler}
           >
             계정 생성

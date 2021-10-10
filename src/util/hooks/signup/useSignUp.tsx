@@ -4,6 +4,7 @@ import {
   sendVertifyCode,
   setName,
   setPassword,
+  setPasswordCheck,
   setPhoneCode,
   setPhoneNumber,
   setRuleCheck,
@@ -20,6 +21,9 @@ const useSignup = () => {
     },
     setPassword: (payload: string) => {
       dispatch(setPassword(payload));
+    },
+    setPasswordCheck: (payload: string) => {
+      dispatch(setPasswordCheck(payload));
     },
     setPhoneNumber: (payload: string) => {
       dispatch(setPhoneNumber(payload));

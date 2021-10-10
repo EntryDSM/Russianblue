@@ -5,6 +5,7 @@ interface ISignUpState {
   name: string;
   phoneCode: string;
   password: string;
+  passwordCheck: string;
   ruleCheck: boolean;
   isCheckVertifyCode: boolean;
   isSendVertifyCode: boolean;

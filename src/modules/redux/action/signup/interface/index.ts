@@ -6,6 +6,7 @@ export const RULE_CHECK = 'signup/RULE_CHECK' as const;
 export const SIGNUP = 'signup/SIGNUP' as const;
 export const SEND_VERTIFY_CODE = 'signup/SEND_VERTIFY_CODE' as const;
 export const CHECK_VERTIFY_CODE = 'signup/CHECK_VERTIFY_CODE' as const;
+export const PASSWORD_CHECK = 'signup/PASSWORD_CHECK' as const;
 
 export const SIGNUP_FAILURE = `${SIGNUP}_FAILURE` as const;
 export const SIGNUP_SUCCESS = `${SIGNUP}_SUCCESS` as const;

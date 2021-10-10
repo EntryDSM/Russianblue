@@ -3,12 +3,14 @@ import { error } from '../../../models/error';
 import { isOneOfTextEmpty } from '../../../util/util';
 import * as S from '../style';
 import { NameColumn, PhoneNumberColumn, VertifyColumn, PasswordColumn } from './column';
+import PasswordCheckColumn from './column/PasswordCheckColumn';
 
 interface Props {
   name: string;
   phoneNumber: string;
   phoneCode: string;
   password: string;
+  passwordCheck: string;
   ruleCheck: boolean;
   isSendVertifyCode: boolean;
   isCheckVertifyCode: boolean;
@@ -16,6 +18,7 @@ interface Props {
   setPhoneCode: (payload: string) => void;
   setName: (payload: string) => void;
   setPhoneNumber: (payload: string) => void;
+  setPasswordCheck: (payload: string) => void;
   sendVertifyCode: (payload: string) => void;
   checkVertifyCode: (payload: { phoneNumber: string; code: string }) => void;
   error: error;
@@ -26,9 +29,12 @@ const SignUpForm: FC<Props> = ({
   name,
   phoneCode,
   phoneNumber,
+  password,
+  passwordCheck,
   setPassword,
   setPhoneCode,
   setPhoneNumber,
+  setPasswordCheck,
   setName,
   sendVertifyCode,
   checkVertifyCode,
@@ -63,6 +69,12 @@ const SignUpForm: FC<Props> = ({
         setPassword={setPassword}
         isCheckVertifyCode={isCheckVertifyCode}
         error={error}
+      />
+      <PasswordCheckColumn
+        disable={!ruleCheck || !isSendVertifyCode}
+        password={password}
+        passwordCheck={passwordCheck}
+        setPasswordCheck={setPasswordCheck}
       />
     </S.SignUpContent>
   );
