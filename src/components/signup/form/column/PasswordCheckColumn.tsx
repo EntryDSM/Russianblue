@@ -26,7 +26,7 @@ const PasswordCheckColumn: FC<Props> = ({ disable, password, passwordCheck, setP
   }, [password, isSamePasswordAndPasswordCheck]);
 
   return (
-    <SignUpColumn text='비밀번호' description={description}>
+    <SignUpColumn text='비밀번호 확인' description={description}>
       <PasswordInput
         width={400}
         disable={disable}
