@@ -17,7 +17,7 @@ const InitState: IStatusState = {
     {
       year: '2021',
       type: 'END_DATE',
-      date: '2021-10-07T17:00',
+      date: '2021-10-21T17:00',
     },
     {
       year: '2021',
@@ -37,7 +37,7 @@ const InitState: IStatusState = {
     {
       year: '2021',
       type: 'START_DATE',
-      date: '2021-10-04T08:00',
+      date: '2021-10-18T08:00',
     },
     {
       year: '2021',
