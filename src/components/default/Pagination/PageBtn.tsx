@@ -67,14 +67,11 @@ const PageBtn: FC<Props> = ({
       case 'information':
         if (selectTypeState.educationalStatus === 'QUALIFICATION_EXAM')
           isSuccessAction =
-            informationState.isSuccessSaveInformation &&
-            informationState.isSuccessSaveGedScore &&
-            informationState.isSuccessSaveUserPicture;
+            informationState.isSuccessSaveInformation && informationState.isSuccessSaveGedScore;
         else
           isSuccessAction =
             informationState.isSuccessSaveInformation &&
-            informationState.isSuccessSaveGraduateInformation &&
-            informationState.isSuccessSaveUserPicture;
+            informationState.isSuccessSaveGraduateInformation;
         break;
       case 'grade':
         isSuccessAction = gradeState.isSuccessSaveGrade;
