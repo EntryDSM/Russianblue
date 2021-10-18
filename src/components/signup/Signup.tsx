@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from 'react';
+import { isEmail } from '../../util/util/format';
 import { error } from '../../models/error';
 import { isOneOfTextEmpty } from '../../util/util';
 import SignUpForm from './form';
@@ -51,7 +52,8 @@ const SignUp: FC<Props> = props => {
           <S.SignUpSubmitButton
             disable={
               isOneOfTextEmpty(name, phoneNumber, phoneCode, password) ||
-              !isSamePasswordAndPasswordCheck
+              !isSamePasswordAndPasswordCheck ||
+              !isEmail(phoneNumber)
             }
             onClick={signupButtonClickHandler}
           >

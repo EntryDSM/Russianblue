@@ -1,9 +1,9 @@
 import Input from '../../default/input';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import * as S from '../style';
 import MoveButton from './moveButton';
 import useResetPassword from '../../../util/hooks/resetPassword/useResetPassword';
-import { isHaveError } from '../../../util/util/format';
+import { isEmail, isHaveError } from '../../../util/util/format';
 
 interface Props {
   goNext: () => void;
@@ -15,8 +15,18 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
     setState.setVertifyPhoneNumber(e.target.value);
   };
   const sendVertifyCodeButtonClickHandler = () => {
+    if (!isEmail(state.vertifyPhoneNumber)) return;
+
     setState.sendVertifyCode({ email: state.vertifyPhoneNumber });
   };
+
+  const sub = useMemo(() => {
+    if (isHaveError(state.error.message))
+      return <S.ModalErrorText>유저가 없습니다.</S.ModalErrorText>;
+    else if (!isEmail(state.vertifyPhoneNumber) && state.vertifyPhoneNumber.length > 0)
+      return <S.ModalErrorText>이메일 형식을 확인해 주세요.</S.ModalErrorText>;
+    else return <S.ModalSubTitle>본인인증시 사용했던 이메일을 입력해주세요.</S.ModalSubTitle>;
+  }, [state.error, state.vertifyPhoneNumber]);
 
   useEffect(() => {
     setState.setResetPasswordError({ status: 0, message: '', type: '' });
@@ -28,11 +38,7 @@ const SetPhoneNumberModal: FC<Props> = ({ goNext }) => {
   return (
     <S.ModalMain>
       <S.ModalTitle>비밀번호 재설정</S.ModalTitle>
-      {isHaveError(state.error.message) ? (
-        <S.ModalErrorText>유저가 없습니다.</S.ModalErrorText>
-      ) : (
-        <S.ModalSubTitle>본인인증시 사용했던 이메일을 입력해주세요</S.ModalSubTitle>
-      )}
+      {sub}
       <Input
         inputChangeHandler={phoneNumberChangeHandler}
         width={280}

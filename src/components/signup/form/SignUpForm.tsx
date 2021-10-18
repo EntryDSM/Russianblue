@@ -48,7 +48,7 @@ const SignUpForm: FC<Props> = ({
       <PhoneNumberColumn
         isSendVertifyCode={isSendVertifyCode}
         sendVertifyCode={sendVertifyCode}
-        disable={!ruleCheck || isOneOfTextEmpty(name)}
+        disable={!ruleCheck || isOneOfTextEmpty(name) || isCheckVertifyCode}
         setPhoneNumber={setPhoneNumber}
         phoneNumber={phoneNumber}
         error={error}

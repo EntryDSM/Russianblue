@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import SignUpColumn from './SignUpColumn';
 import Input from '../../../default/input';
 import Button from '../../../default/button';
@@ -69,15 +69,13 @@ const VertifyCodeColumn: FC<Props> = ({
     }
   }, [time, isSendVertifyCode]);
 
+  const errorMessage: string = useMemo(() => {
+    if (error.type === CHECK_VERTIFY_CODE) return '인증번호를 확인해 주세요.';
+    return '혹시 이메일이 오지 않았다면 입력한 이메일을 확인해 주세요.';
+  }, [error]);
+
   return (
-    <SignUpColumn
-      text='인증번호'
-      description={
-        error.type === CHECK_VERTIFY_CODE
-          ? '인증번호를 확인해 주세요.'
-          : '혹시 이메일이 오지 않았다면 입력한 이메일을 확인해 주세요'
-      }
-    >
+    <SignUpColumn text='인증번호' description={errorMessage}>
       <div>
         <Input
           width={216}

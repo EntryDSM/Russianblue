@@ -4,6 +4,7 @@ import Input from '../../../default/input';
 import Button from '../../../default/button';
 import { error } from '../../../../models/error';
 import { SEND_VERTIFY_CODE } from '../../../../modules/redux/action/signup';
+import { isEmail } from '../../../../util/util/format';
 
 interface Props {
   disable: boolean;
@@ -29,6 +30,7 @@ const PhoneNumberColumn: FC<Props> = ({
     sendVertifyCode(phoneNumber);
   };
   const description = useMemo(() => {
+    if (phoneNumber.length > 0 && isEmail(phoneNumber)) return '이메일 형식을 확인해 주세요.';
     if (isSendVertifyCode) {
       return '해당 이메일로 인증번호를 보냈습니다.';
     }
