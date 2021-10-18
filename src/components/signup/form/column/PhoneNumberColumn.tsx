@@ -30,7 +30,7 @@ const PhoneNumberColumn: FC<Props> = ({
     sendVertifyCode(phoneNumber);
   };
   const description = useMemo(() => {
-    if (phoneNumber.length > 0 && isEmail(phoneNumber)) return '이메일 형식을 확인해 주세요.';
+    if (phoneNumber.length > 0 && !isEmail(phoneNumber)) return '이메일 형식을 확인해 주세요.';
     if (isSendVertifyCode) {
       return '해당 이메일로 인증번호를 보냈습니다.';
     }
@@ -54,7 +54,7 @@ const PhoneNumberColumn: FC<Props> = ({
       />
       <Button
         width={78}
-        disable={disable}
+        disable={disable || !isEmail(phoneNumber)}
         margin='0px 0px 0px 7px'
         onClick={sendVertifyCodeButtonClickHandler}
       >
