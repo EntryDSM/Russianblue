@@ -49,55 +49,15 @@ export const useIsApplicationDate = () => {
   const history = useHistory();
   const processState = useProcess();
   const nowDate = new Date();
-  const startDate = processState.state.date[4].date;
-  const endDate = processState.state.date[0].date;
-  const dates = {
-    year: nowDate.getFullYear(),
-    month: nowDate.getMonth() + 1,
-    date: nowDate.getDate(),
-    hour: nowDate.getHours(),
-  };
-  const startDates = {
-    year: Number(startDate.slice(0, 4)),
-    month: Number(startDate.slice(5, 7)),
-    date: Number(startDate.slice(8, 10)),
-    hour: Number(startDate.slice(11, 13)),
-  };
-  const endDates = {
-    year: Number(endDate.slice(0, 4)),
-    month: Number(endDate.slice(5, 7)),
-    date: Number(endDate.slice(8, 10)),
-    hour: Number(endDate.slice(11, 13)),
-  };
-  if (dates.year < startDates.year || dates.year > endDates.year) {
+  const startDate = new Date(processState.state.date[4].date);
+  const endDate = new Date(processState.state.date[0].date);
+  if (nowDate.getTime() < startDate.getTime()) {
+    console.log('원서 접수 전');
     history.push('/');
     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-  } else if (dates.month < startDates.month || dates.month > endDates.month) {
-    history.push('/');
-    alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-  } else if (dates.date < startDates.date || dates.date > endDates.date) {
+  } else if (nowDate.getTime() > endDate.getTime()) {
+    console.log('원서 접수 후');
     history.push('/');
     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
   }
-  // } else if (
-  //   dates.year === startDates.year &&
-  //   dates.month === startDates.month &&
-  //   dates.date === startDates.date
-  // ) {
-  //   if (dates.hour < startDates.hour) {
-  //     history.push('/');
-  //     console.log('원서 접수 기간 전');
-  //     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-  //   }
-  // } else if (
-  //   dates.year === endDates.year &&
-  //   dates.month === endDates.month &&
-  //   dates.date === endDates.date
-  // ) {
-  //   if (dates.hour >= endDates.hour) {
-  //     history.push('/');
-  //     console.log('원서 접수 기간 후');
-  //     alert('원서 접수 기간이 아니면 이용하실 수 없습니다.');
-  //   }
-  // }
 };
